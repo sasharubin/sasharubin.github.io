@@ -28,12 +28,9 @@ h1 small{
 padding: 10em 1em 0em 0em;
 	font-size:20px;
 line-height:25px;
+font-weight:normal;
 }
 
-h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{
-	font-weight:normal;
-	color:#999
-}
 
 h1{
 	font-size:30px;
