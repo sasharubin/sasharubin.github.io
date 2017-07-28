@@ -19,6 +19,11 @@ h1,h2,h3,h4,h5,h6{
 	text-rendering:optimizelegibility
 }
 
+.right {
+    position: relative;
+    padding: 10px;
+}
+
 a{
 	color:#08c;
 	text-decoration:none
@@ -72,10 +77,13 @@ padding: 1em 0em 0em 0em;
 
   h2 { font-size: 30px; }
 
-  h2, h3 { border-bottom: 1px solid #E9E6E6; margin-bottom: 10px; }
+  h2, h3 { border-bottom: 1px solid #E9E6E6; margin-bottom: 10px; margin-top: 5px; }
+
+/*  
+
   #content h3 { margin-top: 20px; }
 
-/*  p, li {
+p, li {
     font-family: Verdana;
   }
 */
@@ -97,6 +105,10 @@ body{
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+ul {
+type: square;
+}
+
 #outer {
     clear: both;
     margin: 20px auto;
@@ -109,5 +121,12 @@ body{
         unicode-bidi: bidi-override;
         direction: rtl;
         }
+
+.columnlist {
+    -webkit-columns: 1; /* Chrome, Safari, Opera */
+    -moz-columns: 1; /* Firefox */
+    columns: 2;
+}
+
 </style>
 
