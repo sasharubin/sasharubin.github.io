@@ -1,0 +1,932 @@
+
+\section{Decidability of Multi-Robot Systems} \label{sec:dec}
+The previous section shows that decidability cannot be achieved if the robots have unlimited publishing abilities, even in very restricted situations, i.e., lines, local testing, and safety tasks. Thus, in order to achieve decidability we make the following restrictions:
+\begin{enumerate}
+ \item We restrict to classes of graphs $\gclass$ with decidable \msol-satisfiability (e.g., lines, trees, etc.).
+
+ \item We consider runs in which the total number of times a robot publishes is bounded. 
+%  \sr{do we want to call this ``broadcast'' rather than ``publishing''? no. publish is written somewhere. BC needs to be stored in the state.}
+\end{enumerate}
+
+We discuss each restriction in turn. 
+
+\begin{definition} 
+ Let $\gclass$ be a set of $\Sigma$-graphs. The {\em \msol-satisfiability problem of $\gclass$} is to decide, given an $\msol(\Sigma)$-sentence $\phi$, whether there exists $G \in \gclass$ such that $G \models \phi$. 
+\end{definition}
+
+Unfortunately, the $\msol$-satisfiability problem for the set $\gclass$ of all $\Sigma$-graphs is undecidable (this is already true for first-order logic~\cite{EbFl95}). However, there are classes of graphs for which it is decidable, notably the \courcellian sets of graphs.  
+\courcellian sets of graphs are the analogue of context-free sets of strings, and can be described by graph grammars, or equations using certain graph operations, or $\msol$-transductions of the set of trees. We use the following definition: $\gclass$ is {\em \courcellian} if it is $\msol$-definable and of bounded clique-width \cite{CE12}. Examples include the set of lines, rings, $\Delta$-ary trees, series-parallel graphs, cliques, but not the set of  grids. 
+For an elaboration on the definition and properties of \courcellian sets of graphs the reader may consult \cite{CE12}. We only need the following fundamental theorem:
+
+
+\begin{theorem}[Courcelle \cite{CE12}] \label{thm:courcelle}
+The following problem is decidable: given $B \in \nat$ and a sentence $\varphi \in \msol$ (in the signature of graphs), decide 
+whether or not there is a graph $G$ of clique-width at most $B$ that satisfies $\varphi$.
+\end{theorem}
+
+\begin{corollary} \label{cor:courcelle}
+If $\gclass$ is a \courcellian set of graphs, then the \msol-satisfiability problem of $\gclass$ is decidable.
+\end{corollary}
+\begin{proof}
+Suppose $\gclass$ is the set of graphs of clique-width at most $B$ that satisfies the \msol-sentence $\Psi$.
+Given an \msol-sentence $\varphi$, run the algorithm from Theorem~\ref{thm:courcelle} on input $B$ and sentence $\Psi \wedge \varphi$. \qed
+\end{proof}
+
+We now turn to the second restriction and refine the definition of PVP to only consider runs in which there are a bounded number of publishing points.
+\begin{definition}
+A \emph{publishing point} in a run or partial run $\onestep{c_0}{c_1}{K_0} \onestep{}{c_2}{K_1} \cdots$ 
+is an index $n \in \nat$ such that there exists $i \in K_n$ with 
+$st_i(c_{n+1}) \in B_i$.
+\end{definition}
+
+In words, a point in time is a publishing point if some active robot moves to a publishing state.
+
+\begin{definition}
+Fix a set of $\Sigma$-graphs $\gclass$, positive integer $k$, a set  $\rclass$ of $k$-robot ensembles, and a set $\tclass$ of $\RLTL_k(\Sigma)$ formulas. 
+The \textbf{parameterised verification problem restricted to bounded-publishing} $\BPVP(\gclass,k,\rclass,\tclass)$ is the following decision problem:
+given a $k$-robot ensemble $\tup{R} \in \rclass$, a $k$-tuple of \RLTL formulas $\tpl{\varphi_1,\cdots,\varphi_k}$ with each $\varphi_i$ from $\tclass$, and a bound $E \in \nat$, decide whether for every graph $G \in \gclass$ it holds that every run $\pi$ of $\runs(G,\tup{R})$ in which there are at most $E$ publishing points satisfies that
+$\activeproj_i(\pi) \models_i \varphi_i$ for every $i \leq k$.
+\end{definition}
+
+\begin{remark}
+Just like $\PVP$, also $\BPVP$ is undecidable if $\gclass$ is the set of grids. Indeed, the robots in Theorem~\ref{thm:undec-1robotgrid}, the undecidability of $\PVP$ for grids and $k = 1$, have no publishing states. 
+\end{remark}
+
+
+%
+%\subsection{Reducing parameterised verification to logical validity} \label{subsec:reduc}
+%As expected, there is a tradeoff between the various modeling choices.
+%This will involve restricting the combination of $k, \T,\gclass$ and (the testing abilities of robots in) $\rclass$.
+
+The following theorem is the main technical result of this section.
+ \begin{theorem}[Reduction] \label{thm:reduction} 
+  For every $k$-robot ensemble $\tup{R}$, robot index $i \in [k]$, bound $B \in \nat$ and $\RLTL$ formula $\varphi$, there is an \msol-sentence $\psi$ such that for every graph $G$: 
+  $G \models \psi$ iff there exists a run $\pi \in \runs(G,\tup{R})$ with at most $B$ publishing points such that $\activeproj_i(\pi) \models_i \varphi$. 
+  Moreover, the sentence $\psi$ can be built effectively from $\tup{R},i,B$ and $\varphi$.
+ \end{theorem}
+
+Before proving this Theorem we state some consequences.
+\begin{theorem} \label{thm:PVPdec}
+$\BPVP({\gclass,k,\rclass,\tclass})$ is decidable where $\gclass$ is a set of graphs with decidable \msol-satisfiability problem, 
+$k \in \nat$, $\rclass$ is the set of all $k$-robot ensembles, and $\tclass$ is the set of all \RLTL formulas.
+\end{theorem}
+%
+\begin{proof}
+The algorithm proceeds as follows. Given $B \in \nat,\tup{R} \in \rclass$ and $\tpl{\varphi_1,\cdots,\varphi_k}$ with each $\varphi_i$ from $\Phi$, build, for each $i$, the sentence $\psi_i$ from Theorem~\ref{thm:reduction} applied to $\neg \varphi_i$. Decide whether or not there exists $G \in \gclass$ such that 
+$G \models \bigvee_{i \leq k} \psi_i$. The answer to this problem is ``no'' iff for every $G \in \gclass$, for every $i \leq k$, 
+$G \not \models \psi_i$,  iff (by Theorem~\ref{thm:reduction}) for every $G \in \gclass$, for every $i \leq k$, every run $\pi \in \runs(G,\tup{R})$ with at most $B$ publishing points satisfies $\activeproj_i(\pi) \models_i \neg \psi_i$, i.e., 
+iff for every $G \in \gclass$ and $i \in [k]$, $(G,\tup{R}) \models_i \varphi_i$.
+\qed
+%Indeed, he answer to this problem is ``no'' iff for all $G \in \gclass$ and every run $\pi \in \runs(G,\tup{R}$) in which there are at most $B$ broadcasts, we have that $\activeproj_i(\pi) \models \psi_i$ for each $i \in [k]$. \qed
+\end{proof}
+
+Combining this with Corollary~\ref{cor:courcelle} we get the main result of this section:
+\begin{theorem} \label{thm:PVPdec}
+$\BPVP({\gclass,k,\rclass,\tclass})$ is decidable where $\gclass$ is a \courcellian set of graphs, $k \in \nat$, $\rclass$ is the set of all $k$-robot ensembles, and $\tclass$ is the set of all \RLTL formulas.
+\end{theorem}
+
+\begin{remark}
+The statement of Theorem~\ref{thm:PVPdec} says that for every $\gclass$ that is \courcellian and every $k \in \nat$, there is an algorithm that solves 
+the decision problem 
+$\BPVP({\gclass,k,\rclass,\tclass})$. Actually more is true.  
+ There is a single algorithm that given  a description of a \courcellian set $\gclass$ of $\Sigma$-graphs (i.e., an \msol formula and a bound $B$), a number of robots $k \in \nat$, returns an algorithm for solving 
+ $\BPVP({\gclass,k,\rclass,\tclass})$. This follows from Theorem~\ref{thm:reduction} and Theorem~\ref{thm:courcelle}.
+%  because the $\msol$-satisfiability problem for \courcellian sets of graphs $\gclass$ is \emph{uniformly} decidable, 
+%  i.e., there is an algorithm that given a description of a \courcellian set of graphs $\gclass$ and an $\msol$-sentence $\phi$ decides if every graph in $\gclass$ satisfies $\phi$ \cite{CE12}. \sr{say what sort of description, i.e., MSO-formula and bound $t$.}
+\end{remark}
+
+% Note that $k = 1$ implies that $\BPVP$ is the same as $\PVP$. \todo{Not that simple. 
+% A single robot may publish, and use this information later, infinitely often.}
+% Thus, Theorem~\ref{thm:PVPdec} becomes:
+% 
+% \begin{corollary} \label{cor:k=1}
+%  $\PVP({\gclass,1,\rclass,\tclass})$ is decidable where $\gclass$ is a \courcellian set of graphs, $\rclass$ is the set of all $1$-robot ensembles, and 
+%  $\tclass$ is the set of all \RLTL formulas.
+% \end{corollary}
+
+
+
+The proof of Theorem~\ref{thm:reduction} will occupy the rest of this section. The idea is to build an \msol-formula that states that
+there is a partition of the run into at most $B+1$ segments such that no robot publishes inside a segment (i.e., robots only publish between segments).
+Inside each segment we can treat the robots as operating independently of each other (indeed, the value of a test inside a segment is the same as the value at the first configuration of the segment). This reduces the problem to expressing, in \msol, what a single robot does (assuming the other robots are fixed). The \msol-formula for such a single robot is computed by thinking of the robot as an automaton and adapting the proof of Kleene's theorem that shows how to compile an automaton into a regular expression, which is then translated into \msol. 
+% \sr{updated explanation}
+
+We begin with some automata-theory preliminaries, and then provide some Lemmas that construct \msol-formulas over graphs that will be used as building blocks in the reduction.\footnote{These Lemmas all begin by fixing a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, and tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_j B_j$. The constructed formulas will depend on some (perhaps all) of this data. However, for ease of reading, we will not explicitly specify
+exactly which datum a particular formula does and does not make use of.}
+
+
+\subsection{Preliminaries}
+
+% We present automata preliminaries, \msol preliminaries, and some notation.
+
+\head{Automata preliminaries.}
+An {\em nondeterministic finite word automaton (NFW)} is a tuple $M = \tpl{A,Q,I,\Delta,F}$ where $A$ is a finite alphabet, $Q$ a finite set of states, $\delta \subseteq Q \times A \times Q$ a transition relation, $I \subseteq Q$ the initial states and $F \subseteq Q$ the accepting states. A \emph{run} of a sequence $a_0 a_1 \cdots a_l$ is a sequence of states $q_0 q_1 \cdots q_{l+1}$ such that $q_0 \in I$ and $\delta(q_i,a_i,q_{i+1})$ for all $i \leq l$. The run is \emph{successful} if $q_{l+1} \in F$. The set of sequences in $A^*$ that have successful runs is called the \emph{language} of $M$.
+
+{\em Regular-expressions} over a finite alphabet $A$ are built from the 
+sets $\emptyset$, $\{\epsilon\}$, and $\{a\}$ ($a \in A$), and the operations 
+union $+$, concatenation $\cdot$, and Kleene-star $\phantom{}^*$.
+Kleene's Theorem says that for every $L \subseteq A^*$, $L$ is definable by a regular expression if and only if $L$ is the language of an NFW.
+Moreover, there is an effective transformation between these two formalisms.
+
+A \emph{nondeterministic B\"uchi word automaton (NBW)} is a tuple $N = (A,Q,I,\Delta,F)$, just as for finite automata. However, $N$ takes infinite sequences over alphabet $A$ as input. A \emph{run} of $N$ on an infinite sequence $a_0 a_1 \cdots \in A^\omega$ is an infinite sequence $q_0 q_1 \cdots$ such that $\Delta(q_i,a_i,q_{i+1})$ for all $i \in \nat$. A run is \emph{successful} if, for some $f \in F$, there are infinitely many $n \in \nat$ such that $q_n = f$. The set of  sequences in $A^\omega$ that have successful runs is called 
+the \emph{language} of $N$.
+
+
+\begin{theorem}[\cite{VW94}] \label{thm:LTL to NBW}
+ For every \LTL formula $\varphi$ over $\AP$ there is an NBW $N_\varphi$ over alphabet $2^{\AP}$ whose language is 
+ $\{\alpha \in (2^{\AP})^\omega : \alpha \models_\LTL \varphi\}$.
+\end{theorem}
+
+\head{\msol preliminaries.}
+The following proposition (see for instance~\cite{CE12}) says that one can define transitive closure of an \msol-definable relation between two first-order variables in \msol. 
+
+\begin{proposition}[Transitive Closure in \msol] \label{prop:TC}
+Let $\phi(y,y',\tup{w},\tup{W})$ be an \msol formula in the signature of graphs. One can build an \msol-formula $\phi^*(y,y',\tup{w},\tup{W})$ for the transitive closure of $\phi$.
+\end{proposition}
+\begin{proof}
+Consider the \msol formula
+\[
+\phi^*(y,y',\tup{w},\tup{W}) := \forall A [(closed_{\phi}(A,\tup{w},\tup{W}) \wedge y \in A) \limp y' \in A] 
+\]
+where $closed_{\phi}(A,\tup{w},\tup{W})$ is defined as $\forall a \forall b[(a \in A \wedge \phi(a,b,\tup{w},\tup{W}) \limp b \in A]$. 
+It is not hard to see that $\phi^*$ expresses transitive closure with parameters. 
+\qed
+\end{proof}
+
+\begin{remark}
+The {\em $k$-ary transitive-closure operator} is the function that maps a $2k$-ary relation $\phi(\tup{x},\tup{y})$ to the $2k$-ary relation $\phi^*(\tup{x},\tup{y})$ such that, in every graph $G$: $\phi^*(\tup{x},\tup{y})$ holds iff there exists a sequence $\tup{v}_1, \tup{v}_2, \cdots, \tup{v}_m$ such that $\tup{x} = \tup{v}_1$, $\tup{y} = \tup{v}_m$, and $\phi(\tup{v}_i,\tup{v}_{i+1})$ holds for every $i < m$. 
+For $k > 1$, it is not always the case that if a $k$-ary relation $\phi$ is $\msol$-definable then so is its $k$-ary transitive-closure because, intuitively, this would require having $k$-ary relation variables $W$. To see this note that $2$-ary transitive closure on finite words (i.e., labeled lines) can define the non-regular language $\{0^n1^n : n \in \nat\}$; now use the fact that, over finite words, $\msol$ can only define the regular languages, part of a result known as the B\"uchi-Elgot-Trakhtenbrot Theorem, see \cite{Thomas96}.
+\end{remark}
+
+
+
+\head{Notation.}
+In what follows we will use the following notation:
+\begin{itemize}
+ \item $k$ will denote the number of robots in the ensemble,
+ \item $p_i$ will denote states of robot $i$,
+ \item $b_i$ will denote publishing states of robot $i$,
+ \item $x_i$ will denote the current position of robot $i$,
+ \item $z_i$ will denote the published position of robot $i$.
+\end{itemize}
+Thus, if $c$ is defined so that $c(i) = (x_i,z_i,p_i,b_i)$ for all $i \in [k]$, and if $p_i \in B_i$ implies $p_i = b_i$ and $x_i = z_i$, 
+then $c$ is a configuration. We will also use primed versions of these, e.g., $c'(i) = (x'_i,z'_i,p'_i,b'_i)$.
+
+
+% Thus, fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, and tuples of publishing states 
+% $\tup{b},\tup{b}' \in \prod_j B_j$.  
+% %Assume that $p_i \in B_i$ implies $p_i = b_i$, and $p'_i \in B_i$ implies $p'_i = b'_i$. 
+% Let $\tup{x},\tup{x}',\tup{z},\tup{z}'$ be tuples of free variables. 
+
+We introduce the following shorthands: for states $p,q$ we write $p=q$ to be the \msol formula $\true$ if $p$ equals $q$, and $\false$ otherwise. 
+Similarly, for state $p$ and set of states $P$ we write $p \in P$ to be the \msol formula $\true$ if $p$ is an element of $P$, and $\false$ otherwise.
+
+% All \msol formulas we build will depend on some (or all) of these data.
+% For instance, in order to express that $c$ is a configuration, we also need to express that 
+% if the current state of robot $i$ is a publishing state then its current and published position are the same. 
+% 
+% This is done, in \msol, as follows by  
+% $cons^i_{p,b}(x,z)$ defined as
+% $
+% \begin{cases}
+% x = z 	& \mbox { if } p \in B_i \mbox{ and } p = b,\\
+% \false 		& \mbox { if } p \in B_i \mbox{ and } p \neq b,\\
+% \true 		& \mbox { if } p \not \in B_i.
+% \end{cases}
+% $
+
+
+\subsection{Expressing one step}
+
+The first lemma builds an \msol formula stating that the robots $K$ simultaneously take one step while the robots not in $K$ do not make a step.  
+
+\begin{lemma}[one step] \label{lem:istep}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_j B_j$, and a non-empty set of robot indices $K \subseteq [k]$.
+
+One can build an \msol formula $\fire(\tup{x},\tup{x}',\tup{z},\tup{z}')$ (that may depend on $\tup{R}, \tup{p}, \tup{p}', \tup{b}, \tup{b}', K$) 
+such that for all $\Sigma$-graphs $G$ and all valuations $\nu$ of the free variables $\tup{x},\tup{x}',\tup{z},\tup{z}'$, 
+we have that:
+\[
+ (G,\nu) \models \fire \mbox{ iff there exists a transition } \onestep{c}{c'}{K} 
+\]
+such that 
+$c,c'$ satisfy $c(j) = 	(\nu(x_j),	\nu(z_j),		p_j,		b_j)$ and $c'(j) =	(\nu(x'_j),	\nu(z'_j),	p'_j,	b'_j)$ for all $j \in [k]$.
+
+The formula $\fire$ may be written $\fire_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{K,\tup{R}}$ or $\fire^K$ to stress some of the parameters.
+\end{lemma}
+
+\begin{proof}
+Define $\fire$ as the conjunction of 
+ \[
+\bigwedge_{j \in [k]} p_j \in B_j \to (p_j = b_j \wedge x_j = z_j) \wedge  p'_j \in B'_j \to (p'_j = b'_j \wedge x'_j = z'_j) 
+ \]
+which says that $c$ and $c'$ are configurations, 
+and 
+\[ 
+\bigwedge_{j \not \in K} x_j = x'_j \wedge z_j = z'_j \wedge p_j = p'_j \wedge b_j = b'_j,
+\]
+which says that the robots not in $K$ are idle, 
+and
+\[
+\bigwedge_{i \in K} p'_i \not \in B_i  \to b_i = b'_i \wedge z_i = z'_i,
+\]
+which says that if robot in $K$ does not move into a publishing state then it does not change its published state and position,  
+and
+\[
+\bigwedge_{i \in K} \bigvee_{\gc{\tau_i}{\kappa_i}} \hat{\tau_i}(\tup{z},x_i) \wedge \hat{\kappa_i}(x_i,x'_i)
+\]
+which says that robot $i \in K$ takes some transition $\gc{\tau_i}{\kappa_i}$ which updates the configuration $c(i)$ to become $c'(i)$. 
+Here the disjunction is over $\gc{\tau_i}{\kappa_i}$ for which
+$(p_i,\gc{\tau_i}{\kappa_i},p'_i) \in \delta_i$,  
+and the hatted formulas are defined as follows.
+
+First we deal with the hatted-tests.
+Since tests are Boolean combination of position-tests and state-tests, the hatted-tests just needs to evaluate the position-tests using the 
+values of the variables $x_i$ and $\tup{z}$, and evaluate the state-tests using the states $p_i$ and $\tup{b}$. 
+Formally, define $\hat{\tau}$ by induction on $\tau$:
+\begin{itemize}
+ \item if $\tau = \neg \phi$ then $\hat{\tau} := \neg \hat{\phi}$;
+ \item if $\tau = \phi \wedge \psi$ then $\hat{\tau} := \hat{\phi} \wedge \hat{\psi}$;
+ \item if $\tau(\VARbcpos_1,\cdots,\VARbcpos_k,\VARpos_{cur})$ is a position-test then $\hat{\tau} := \tau(z_1,\cdots,z_k,x_i)$;
+ \item if $\tau$ is a state test of the form $st_j = l$, then 
+ $\hat{\tau} := b_j = l$,
+ \item  if $\tau$ is a state test of the form $st_{cur} = l$, then 
+ $\hat{\tau} := p_i = l$.
+\end{itemize}              
+    
+Similarly, the hatted-commands are defined as follows: if $\kappa = move(\sigma)$ then $\hat{\kappa}$ is $\lambda(x_i,x'_i) = \sigma$, and 
+if $\kappa = stay$ then $\hat{\kappa}$ is $x_i = x'_i$. \qed
+\end{proof}
+
+
+% 
+% \[ A = \begin{cases}
+% 	      z_i = z'_i 	& 	\mbox{ if } p'_i \not \in B_i \mbox{ and } b_i = b'_i,\\
+% 	      \false 		& 	\mbox{ if } p'_i \not \in B_i \mbox{ and } b_i \neq b'_i,\\
+% 	      x'_i = z'_i 	& 	\mbox{ if } p'_i \in B_i \mbox{ and } b'_i = p'_i,\\
+% 	      \false 		& 	\mbox{ if } p'_i \in B_i \mbox{ and } b'_i \neq p'_i.
+% 	  \end{cases}
+% \] 
+
+% The following easy consequence says that some robots make a simultaneous step:
+% 
+% \begin{lemma}[Robots make one step]
+% Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, and tuples of publishing states 
+% $\tup{b},\tup{b}' \in \prod_j B_j$.
+% 
+% There is a formula $\step$ with free variables $\tup{x},\tup{x}',\tup{z},\tup{z}'$ such that 
+% for all graphs $G$ and all valuations $\nu$ of the free variables,
+% \[
+%  G \models \step(\tup{x},\tup{x}',\tup{z},\tup{z}') \mbox{ iff there exists $\emptyset \neq K \subseteq [k]$ such that } \onestep{c}{c'}{K}
+% \]
+% where $c,c'$ are configurations satisfying $c_i = \tpl{x_i,z_i,p_i,b_i}$ and $c'_i = \tpl{x'_i,z'_i,p'_i,b'_i}$ for all $i \in [k]$.
+% 
+% The formula $\step$ may be written $\step_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ or $\step^{\tup{R}}_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ to stress the parameters it depends on.
+% 
+% \end{lemma}
+% 
+% \begin{proof}
+%  Define $\step$ by 
+%  \[
+% \bigwedge_{i \in [k]} cons_i(x_i,z_i) \wedge \bigvee_{K} \bigwedge_{i \in K} fire_i \wedge \bigwedge_{i \not \in K} idle_i,
+% \]
+% where 
+% \[ 
+% idle_i = 
+% \begin{cases} 
+% x_i = x'_i \wedge z_i = z'_i & \mbox{ if } p_i = p'_i \mbox{ and } b_i = b'_i,\\
+% \false & \mbox{ otherwise.}
+% \end{cases}
+% \]
+% and the disjunction over $K$ is restricted to $\emptyset \neq K \subseteq [k]$. 
+% \qed
+% \end{proof}
+
+\subsection{Expressing finitely many steps with no publishing}
+
+Iterating the previous lemma yields any fixed number of steps. However, we need to be able to express that robots move an arbitrary (not fixed) number of steps. We can do this under the assumption that they do not publish during this time. That is, we will prove that there is an \msol-formula that expresses that the robot can move an \emph{arbitrary} finite number of steps as long as none of the robots go through intermediate publishing states (this means that all tests are evaluated with respect to \emph{fixed} states $\tup{b}$, treated as parameters, and positions $\tup{z}$, treated as free variables).
+
+We begin with a single robot.
+
+\begin{lemma}[finitely-many non-publishing steps: single robot] \label{lem:zeta} 
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_j B_j$, and a robot index $i \in [k]$.
+
+One can build an \msol formula $\xi(\tup{x},\tup{x}',\tup{z},\tup{z}')$ (that may depend on $\tup{R}, \tup{p}, \tup{p}', \tup{b}, \tup{b}', i$) such that for all $\Sigma$-graphs $G$ and all valuations $\nu$ of the free variables $\tup{x},\tup{x}',\tup{z},\tup{z}'$ we have that:
+\[
+ (G,\nu) \models \xi \mbox{ iff there exists a partial run
+$\onestep{c_0}{c_1}{\{i\}}\onestep{}{c_2}{\{i\}} \cdots \onestep{}{c_N}{\{i\}}$} 
+\]
+for some $N \geq 0$ such that:
+
+ \begin{enumerate}
+ \item for all $j \in [k]$, $c_0(j) = 	(\nu(x_j),	\nu(z_j),		p_j,		b_j)$ and $c_N(j) =	(\nu(x'_j),	\nu(z'_j),	p'_j,	b'_j)$,
+ \item $st_i(c_n) \not \in B_i$ for $1 \leq n \leq N$ (which says that the target of any transition of robot $i$ along the partial run is not a publishing state).
+ \end{enumerate}
+I.e., all robots $j \neq i$ are idle and robot $i$ can go in zero or more steps from state $p_i$ and vertex $x_i$ to state $p'_i$ and vertex $x'_i$ while not entering a publishing state.
+% while resolving tests using states $\tup{b}$ and positions $\tup{z}$.
+\end{lemma}
+
+\begin{proof}
+The idea is to think of a robot as a finite automaton that process sequences of guarded commands, and apply a variation of the proof of Kleene's theorem which translates 
+automata to regular expressions. 
+
+
+
+Suppose (without loss of generality) that the set of non-publishing states $Q_i \setminus B_i$ is equal to $\{q_1, \cdots, q_n\}$.
+For $0 \leq m \leq n$ and $s \in Q_i, t \in Q_i \setminus B_i$, define $R_m^{s,t}$ to be, intuitively, the transition system obtained from robot $R_i$ by restricting 
+to states $\{q_1, \cdots, q_m\} \cup \{s,t\}$, that starts in $s$, and can only transition to 
+$s$ if $s \in \{q_1, \cdots, q_m\}$, and it can only transition from $t$ if $t \in \{q_1, \cdots, q_m\}$.~\footnote{Observe that, strictly speaking, $R_m^{s,t}$ need not be a robot since initial states of robots must be publishing states, and $s$ is not necessarily one. However, we can still apply Lemma~\ref{lem:istep} to it since that Lemma makes no use of this property of initial states.} Formally, $R_m^{s,t} = \tpl{Q'_i,\emptyset,\{s\},\delta'_i}$ 
+where states $Q'_i = \{s,t\} \cup \{q_i : i \leq m\}$, and $\delta'$ is the set of transitions $(u,\sigma,v) \in \delta_i$ such that $u,v \in Q'_i$ and
+\begin{itemize} 
+ \item if $v = s$ then $s \in \{q_1, \cdots, q_m\}$, and
+ \item if $u = t$ then $t \in \{q_1, \cdots, q_m\}$.
+\end{itemize}
+
+Simultaneously for all $s,t \in Q_i'$, and by induction on $m$, we will define formulas $\xi_m^{s,t}(\tup{x},\tup{x}',\tup{z},\tup{z}')$ % (that also depend on $\tup{b}$) 
+which express that the robot $R_m^{s,t}$ can go (in $0$ or more steps) from state $s$ and vertex $x_i$ to state $t$ and vertex $x'_i$ while resolving tests using states $\tup{b}$ and positions $\tup{z}$. 
+Call such a path in $R_m^{s,t}$ from $s$ to $t$ an \emph{$m$-path}. 
+Given this, the required formula $\xi$ is $\xi_n^{p_i,p'_i}(\tup{x},\tup{x}',\tup{z},\tup{z}')$.
+
+To define the formulas $\xi_m^{s,t}(\tup{x},\tup{x}',\tup{z},\tup{z}')$, 
+we use the following notation. For $\tup{w} = (w_1, \cdots, w_k)$ a $k$-tuple, 
+let $\tup{w}[i \leftarrow y]$ denote the $k$-tuple 
+\[ (w_1, \cdots, w_{i-1}, y, w_{i+1}, w_k)
+\]
+ obtained 
+by substituting the $w_i$ by $y$.
+
+Consider the case $m = 0$. If $t \in B_i$ then define $\xi$ to be $idle$ where 
+$idle$ is $(x_i = x'_i \wedge z_i = z'_i \wedge s = t \wedge b_i = b'_i) \wedge \bigwedge_{j \neq i} (x_j = x'_j \wedge z_j = z'_j \wedge p_j = p'_j \wedge b_j = b'_j)$. 
+Otherwise, if $t \not \in B_i$ let $\xi$ be 
+$\fire_{\tup{p}[i \leftarrow s], \tup{p'}[i \leftarrow t],\tup{b},\tup{b}'}^{\{i\},\tup{R}[i \leftarrow R_i]} \vee idle$, i.e., $\fire$ is 
+obtained by applying Lemma~\ref{lem:istep} with the following data: the robot ensemble is $\tup{R}$ except that 
+$R_i$ has been replaced by $R_m^{s,t}$, the state $p_i$ in that Lemma is taken to be $s$, 
+the state $p'_i$ in that Lemma is taken to be $t$, and $K = \{i\}$. 
+
+
+Now consider the case $m > 0$.  The required formula is 
+
+% the conjunction of 
+% $\left[cons^i_{s,b_i}(x_i,z_i) \wedge cons^i_{s,b'_i}(x'_i,z'_i)\right]$ and 
+
+\[
+ \xi_{m-1}^{s,t}(\tup{x},\tup{x}',\tup{z},\tup{z}') \vee (\exists y,y'. C \wedge D^* \wedge E)
+\]
+where
+\begin{eqnarray*}
+C := & \xi_{m-1}^{s,q_m}(\tup{x}, \tup{x}[i \leftarrow y],\tup{z},\tup{z}')\\
+D := & \xi_{m-1}^{q_m,q_m}(\tup{x}[i \leftarrow y],\tup{x}[i \leftarrow y'],\tup{z},\tup{z}')\\
+E := & \xi_{m-1}^{q_m,t}(\tup{x}[i \leftarrow y'],\tup{x}',\tup{z},\tup{z}')
+% F := & cons^i_{q_m,b_i}(y,z_i) \wedge cons^i_{q_m,b_i}(y',z_i).
+\end{eqnarray*}
+%note that by induction, \xi ensures z = zbar.
+ and $D^*$ expresses transitive closure of $D$ with respect to robot $i$. In order to define $D^*$ 
+ it is convenient to think of $D$ as a formula with free variables $y,y',\tup{w}$ where $\tup{w}$ is 
+ $(x_1, \cdots, x_k, z_1, \cdots z_k, z'_1, \cdots z'_k)$ which essentially 
+ defines a relation between $y$ and $y'$ which depends on the extra parameters $\tup{w}$.
+ Recall from Proposition~\ref{prop:TC} that \msol can indeed express transitive closure of such parameterised relations between first-order variables $y$ and $y'$.
+
+ One can see the analogy with the proof of Kleene's Theorem.
+ The first disjunct expresses that there is an $(m-1)$-path from $s$ to $t$ (from position $x_i$ to position $x_i'$). The 
+ second disjunct expresses that there is an $m$-path from $s$ to $t$, i.e., 
+ there is an $(m-1)$-path from $s$ to $q_m$ (from position $x_i$ to some position $y_i$), 
+ and an $(m-1)$-path from $q_m$ to itself (from position $y_i$ to some position $y_i'$), 
+ and an $(m-1)$-path from $q_m$ to $t$ (from position $y_i'$ to position $x_i'$).
+\qed
+\end{proof}
+
+ 
+
+We now consider the case that multiple robots move arbitrary many steps but do not publish.
+
+
+\begin{lemma}[finitely-many non-publishing steps: multiple robots] \label{lem:steps}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_j Q_j$, tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_j B_j$, and a robot index $i \in [k]$.
+
+One can build an $\msol$ formula $\steps$ (that may depend on $\tup{R},\tup{p},\tup{p}',\tup{b},\tup{b}'$) with free variables 
+$\tup{x}, \tup{x}', \tup{z}, \tup{z}'$, such that 
+for all $\Sigma$-graphs $G$ and all valuations $\nu$ of the free variables $\tup{x}, \tup{x}', \tup{z},\tup{z}'$:
+\[ 
+ G \models \steps(\tup{x}, \tup{x}', \tup{z},\tup{z}') \mbox{ iff there is a partial run } 
+ \onestep{c_0}{c_1}{K_0}\onestep{}{c_2}{K_1} \cdots \onestep{}{c_N}{K_{N-1}}
+\]
+for some $N \geq 0$ and some $K_n$ (for $0 \leq n \leq N-1$) such that for all $j \in [k]$:
+ \begin{enumerate}
+ \item $c_0(j) = 	(\nu(x_j),	\nu(z_j),		p_j,		b_j)$ and $c_N(j) =	(\nu(x'_j),	\nu(z'_j),	p'_j,	b'_j)$,
+ \item $st_j(c_n) \not \in B_i$ for $1 \leq n \leq N$ (which says that no robot moves into a publishing state anywhere along the run).
+ \end{enumerate}
+% I.e., all robots $j \neq i$ are idle and robot $i$ can go in zero or more steps from state $p_i$ and vertex $x_i$ to state $p'_i$ and vertex $x'_i$ while not entering a publishing state.
+% 
+% with the following properties for all $i \in [k]$:
+% \begin{enumerate}
+%  \end{enumerate}
+The formula $\steps$ may be written $\steps_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ or $\steps^{\tup{R}}_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ to stress the parameters it depends on.
+\end{lemma}
+
+\begin{proof}
+The required formula is 
+\[
+ \bigwedge_{j \in [k]} \xi_j(\tup{x}, \tup{x}', \tup{z},\tup {z}') 
+\]
+where $\xi_j$ is the formula from Lemma~\ref{lem:zeta} taking $i$ (in the statement of that Lemma) to be $j$. 
+
+To see that this is correct fix a valuation $\nu$. Consider a partial run $\rho$ satisfying the listed properties 1. and 2.
+By these properties, the published positions $\nu(\tup{z}) = \nu(z_1), \cdots, \nu(z_k)$ and published states $\tup{b}$ do not change throughout the partial run $\rho$, and in particular each test is evaluated on these positions and states. So, the existence of $\rho$ is equivalent to the statement that for every $j \in [k]$ there is a partial run $\rho_j$ that goes from state 
+$p_j$ and position $\nu(x_j)$ to state $p'_j$ and position $\nu(x'_j)$, and resolves tests using the published positions $\nu(\tup{z})$ and states $\tup{b}$, which is what the formula says.
+\end{proof}
+
+% % iff there is a partial run that satisfies the listed properties and has the form $r_1 r_2 \cdots r_k$ where each $r_i$ is either the empty partial run or a partial run in which only robot $i$ is active. 
+% Thus, it is enough to find, for each $i \in [k]$, a formula $\Psi_{i}(\tup{x},\tup{x}',\tup{z})$, that depends on $\tup{R},\tup{p},\tup{p}',\tup{b}$, such that $G \models \Psi_i$ iff there exists $N_i \in \nat$ and a partial run of length $N_i$ satisfying the listed conditions ($1.$ through $4.$) with the extra condition that only robot $i$ is scheduled, i.e., $K_l = \{i\}$ for all $l \in [0,N_i-1]$. To do this we can define, for each $i \leq k$, the formula $\Psi_i$ to be $\xi^{p_i,p'_i}(x_i,x'_i,\tup{z})$ (that depends on $R_i,\tup{b}$) from Lemma~\ref{lem:zeta}. 
+% %Finally, we can schedule the agents in any order, e.g., in round-robin order. 
+% Then, 
+% \[ 
+% \steps := \bigwedge_{i \in [k]} \Psi_i(\tup{x},\tup{x}',\tup{z}).
+% \]
+% is the required formula. \qed
+
+
+The next lemma says that there is an \msol formula $\pub$ that expresses that the robots have a partial run with at most $E$  publishing points.
+
+\begin{lemma}[at most $E$ publishing points] \label{lem:boundedly-many-publishing-points}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_i Q_i$ and tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_i B_i$, and a bound $E \in \nat$.
+One can build an $\msol$ formula $\pub$ (that may depend on $\tup{R},\tup{p},\tup{p}',\tup{b},\tup{b}'$ and $E$) with free variables 
+$\tup{x}, \tup{x}', \tup{z},\tup{z}'$, such that for every graph $G$ and every valuation $\nu$ of the free variables:
+\[ 
+G \models \pub(\tup{x}, \tup{x}', \tup{z},\tup{z}') \mbox{ iff there exists a partial run $\onestep{c_0}{c_1}{K_0}\onestep{}{c_2}{K_1} \cdots \onestep{}{c_N}{K_{N-1}}$}
+\]
+for some $N \geq 0$, with at most $E$ publishing points, such that for all $j \in [k]$, $c_0(j) = 	(\nu(x_j),	\nu(z_j),		p_j,		b_j)$ and $c_N(j) =	(\nu(x'_j),	\nu(z'_j),	p'_j,	b'_j)$.
+
+The formula $\pub$ may be written $\pub_{\tup{p},\tup{p}',\tup{b},\tup{b}',E}$ or $\pub^{\tup{R}}_{\tup{p},\tup{p}',\tup{b},\tup{b}',E}$ to stress the parameters it depends on.
+\end{lemma}
+
+\begin{proof}
+Define \msol-formulas $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}$ (for $n \in \nat$) with free variables $\tup{x},\tup{x}',\tup{z},\tup{z}'$ that express the required partial run exists with at most $n$ publishing points, inductively on $n$:
+\begin{itemize}
+ \item If $n = 0$ then $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}(\tup{x},\tup{x}',\tup{z},\tup{z}')$ is defined to be 
+ \[ \tup{b} = \tup{b}' \wedge  \tup{z} = \tup{z}' \wedge 
+     \steps(\tup{x},\tup{x}',\tup{z},\tup{z}') 
+%    \steps_{\tup{p},\tup{p}',\tup{b},\tup{b}'}(\tup{x},\tup{x}',\tup{z},\tup{z}') 
+ \]
+ \item If $n > 0$ then $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}$ is defined to be the disjunction, over $\tup{q},\tup{q}' \in \prod_i Q_i, 
+ \tup{b}^* \in \prod_i B_i$ of 
+ \begin{eqnarray*}
+  \exists \tup{y} \exists \tup{y}' \exists \tup{z}^*\, 
+  & \phi_{\tup{p},\tup{q},\tup{b},\tup{b}^*}^{n-1}(\tup{x},\tup{y},\tup{z},\tup{z}^*) \\
+ \wedge &  
+  \step_{\tup{q},\tup{q}',\tup{b}^*,\tup{b}'}(\tup{y},\tup{y}',\tup{z}^*,\tup{z}')\\
+  \wedge& 
+  \steps_{\tup{q}',\tup{p}',\tup{b}',\tup{b}'}(\tup{y}',\tup{x}',\tup{z}',\tup{z}'),
+ \end{eqnarray*}
+ \end{itemize}
+where  $\step_{\tup{q},\tup{q}',\tup{b}^*,\tup{b}'}(\tup{y},\tup{y}',\tup{z}^*,\tup{z}')$
+ is the formula $\bigvee_{\emptyset \neq A \subseteq [k]} \fire^A$, i.e., the formula $\fire^A$ is obtained from 
+ Lemma~\ref{lem:istep} 
+where $\tup{p}$ (resp. $\tup{p}', \tup{b}, \tup{b}',K$) in the statement of that Lemma 
+is taken to be $\tup{q}$ (resp. $\tup{q}', \tup{b}^*,\tup{b}', A$) and expresses that some subset of the robots make a simultaneous step (that may involve publishing).
+
+Finally, take $\pub$ to be $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{E}$. \qed
+\end{proof}
+
+\iffalse
+\sr{OLD SECTION FOLLOWS}
+\subsection{\msol Building Blocks}
+
+
+We are going to show how to express in \msol the existence of certain runs of fixed robot ensembles. 
+
+\emph{Notation.} 
+Say that a tuple of states $\tup{p} \in \prod_j Q_j$ is \emph{compatible} with a tuple of publishing states 
+$\tup{b} \in \prod_j B_j$ if for all $j$ we have that $p_j \in B_j$ implies $b_j = p_j$. The idea is that only compatible tuples can be part 
+of the same configuration (indeed, configurations have the property that if the current state is a publishing state then 
+it is equal to the published state).
+
+We start by showing that $Sat$ and $Mv$ (which are used in the definition of run, see Page~\pageref{def:sat}) are expressible in \msol.
+
+\iffalse
+\sr{shouldn't the formula for Sat be of the form ``if the data is  (or can be completed to be) a configuration then the test holds''?}
+
+\begin{lemma}[$Sat$ and $Mv$] \label{lem:hat-transforms}
+% \sr{type-error. completely rewrote lemma. read. }
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p} \in \prod_j Q_j$ and tuples of compatible publishing states 
+$\tup{b} \in \prod_j B_j$, 
+tuples of states $\tup{p}' \in \prod_j Q_j$ and tuples of compatible publishing states 
+$\tup{b}' \in \prod_j B_j$, and a robot index $i \leq k$. 
+
+%   \item For every test $\tau$ there exists an \msol formula $\hat{\tau}(\tup{z},x)$  such that for all graphs $G$, all configurations $c,d$, and all $i \leq k$:
+%   \[
+%    G \models \hat{\tau}(\bcpos_1(c), \cdots, \bcpos_k(c),pos_i(c))   \mbox{ iff } Sat(c,\tau,i).
+%   \]
+
+\begin{enumerate}
+  \item For every test $\tau$ there exists an \msol formula $\hat{\tau}(\tup{z},x_i)$ (that depends on $p_i,\tup{b}$) such that for all graphs $G$: 
+  $G \models \hat{\tau}(\tup{z},x_i)$ if and only if $Sat(c,\tau,i)$ holds for all configurations $c$ such that (a) $c(i) = (x_i,z_i,p_i,b_i)$ and 
+  (b) for all $j \leq k$, $\bcpos_j(c) = z_j$ and $\bcst_j(c) = b_j$. 
+  
+  
+  
+ \item For every command $\kappa$ there exists an \msol formula $\hat{\kappa}(x_i,x'_i,z_i,z'_i)$ (that depends on $p_i,p'_i,b_i,b'_i$) 
+ such that for all graphs $G$: $G \models \hat{\kappa}(x_i,x'_i,z_i,z'_i)$ if and only if  $Mv(c,c',\kappa,i)$ holds for all configurations $c,c'$ such that 
+ $c(i) = (x_i,z_i,p_i,b_i)$ and $c'(i) = (x'_i,z'_i,p'_i,b'_i)$.
+
+ 
+ \end{enumerate}
+ In order to stress the parameters we may write the formula $\hat{\tau}$ as $\hat{\tau}_{p_i,\tup{b}}$ and the formula
+ $\hat{\kappa}$ as $\hat{\kappa}_{p_i,p'_i,b_i,b'_i}$.
+\end{lemma}
+\begin{proof}
+Since tests are Boolean combination of position-tests and state-tests, the hat-transformation just needs to evaluate the position-tests using the relevant variables, and evaluate the state-tests using the given parameters. Formally, define $\hat{\tau}$ by induction on $\tau$:
+\begin{itemize}
+ \item if $\tau = \neg \phi$ then $\hat{\tau} := \neg \hat{\phi}$;
+ \item if $\tau = \phi \wedge \psi$ then $\hat{\tau} := \hat{\phi} \wedge \hat{\psi}$;
+ \item if $\tau(pos_1,\cdots,pos_k,pos_{cur})$ is a position-test then $\hat{\tau} := \tau(z_1,\cdots,z_k,x_i)$;
+ \item if $\tau$ is a state test of the form $st_j = l$, then 
+ $\hat{\tau} := \begin{cases}
+                 \true & \mbox{ if } b_j = l,\\
+                 \false & \mbox{ otherwise.}
+                \end{cases}
+ $
+ \item  if $\tau$ is a state test of the form $st_{cur} = l$, then 
+ $\hat{\tau} := \begin{cases}
+                 \true & \mbox{ if } p_i = l,\\
+                 \false & \mbox{ otherwise.}
+                \end{cases}
+                $
+\end{itemize}              
+    
+Similarly, the hat-transformation of commands is defined as follows:
+\begin{itemize}
+  \item if $\kappa = move(\sigma)$ then $\hat{\kappa}$ is $A \wedge \lambda(x_i,x'_i) = \sigma$, and 
+  \item if $\kappa = stay$ then $\hat{\kappa}$ is $A \wedge x_i = x'_i$.
+\end{itemize}
+where 
+\[ A = \begin{cases}
+	      z_i = z'_i 	& 	\mbox{ if } p'_i \not \in B_i \mbox{ and } b_i = b'_i,\\
+	      \false 		& 	\mbox{ if } p'_i \not \in B_i \mbox{ and } b_i \neq b'_i,\\
+	      x'_i = z'_i 	& 	\mbox{ if } p'_i \in B_i \mbox{ and } b'_i = p'_i,\\
+	      \false 		& 	\mbox{ if } p'_i \in B_i \mbox{ and } b'_i \neq p'_i.
+	  \end{cases}
+\] 
+In other words, the transformation expresses in \msol, the movement of robot $i$ from position $x_i$ to position $x'_i$.\qed 
+% and if the resulting state is not a publishing state then the published states and positions do not change.\qed
+\end{proof}
+
+\fi
+
+The next lemma observes that being a configuration is definable in \msol:
+
+\begin{lemma}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p} \in \prod_i Q_i$, and tuples of publishing states 
+$\tup{b} \in \prod_i B_i$. There is an \msol-formula $conf_{\tup{p},\tup{b}}(\tup{x},\tup{z})$ 
+such that for every graph $G$: $G \models conf_{\tup{p},\tup{b}}(\tup{x},\tup{z})$ iff $c$ is a configuration where 
+$c(i) = (x_i,z_i,p_i,b_i)$ for all $i \leq k$.
+\end{lemma}
+\begin{proof}
+ Simply define $conf_{\tup{p},\tup{b}}(\tup{x},\tup{z})$ to be $\bigwedge_{i \leq k} p_i \in B_i \limp (p_i = b_i \wedge x_i = z_i)$. \qed
+\end{proof}
+
+
+The next lemma says that there is a formula describing one time-step of an ensemble of robots with starting positions $\tup{x}$, ending positions $\tup{x}'$, starting states $\tup{p}$, ending states $\tup{p}'$, previously published positions $\tup{z}$ and states $\tup{b}$ and subsequently published positions $\tup{z}'$ and states $\tup{b}'$.
+
+\begin{lemma}[one step] \label{lem:onestep}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_i Q_i$ and tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_i B_i$. %such that $p_i \in B_i$ implies $b_i = p_i$, and $p'_i \in B_i$ implies $b'_i = p'_i$.
+One can build an $\msol$ formula $\step$ (that depends on $\tup{R},\tup{p},\tup{p}',\tup{b},\tup{b}'$) with free variables 
+$\tup{x}, \tup{x}', \tup{z},\tup{z}'$, such that for every $\Sigma$-graph $G$:
+\[
+ G \models \step(\tup{x}, \tup{x}', \tup{z},\tup{z}') \mbox{ iff there exists non-empty $K \subseteq [k]$ such that } \onestep{c}{c'}{K},
+\]
+where $c,c'$, defined by $c_i = \tpl{x_i,z_i,p_i,b_i}$ and $c'_i = \tpl{x'_i,z'_i,p'_i,b'_i}$ for all $i \in [k]$, are configurations.
+
+The formula $\step$ may be written $\step_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ or $\step^{\tup{R}}_{\tup{p},\tup{p}',\tup{b},\tup{b}'}$ to stress the parameters it depends on.
+\end{lemma}
+
+
+\begin{proof}
+Define $\step$ by 
+\[
+conf_{\tup{p},\tup{b}}(\tup{x},\tup{z}) \wedge conf_{\tup{p}',\tup{b}'}(\tup{x}',\tup{z}') \wedge \bigvee_{\emptyset \neq K \subseteq [k]}
+\bigwedge_{i \not \in K} idle_i \wedge \bigwedge_{i \in K} fire_i 
+\]
+where $idle_i$ is defined by
+\[
+x_i = x'_i \wedge z_i = z'_i \wedge p_i = p'_i \wedge b_i = b'_i,
+\]
+and $fire_i$ is defined by
+  \[
+   \bigvee_{\gc{\tau_i}{\kappa_i}} \hat{\tau_i}(\tup{z},x_i) \wedge \hat{\kappa_i}(x_i,x'_i,z_i,z'_i),
+  \]
+where the disjunction in $fire_i$ is over $\gc{\tau_i}{\kappa_i}$ for which
+$(p_i,\gc{\tau_i}{\kappa_i},p'_i) \in \delta_i$,   
+and
+the hatted formulas are from Lemma\ref{lem:hat-transforms}. 
+\qed
+\end{proof}
+
+
+Iterating the previous lemma yields any fixed number of steps. However, we will prove that there is an \msol-formula that expresses that there is a finite number of steps of a robot ensemble (i.e., no a priori bound on the number of steps) as long as none of the robots go through intermediate publishing states (this means that 
+all tests are evaluated with respect to \emph{fixed} states $\tup{b}$, treated as parameters, and positions $\tup{z}$, treated as free variables).
+
+First, we treat a single robot.
+
+\begin{lemma}[finitely-many non-publishing steps: single robot] \label{lem:zeta} \sr{read... changed notation a little}
+Fix a $k$-robot ensemble $\tup{R}$, an index $i \leq k$, $p_i,p'_i \in Q_i$, and a tuple of publishing states $\tup{b} \in \prod_j B_j$.
+One can build an \msol formula $\xi^{p_i,p'_i}(x_i,x'_i,\tup{z})$ (that also depends on $R_i,\tup{b}$) that holds on a graph $G$ iff
+robot $R_i$ can go from state $p_i$ and vertex $x_i$ to state $p'_i$ and vertex $x'_i$ while resolving tests using states $\tup{b}$ and positions $\tup{z}$.
+I.e., iff
+there exists $N \geq 0$ and a partial run  
+$\onestep{c_0}{c_1}{\{i\}}\onestep{}{c_2}{\{i\}} \cdots \onestep{}{c_N}{\{i\}}$ such that:
+\begin{enumerate}
+ \item $x_i = pos_i(c_0)$, $x'_i = pos_i(c_N)$,
+ \item $p_i = st_i(c_0)$, $p'_i = st_i(c_N)$,
+ \item $b_i = \bcst_i(c_0) = \dots = \bcst_i(c_N)$,
+ \item $z_i = \bcpos_i(c_0) = \dots = \bcpos_i(c_N)$.
+ \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The idea is to think of robots as finite automata that process sequences of guarded commands, and apply a variation of the proof of Kleene's theorem which translates automata to regular expressions. 
+
+
+\sr{make $t$ be non publishing}
+
+Suppose (without loss of generality) that the set of non-publishing states $Q_i \setminus B_i$ is equal to $\{q_1, \cdots, q_n\}$.
+For $0 \leq m \leq n$ 
+and $s,t \in Q_i$, define $R_m^{s,t}$ to be, intuitively, the robot $R_i$ restricted to states $\{q_1, \cdots, q_m\} \cup \{s,t\}$, that starts in $s$, and can only transition to 
+$s$ if $s \in \{q_1, \cdots, q_m\}$, and it can only transition from $t$ if $t \in \{q_1, \cdots, q_m\}$. Formally, $R_m^{s,t} = \tpl{Q'_i,\emptyset,\{s\},\delta'_i}$ 
+where states $Q'_i = \{s,t\} \cup \{q_i : i \leq m\}$, and $\delta'$ is the set of transitions $(u,\sigma,v) \in \delta_i$ such that $u,v \in Q'_i$ and
+\begin{itemize} 
+ \item if $v = s$ then $s \in \{q_1, \cdots, q_m\}$, and
+ \item if $u = t$ then $t \in \{q_1, \cdots, q_m\}$.
+\end{itemize}
+
+Simultaneously for all $s,t \in Q_i'$, and by induction on $m$, we will define formulas $\xi_m^{s,t}(x_i,x'_i,\tup{z})$ (that also depend on $\tup{b}$) 
+which express that the robot $R_m^{s,t}$ can go from state $s$ and vertex $x_i$ to state $t$ and vertex $x'_i$ while resolving tests using states $\tup{b}$ and positions $\tup{z}$. 
+Call such a path in $R_m^{s,t}$ from $s$ to $t$ an \emph{$m$-path}. 
+
+Given this, the required formula is $\xi_n^{p_i,p'_i}(x_i,x'_i,\tup{z})$. \todo{check that $conf$ is needed}
+
+
+
+We now define the formulas $\xi_m^{s,t}(x_i,x'_i,\tup{z})$. Consider the case $m = 0$. The required formula is of the form $conf_{p,\tup{b}}(\tup{x},\tup{z}) \wedge 
+conf_{p',\tup{b}'}(\tup{x}',\tup{z}') \wedge [A \vee (s = t \wedge B)]$ where
+\sr{try move the big disjunction in A (also in the prev lemma) as a third statement to lemma 2.}
+ \begin{eqnarray*}
+A  := & \bigvee_{(s,\gc{\tau}{\kappa},t) \in \delta'_i} \hat{\tau}(\tup{z},x_i) \wedge \hat{\kappa}(x_i,x'_i,z_i,z'_i)\\
+B  :=  & x_i = x'_i \wedge z_i = z'_i \wedge p_i = p'_i \wedge b_i = b'_i
+\end{eqnarray*}
+and the hat-transformations are from Lemma\ref{lem:hat-transforms}, and empty disjunctions evaluate to $\false$.
+ \sr{isn't the $m =0$ case just $step$? and, do we really need the $s=t$ case?}
+ 
+Now consider the case $m > 0$. The required formula is 
+\[
+ \xi_{m-1}^{s,t}(x_i,x'_i,\tup{z}) \vee (\exists y,y'. C \wedge D^* \wedge E)
+\]
+where
+\begin{eqnarray*}
+C := & \xi_{m-1}^{s,q_m}(x_i,y,\tup{z})\\
+D := & \xi_{m-1}^{q_m,q_m}(y,y',\tup{z})\\
+E := & \xi_{m-1}^{q_m,t}(y',x_i',\tup{z}),
+\end{eqnarray*}
+ and $\varphi^*(y,y',\tup{z})$ is the formula that expresses transitive closure of $\varphi$ with parameters $\tup{z}$, i.e., 
+ that there exists vertices $v_1, \cdots, v_l$ such that a) $v_1 = y$, $v_l = y'$, and b) $\varphi(v_j,v_{j+1},\tup{z})$ for every $j < l$. 
+Recall that \msol can indeed express transitive closure with parameters. Indeed, 
+let $\phi(y,y',\tup{z})$ be an \msol formula in the signature of graphs. Consider the \msol formula
+\[
+\phi^*(y,y',\tup{z}) := \forall W [(closed_{\phi}(W,\tup{z}) \wedge y \in W) \limp y' \in W] 
+\]
+where $closed_{\phi}(W,\tup{z})$ is defined as $\forall a \forall b[(a \in W \wedge \phi(a,b,\tup{z}) \limp b \in W]$. 
+It is not hard to see that $\phi^*$ expresses transitive closure with parameters.
+
+ One can see the analogy with the proof of Kleene's Theorem.
+ The first disjunct expresses that there is an $(m-1)$-path from $s$ to $t$ (from position $x_i$ to position $x_i'$). The 
+ second disjunct expresses that there is an $m$-path from $s$ to $t$, i.e., 
+ there is an $(m-1)$-path from $s$ to $q_m$ (from position $x_i$ to some position $y_i$), 
+ and an $(m-1)$-path from $q_m$ to itself (from position $y_i$ to some position $y_i'$), 
+ and an $(m-1)$-path from $q_m$ to $t$ (from position $y_i'$ to position $x_i'$).
+\qed
+\end{proof}
+
+ 
+\begin{remark}
+The {\em $k$-ary transitive-closure operator} is the function that maps a $2k$-ary relation $\phi(\tup{x},\tup{y})$ to the $2k$-ary relation $\phi^*(\tup{x},\tup{y})$ such that, in every graph $G$: $\phi^*(\tup{x},\tup{y})$ holds iff there exists a sequence $\tup{v}_1, \tup{v}_2, \cdots, \tup{v}_m$ such that $\tup{x} = \tup{v}_1$, $\tup{y} = \tup{v}_m$, and $\phi(\tup{v}_i,\tup{v}_{i+1})$ holds for every $i < m$. 
+For $k > 1$, it is not always the case that if a $k$-ary relation $\phi$ is $\msol$-definable then so is its $k$-ary transitive-closure because, intuitively, this would require having $k$-ary relation variables $W$. \sr{give citation. perhaps in courcelle's book} To prove this formally note that $2$-ary transitive closure on finite words (i.e., labeled lines) can define the non-regular language $\{0^n1^n : n \in \nat\}$; now use the fact that, over finite words, $\msol$ can only define the regular languages, part of a result known as the B\"uchi-Elgot-Trakhtenbrot Theorem, see \cite{Thomas96}.
+\end{remark}
+
+%It says that, given a $k$-robot ensemble, one can build an $\msol$ formula that expresses that robot $i \in [k]$ can move from position $x_i$ and state $p_i$ to position $y_i$ and state $q_i$ while visiting exactly the vertices $X_i$, assuming that $\tup{z}$ and $\tup{b}$ are the last broadcast positions and states of the robots, and that \emph{no new broadcasts appear in the run}. 
+
+
+\begin{lemma}[finitely-many non-publishing steps] \label{lem:steps}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_i Q_i$, and 
+publishing states $\tup{b} \in \prod_i B_i$ such that $p_i \in B_i$ implies $b_i = p_i$.
+One can build an $\msol$ formula $\steps$ (that depends on $\tup{R},\tup{p},\tup{p}'$ and $\tup{b}$) with free variables 
+$\tup{x}, \tup{x}', \tup{z}$, such that 
+for all $\Sigma$-graphs $G$: $G \models \steps(\tup{x}, \tup{x}', \tup{z})$ iff there exists $N \geq 0$ and a partial run  
+$\onestep{c_0}{c_1}{K_0}\onestep{}{c_2}{K_1} \cdots \onestep{}{c_N}{K_{N-1}}$ with the following properties for all $i \in [k]$:
+\begin{enumerate}
+ \item $x_i = pos_i(c_0)$, $x'_i = pos_i(c_N)$,
+ \item $p_i = st_i(c_0)$, $p'_i = st_i(c_N)$,
+ \item $b_i = \bcst_i(c_0) = \dots = \bcst_i(c_N)$, and
+ \item $z_i = \bcpos_i(c_0) = \dots = \bcpos_i(c_N)$.
+ \end{enumerate}
+The formula $\steps$ may be written $\steps_{\tup{p},\tup{p}',\tup{b}}$ or $\steps^{\tup{R}}_{\tup{p},\tup{p}',\tup{b}}$ to stress the parameters it depends on.
+\end{lemma}
+
+\begin{proof}\sr{fixed last-step of proof}
+Consider a partial run $\rho = c_0K_0 \cdots K_{N-1}c_N$ and positions $\tup{x},\tup{x}',\tup{z}$ 
+satisfying the listed properties. 
+
+% Recall from the preliminaries that the definition of a robot assumes there are no self-loops on publishing states.
+% Thus, no active robot takes a transition whose target state is a publishing state in $\rho$, and so each test
+
+By properties 3. and 4., each test is evaluated on the published positions $\tup{z}$ and states $\tup{b}$ (which do not change throughout the partial run).
+Thus, such a partial run $\rho$ exists iff each robot $i$, independently, has a partial run that goes from state $p_i$ and position $x_i$ to state $p'_i$ and position $x'_i$, and resolves tests using the published positions $\tup{z}$ and states $\tup{b}$.  
+Thus, it is enough to find, for each $i \in [k]$, a formula $\Psi_{i}(\tup{x},\tup{x}',\tup{z})$, that depends on $\tup{R},\tup{p},\tup{p}',\tup{b}$, such that $G \models \Psi_i$ iff there exists $N_i \in \nat$ and a partial run of length $N_i$ satisfying the listed conditions ($1.$ through $4.$) with the extra condition that only robot $i$ is scheduled, i.e., $K_l = \{i\}$ for all $l \in [0,N_i-1]$. To do this we can define, for each $i \leq k$, the formula $\Psi_i$ to be $\xi^{p_i,p'_i}(x_i,x'_i,\tup{z})$ (that depends on $R_i,\tup{b}$) from Lemma~\ref{lem:zeta}. 
+%Finally, we can schedule the agents in any order, e.g., in round-robin order. 
+Then, 
+\[ 
+\steps := \bigwedge_{i \in [k]} \Psi_i(\tup{x},\tup{x}',\tup{z}).
+\]
+is the required formula. \qed
+
+% Moreover, it is sufficient to define, for each $i \in [k]$, a formula $\psi_i(x_i,x'_i,\tup{z})$ (that depends on $R_i,p_i,p'_i,\tup{b}$) such that
+% $G \models \psi_i(x_i,x'_i,\tup{z})$ iff 
+
+% \begin{enumerate}
+%  \item $\tpl{x^0,p^0} = \tpl{x_i,p_i}$, 
+%  \item $\tpl{x^{N_i},p^{N_i}} = \tpl{x'_i,p'_i}$, 
+%  \item $\tpl{b^{N_j},z^{N_j}} = \tpl{b_i,z_i}$ for all $j \leq N_i$, 
+%  \item $\tpl{x^j,b^j,p^j,z^j}$ $\tpl{x^{j+1},b^{j+1},p^{j+1},z^{j+1}}$ 
+%  \end{enumerate}
+
+
+
+% It remains to show how to construct $\Psi_i$. So, fix $i$. Since robots $j \neq i$ are not scheduled we can decompose $\Psi_i$ into a conjunction 
+% \[
+%  \xi^{p_i,p'_i}_i(x_i,x'_i,\tup{z}) \wedge \bigwedge_{j \neq i}  (x_j = x'_j \wedge z_j = z'_j \wedge p_j = p'_j \wedge b_j = b'_j),
+% \]
+% where  that expresses that robot $R_i$ can go from state $p_i$ and vertex $x_i$ to state $p'_i$ and vertex $x'_i$ while resolving tests using states $\tup{b}$ and positions $\tup{z}$. 
+\end{proof}
+
+ 
+The next lemma says that there is an \msol formula $\pub$ that expresses that the robots have a partial run with at most $E$ different publishing points.
+
+\begin{lemma}[at most $E$ publishing points] \label{lem:boundedly-many-publishing-points}
+Fix a $k$-robot ensemble $\tup{R}$, tuples of states $\tup{p},\tup{p}' \in \prod_i Q_i$ and tuples of publishing states 
+$\tup{b},\tup{b}' \in \prod_i B_i$, and a bound $E \in \nat$.
+One can build an $\msol$ formula $\pub$ (that depends on $\tup{R},\tup{p},\tup{p}',\tup{b},\tup{b}'$ and $E$) with free variables 
+$\tup{x}, \tup{x}', \tup{z},\tup{z}'$, such that 
+$G \models \pub(\tup{x}, \tup{x}', \tup{z},\tup{z}')$ iff there exists $N \in \nat$ and a finite partial run $\onestep{c_0}{c_1}{K_0}\onestep{}{c_2}{K_1} \cdots \onestep{}{c_N}{K_{N-1}}$ with at most $E$ publishing points with the following properties for all $i \leq k$:
+\begin{enumerate}
+ \item $x_i = pos_i(c_0)$, $x'_i = pos_i(c_N)$,
+ \item $p_i = st_i(c_0)$, $p'_i = st_i(c_N)$,
+ \item $b_i = \bcst_i(c_0)$, $b'_i = \bcst_i(c_N)$,
+ \item $z_i = \bcpos_i(c_0)$, $z'_i = \bcpos_i(c_N)$.
+ \end{enumerate}
+The formula $\pub$ may be written $\pub_{\tup{p},\tup{p}',\tup{b},\tup{b}',E}$ or $\pub^{\tup{R}}_{\tup{p},\tup{p}',\tup{b},\tup{b}',E}$ to stress the parameters it depends on.
+\end{lemma}
+
+\begin{proof}
+Define \msol-formulas $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}$ (for $n \in \nat$) with free variables $\tup{x},\tup{x}',\tup{z},\tup{z}'$ that express the required partial run exists with at most $n$ publishing points, inductively on $n$:
+\begin{itemize}
+ \item If $n = 0$ then $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}(\tup{x},\tup{x}',\tup{z},\tup{z}')$ is defined to be 
+ \[
+  \begin{cases}
+   \false & \mbox{ if  $\tup{b} \neq \tup{b}'$ or $\tup{z} \neq \tup{z}'$},\\
+   \steps_{\tup{p},\tup{p}',\tup{b}}(\tup{x},\tup{x}',\tup{z}) & \mbox{ otherwise.}
+  \end{cases}
+ \]
+ \item If $n > 0$ then $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{n}$ is defined to be the disjunction, over $\tup{q},\tup{q}' \in \prod_i Q_i, 
+ \tup{b}^* \in \prod_i B_i$ of 
+ \[
+  \exists \tup{y} \exists \tup{y}' \exists \tup{z}^*\, 
+  \phi_{\tup{p},\tup{q},\tup{b},\tup{b}^*}^{n-1}(\tup{x},\tup{y},\tup{z},\tup{z}^*) 
+  \wedge 
+  \step_{\tup{q},\tup{q}',\tup{b}^*,\tup{b}'}(\tup{y},\tup{y}',\tup{z}^*,\tup{z}')
+  \wedge
+  \steps_{\tup{q}',\tup{p}',\tup{b}'}(\tup{y}',\tup{x}',\tup{z}').
+ \]
+ \end{itemize}
+
+Finally, take $\pub$ to be $\phi_{\tup{p},\tup{p}',\tup{b},\tup{b}'}^{E}$. \qed
+\end{proof}
+
+\fi
+%% END OF OLD SECTION
+
+\subsection{Proof of Theorem~\ref{thm:reduction}} \label{sec:proof of PVPdec}
+Fix $\tup{R}$, $i \in [k], B \in \nat$ and an $\RLTL$ formula $\varphi$. We are required to build a sentence $\psi$ such that for every $\Sigma$-graph $G$: 
+  $G \models \psi$ iff there exists a run $\pi \in \runs(G,\tup{R})$ in which there are at most $B$ publishing points and that satisfies $\activeproj_i(\pi) \models_i \varphi$. The idea is to compile $\varphi$ into an NBW $N_\varphi$, and annotate robot $i$ by $N_\varphi$. 
+  Then we knit together the formulas resulting from applying the 
+  lemmas to the $k$-robot ensemble in which robot $i$ is replaced by the annotated robot.
+  
+  
+  Let $Alph_\varphi$ be the tests appearing in $\varphi$. Thus we can think of $\varphi$ as an \LTL formula over the alphabet of \msol formulas $Alph_\varphi$.
+  By Theorem~\ref{thm:LTL to NBW}, translate $\varphi$ into an NBW $N_\varphi = (Alph_\varphi,Q_\varphi, I_\varphi, \Delta_\varphi, F_\varphi)$ 
+  that accepts exactly the sequences $\alpha \in (Alph_\varphi)^\omega$ such that $\alpha \models_\LTL \varphi$.
+
+  Form the robot $P_i$ as the synchronous product of the robot $\tpl{Q_i,B_i,I_i,\delta_i}$ with $N_\varphi$. That is, 
+  \begin{itemize}
+  \item the states of $P_i$ are pairs $(q,s) \in Q_i \times Q_\varphi$, 
+  \item the transitions of $P_i$ are   $((q,s), \gc{\tau_1 \wedge \tau_2}{\kappa},(q',s'))$ if $(q,\gc{\tau_1}{\kappa},q') \in \delta_i$ and $(s,\tau_2,s') \in \Delta_\varphi$, 
+  \item the set of initial states of $P_i$ is $I_i \times I_\varphi$, and 
+  \item the set of publishing states of $P_i$ is $B_i \times Q_\varphi$.
+  \end{itemize}
+  Replace $R_i$ by $P_i$ to form a new $k$-ensemble $\tup{S}$, i.e., $S_j = R_j$ for $j \neq i$, and $S_i = P_i$. So, for $j \neq i$, the state set of $S_j$ is $Q_j$; while the state set of $S_i$ is $Q_i \times Q_\varphi$.
+  
+     
+  Note that there exists a run $\pi \in \runs(G,\tup{R})$ such that $\activeproj_i(\pi) \models \varphi$ iff there exists a run $\pi \in \runs(G,\tup{S})$ such that the states visited by $R_i$ in $\activeproj_i(\pi)$ see $F_i := Q_i \times F_\varphi$ infinitely often,
+  i.e., if $\activeproj_i(\pi) = c_0 c_1 \cdots$ then there are infinitely many $n \in \nat$ such that $st_i(c_n) \in F_i$. However, since there are finitely many configurations (indeed, $G$ is finite and each robot has finitely many states), this is equivalent to the fact that there exist two partial runs $\rho_1$
+  and $\rho_2$ with the following properties:
+  \it
+  \- $\rho_1$ contains at most $B$ publishing points, starts in an initial configuration $c$ with $c(i) = (x_i,x_i,p_i,p_i)$ (recall that in initial configurations the current data is equal to the published data), ends in some configuration $d$ with 
+  $st_i(d) \in F_i$;
+  \- $\rho_2$ contains no publishing points, starts in $d$ and ends in $d$, and all tests are evaluated at $d$.
+  \ti 
+ 
+ Thus, define the \msol-sentence $\psi$: 
+ \[
+\bigvee_{\tup{p},\tup{p}',\tup{b},\tup{b}'} \exists \tup{x} \exists \tup{x}' \exists \tup{z}  
+\left[\tup{x} = \tup{z} \wedge \tup{p} = \tup{b} \wedge
+\pub^{\tup{S}}_{\tup{p},\tup{p}',\tup{b},\tup{b}',B}(\tup{x},\tup{x}',\tup{z},\tup{z}') \wedge 
+\steps^{\tup{S}}_{\tup{p}',\tup{p}',\tup{b}',\tup{b}'}(\tup{x}',\tup{x}',\tup{z}',\tup{z}')
+\right]
+ \]
+where the disjunction ranges over $\tup{p} \in \prod_j I_j$, $p'_i \in F_i$, $p'_j \in Q_j$ (for $j \neq i$), and $\tup{b},\tup{b}' \in \prod_j B_j$.
+% , and 
+% % $\tup{q} \in \prod_j Q_j$ with 
+% $p_i \in F_i$. 
+This completes the proof of Theorem~\ref{thm:reduction}.
+
+% \subsection{The case of one robot} \label{sec:DEC k=1}
+% \todo{polish}
+% 
+% It turns out that in the case of single robots (i.e., $k=1$), we do not need the restriction of bounded number of publishing points to get decidability.
+% The following theorem states this fact, and generalises the decidability for $k=1$ in \cite{Rubin15AAMAS} that did not have publishing points.
+% \begin{theorem}
+% $\PVP({\gclass,k,\rclass,\tclass})$ is decidable where $\gclass$ is a set of graphs with decidable \msol-satisfiability problem, 
+% $k = 1$, $\rclass$ is the set of all robots, and $\tclass$ is the set of all \RLTL formulas.
+% \end{theorem}
+% 
+% 
+% We describe how to adapt the proof of Theorem~\ref{thm:PVPdec}. The main change is in Lemma~\ref{lem:zeta}. Here is the new lemma.
+% 
+% \begin{lemma}
+% Fix a robot $R = \tpl{Q,B,I,\delta}$, states ${p},{p}' \in Q$, and publishing states 
+% ${b},{b}' \in B$.
+% 
+% One can build an \msol formula $\xi({x},{x}',{z},{z}')$ (that depends on ${R}, {p}, {p}', {b}, {b}'$) such that for all $\Sigma$-graphs $G$ and all valuations $\nu$ of the free variables ${x},{x}',{z},{z}'$ we have that:
+% \[
+%  (G,\nu) \models \xi \mbox{ iff there exists a partial run
+% $\onestep{c_0}{c_1}{\{1\}}\onestep{}{c_2}{\{1\}} \cdots \onestep{}{c_N}{\{1\}}$} 
+% \]
+% for some $N \geq 0$ such that $c_0(1) = 	(\nu(x),	\nu(z),		p,		b)$ and $c_N(1) =	(\nu(x'),	\nu(z'),	p',	b')$,
+% i.e., the robot can go in zero or more steps from current state $p$, published state $b$, current position $x$ and published position $z$ 
+% to current state $p'$, published state $b'$, current position $x'$ and published position $z'$.
+% % while resolving tests using states $\tup{b}$ and positions $\tup{z}$.
+% \end{lemma}
+% 
+% 
+% The proof of this lemma proceeds as for Lemma~\ref{lem:zeta} with $k=1$, but we do not restrict to non-publishing states. So, let $Q = \{q_1, \cdots, q_n\}$. We define the formulas $\xi_m^{s,t,b,b'}(x,x',z,z')$ that expresses that the robot can go from state $s$ and position $x$ to state $t$ and position $x'$ starting with published position $z$ and published states $b$ 
+% and resulting in (possibly different) published position $z'$ and published stated $b'$, all the while only going through states with index at most $m$. 
+% In particular, 
+% the robot is allowed to publish during this partial run.  
+% Build such a formula by induction on $m$.  The case $m = 0$ is identical to that in Lemma~\ref{lem:zeta}. 
+% For $m > 0$ write $B_m$ for $\{b\} \cup \{q_i \in B : i \leq m\}$. Then the formula is 
+% \[
+%  \xi_{m-1}^{s,t,b,b'}(x,x',z,z') \vee \bigvee_{b'' \in B_{m-1}} (\exists y,y', z''. C \wedge D^* \wedge E)
+% \]
+% where
+% \begin{eqnarray*}
+% C := & \xi_{m-1}^{s,q_m,b,b''}(x,y,z,z'')\\
+% D := & \xi_{m-1}^{q_m,q_m,b'',b''}(y,y',y,y')\\
+% E := & \xi_{m-1}^{q_m,t,b'',b'}(y',x',y',z').
+% \end{eqnarray*}
+% Note that $D$ can be viewed as a formula with free variables $y,y'$. Thus we can apply 
+% Proposition~\ref{prop:TC} to get $D^*$. Finally define $\xi^{s,t}(x,x',z,z')$ for $\xi_{|Q|}^{s,t}(x,x',z,z')$. 
+% This completes the proof of the lemma.
+% 
+% We then continue as in the proof in Section~\ref{sec:proof of PVPdec}. That is, translate the \RLTL formula $\varphi$ into an automaton (with final states $F_\varphi$) 
+% and take the product with the robot. The result is a product robot $S$. The required formula must express that there exists a run of $S$ 
+% that visits states from $Q \times F_\varphi$ infinitely often. This is equivalent to the existence of two partial runs $\rho_1, \rho_2$ such that 
+%   \it
+%   \- $\rho_1$ starts in an initial configuration $c$ with $c(1) = (x,x,p,p)$, ends in some configuration $d$ with 
+%   $st_1(d) \in F$;
+%   \- $\rho_2$ starts in $d$ and ends in $d$, and all tests are evaluated at $d$.
+%   \ti 
+%  
+%  Thus, the required \msol-sentence $\psi$ is defined as:
+%  \[
+% \bigvee_{{p},{p}',{b},{b}'} \exists {x} \exists {x}' \exists {z}  
+% \left[{x} = {z} \wedge {p} = {b} \wedge
+% \xi^{p,p',b,b'}(x,x',z,z') \wedge 
+% \xi^{q,q,b',b'}(x',x',z',z')
+% \right]
+%  \]
+% where the disjunction ranges over initial states $p \in I$, final states $p' \in F$, and publishing states $b,b' \in B$.
+% \sr{notation for robot; also, fix b,b' in notation of $\xi$}
+% 

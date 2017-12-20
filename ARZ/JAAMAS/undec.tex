@@ -1,0 +1,252 @@
+
+\section{Undecidability of Multi-Robot Systems on Lines} \label{sec:PVPundec}
+
+In this section we deal with multiple robots on lines.
+
+We describe the \emph{basic encoding} that translates a 2CM $\cm$ into a robot ensemble $\tup{R}$ which, on longer and longer lines, can simulate longer and longer prefixes of the computation of $\cm$ (and thus, if $\cm$ halts, can simulate the entire computation of $\cm$ on a long enough line).
+We use two \emph{counter} robots $\counter_1$ and $\counter_2$. The current position of $\counter_i$ on the line corresponds to the current value of counter $i$, and it moves to the right to increment counter $i$ and to the left to decrement it.
+Each of these robots also stores in its finite memory the current state of the 2CM.
+If a robot can't successfully execute a command (e.g., the command is to increment but the robot is already at the right end-point of the line), then the robot enters a special failure sink $\bot$. The basic difficulty is to ensure that the counter robots stay synchronised, e.g., if $C_1$ simulates a test counter $1$ for zero, then $C_2$ should learn the result of that test before the simulation continues.
+
+\head{Notation.} We use the following position tests. Let $RE(x) := \neg \exists y. \lambda(x,y) = r$ be the test that checks if $x$ is at the right end-point of the line, 
+and let $LE(x) := \neg \exists y. \lambda(x,y) = l$ be the test that checks if $x$ is at the left end-point of the line.
+
+We begin with a striking result that shows the power of the task logic \RLTL. It says that PVP is undecidable for robots with \emph{no testing abilities}. A robot will guess whether it is on a given end-point of the line. The \RLTL formula itself is used to filter out the runs in which the robot makes incorrect guesses. To do this, we require that robots publish their position from every state.
+
+
+% RETURN COMMENT IN PUBLISHED VERSION
+% \todo{B: why do we need this footnote at this stage?}
+% \footnote{A similar proof idea, in a different setting, can be found in \cite{Igoretc} which shows that parameterised model checking of distributed systems that don't communicate is undecidable for formulas of (non-prenex) indexed-\LTL.}
+
+\begin{theorem}[Lines, no testing] \label{thm:undec-lines-no testing}
+$\PVP(\gclass,k,\rclass,\tclass)$ is undecidable for the following data:
+\it
+\- $\gclass = \{L_n : n \in \nat\}$ is the set of lines (so $\Sigma = \{l,r\}$),
+\- $k = 2$,
+\- $\rclass$ is the set of $2$-robot ensembles with no testing abilities, and for which every state is a publishing state,
+\- $\tclass$ consists of all \RLTL formulas.
+% $\varphi$ (defined later). \sr{not single}
+\ti
+\end{theorem}
+
+% % \todo{- fix formulas. their should be one for each robot.}
+
+
+\begin{proof}
+As in the basic encoding, the position of Robot $i$ on the line encodes the current value of Counter $i$. Since the robot has no testing abilities, it cannot test whether it (or the other robot) has successfully executed a
+command of the 2CM. Instead, the robots nondeterministically guess the answer to the relevant boundary test, and the formula $\phi$ (of Robot $1$, say) will filter out those runs in which the guesses are incorrect. Moreover, the formula $\phi$ ensures that both robots stay synchronised, i.e., they always store the same state of the 2CM.
+% The formula of Robot $2$ can be taken to be $\true$.
+
+Formally, fix a 2CM $(Q,q_0,h,C)$. The states (and publishing states) of each robot are $Q \cup \{\bot\}$ and the only initial state of each robot is $q_0$.  
+We now describe the transitions. First, $\bot$ is a sink state, i.e., $(\bot,\gc{\true}{stay},\bot)$ is a transition. Let $Inc_1$ be the set of states of the 2CM whose command is of the form ``increment counter $1$''. For each $q \in Inc_1$,
+robot $1$ has transitions $(q,\gc{\true}{r},q+1)$ and $(q,\gc{\true}{stay},\bot)$, and
+robot $2$ has transitions $(q,\gc{\true}{stay},q+1)$ and $(q,\gc{\true}{stay},\bot)$. Transitions for the other commands are similar. Let $R_1,R_2$ be the constructed robots.
+
+Define an \RLTL formula $\psi_{simulate}$ to be the conjunction of 6 formulas, one for each type of command of the 2CM. E.g., the command ``increment counter $2$'' is coded by the formula 
+\begin{align*}
+ \bigwedge_{q \in Inc_2} & st_2 = q  \limp \\
+ & \left[(\neg RE(\VARbcpos_2) \limp \nextX(st_2 = q+1)) \wedge (RE(\VARbcpos_2) \limp \nextX(st_2 = \bot))\right].
+\end{align*}
+Similarly, the command ``if counter $1$ is zero goto $q'$ else goto $q''$'' is coded by the formula
+\begin{align*}
+ \bigwedge_{(q,q',q'') \in Test_1} & st_1 = q \limp \\
+ & \left[(LE(\VARbcpos_1) \limp \nextX(st_1 = q')) \wedge (\neg LE(\VARbcpos_1) \limp \nextX(st_1 = q''))\right]
+\end{align*}
+where $Test_1$ is the set of triples $(q,q',q'')$ such that the command of the 2CM at line $q$ is ``if counter $1$ is zero goto $q'$ else goto $q''$.
+
+
+
+Then, it is easy to see that the 2CM machine halts (on its unique computation) if and only if there is a line and a run $\pi$ of the two robots $\tup{R} = R_1,R_2$ on this line such that $\activeproj_1(\pi)$ satisfies the \RLTL formula $\varphi$ defined by $(\VARbcpos_1 = \VARbcpos_2 = 0) \wedge \always (st_1 = st_2) \wedge \eventually (st_1  = h) \wedge \always \psi_{simulate}$. Thus, the 2CM does not halt iff for every line $G$, it holds that $(G,\tup{R}) \models \tpl{\neg \varphi,\true}$.
+\qed
+\end{proof}
+
+% \todo{-there might be a stupid technicality to take care of: what if a branching command from line l says to branch back to l? B: we can assume no such commands w.l.o.g.}
+
+% \todo{-again, take care of initial state}
+
+%Indeed, suppose the 2CM halts, and let $N$ be the largest value of any of the counters. Then it is easy to see that there is a run of the robots on the line of length $N$ satisfying $\always(st_1 = st_2)$ and $\eventually(st_1 = h)$. Conversely, suppose there is a run of the robots on some line, say of length $N$, satisfying $\always (st_1 = st_2)$ and $\eventually (st_1  = h)$. By the first formula, the robots are always in the same state. Thus, if one changes state, the other simultaneously changes to the same state. By construction, the transitions of the robots ensure that each faithfully simulates the 2CM.
+
+
+\begin{remark}
+Looking at the proof we see that we don't need all \RLTL formulas: it is enough to restrict to, e.g., \RLTL formulas without $\until$, without nesting $\nextX$, and whose atoms are state-tests (that may compare the states of both robots with each other) and position-tests for the left and right end-points of the line.
+\end{remark}
+
+\begin{remark}
+If we had defined the semantics of \RLTL over runs $\pi \in \runs(G,\tup{R})$ directly (instead of over $\activeproj_i(\pi)$) and allowed formulas to \emph{simultaneously} talk about the \emph{current} positions and states of all robots, then the same proof would would give us undecidability for robots
+with no testing abilities and \emph{no publishing states}. 
+\end{remark}
+
+
+% The previous theorem shows that to get decidability we must either restrict the publishing abilities of the robots, or the \RLTL formulas under consideration. In the rest of this section we show that even for simple safety \RLTL formulas, and increasingly elementary robot testing abilities, PVP is undecidable if the publishing abilities are not restricted.
+
+ The previous theorem shows that, even if robots do not have any access to information regarding the states or positions of other robots, in order to get decidability we must not allow the specification formula of one robot to access exact up-to-date information about the states and positions of the other robots. Symmetrically, the following theorem shows that, even if the specification formula of each robot does not have any access to information regarding the states or positions of other robots (actually, even without access to the position of the robot itself), in order to get decidability we must not allow one robot to have exact up-to-date information about the states and positions of the other robots.
+
+
+% 
+% \begin{theorem}[Lines, Remote Testing] \label{thm:undec-synchline}
+% $\PVP(\gclass,k,\rclass,\tclass)$ is undecidable for the following data:
+% \it
+% \- $\gclass = \{L_n : n \in \nat\}$ is the set of lines (so $\Sigma = \{l,r\}$),
+% \- $k = 2$,
+% \- $\rclass$ is the set of $2$-robot ensembles in which a) each robot is able to test the other robot's state, b) robots are able to test if they, or the other robot, is at the left (resp. right) end of the line, c) every state is a publishing state,
+% \- $\tclass$ consists of a single \RLTL safety formula (defined later). 
+% \ti
+% \end{theorem}
+%\sr{robots can be taken deterministic}
+
+
+\begin{theorem}[Lines, Remote Testing] \label{thm:undec-synchline}
+$\PVP(\gclass,k,\rclass,\tclass)$ is undecidable for the following data:
+\it
+\- $\gclass = \{L_n : n \in \nat\}$ is the set of lines (so $\Sigma = \{l,r\}$),
+\- $k = 2$,
+\- $\rclass$ is the set of $2$-robot ensembles in which a) each robot is able to test the other robot's state, b) each robot is able to test if it, or the other robot, is at the left (resp. right) end-point of the line, and 
+c) every state is a publishing state,
+\- $\tclass$ consists of a single \RLTL safety formula that only talks about the current state of the robot (and not about positions or about published states).
+\ti
+\end{theorem}
+\begin{proof}
+Before describing the reduction, we describe how to enforce that the robots are scheduled round-robin (note that the task formula is too simple to enforce this).
+The robots' states include a special variable that cycles through the values in $\{1,2\}$. Let $a_i$ be the value of this variable for robot $i$ at a given point in time. At the beginning $a_i = i$. Robot $i$'s guarded-commands that simulate the 2CM (see below) are guarded by the test $a_1 + a_2$ is congruent to $i$ modulo $2$, and after executing the 
+robot $i$ switches the value of its variable. 
+% that says that $a_i + a_{3-i}$ is equal to $1$ modulo $3$ (e.g., if $a_i = 0$ then the instruction includes the guard $a_{3-i} = 2$). Suppose $a_1 \neq a_2$. Then i) exactly one robot has a true guard, and ii) after that robot updates its variable, $a_1 \neq a_2$.
+% %; if $a_i = 1$ then the instruction includes the guard $a_{3-i} = 0$; and if $a_i = 2$ then the instruction includes the guard $a_{3-i} = 1$.
+% The robots begin with $a_1 = 0$ and $a_2 = 2$, and thus by i) and ii), the robots alternate round-robin. To spell things out,
+% at the beginning only robot $1$ has an enabled guard, after which $a_1 = 1, a_2 = 2$. Then, only robot $2$ has an enabled guard, after which $a_1 = 1, a_2 = 0$, etc.
+% This yields the following $(a_1,a_2)$-sequence $((0,2) (1,2) (1,0) (2,0) (2,1) (0,1))^\omega$, which corresponds to the robots alternating turns at every time step, starting with robot $1$. 
+Thus, the $(a_1,a_2)$-sequence evolves as follows: $(1,2) (2,2) (2,1) (1,1) (1,2) \dots$. 
+This completes the description of the mechanism that enforces round-robin. Note that this mechanism uses the ability of robots to
+perform remote state-tests and that every state is a publishing state. 
+
+Given a 2CM $\cm$ with state set $Q$, the states of the robots are of the form $(a,q) \in \{1,2\} \times (Q \cup \{\bot\})$. 
+Formalise the tests ensuring round-robin as follows: for $i = 1,2$, write $T_i = \{i\} \times (Q \cup \{\bot\})$, and 
+define $\tau_i$ to be $\bigvee st_1 \in T_x \wedge st_2 \in T_y$ where the disjunction is over pairs $(x,y)$ such that $x+y = i \mod 2$.
+
+If $l = \bot$ then robot $i$ has transitions from $(a,q)$ to $(a,q)$ with guarded-command $\gc{\tau_i}{stay}$, i.e., a sink.  
+
+The robots running on $L_n$ simulate a command of $\cm$ as follows. We describe increments (decrements are similar), and tests for zero.
+Suppose $q \in Q$ and the command of the 2CM at state $q$ is ``increment counter $3-i$''. Then robot $i$ has the transition from $(a,q)$ to $(3-a,q+1)$ with guarded-command $\gc{\tau_i}{stay}$. Similarly, if the command at state $q$ is ``increment counter $i$'' then robot $i$ has the transition from $(a,q)$ to $(3-a,q+1)$ with guarded-command $\gc{\tau_i \wedge \neg RE(\VARpos_{cur})}{move(r)}$, and it has the transition from $(a,q)$ to $(3-a,\bot)$ with guarded-command $\gc{\tau_i \wedge RE(\VARpos_{cur})}{stay}$. 
+% Here $RE(cur)$ is the test $\neg \exists y. \lambda(cur,y) = r$.
+
+
+Suppose $q \in Q$ and the command at state $q$ is ``if counter $j$ is zero goto state $q'$ else goto $q''$''. Then robot $i$ has the transition from $(a,q)$ to $(3-a,q')$ with guarded-command $\gc{\tau_i \wedge LE(\VARbcpos_j)}{stay}$, and a transition from $(a,q)$ to $(3-a,q'')$ with guarded-command $\gc{\tau_i \wedge \neg LE(\VARbcpos_j)}{stay}$. 
+% Here $LE(pos_j)$ is the test $\neg \exists y. \lambda(y,pos_j) = r$.
+
+Define $H = \{1,2\} \times \{h\}$ where $h$ is the halting state of the 2CM. Define $\Phi$ to be the formula $\eventually (st_{cur} \in H)$.
+It is not hard to see that 2CM halts iff there exists $n \in \nat$, a run $\pi$ of the robots on $L_n$, and an $i = 1,2$ such that $active_i(\pi) \models \Phi$. Thus, the 2CM does not halt iff for every line $G$, it holds that $(G,\tup{R}) \models \tpl{\neg \Phi,\neg \Phi}$. \qed
+% for all $n \in \nat$ and $i = 1,2$, for all runs of the robots on $L_n$, it is never the case that the current state of robot $i$ is in $H$. \qed
+\end{proof}
+
+
+
+
+
+% Robot $i$ has a variable variable $l_i$
+% Each robot stores what it considers to be the current state $l$ of the 2CM. Suppose the command at state $l$ is ``increment counter $i$''. 
+% Consider robot $i$. If the command of its current line-number $l$ is ``increment counter $i$'' (i.e., increment the counter that it represents) then: if it is not at the right end-point, it moves one step to the right and changes its line-number to $l+1$, and if it is on the right end-point it enters a failure sink $\bot$. On the other hand, if the command of its current line-number $l$ is ``increment counter $3-i$'' (i.e., increment the other counter) then robot $i$ copies the state of robot $3-i$ (more precisely, it tests the state $s$ of robot $3-i$: if $s$ stores line-number $l$ then robot $i$ does not change its line-number, although it will fire the transition ensuring round-robin; if $s$ stores the line-number $l+1$ then robot $i$ changes its line-number to $l+1$; if $s = \bot$ then robot $i$ itself changes its state to $\bot$). The other commands, ``decrement counter $i$'' and ``test counter $i$ for zero'' are defined similarly. 
+
+% 
+% For a given 2CM $\cm$ we build a pair of robots $R_M$. First, each robot moves to the left end-point of the line. Then, the robots begin simulating \cm. Each robot stores the current state of \cm. However, since robots have remote tests, they can correctly simulate all 2CM commands. E.g., to simulate the 2CM command ``increment counter $1$'', robot $i$ tests if robot $1$ is at the right end-point of the line: if ``yes'', then robot $i$ enters a fail state $\bot$; and if ``no'' then robot $1$ moves one position to the right and updates the state of the 2CM being simulated, and robot $2$ updates the state of the 2CM being simulated. Thus, every run $\pi \in \runs(L_n,R_M)$ satisfies 
+% $\always (st_1 = st_2 \wedge st_1 \neq h)$ (where $h$ is a halting state of the 2CM $M$) iff the run of $\cm$ never halts.
+% \qed
+
+% 
+% \begin{remark}
+% A similar result was stated in \cite{Rubin15AAMAS} in which it was assumed that robots are scheduled synchronously.
+% An alternative proof (of this fact about synchronous robots) is to directly code computations of Turing machines, as was done by~\cite{Ro66} for showing that universality of $2$-head one-way finite-state automata is undecidable.
+% \end{remark}
+
+
+%given a turing machine $M$, build a robot $R_M$ that runs on a grid and checks whether or not the labelings of each row are $M$-configurations that form, in sequence, an accepting run of $M$; if not, then let $R_M$ halt, and otherwise let it run forever. Then $M$ has no accepting run if and only if $R_M$ achieves $T$ on all graphs $G \in \gclass$.
+
+Note that the robots in these proofs have remote sensing abilities, i.e., they can test the positions %/states 
+of other robots, no matter where those robots are.
+We now consider the case that the robots only have \emph{local} sensing abilities. We allow a robot to test
+if it is at the right end-point of the line, and to test which of the other robots are in the same node as it is (``collision detection''). 
+Note that a robot cannot test that another robot has collided with it unless the other robot publishes its position. Thus, for this proof, we assume that every state of every robot is a publishing state, i.e., $B_i = Q_i$ for all $i$.
+
+The local-sensing assumption introduces two difficulties with the basic encoding. First, we now need a mechanism to ensure that the two counter robots always stay synchronised in the sense that they both agree on the next command to simulate, i.e., we need to prevent one of them from ``running ahead''.
+Second, we need a mechanism to update the state of the 2CM stored by a counter robot when it simulates a command that is a test for zero of the other counter.
+Both of these difficulties are very easy to overcome if one robot can remotely sense the state/position of the other robot (as in the proof of
+Theorem~\ref{thm:undec-synchline}).
+%For example, the coordination can be achieved by the two robots taking turns by observing the parity of the other robot's state. However, since we are disallowing remote sensing of any kind, it is not immediately apparent that these difficulties can be overcome. As it turns out, they can be overcome even with the very limited sensing abilities that we allow.
+Since we disallow such powerful sensing these difficulties become substantially harder to overcome. The basic idea used to overcome the first difficulty is to add synchronisation robots and have a counter robot move only if it has collided with the appropriate synchronisation robot. Thus, by arranging that the synchronisation robots collide with the counter robots in a round-robin way, the counter robots alternate their simulation turns and are kept coordinated. In order to enforce this round-robin behaviour we have to change the encoding such that only every other position on the line is used to encode the counter values. Thus, an increment or a decrement is simulated by a counter robot moving two steps (instead of one) in the correct direction. The basic ingredient in addressing the second difficulty is to add a {\em zero-test} robot that, whenever a counter $C$ is zero, moves to the position of the other counter's robot, thus signalling to it that the counter $C$ is zero.
+
+% \fz{testing right end of line not needed, can be done by an extra robot. add footnote}
+\begin{theorem}[Lines, Local Testing] \label{thm:undec-lines-local}
+$\PVP(\gclass,k,\rclass,\tclass)$ is undecidable for the following data:
+\it
+\- $\gclass = \{L_n : n \in \nat\}$ is the set of lines (so $\Sigma = \{l,r\}$),
+\- $k = 9$,
+\- $\rclass$ is the set of $9$-robot ensembles in which robots are only able to test which robots they are colliding with, and if they are at the right end-point of the line, and for which every state is a publishing state, 
+% \todo{check that these are the tests used in the proof}
+\- $\tclass$ consists of a single safety formula.
+\ti
+\end{theorem}
+\begin{proof}
+We will show that for every 2CM $\cm$, there is a robot ensemble $\tup{R}$ which, for every $n \geq 5$, simulates on the line $L_n$ any prefix of the computation of $\cm$ in which the counters never exceed the value $(n-3)/2$.
+From this fact we can easily deduce that $\cm$ does not halt iff for every $n \in \nat$ the run of the ensemble $\tup{R}$ on
+$L_n$ is such that no robot enters a state corresponding to the halting state of $\cm$. Thus we can take the specification formula (for each robot) 
+to be $\always (st_{cur} \not \in H)$ 
+where $H$ is the set of states in which the 2CM's state being simulated is the halting state.
+
+Fix a 2CM $\cm$. The ensemble $\tup{R}$ consists of $9$ robots: the {\em counter} robots $\counter_0, \counter_1$, four {\em synchronisation} robots $\round_0,\round_1,\round_2,\round_3$, a {\em zero-test} robot $\zeroTest$, a {\em zero} robot $\zero$ that marks the zero position of the counters, and a {\em mover} robot $\mover$ whose role is to ensure that the robots can simulate more than one command of $\cm$ only if their starting positions on the line are as in the {\em initialised configuration} described below $(\ddagger)$. The value of a counter is encoded as half the distance between the corresponding counter robot (when it is at an odd node) and the $\zero$ robot (which is always in node $3$), e.g., if $\zero$ is in node $3$ and $\counter_1$ is in node $11$ then the value of counter $1$ is $4$.
+
+
+%The {\em position of a robot (at a point in time)} is its position measured from the left end-point of the line.
+$(\ddagger)$ ({\em initialised configuration}):
+%Each robot is in a ``ready to simulate'' state, and their positions are as follows :
+robots $\round_2, \round_3$ are in node $1$, robots $\round_0,\round_1$ are in node $2$, and the rest are in node $3$.
+
+The definition of the transitions of the robots has the important property that there is only one possible run starting from the initialised configuration, i.e., at each point in time exactly one robot has a transition with a test that evaluates to $\true$. We assume that each robot remembers if it is at an odd or even node. This can be done even without looking at the node by storing the parity of the number of steps taken since the initialised configuration ($\ddagger$).
+
+Each command of the 2CM $\cm$ is simulated by the ensemble using $4$ phases. For every $i \in \{0,1,2,3\}$, phase $i$ has the following $5$ internal stages: 
+
+\begin{enumerate}
+ \item[(1)] The synchronisation robots arrange themselves to signal to robot $\round_i$ that it can start moving to the right (this mechanism is described below $(\star)$). 
+ \item[(2)] Robot $\round_i$ moves to the right until it collides with robot $\counter_j$ where $j = i \bmod 2$. 
+%  It is an invariant of the run that this collision is at an even node if $i$ is odd, and vice-versa.  
+ It is an invariant of the run that this collision is at an odd node if $i \in \{0,1\}$ and at an even node if $i \in \{2,3\}$.
+ \item[(3)] Robot $\counter_j$ moves one step to the left or to the right, in order to simulate the relevant half of the current command of $\cm$, as described below $(\dagger)$.
+%  Note that Robot $\counter_j$ is now on an odd node.
+ \item[(4)] Robot $\round_i$ moves to the right until it reaches the end of the line. Observe that if during this stage $\round_i$ collides again with $\counter_j$ then (unlike stage 2) it is on an even node (by the invariant, and since $\counter_j$ moved one step in stage 3). This parity information is used by $\counter_j$ to know that it should not move, and by $\round_i$ to know that it can continue moving to the right. 
+ \item[(5)] Robot $\round_i$ moves to the left until it reaches the beginning of the line (see $(\star)$), which ends the phase (here, as in the previous stage, the parity information is used to ignore collisions with $\counter_j$). 
+\end{enumerate}
+% \item[(4)] Robot $\round_i$ moves to the right until it reaches the end of the line. Observe that if during this stage $\round_i$ collides again with $\counter_j$ then (unlike stage 2) it is on a node with the same parity as $i$ (by the invariant, and since $\counter_j$ moved one step in stage 3). This parity information is used by $\counter_j$ to know that it should not move, and by $\round_i$ to know that it can continue moving to the right. 
+%  \item[(5)] Robot $\round_i$ moves to the left until it reaches the beginning of the line (see $(\star)$), which ends the phase (here, as in the previous stage, the parity information is used to ignore collisions with $\counter_j$). 
+
+In case the other counter (i.e., counter $1-j$) is zero, stage (2) of phases $0,1$ are modified as follows: when robot $\round_i$ enters node $3$ from the left it collides with $\zero, \counter_{1-j}$ and $\zeroTest$; then, $\zeroTest$ and $\round_1$ move to the right together, where $\zeroTest$ always goes first, and then $\round_i$ follows in lock-step; at the end of stage $2$ both $\zeroTest$ and $\round_i$ collide with $\counter_j$, thus signalling to the latter that counter $1-j$ is zero. A similar modification to stages (4) and (5) makes $\zeroTest$ and $\round_i$ move in lock-step fashion all the way to the right and then back to the left depositing $\zeroTest$ back in node $3$.
+%\sr{do we have to deal separately with the case that $\round_i$ and $\counter_i$ collide at the RHS?}
+%
+%Finally, in order to keep the robot $\boundary$ always to the right of the other robots at the beginning of every phase we modify stage (4) such that when $\round_i$ collides with $\boundary$ and it finds $\counter_j$ also there (this may occur if the latter moved right in the previous stage), then it is not allowed to move until $\boundary$ moves out of that node (which it does by stepping to the right).
+
+
+$(\dagger)$: The operation performed by $\counter_j$ in stage (3) of each phase is as follows.
+%Recall that we encode the value of a counter is half the distance between the corresponding counter robot and the $\zero$ robot.
+In phase $0$ robot $\counter_0$ simulates the first half of the command, in phase $1$ robot $\counter_1$ simulates the first half of the same command, in phase $2$ robot $\counter_0$ simulates the second half of the command and in phase $3$ $\counter_1$ does so. For example, if the command is ``increment counter $0$'' then in phase $0$ robot $\counter_0$ moves right one step (and updates its simulated state of $\cm$ to be the next command of $\cm$), in phase $1$ robot $\counter_1$ moves right one step (and updates its simulated state of $\cm$), in phase $2$ robot $\counter_0$ moves again one step to the right (thus encoding an incremented counter), and in phase $3$ robot $\counter_0$ moves left one step (thus, returning to its previously encoded value). Simulating the other three increment and decrement commands is done similarly. The only other command we need to simulate is of the form ``if counter $i$ is zero goto state $q'$ else goto state $q''$''. Since this command does not change the value of any counter it is simulated by each counter robot going right in the first half of the simulation and left in the second half. The internal state of $\cm$ is updated to $q'$ or $q''$ depending on the value of the counter. When simulating the first half of the command, robot $\counter_j$ knows that counter $j$ (resp. $1-j$) is zero iff it sees $\zero$ (resp. $\zeroTest$) with it.
+
+($\star$): We now show that every arrangement of the synchronisation robots uniquely determines which one of them its turn it is to move. Let $\next(i) := i+1 \bmod 4, \prev(i) := i-1 \bmod 4$. An {\em initial arrangement for phase $i$} is of the following form: $\round_{\prev(\prev(i))}, \round_{\prev(i)}$ are in node $1$, and $\round_i, \round_{next(i)}$ are in node $2$. Note that the initialised configuration ($\ddagger$) contains the initial arrangement for phase $0$. We let the initial arrangement for phase $i$ signal that the next robot to move is $\round_{\prev(\prev(i))}$, which moves to the right, thus completing stage (1) of phase $i$. Hence, at the beginning of stage $2$ the arrangement is such that only $\round_{\prev(i)}$ is left in node $1$, which signals that $\round_i$ is the next robot to move, as needed for stage (2). Just before the end of stage (5), robot $\round_i$  returns to node $2$ from the left, and the above arrangement repeats itself. Hence, again it is $\round_i$ that moves, however, this time to the left (as indicated by its now different internal memory). The resulting arrangement at the end of phase $i$ is thus: $\round_{prev(i)}, \round_i$ are in node $1$ and $\round_{\next(i)}, \round_{\prev(\prev(i))}$ are in node $2$. Observe that this is exactly the initial arrangement for phase $\next(i)$, as required. Note that since robots have collision tests a robot can tell by sensing which other robots are with it (and which are not) exactly which arrangement of the ones described above it is in, and thus if it allowed to move or not.
+
+% OTHER IDEA
+%Finally, we describe how to amend the construction above to ensure that robots can only simulate the 2CM if they happen to begin in the initialised configuration ($\ddagger$), and otherwise the system deadlocks after a few steps without any robot entering a halting state.
+%%Observe that when starting from the initialised configuration ($\ddagger$), the first three moves are always: $\round_2$ moves right, $\round_0$ moves right, $\counter_0$ moves right. Thus,
+%We add the following guards: (i) $\round_2$ never moves if when first scheduled it sees that it is not on the left edge of the line, and the same goes for $\round_3$; (ii) $\counter_0$ never moves unless it sees all the robots (except $\round_1, \round_2, \round_3$) are with it when first scheduled; (iii) after making its first move, $\round_0$ never makes its second move unless $\zero$ is with it.
+%It is not hard (though somewhat tedious) to see that these extra guards guarantee that if the robots do not start as specified in ($\ddagger$) then $\round_0$ will never be able to start moving right in phase $0$ of the simulation of the second command of $\cm$. By assuming w.l.o.g. that $\cm$ does not halt after one command we know that a faulty start can not lead to a simulation of a halting computation of $\cm$, as promised.
+
+
+Finally, we describe how to amend the construction above by incorporating the robot $\mover$ to ensure that robots can only simulate the 2CM if they happen to begin in the initialised configuration ($\ddagger$), and otherwise the system deadlocks after a few steps without any robot entering a halting state.\footnote{One can modify the construction to remove the need for the $\mover$ robot, however we find the exposition with the $\mover$ clearer.}  Add to every transition of robot $\round_i$, for $i \in \{0,1,2,3\}$, the additional guard that $\mover$ is on the same node with it. Thus, $\mover$ enables the synchronisation robots to move, and if $\mover$ ever stops, then so does the simulation. Robot $\mover$ behaves as follows. It first verifies that the rest of the robots are in the initialised configuration by executing the following sequence (and stopping forever if any of the conditions in the sequence fail to hold): check that it is alone on the right end-point of the line, move left until it collides with $\counter_0,\counter_1,\zero,\zeroTest$, move one step left and check that it collides with $\round_0,\round_1$, move one step left and check it is on the left end-point of the line and collides with $\round_2,\round_3$. Once it verified that the robots are on the nodes specified by ($\ddagger$), it starts ``chasing after'' the currently active synchronisation robot, i.e., it remembers which robot is active and the direction it moves in, and moves in that direction (if it does not currently collide with that robot).\qed
+
+\end{proof}
+
+Suitable modifications to the construction in the theorem yield that other tasks, such as ``certain robots gather'' or ``certain robots reconfigure'', are undecidable.
+
+
+\begin{remark} \label{rem:synch}
+Note that in the construction, starting from the initialised configuration, at most one robot can move at any time. Thus, allowing all robots that can act to act, as in the synchronous model, does not change anything. So, with minor modifications to deal with the initialisation phase, the theorem also holds for the synchronous model. This strengthens the previously known fact that the PVP is undecidable for synchronous robots on a line with remote testing abilities
+(i.e., robot $l$ can test if ``robots $i$ and $j$ are in the same node'') \cite{Rubin15AAMAS}.
+\end{remark}
+
+The combined consequence of these four Theorems is the following: in order to get decidability of the PVP, for an interesting fragment of our model, we must (1) limit the set of graphs of interest to exclude grids and (2) limit the ability of \emph{both} the robots and the specification formulas from having access to exact up-to-date information regarding the states/positions of the other robots. Furthermore, (1) and (2) are independent of each other instead of being a tradeoff. Indeed, Theorem~\ref{thm:undec-1robotgrid} used a single robot with no publishing at all, and Theorems~\ref{thm:undec-lines-no testing}, \ref{thm:undec-synchline} 
+and~\ref{thm:undec-lines-local} used perhaps the simplest infinite set of graphs --- the lines. In the next section, we show that the PVP is decidable if we instantiate condition (1) by restricting to \courcellian graphs, and, in addition, if we instantiate condition (2) by restricting the robots to publish only a bounded number of times on each run. We remark that these are arguably very weak ways of instantiating these restrictions, and that we pose no other restrictions. In particular, the robots as well as the specification formulas retain the very powerful testing abilities of our model.
+
+% \fz{this whole section would not require to (talk?) about publishing}

@@ -1,0 +1,107 @@
+\section{Comparison of the framework with robots from the Distributed Computing literature} \label{sec:illustration}
+
+
+% \sr{improve section. not just ad hoc examples, also classes from the literature. 
+% 1) bring into current notation, 2) look at literature cited to see if there are multiple robot examples.}
+
+% \sr{say why DC-robot literature does not subsume our results}
+
+In this section we compare our framework with other definitions of robots in the literature. Since our framework is abstract (i.e., we do not describe physical sensors, actuators, etc.) we limit ourselves to models of robots with a similar flavour, i.e., abstractions of robots operating in discrete environments.
+
+One topic in modern Distributed Computing is software that acts autonomously, moves along communication links of a distributed network, and supports 
+computation at nodes of the network. In the theoretical literature, such agents are typically modeled as finite automata walking on graphs: \cite{FIPPP04,Diks200438,Cohen05graphexploration,KKR06,GR08,DBLP:conf/wdag/FraigniaudP08,Das13,DBLP:conf/wdag/ChalopinGN15} (we recommend \cite{KKR06,Das13} for overviews). To distinguish them from our robots we call these \emph{DC-robots}. There are many variations, e.g., DC-robots may clone themselves, may merge upon collision, may or may not have knowledge about the graph they are operating on (e.g., its size or shape), may be deterministic or randomised, may move synchronously or asynchronously, etc.
+
+We describe the simplest variation. Environments are undirected graphs, and each vertex is annotated with a local port-numbering i.e., for every vertex $v$ the set of labels of the edges of $v$ are in bijection with $\{1,2,\cdots,\deg(v)\}$. In the context of mobile software agents, the local port-numbering can represent network port numbers.
+A DC-robot finding itself at vertex $v$ can decide to exit via local port-number $d$ and update its local state based on 
+\begin{enumerate}
+\item[a)] its current state, 
+\item[b)] the identification of the robots at the same vertex $v$, 
+\item[c)] the degree of $v$, and 
+\item[d)] the local-port number of $v$ of the edge it used when arriving at $v$. 
+\end{enumerate}
+Thus graphs are assumed to have bounded degree $\Delta$.
+Tasks are described on an ad-hoc basis, i.e., not via logic. Typical tasks from this literature are ``perpetual exploration'', ``exploration with return'', and ``gathering''. A common assumption is that the robots should perform their task on a graph no matter the local port numbering. 
+%\sr{can relax this and have the edge chosen non-deterministically/fairly amongst those with the same port numbers} 
+
+
+Such robot systems are easily expressible in our framework. We consider $\Sigma$-graphs $(V,\lambda)$ where
+$\Sigma = [\Delta]$;
+$\lambda(v,w) = i$ if $i$ is $v$'s port number for the undirected edge $\{v,w\}$; and
+both $\lambda(v,w)$ and $\lambda(w,v)$ are defined, but not necessarily equal, i.e., $E$ is symmetric.
+
+We now describe how to simulate a)-d) above by our robots.
+\begin{itemize}
+ \item[a)] The state of our robot stores the current state of the DC-robot.
+ \item[b)] Use position-tests of the form $\VARbcpos_i = \VARpos_{cur}$ and require that our robots publish in every state (this captures that robots can identify robots at the same vertex),
+ \item[c)] Use position tests of the form $\exists^{!d} x. E(\VARpos_{cur},x)$ where $\exists^{!d} x$ is shorthand for the formula that expresses that there are exactly $d$ many $x$. 
+ \item[d)] The state of our robot stores the local-port number with which it entered the current vertex. It does this as follows: when our robot is at vertex $v$, and the DC-robot says to take exit $i$, our robot first determines the $w$ such that $\lambda(v,w) = i$, and then it determines the $j \in \Delta$ such that $\lambda(w,v) = j$. It can do this with positions tests.
+\end{itemize}
+
+It is important to note that results in the distribute-computing literature are typically statements of the form ``problem X can be solved by robots on all graphs from class $Y$'', or ``no robots can solve problem X on all graphs from class $Y$''. In other words, these are theorems which talk about all graphs in a class. In contrast, our results are un/decidability results about certain decision problems of the form ''given robots, and a problem X, decide if the robots solve X on all graphs from a given class $Y$``.
+
+
+\begin{example}[Rotor-Robot]
+We now give a simple but important example of a DC-robot. The {\em rotor robot} operates as follows: when it enters a vertex $v$ by port $i$ it leaves by port $i+1$ modulo $\deg(v)$. This robot is known by various other names: Abelian mobile robot, rotor walk, ant walk, Eulerian walker, and Propp machine. It is important because it is a viable alternative to probabilistic robots that perform random walks \cite{BL13}. It has the property that it explores all trees --- a result that seems to be folklore, and that could be proved, for fixed degree $\Delta$, using Theorem~\ref{thm:PVPdec}.
+\end{example}
+
+\begin{example}[Rendezvous]
+Typically, rendezvous of two agents in a graph either requires memory, or the ability of agents to read/write to nodes. For instance, \cite{DBLP:conf/wdag/FraigniaudP08} consider identical agents in trees and graphs of bounded-degree: they prove lower-bounds (that depend on the size of the graphs) on the amount of memory such agents must have to rendezvous (no matter the port-labeling). In fact, they prove that for any pair of identical finite agents, one can construct a line and a local port-numbering on which
+these agents cannot accomplish rendezvous. The proof of Theorem~\ref{thm:PVPdec} could be used to supply, given a pair of identical finite agents and a bound on the number of times they publish, a line and a local port-numbering on which they fail to rendezvous within that bound. This should be contrasted with the undecidability result of Theorem~\ref{thm:undec-lines-local}, and the comment that follows it, which say that, even limiting to lines with the usual local-port numbering (left and right as in the definition of ``line'' on page~\pageref{def:line}), and robots that can only test which other robots are currently at the same position (and if the current position is the right-end of the line), there is no algorithm that given an ensemble of such robots can decide if they all rendezvous. 
+\end{example}
+
+This model of DC-robots is called the Face-to-Face model since robots can only communicate when they are in the same vertex of the graph. Other variations include the Pebble model in which DC-robots can leave a pebble at its current location, which can be seen and picked up by any other DC-robot visiting that location, the binoculars model in which each agent can see the local structure of the graph a constant distance from its current location~\cite{DBLP:conf/wdag/ChalopinGN15}, and the Whiteboard model in which DC-robots can write and read public information to vertices of the graph. Whiteboards result in Turing-complete devices (this can be seen as an easy variation of the fact that token passing systems on rings can simulate Turing machines, see~\cite{Suzuki}); binoculars can be expressed as \msol-tests; and pebbles may be tractable under certain restrictions on the ordering in which they are dropped and retrieved~\cite{EnHo06}.
+
+
+\iffalse
+\subsection{Label-Guided Tasks}
+
+\fz{
+- shouldn't $part(\bar{X})$ in addition to being a partition also say that $\bar{X}$ is a coloaring?
+
+- regarding notation: first you write $\phi[\chi]$ ($\phi$ depends on $\chi$) and then you write $\phi(\bar{X})$ ($\phi$ depends on $\bar{X}$), please clarify 
+}
+
+\sr{do we want this section?}
+
+Sometimes precomputed graph-labelings are required for tasks to be performed. For instance, although there is no DC-robot that perpetually explores all graphs, there is a DC-robot and an algorithm that colours vertices by three colours, such that the DC-robot can perpetually explore every such coloured graph~\cite{Cohen05graphexploration}. We now discuss how our framework can incorporate questions of the form: given a robot and a task, decide if for every $\Sigma$-graph $G \in \gclass$ there exists a labeling of $G$ such that the robot achieves the task on the graph with the help of the labeling. 
+
+Since $\msol$ can quantify over sets, we can encode vertex-labelings by sets. Fix a set $C$ of vertex-labels. Let 
+$X_c$ be a new set variable associated with colour $c$.  There is an \msol-formula $part(\tup{X})$ that expresses that $\tup{X}$ partition $V$: it is the conjunction of $\wedge_{i\neq j} X_i \cap X_j = \emptyset$ and $\cup_{i} X_i = V$.
+In this case, they encode a labeling $\chi:V \to C$, i.e., $\chi(x) = c$ iff $x \in X_c$. 
+
+Let $\varphi(\tup{X})$ be a property of graphs that makes use of the vertex-labeling $\tup{X}$. Write $\varphi[\chi]$ for the formula $\varphi$ in which $X_c$ is assigned the set $\chi^{-1}(c)$. Write $(G,\chi) \models \varphi$ to mean that $G \models \varphi[\chi]$.
+Consider the following problem: decide if every $\Sigma$-graph $G \in \gclass$ has a vertex-colouring $\chi:V \to C$ such that every run of $\tup{R}$ on $G$
+satisfies $\varphi[\chi]$. We sketch how to reduce this to the \msol-satisfiability problem for $\gclass$.
+
+Adapt Theorem~\ref{thm:reduction} to produce an \msol-formula $\psi(\tup{X})$ that expresses that robots $\tup{R}$ have a run in $G$ 
+satisfying the \RLTL formula $\neg \varphi(\tup{X})$. 
+Then,  
+\[
+G  \models \forall \tup{X}. part(\tup{X}) \to \psi(\tup{X}) 
+\]
+ iff for every vertex-labeling $\chi$ of $G$, there is a run of $\tup{R}$ on the vertex-coloured graph $(G,\chi)$ satisfying $\neg \varphi$. So, $\forall \tup{X}. part(\tup{X}) \to \psi(\tup{X}$ is not satisfiable iff for every graph $G$ there is a vertex-labeling $\chi$ of $G$ such that every run of $\tup{R}$ on $(G,\chi)$ satisfies $\varphi$. \todo{ok?}
+
+Since the \msol-satisfiability problem is not decidable for the set of all graphs, we can't hope to use our result to prove that for a given robot there is a colouring algorithm that the robot can use to explore all graphs. However, let $\gclass$ be a context-free set of graphs $\gclass$. Then one can decide, given a DC-robot, whether or not for every $G \in \gclass$ the robot achieves the task ``there is a colouring of $G$ using $k$ colours that the robot can use to perpetually explore $G$''. \sr{check we can express ``perpetual exploration''}
+
+% The reason this fits into Theorem~\ref{thm:PVPdec} is that this task is captured by an \RLTL\ formula --- indeed, the property that $X_1,X_2,X_3 \subseteq V$ colour a graph is easily expressed in $\msol$ (just say that $\wedge_{i\neq j} X_i \cap X_j = \emptyset$ and $X_1 \cup X_2 \cup X_3 = V$).
+
+%The {\em $r$-DFS robot} operates as follows (for $r \in \mathbb{N}$): it does a depth-first search up to depth $r$ by storing, in its state, the sequence of port numbers leading back to the starting node. This robot perpetually explores all (of the finitely many) graphs of max degree $\Delta$ and diameter $r$ --- it has $\Delta^r$ states, and this is optimal \cite{Cohen05graphexploration}. 
+% \sr{connection with Delzanno?}
+
+%For $k \geq 2$, the {\em $(k-1)$-cops and robber game} operates as follows. A single robot plays the robber, and moves at odd time steps; all the remaining $k-1$ robots play cops, and move at even time steps. \sr{complete}
+
+
+%\item For every $\Delta \geq 2$, there is no robot that perpetually explores all planar graphs of degree at most $\Delta$ \cite{Cohen05graphexploration}.
+%
+%\item For every $\Delta$, there exist two cop-robots that capture every robber-robot on every tree of degree at most $\Delta$.
+%\end{enumerate}
+
+
+%\begin{enumerate}
+%\item Rotor searches trees
+%\item $2$-searchers find a visible fugitive on all trees (need the ability to 'see'); or guarding game; ... many variations of evasion-pursuit games.
+%\end{enumerate}
+
+%We may encode a $\Delta$-ary tree $T$ with a local port numbering $\pn$ by the $\Bij$-labeled tree $T$, where $\Bij$ is the set of bijections $f:\Delta \to \Delta$, by pushing the numbering into the label.
+\fi
+

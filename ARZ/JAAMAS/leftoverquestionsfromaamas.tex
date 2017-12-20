@@ -1,0 +1,721 @@
+
+\section{NEXT STEPS}
+\begin{enumerate}
+\item the phrase  'distributed multi-robot system' is relevant/important.
+\item give ROBOT EXAMPLES! to show power of the model! very powerful sensing!
+but not communication (e.g., broadcast).
+\item Mention (in extensions?) that we don't allow absolute distances (such as
+in the 10FPS paper, since procs have constant memory, and graphs are unbounded
+in size), but we do allow relative positioning (e.g., robot 1 is to my left).
+\item PROVE conversion theorem (robot to regexp to formula) for robots which
+know port number they land in.
+\item Is FO + binary TC enough? in which case, which graphs are decidable?
+\item cite Alessio early!
+\item 'mobile' usually means the netowrk is dynamic. what is the jargon for
+static env?
+\item 'calc of mobile agents' is a ccs-like coomunication channels and
+locations. it captures the structure of complex networks and the behavior of
+mobile computation.
+\item mobile computations  = virtual mobility on static network; mobile
+computing = moving computers, so dynamic network.
+\item say somewhere that logic is used to specify the 'structure'/environment
+and the tasks (and even the procs).
+\item emptiness of graph-automata should be linear/polynomial in the tree-width.
+\item DFNs of autonomous etc.: KRR, and Fisher. ``Mobile Agent Computing''
+\item Why anonymous? env. might be hostile and so don't have IDs. or there might
+be faults (see Yu +Yung for short  discussion)
+\item Why PMCP? Abstraction for unknown environment, or very large environment.
+\item Why is this relevant to AAMAS community? e.g., high level decision part of
+cyber-physical system. foundations for practical systems, highlighting critical
+issues. Go through theory papers.
+\item Formalise language in which to describe tasks. WHAT EXISTING LANGUAGES ARE
+THERE? COMPARE! somehow point out that the graph is explicit in this framework,
+while it is implicit in other scenarios (e.g., agentspeak, METAM)
+
+I am trying to create a logic for reasoning about mobile agents on graphs. All
+the logics I can find (e.g., PDDL, situation calculus, mu-calculus) require that
+one codes the graph and the agents in a single system. Do you know any
+exceptions to this? i.e., a logic L, to be interpreted on graphs G, in which one
+can express things like 'the robber avoids being caught in the cops-robber game
+on graph G'.
+
+\item Formalise robot system that are treated. Might want to follow GWA of
+EnBl97, but for undirected graphs. There each edge has a label from a finite
+set. This finite set could include both port numbers (and the direction if you
+want directed graphs).
+
+Idea works for deterministic robots + locally port numbered graphs + synchronous
+movement, i.e., there is a unique run.
+Then: there is a formula $\phi_L(x,y)$ that means the robot moves from $x$ to
+$y$ along a path whose label set is $L$. Then exploration can be expressed as
+$\forall x \forall y \phi_{true}(x,y)$.
+
+If movement is asynchronous, then there can be a set of runs. Somehow must
+express "for all $x$ there is a run $\pi$ starting in $x$ and whose occurence
+set is $V$".
+
+\item Prove lower bounds!
+\item Run experiments using tree-automata packages, or SMT solvers!
+\item Decide on generality of statements (e.g., competing robots? different
+robots?)
+\item Bibliography chronological or alphabetical?
+\item include discussion of synthesis in intro?
+\item stress that the graphs are not arbitrary? i.e., unknown means unknown but
+in some known class?
+\item finish going through pc members' most cited papers and relevant papers to
+see their interests.
+\item future work: can one automatically prove a property independently of
+$\Delta$?
+\item labeling from fixed alphabet allowed?
+\item robot logic is linear-like. say something about branching case.
+\item say something about asynch case
+
+
+\item Here is an intuition of how we might use automata and logic to decide the
+parameterised verification problem for robots without whiteboards. A robot
+operating on a labeled line can be thought of as a two-way automaton; the
+labeling of the line is read as a string. The point is that questions about
+robots on ``linear'' graphs (such as lines or rings), are questions about the
+runs of two-way automata on strings (e.g., ``does the run visit every position
+of the string?'' corresponds to perpetual exploration). Similarly there are
+tree-automata that operate on labeled trees.
+
+ Although there is no canonical notion of graph-automaton, we can use
+monadic-second order logic to reason about robots operating on all graphs from a
+context-free set $\gclass$.
+
+In fact, by Courcelle's Theorem, the parameterised verification problem is
+decidable if $\gclass$ is a context-free set of graphs.
+
+\end{enumerate}
+\end{document}
+
+
+
+If robots are deterministic with unique initial states then all the robot tasks
+introduced in Section~\ref{ex:tasks} are expressible in the fragment of \MRTL\
+that itself is expressible in $\fotc$. For instance, the ``explore and halt''
+task can be expressed as $\forall x [\exists y Reach_f(x,y) \wedge \forall y
+reach(x,y)]$. Note that if we drop the assumption that robots are deterministic,
+then this formula does not work (it only guarantees that every vertex is visited
+by some run, but not necessarily the same run for different vertices).
+
+\begin{enumerate}
+\item ``explore and return'' can be expressed as
+\[
+\forall x [ Reach_f(x,x) \wedge \forall y Reach(x,y)].
+\]
+\item ``perpetual exploration'' can be expressed as
+\[
+\forall x [\neg \exists y Reach_f(x,y) \wedge \forall y Reach(x,y)].
+\]
+
+\item ``gathering'' of $k$ many robots can be expressed as
+\[
+\forall x_1 \cdots \forall x_k \exists y Reach_f(x_1,\cdots,x_k,y,\cdots,y)
+\]
+\end{enumerate}
+
+\sr{note that MC FOL properties is in PSPACE since the formula in it FOL+DTC.}
+
+\sr{alt dfn}\sr{add atoms?}
+
+A {\em robot protocol} is a tuple
+
+\[
+\left< \Delta,k,Q,\iota,T, \update,\exit \right>
+\]
+where $\Delta \in \nat$ is the {\em graph degree}, $k \in \nat$ is the {\em
+number of robots}, $Q$ is a finite set of {\em states}, $\iota \in Q$ is the
+{\em initial state}, $T$ is a set of MSOL formulas called {\em tests}, $
+\update:Q \times 2^{[T]} \to Q$ is the {\em state-update function}, and $\exit:Q
+\times [\Delta] \to [\Delta]$ is the {\em move function} and satisfies $0 \leq
+\exit(s,d) \leq d$.
+
+Taking $T = \emptyset$ results in
+A {\em robot protocol} is a tuple
+\[
+\left<\Delta,k,Q,\iota, \update,\exit\right>
+\]
+where $\Delta \in \nat$ is the {\em graph-degree}, $k \in \nat$ is the {\em
+number of robots}, $Q$ is a finite set of {\em states}, $\iota \in Q$ is the
+{\em initial state}, and writing $D := [\Delta]$, $ \update:Q \times D \times D
+\times 2^{[k]} \to Q$ is the {\em state-update function}, and $\exit:Q \times D
+\to D$ is the {\em move function} and satisfies $0 \leq \exit(s,d) \leq d$.
+%It is a {\em finite-state robot} if $Q$ is finite.
+% Define functions $\mem, \exit$ by the identity $ \update(q,d,X) =
+% (\mem(q,d,X), \exit(q,d,X))$.
+
+Fix a graph $(V,E,\pn)$. A {\em configuration} is a pair of functions $(v,q)$
+where $v : [k] \to V$ and $q : [k] \to Q$. An {\em execution} is a sequence of
+configurations $(v_0, q_0), (v_1,q_1)  \dots$ %for which there exists a sequence
+$d_0, d_1, \dots$ of elements of $D$
+such that for all $i \in [k]$ and all $t \geq 0$:
+\begin{enumerate}
+\item $q_{0}(i) = \iota$,
+\item $v_t (i) \xrightarrow{d_t(i)} v_{t+1}(i)$,
+\item $q_{t+1}(i) =  \update(q_t(i),\deg(v_t(i)),p_t(i),s_t(i))$.
+\end{enumerate}
+where $d_t(i) := \exit(q_t(i),\deg(v_t(i)))$ (i.e., the direction in which robot
+$i$ moves at time $t$), $p_t(i) := \pn(v_{t+1}(i),v_t(i))$ (i.e., the entry port
+number of the successive vertex of robot $i$) and $s_t(i) := \{j \leq k : v_t(j)
+= v_t(i)\}$ (i.e., the set of robots at the same vertex as robot $i$ at time
+$t$).
+%In words, every robot:
+%\begin{enumerate}
+%\item starts in the initial state,
+%\item moves in direction given by the $\exit$ function and depending on its
+%current state and degree of the current vertex it is at,
+%\item changes state given by the $ \update$ function and depending on the
+%current state, the degree of the current vertex, the set of robots in the same
+%current vertex, and the local port number of the edge entering the next vertex.
+%\end{enumerate}
+
+%In particular, every state (besides, possibly, the initial state) stores the
+%last entry port number.
+
+Say that the execution {\em starts in $v_0$}. Note that $v_0 : [k] \to V$
+determines the execution starting in $v_0$ since robots are deterministic. If
+$(v,q)$ is an element of an execution then we say that robot $i$ of the
+execution {\em visits vertex $v(i)$} and {\em enters state $q(i)$}.
+% In words, a robot in state $q$ and at vertex $v$ changes state to
+% $\mem(q,deg(v))$ and exits via port $\exit(q,deg(v))$. Initially the robot
+% starts in state $\iota$ with direction $1$.\footnote{Some models allow the
+% memory function $\mem$ also to depend on the last direction taken, eg.,
+% \cite{FIPPP04}. This does not increase the expressive power since our model
+% can store the last direction taken in the state.}
+
+
+
+
+
+
+
+
+
+%An {\em graph with local port numbers from $D$} is a triple $(V,E,\pn)$ with
+%$V$ a finite set of {\em vertices}, and $E \subseteq V \times V$ a symmetric
+%{\em edge} relation,  and $\pn:E \to D$, called a {\em local port-numbering},
+%is an injection when restricted to the edges incident to a vertex, i.e., for
+%every $v \in V$, $\pn$ restricted to $\nhd(v) := \{(v,w) \in V^2: (v,w) \in
+%E\}$ is an injection into the set $D$. If $\pn((v,w)) = d$ then we will write
+%$v \xrightarrow{d} w$. Write $\pn(v)$ for the image of $\pn$ restricted to
+%$\nhd(v)$.
+
+
+%Formally, a {\em local port numbering} of an undirected graph $(V,E)$ is a
+%function $\pn:E \to [\Delta]$ such that for every $v \in V$, $\pn$ restricted
+%to the edges $\{(v,w) : (v,w) \in E\}$ is  a bijection to $[deg(v)]$.
+
+%%% DC LIT DFNS OF ROBOT SYSTEMS
+%\paragraph{Robot environments}
+%A {\em discrete environment} or {\em graph} is a triple $(V,E,\pn)$ with $V$ a
+%finite set of {\em vertices}, and $E \subseteq V \times V$ a symmetric
+%reflexive {\em edge} relation such that $|E(v)| \leq \Delta$ for all $v \in V$
+%(where $E(v) := \{(v,w) \in V^2: (v,w) \in E\}$), and $\pn:E \to [\Delta]$,
+%called a {\em local port-numbering}, satisfying that for every $v \in V$,  a)
+%$\pn(v,v) = 0$, and b) $\pn$ restricted to $\nhd(v)$ is a bijection onto
+%$[\deg(v)]$. If $\pn(v,w) = d$ then we will write $v \xrightarrow{d} w$. Note
+%that $\pn(v,w)$ need not equal $\pn(w,v)$.
+%
+%For example, a {\em ring} is a graph $(V,E)$ with $V := [n]$ (for some $n$) and
+%$E := \{(i,i+1) : i \in [n]\}$ (all arithmetic is modulo $n$). It has a local
+%port-numbering so that $i \xrightarrow{0} i$, $i \xrightarrow{1} i+1$ and $i
+%\xrightarrow{2} i-1$.
+%
+%Another example is a {\em torus} graph $(V,E)$ with $V := [n] \times [n]$ (for
+%some $n$) and local port-numbered edges that $i \xrightarrow{0} i$, $(i,j)
+%\xrightarrow{1} (i,j-1)$, $(i,j) \xrightarrow{2} (i,j+1)$, $(i,j)
+%\xrightarrow{3} (i-1,j)$ and $(i,j) \xrightarrow{4} (i+1,j)$ (arithmetic is
+%modulo $n$).
+
+% One aim of this work is to give a framework in which one can automatically
+% prove such statements.
+
+
+
+\subsection{LRT: A Logic for Robot Tasks}
+
+
+The following variation shows that if we are not interesting in keeping the set
+of visited vertices in a set $X$, then we can write the formulas in $\fotc$, a
+fragment of $\msol$.
+\begin{lemma} \label{lem:fotcdefinable}
+Repeat the assumptions in Lemma~\ref{lem:msodefinable}.
+We can build $\fotc(\Sigma)$ formulas $\phi_{\tup{R},\tup{p},\tup{q}}$ (and
+$\phi^\infty_{\tup{R},\tup{p},\tup{q}}$) of $2k$ first-order variables so that,
+for every graph $G$: $G \models \phi_{\tup{R},\tup{p},\tup{q}}(\tup{x},\tup{y})$
+if and only if the run of $\tup{R}$ on $G$ starting from configuration
+$\tpl{\tup{x},\tup{p}}$ reaches configuration $\tpl{\tup{y},\tup{q}}$
+(infinitely often).\sr{There are also formulas non-deterministic robots, with
+'some run' and 'for all runs' replacing 'the run'.}
+\end{lemma}
+
+\begin{proof}
+To define the formulas $\phi_{R,p,q}(x,y)$ and $\phi^\infty_{R,p,q}(x,y)$ in
+$\fotc$, proceed as in Lemma~\ref{lem:msodefinable}: build formula
+$\varphi_r(x,y)$ as follows:
+\begin{itemize}
+\item $\varphi_{\emptyset} := \false$; and $\varphi_{\epsilon}(x,y) := x = y$.
+\item $\varphi_{\uparrow_\sigma} (x,y) := edg_\sigma(x,y)$.
+\item $\varphi_{r + s} := \varphi_{r} \vee \varphi_{s}$; and
+$\varphi_{\varphi}(x,y) := x = y \wedge \varphi(x)$.
+
+\item $\varphi_{r \cdot s}(x,y) := \exists z [\varphi_{r}(x,z) \wedge
+\varphi_{s}(z,y)]$.
+\item $\varphi_{r^*}(x,y) := \forall Z [closed_{\phi_r}(Z) \wedge x \in Z) \to y
+\in Z]$.
+\item $\varphi_{r^\omega} (x,y) := \exists z [\varphi_{r^*}(x,y) \wedge
+\varphi_r(y,z) \wedge \varphi_{r^*}(z,y)]$.
+\end{itemize}
+Then define $\phi_{R,p,q}(x,y)$ as $\varphi_{exp}(x,y)$, and
+$\phi^\infty_{R,p,q}(x,y)$ as $\varphi^\infty_{exp}(x,y)$, where $exp$ is the
+regular expression for the language of the automaton $R$ with initial state $p$
+and final state $q$.
+\end{proof}
+
+%Thus:
+%\begin{itemize}
+%\item $\varphi_{\emptyset} := \false$.
+%\item $\varphi_{\epsilon}(x,y) := x = y$.
+%\item $\varphi_{\uparrow_\sigma} (x,y) := edg_\sigma(x,y)$.
+%\item $\varphi_{\varphi}(x,y) := x = y \wedge \varphi(x)$.
+%\item $\varphi_{r \cdot s}(x,y) := \exists z [\varphi_{r}(x,z) \wedge
+%\varphi_{s}(z,y)]$.
+%\item $\varphi_{r + s} := \varphi_{r} \vee \varphi_{s}$.
+%\item $\varphi_{r^*} := (\varphi_r)^*$, defined in Section~\ref{ex:formulas}.
+%\item $\varphi_{r^\omega} := (\varphi_r)^\omega$, defined in
+%Section~\ref{ex:formulas}.
+%\end{itemize}
+
+In order to deal with more classes of graphs $\gclass$, we can restrict tasks to
+being definable $\MRTL'$, a variation of \MRTL\ that uses the formulas of
+Lemma~\ref{lem:fotcdefinable} instead of Lemma~\ref{lem:msodefinable}:
+\begin{align*}
+\tpl{G,\tup{R}} &\models_\MRTL reach(\tup{x},\tup{y}) & \textrm{ iff } G \models
+\bigwedge_{\tup{p} \in I} \bigvee_{\tup{q} \in Q}
+\phi_{\tup{R},\tup{p},\tup{q}}(\tup{x},\tup{y})\\
+%
+\tpl{G,\tup{R}} &\models_\MRTL halt(\tup{x},\tup{y}) & \textrm{ iff } G \models
+\bigwedge_{\tup{p} \in I} \bigvee_{\tup{q} \in H}
+\phi_{\tup{R},\tup{p},\tup{q}}(\tup{x},\tup{y})\\
+%
+\tpl{G,\tup{R}} &\models_\MRTL infty(\tup{x},\tup{y}) & \textrm{ iff } G \models
+\bigwedge_{\tup{p} \in I} \bigvee_{\tup{q} \in Q}
+\phi^\infty_{\tup{R},\tup{p},\tup{q}}(\tup{x},\tup{y})\\
+%
+\tpl{G,\tup{R}}& \models_\MRTL rept(\tup{x},\tup{y}) & \textrm{ iff } G \models
+\bigwedge_{\tup{p} \in I} \bigvee_{\tup{q} \in A}
+\phi^\infty_{\tup{R},\tup{p},\tup{q}}(\tup{x},\tup{y})\\
+\end{align*}
+
+Then we have
+\begin{theorem}
+Let $\T$ be a task that is captured by an $\MRTL'$-formula, let $\gclass$ be a
+set of graphs with decidable $\fotc(\Sigma)$-validity problem, and
+let $\rclass$ be the set of all deterministic robot ensembles. Then
+$\PVP_\T(\gclass,\rclass)$ is decidable.
+\end{theorem}
+
+% Logic can be used to define sets of graphs $\gclass$ as well as sets of tasks
+% $\mathcal{T}$.
+
+
+
+\subsection{Verification Algorithm}
+
+The main idea is to reduce the parameterised verification to the validity (i.e.,
+the complement of satisfiability) of MSOL.
+
+\begin{theorem}
+Fix $\gclass$ such that validity of MSOL is decidable on $\gclass$. Then there
+is an algorithm that solves the parameterised verification problem for the set
+$\rclass$ of all finite-state robot protocols and the set $\tclass$ of all
+LRT-definable tasks.
+\end{theorem}
+
+\begin{proof}
+Following \cite{BlEn97,EnHo06} the idea is to % think of the given robot as a
+graph-walking automaton \cite{BlEn97}. This is then
+compile the robot into an MSOL formula~\footnote{Iin fact, like the graph
+walking automata of \cite{BlEn97,EnHo06}, a finite-state robot can be compiled
+into a formula of first-order logic with transitive closure.} $\phi_{p,q}(x,y)$
+such that $(G,a,b) \models \phi_{p,q}$ iff the robot starts at vertex $a$ in
+state $p$ and reaches vertex $b$ in state $q$. This can be done as follows.
+First, if we think of a robot as a describing sequences of directions, we can
+take a regular expression for the set of sequences labeling paths from $p$ to
+$q$. Second, go by induction on the regular expression to build the required
+formula.
+
+\begin{itemize}
+\item Base case:
+
+\item Union: use disjunction
+
+\item Concatenation $L_1 \cdot L_2$ compiles into $\exists v. \phi_1(x,v) \wedge
+\phi_2(v,y)$
+
+\item Kleene-closure $L_1^*$ is the transitive closure of $\phi_1$ (which is
+expressible in MSOL).
+\end{itemize}
+
+This technique also works for a fixed number $k$ of robots and
+MSO-tests.\sr{i.e., FOL + binary transitive closure. What is known about this?
+Also, what if we restrict to unary TC?}
+\end{proof}
+
+\subsection{LRT: A Logic for Robot Tasks}
+
+
+% Logic can be used to define sets of graphs $\gclass$ as well as sets of tasks
+% $\mathcal{T}$.
+
+
+
+\subsection{Verification Algorithm}
+
+The main idea is to reduce the parameterised verification to the validity (i.e.,
+the complement of satisfiability) of MSOL.
+
+\begin{theorem}
+Fix $\gclass$ such that validity of MSOL is decidable on $\gclass$. Then there
+is an algorithm that solves the parameterised verification problem for the set
+$\rclass$ of all finite-state robot protocols and the set $\tclass$ of all
+LRT-definable tasks.
+\end{theorem}
+
+\begin{proof}
+Following \cite{BlEn97,EnHo06} the idea is to % think of the given robot as a
+graph-walking automaton \cite{BlEn97}. This is then
+compile the robot into an MSOL formula~\footnote{Iin fact, like the graph
+walking automata of \cite{BlEn97,EnHo06}, a finite-state robot can be compiled
+into a formula of first-order logic with transitive closure.} $\phi_{p,q}(x,y)$
+such that $(G,a,b) \models \phi_{p,q}$ iff the robot starts at vertex $a$ in
+state $p$ and reaches vertex $b$ in state $q$. This can be done as follows.
+First, if we think of a robot as a describing sequences of directions, we can
+take a regular expression for the set of sequences labeling paths from $p$ to
+$q$. Second, go by induction on the regular expression to build the required
+formula.
+
+\begin{itemize}
+\item Base case:
+
+\item Union: use disjunction
+
+\item Concatenation $L_1 \cdot L_2$ compiles into $\exists v. \phi_1(x,v) \wedge
+\phi_2(v,y)$
+
+\item Kleene-closure $L_1^*$ is the transitive closure of $\phi_1$ (which is
+expressible in MSOL).
+\end{itemize}
+
+This technique also works for a fixed number $k$ of robots and
+MSO-tests.\sr{i.e., FOL + binary transitive closure. What is known about this?
+Also, what if we restrict to unary TC?}
+\end{proof}
+
+\begin{corollary}
+If $\gclass$ is a context-free set of graphs, then there is an algorithm that
+solves the parameterised verification problem for the set $\rclass$ of all
+finite-state robot protocols and the set $\tclass$ of all LRT-definable tasks.
+\end{corollary}
+
+\begin{corollary}
+If $\gclass$ is a context-free set of graphs, then there is an algorithm that
+solves the parameterised verification problem for the set $\rclass$ of all
+finite-state robot protocols and the set $\tclass$ of all LRT-definable tasks.
+\end{corollary}
+
+
+\def\CTLstar{CTLstar}
+\section{Robot as Token}
+Parameterised verification of token-passing systems very quickly hits the
+undecidability barrier. For instance, the parameterised verification problem for
+safety properties is undecidable on uni-directional rings in which processes
+communicate by passing around a single binary valued-token
+\cite{Suzuki,Emerso03}. On the other hand, one may get decidability for many
+classes of graphs $\gclass$ by restricting the token passing mechanism
+\cite{Emerso03,CTTV04,AJKR14,AKRSV14}, i.e., if a process has the token then for
+every direction $d$ and every value $v$ there is some execution in which that
+process eventually sends the token and it does so in direction $d$ and with
+value $v$. Call this restriction $(\dagger)$. The specification language for
+this decidability result is indexed-\CTLstar\ which means that a formula can
+quantify over a fixed number of processes and then express a \CTLstar\ formula
+over the atoms of these processes. Quantifying over processes corresponds to
+quantifying over vertices of the graph. The atomic propositions can talk about
+the value of the whiteboard and the state of the robots at that vertex. The
+$(\dagger)$ restriction induces a notion which we might call {\em drunk robots}
+(those for which there is always a way to move in any direction and to any local
+state). As a consequence of this discussion and the results in \cite{AKRSV14}
+about token-passing systems we get:
+%
+\begin{theorem}[whiteboards and drunk robots]
+The parameterised verification problem is decidable for drunk robots with
+whiteboards, context-free sets of graphs $\gclass$, and tasks $\tclass$
+expressible in indexed-\CTLstar\ over atomic propositions for the state of the
+whiteboard and state of the robots that are at a vertex.
+\end{theorem}
+%
+%These papers serve as a guide to exact interplay between memory and whiteboards
+%that result in models of robots that are amenable to theoretical and
+%algorithmic tools from the theory of GAL.
+%
+%
+\paragraph{Limitations of the robot-as-token paradigm}
+
+Drunk-robots are severely limited in power. A basic protocol for solving the
+perpetual exploration problem on trees is this: if the robot enters a vertex $v$
+via direction $i$ then it exits that vertex via direction $i+1$ (modulo the
+degree of $v$). To model this robot each process should simply record the most
+recent direction from which the token arrived. Thus no value on the token is
+required. However the process does not satisfy property $(\dagger)$ since in a
+vertex of degree $3$ it need will not next send the token in direction $i+2$ if
+it last arrived from direction $i$. In order to get useful results from the
+robot-as-token paradigm we would need to lift some of the restrictions
+$(\dagger)$. Unfortunately, there seems to be no clear and natural way to do
+this. If at all possible, the cost will likely be to limit the sets of formulas
+as well as the sets of graphs that can be dealt with.
+
+Second, the specification language indexed-\CTLstar\ does not allow one to
+quantify the processes inside the scope of path quantifiers or temporal
+operators. This is a problem, for instance, because the natural way to express
+''exploration with halt'' is as the conjunction of ''for all processes $i$, for
+all executions, eventually there is a token at $i$'' and ''for all executions,
+there is a process $i$ such that from some point on the token is at $i$''. The
+second conjunct has a process quantifier within the scope of a path quantifier.
+Allowing process quantifiers within the scope of path quantifiers quick results
+in undecidability even if processes do not communicate \cite{Igor12}.
+%\footnote{On the other hand, ``exploration with stop at a uniquely labeled
+%vertex, say the root'' is expressible in indexed-\CTLstar.}
+
+% Thus, we now turn to another approach for solving parameterised verification
+% of robot protocols.
+
+
+\section{Future Work.}
+
+Here are some more advanced questions that pose a challenge to the two paradigms
+discussed above.
+
+%\sr{automata with advice?}
+%\begin{enumerate}
+%\item Handle the case of finitely many pebbles.
+%\item Handle the case of a fixed robot (and whiteboard)?\sr{does this make
+%sense?}
+
+Can one handle parameterised verification where the number of robots is not
+bounded? For instance, ``given a robot protocol $R$ and a task $T$ from
+$\tclass$, decide if some number of robots executing $R$ solve the task $T$ on
+all graphs of $\gclass$''.
+
+
+And, of course, one avenue for future work is to deal with the realisability and
+synthesis problems.
+
+{\bf Parameterised Realisability}: Given a task $T$ from $\tclass$, decide if
+there is a robot protocol that solves the task $T$ on all graphs of $\gclass$.
+
+{\bf Parameterised Synthesis}: If the answer to realisability is `yes' then
+synthesise such a robot; and if `no' then return an algorithm that given a robot
+protocol outputs a graph from $\gclass$ on which the robot protocol fails to
+solve the task.\footnote{Actually, the second paradigm above can handle the
+latter question. For instance, if the verification problem says that robot $R$
+does not solve the task on all graphs, then one can extract a graph in $\gclass$
+on which the robot fails.}
+
+Here is a game-theoretic paradigm that may be useful for realisability and
+synthesis: the graph on which the robot moves is the arena of a one-player game,
+the location of the robot is marked by the game token, and the task the robot
+has to perform is coded in the winning condition. The player of the game does
+not see which vertex he is at, but only the port number he entered with. So
+under this interpretation a robot protocol is a strategy that is finite-memory
+and observation-based. The robot solves its task if the strategy is winning. So
+we might call this the {\bf robot-as-strategy} paradigm. Thus solving questions
+of the form ``Is there a robot that solves this task on the graph $G$'' amounts
+to asking a question of the form ``Does the player have a finite-memory
+observation-based winning strategy in this game (that depends on the graph $G$
+and the task)?''. The question ``Does this robot solve this task on all graphs
+from $\gclass$'' amounts to ``Is this finite-memory observation-based strategy
+winning on all arenas from $\gclass$?''.
+
+
+
+
+
+
+\subsection{Proof of concept} \label{concept}
+
+%This section presents a proof-of-concept that GAL  can be used to study
+%questions about RAG.
+ The aim of this section is to define the basic notions (robots, tasks) and
+illustrate the first steps of this project.
+
+In particular, we illustrate %the `Robot as Automaton' (Section~\ref{}) and show
+how two-way automata and tree-walking automata can be used to study a single
+robot solving exploration tasks on bi-directional lines and trees.
+%The general idea is to take a robot and a task reduce the question ``Does this
+%robot solve this task" to the question ``Is this product MSO formula satisfied
+%on every tree?". Since validity of MSO is decidable on trees, one can decide if
+%a given a robot solves a given task. Moreover, if the formula is not valid,
+%then we can construct a tree on which the robot does not solve this task. The
+%latter can be expressed as a cutoff result for these distributed systems, i.e.,
+%if a robot does not solve the task on all trees then already it does not solve
+%the task on some tree whose size depends in a known way on the size of the
+%robot.
+%\sr{say something about complexity of decision procedures}
+%
+%
+%In order to unify these objectives we build an MSO formula (or equivalently a
+%tree-automaton) that depends on the TWA {\em and} the task, and holds on
+%exactly those trees on which the TWA completes its task.\footnote{The MSO
+%formula is equivalent to a tree-automaton, although not necessarily a TWA.}
+%This reduction works only for certain tasks. Identifying these tasks is the
+%purpose of Objective 2.
+
+
+
+%Note that ``completing a task on a tree'' is a statement about the {\em run} of
+%the TWA on a tree.
+%Our key observation is that one can, for certain tasks, build a `product'
+%automaton (that depends on the TWA and the robot's task) that accepts exactly
+%those trees whose runs have the required property.
+
+
+
+The following observations and questions present themselves:
+\begin{enumerate}
+\item One can prove using the GAL machinery that perpetual exploration on lines
+is decidable (by reducing to the universality problem of two-way automata).
+Which tasks on lines are decidable?
+\item Can we synthesise a robot that solves perpetual exploration on lines (or
+rings)?
+\item Is perpetual exploration of trees decidable?
+\item Although ``exploration with halt'' on trees is impossible
+\cite{Diks200438} one can construct, using the GAL machinery, an algorithm that
+given a robot as input, produces a tree on which that robot fails to ``explore
+and halt''. ``Exploration with halt'' is undecidable on grids (annotated at the
+borders), as well as counting-lines (a certain subclass of trees).
+\item Which results described above for lines and trees extend to graphs of
+bounded tree-width?
+\end{enumerate}
+
+
+%   : given a robot we can decide whether it perpetually explores all
+%   bi-directional lines, and if not we can produce a line on which it fails.
+
+%Idea. Run the robot from the left hand side. If it reaches the vertex of the
+%string marked 'initial' then reset the robot, raise a flag, and run it again.
+%Then the robot succeeds iff the 2-way machine visits all the vertices (or
+%equivalently if it visits both endpoints) while the flag is raised. This is a
+%decidable property (exp-time?)
+
+%Towards Objective $2$ we ask:
+%\begin{question} For which class of tasks $\tclass$ does this reduction work?
+%\end{question}
+%
+%Towards Objective $1$ we ask:
+%\begin{question}
+% Can we synthesise a robot that solves this task on all bi-lines (or
+% bi-rings).\sr{surely}
+%\end{question}
+%
+%Towards Objective $1$ we ask:
+%\begin{question}
+%Is perpetual exploration of trees decidable?
+%\end{question}
+%
+%Since exploration with stop on trees is impossible \cite{Diks200438} we can
+%prove, towards Objective $1$:
+%\begin{theorem}
+%Given a robot we can produce a tree on which it fails to explore and stop.
+%Exploration with stop is undecidable on grids (annotated at the borders), as
+%well as counting-lines (a certain subclass of trees).
+%\end{theorem}
+
+%Idea. Here is how to decide whether a given robot 'explores with stop' on
+%trees. Given robot build a TWA that simulates the robot except that i) each
+%step is guarded by seeing an 'a' written at that vertex (if it sees a 'b' then
+%the TWA rejects), ii) if the robot stops then the TWA accepts. Then the robot
+%explores all trees iff the TWA accepts exactly the regular language  R
+%consisting of those trees all of whose vertices are labeled 'a'. This language
+%equivalence problem (for tree-automata) is decidable, and thus we can extract a
+%tree that witnesses if these languages are not-equivalent.
+
+%\begin{question}
+%Do the positive results described above for trees extend to graphs of bounded
+%tree-width?
+%\end{question}
+
+\sr{exploration w stop undecidable on lines?}
+
+\section{old stuff... delete}
+\subsection{Robots as Tokens} \label{sec:token}
+
+Some of the earliest work in parameterised model checking of distributed systems
+concerns token-passing systems \cite{Suzuki,EN95popl}.  This has been followed
+up in \cite{CTTV04,AJKR14,AKRSV14}. As a result we now have a good picture of
+parameterised verification for token-passing systems (including the case of
+multiple tokens, see \cite[see conclusion]{AJKR14}).
+
+%DelzannoSZ10,GS92
+
+By thinking of each robot as a token one can reduce the parameterised
+verification of robot protocols (which communicate via whiteboards) to that of
+token-passing systems. The internal state of a robot is stored as the value of a
+token; the whiteboard at a vertex is stored in the state of the process at that
+vertex; the transition diagram of the robots are also stored in the state of
+each process. Let's call this the {\bf robot-as-token} paradigm. Then, for
+instance, ''perpetual exploration'' of a graph with local port numbering can be
+expressed as ''for all processes $i$, for all executions, infinitely often there
+is a token at $i$'', which can be expressed in indexed temporal logic, a common
+logic for reasoning about parameterised systems.
+
+The advantage of this technique is that it applies to multiple robots which can
+communicate via whiteboards. Unfortunately there is a serious limitation. All
+known proofs rely on a fairness restriction that means we can only analyse what
+we might call {\em drunk robots}, i.e., at all times a (non-deterministic or
+probabilistic) robot's next move might be, in principle, in any direction and to
+any local state. Moreover, without such a restriction parameterised verification
+is undecidable (e.g., for a single robot on a ring and for safety properties,
+cf. \cite{Suzuki,Emerso03} and Theorem~\ref{thm:wb_undec}).
+%On the other hand, there is also a reduction from token-passing systems to
+%robots with (finite but unbounded) memory and (finite but unbounded)
+%whiteboards.
+
+
+
+
+Thus in order to get decidability we need to restrict the whiteboards in some
+way. For instance, suppose we require the whiteboard on a line to behave like a
+stack. That is, the robot starts on the left side of the line, it is always free
+to move rightwards (unless it reaches the end of the line), but before taking a
+step to the left it must erase the contents of the whiteboard at the current
+vertex. Call this a {\em robot with tethered whiteboard}. From the fact that
+model-checking pushdown systems is decidable, we get:
+
+\begin{theorem}[tethered whiteboard]
+The parameterised verification problem for robots with tethered whiteboards on
+lines and with safety tasks is decidable in polynomial time. \sr{tasks can refer
+to boundedness of stack}
+\end{theorem}
+
+It is more interesting to study  restricted whiteboard models on general graphs.
+For instance:
+\begin{problem}
+Study the whiteboard model in which each whiteboard can change value at most $b$
+many times, for fixed $b \in \mathbb{N}$. \sr{this can be used to express map
+making}
+\end{problem}
+
+{\bf Multiple Robots.}
+ One can allow multiple robots. They may communicate in a number of different
+ways. For instance, a) robots may only communicate using the whiteboards, b)
+robots at the same vertex can exchange information (e.g., their local state), c)
+a robot knows a summary of the positions of the other robots (e.g., there is at
+least one robot north of it) \cite{AA}.
+
+
+\end{document}
+
+
+

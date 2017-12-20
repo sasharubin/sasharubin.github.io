@@ -1,0 +1,285 @@
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+
+\RequirePackage{fix-cm}
+\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+
+\smartqed  % flush right qed marks, e.g. at end of proof
+
+
+\usepackage{changebar}
+
+\input{macros}
+
+
+\usepackage[normalem]{ulem}
+
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+%\usepackage{amssymb,amsmath}
+
+      \tikzstyle{me} = [circle,fill=blue!70,draw,font=\sffamily\bfseries]
+      \tikzstyle{you} = [diamond,fill=red!70,draw,font=\sffamily\bfseries]
+\tikzstyle{shade} = [shorten >=2pt, shorten <= 2pt,draw,line width=5pt,-,green!80]
+\tikzstyle{shadedotted} = [shorten >=2pt, shorten <= 2pt,draw,line width=5pt,-,green!80,dotted]
+\tikzstyle{shadered} = [shorten >=2pt, shorten <= 2pt,draw,line width=5pt,-,red!0]
+\def \me {\tikz\node[scale = 0.5, circle, fill=blue!80] () {};}
+\def \you {\tikz\node[fill=red!80, diamond, scale = 0.5] () {};}
+\def \pl {\tikz\node[fill=green!80, regular polygon,regular polygon sides=5, scale = 0.7] () {};}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% ROBOT MACROS %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\isleaf}{\mathit{is\_leaf}}
+\newcommand{\isrc}{\mathit{is\_rc}}
+\newcommand{\islc}{\mathit{is\_lc}}
+\newcommand{\haslc}{\mathit{has\_lc}}
+\newcommand{\hasrc}{\mathit{has\_rc}}
+
+\def\RLTL{\textsf{RLTL}\xspace}
+\def\RLTLV{\textsf{RLTL}$^+$\xspace}
+
+\def\next{\textsc{next}}
+\def\prev{\textsc{prev}}
+
+\def\gclass{\mathcal{G}}
+\def\rclass{\mathcal{R}}
+\def\tclass{\Phi}
+\def\T{\varphi}
+
+\def\R{\mathcal{R}}
+\def\nhd{E}
+\def\pn{\mathbf{ports}}
+\def\nat{\mathbb{N}}
+\def\PVP{\mathsf{PVP}}
+\def\BPVP{\mathsf{PVP}_{bp}}
+
+\def\dir{\textrm{Dir}}
+\def\go{\textsf{go}}
+\def\deg{\textsf{deg}}
+\def\collide{\textsf{collide}}
+
+\def\ins{\textsc{gc}}
+\def\mem{\mathbf{mem}}
+\def\exit{\mathbf{move}}
+\def\update{\mathbf{update}}
+
+\def\Bij{\textrm{Bij}(\Delta)}
+
+\newcommand{\fire}{\mathsf{fire}}
+\newcommand{\extfire}{\mathsf{FIRE}}
+
+
+\newcommand{\Kstep}{\mathsf{step}^K}
+
+\newcommand{\step}{\mathsf{step}}
+
+\newcommand{\robot}{\mathsf{robot}}
+
+\newcommand{\steps}{\mathsf{steps}}
+\newcommand{\pub}{\mathsf{pub}}
+\newcommand{\visited}{\mathsf{visited}}
+\newcommand{\extsteps}{\mathsf{STEPS}}
+\newcommand{\extpub}{\mathsf{PUB}}
+
+
+
+\newcommand{\segment}{\mathsf{segment}}
+
+\newcommand{\mover}{\ensuremath{Mvr}}
+\newcommand{\round}{\ensuremath{R}}
+\newcommand{\helper}{\ensuremath{\round^\prime}}
+\newcommand{\zero}{\ensuremath{Z}}
+\newcommand{\zeroTest}{\ensuremath{T}}
+\newcommand{\counter}{\ensuremath{C}}
+%\newcommand{\boundary}{\ensuremath{B}}
+
+\newcommand{\courcellian}{Courcellian }
+
+\journalname{JAAMAS}
+
+\newcommand{\runs}{\mathsf{Runs}}
+
+
+\def\bcpos{pub\_pos}
+\def\bcst{pub\_st}
+\def\bcPOS{pub\_POS}
+\def\bcST{pub\_ST}
+
+\def\VARbcpos{\mathsf{pub\_pos}}
+\def\VARpos{\mathsf{pos}}
+\def\VARBCPOS{\mathsf{pub\_POS}}
+
+\def\VARpubst{\mathsf{pub\_st}}
+
+
+ \newcommand{\onestep}[3]{#1 \stackrel{{#3}}{\rightarrowtail} #2}
+
+\newcommand{\gc}[2]{#1:#2}
+
+
+\newcommand{\limp}{\rightarrow}
+
+\newcommand{\activeproj}{active}
+
+\begin{document}
+
+
+\title{Verification of Asynchronous Mobile Agents in Partially-Known Environments\thanks{Benjamin Aminof and Florian Zuleger were supported by the Austrian National Research Network S11403-N23 (RiSE) of the Austrian Science Fund (FWF) and by the Vienna Science and Technology Fund (WWTF) through grant ICT12-059.  Sasha Rubin was supported by a Marie Curie 
+fellowship of the Istituto Nazionale di Alta Matematica. This paper is based on the preliminary work \cite{Rubin15AAMAS} and \cite{RZMA15}.}}
+%\thanks{Grants or other notes
+%about the article that should go on the front page should be
+%placed here. General acknowledgments should be placed at the end of the article.}
+
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Benjamin Aminof \and Aniello Murano \and Sasha Rubin \and Florian Zuleger}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{B. Aminof \at TU Wien, Austria\\ \email{benj@forsyte.at}
+           \and
+           A. Murano \at     UNINA, Italy\\     \email{murano@na.infn.it}
+	     \and
+     S. Rubin \at     UNINA, Italy\\     \email{rubin@unina.it}
+     		\and
+	F. Zuleger \at TU Wien, Austria\\ \email{zuleger@forsyte.at}
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+% TODO FOR FINAL VERSION:  change $st_i$ to $\VARpubst_i$
+
+
+% \todo{(next paper) find some problem about robots colliding which is undecidable. can't be done using our framework since we can't talk about the current positions. formalise ``collision detection''}
+
+
+% \todo{- update grants}
+
+
+%  \todo{- can simulate PRIMA paper. instrument robot so that it raises a flag when it moves... it publishes when it raises a flag, and it nondet loswers the flag when it moves. formula says always only one fla up and nested untils give a fixed ordering.}
+
+%  \todo{- general building block: instrumentation enforces round-robin or interleaving, publish at the end of each round, every move is guarded by there is nobody infront of me... this is not modelchecked... then define reconfig protocol. can also pass token to guy infront of you rather than arbitrarily or round-robin.}
+
+
+% \todo{- Cite "regular path queries" of Barcelos et al.}
+
+% \todo{- Very well written intro! http://people.csail.mit.edu/lpk/papers/aij98-pomdp.pdf}
+
+% \todo{ - Can we allow moving along paths instead of edges?}
+
+% \todo{- should we define sync? if so, what happens if one agent is blocked but another can move? maybe just allow the one that can move to move.}
+
+% \todo{\begin{enumerate} 
+%        \item 
+%        make notation/terminology consistent. e.g., tasks vs specifications; robots vs agents
+%       
+%           \end{enumerate}
+%       
+%       }
+
+% \todo{- check robots are written as $\tpl{Q,B,I,\Delta}$ and not just $\tpl{Q,\Delta}$.}
+
+% \todo{- describe model of computation in AI terminology. e.g., communication, co-operation, etc}
+
+% \todo{?? Robots with reset: Add ``reset'' states to robots (all initial states are reset states).
+% The interpretation of $X_i$ is that it is the set of vertices that Robot $i$ has visited since its last reset.
+% When a robot publishes, it also publishes its set of visited vertices since its last reset.}
+
+%\todo{AIM: SIMPLIFY BY GETTING RID OF SCHEDULER, and generalise the model to deal with more than finitely many turns. %finitely many synch points. two ways to proceed. 1. explicit time, 2. implicit time. 2a. agents have a flag declaring they are ready to syn, 2b. scheduler decides when they sync. %Q. with explicit time, 2 agents, can't build MSO formula for star of product robot. So, if robots are star-free implies product is star-free, then we are fine. %Or just take asynchronous product? %}
+
+
+\maketitle
+
+\begin{abstract}
+This paper establishes a framework based on logic and automata theory
+in which to model and automatically verify that multiple mobile
+agents, with remote sensing abilities and moving asynchronously,
+correctly perform their tasks.  The motivation is from scenarios in
+which a) agents have limited memory and b) the environment is not
+completely known to the agents, e.g., physical agents in an
+environment not reachable by humans, and  software agents exploring a
+hostile network.  We formalise assumption a) by considering
+finite-state agents.  Agents can communicate
+with each other by publishing their internal states and visited
+positions for all agents to read.  We formalise assumption b) by
+considering the decision problem of whether a given collection of
+agents achieve their tasks on {\em all} graphs from a class of graphs
+--- this is called {\em parameterised verification problem} in the
+verification literature.  The framework consists of a new logical language
+based on Linear Temporal Logic and tailored for expressing agent
+tasks.  We reduce the parameterised verification problem to the
+satisfiability problem for monadic second-order logic on the given
+class of graphs.  The main assumption that yields decidability is that
+there should be a bound on the number of times an agent publishes.  We
+prove that dropping this assumption results in undecidability,  even
+for agents with very limited (``local'') sensing abilities, i.e.,
+collision detection.  We illustrate the framework with examples and by
+instantiating it to a popular model of agent system from the
+distributed computing literature.  The importance of this work is that
+it clarifies the border between classes of mobile-agent systems that
+have decidable parameterised verification problem, and those that do
+not.
+
+\keywords{Computational Models \and Model Checking \and Logic \and Automata Theory \and Autonomous Mobile Agents \and  Parameterised Verification}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+% Distributed Robot Systems \and
+\end{abstract}
+
+
+
+\input{intro}
+
+\input{prelims}
+
+\input{undec}
+
+\input{dec}
+
+\input{extensions}	
+
+
+\input{comparison}
+
+% \input{complexity}
+
+\input{discussion}	
+
+\bibliographystyle{spmpsci}
+\bibliography{lit-mc}
+
+
+
+%\newpage
+%\input{appendix}
+\end{document}
+

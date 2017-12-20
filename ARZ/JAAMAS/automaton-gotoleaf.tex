@@ -1,0 +1,67 @@
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    thick, bend angle = 20,line width = 1.5pt]
+  \tikzstyle{every state}=[fill=gray,draw=none,text=white,inner sep=0pt, minimum size=0.4cm]
+
+\tikzstyle{r}=[fill=red]
+\tikzstyle{b}=[fill=blue]
+\tikzstyle{g}=[fill=green]
+  
+  {\node[state,r] (r)    {};}
+  
+   {\node (x) [below left of = r] {};}
+   {\node (y) [below right of = r] {};}
+   
+  {\node[state,b]         (0) [ left of=x] {};}
+  
+  {\node[state,g]         (1) [ right of=y] {};}
+  
+  {\node[state]         (00) [below left of=0] {};}
+  
+  {\node[state]         (01) [below right of=0] {};}
+
+  {\node[state]         (10) [below left of=1] {};}
+  
+  {\node[state]         (11) [below right of=1] {};}
+  
+  {\node[state]         (000) [below left of=00] {};}
+  
+  {\node[state]         (001) [below right of=00] {};}
+  
+  
+  
+  \path (r) 
+  		edge node {lc} (0)
+            	edge [swap]   node {rc} (1)
+	(0) 
+		edge node {lc} (00)
+		edge [swap] node {rc} (01)
+		edge [dashed,bend left] node {up} (r)
+	(1)
+		edge [dashed,bend right, swap] node {up} (r)	
+		edge node {lc} (10)
+		edge [swap] node {rc} (11)
+	(11)
+		edge [dashed, bend right,swap] node {up} (1)
+		
+	(10)  
+			edge [dashed,bend left] node {up} (1)
+	
+	(00) 
+		edge node {lc} (000)
+		edge [swap] node {rc} (001)
+		edge [dashed,bend left] node {up} (0)
+
+	(01) edge [dashed,bend right,swap] node {up} (0)
+	
+	(000)
+		edge [dashed,bend left] node {up} (00)
+
+	(001)
+		edge [dashed,bend right,swap] node {up} (00);
+		
+\end{tikzpicture}
+
+
+%
+%\caption{asdfadfs}
+

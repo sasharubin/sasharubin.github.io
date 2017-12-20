@@ -1,0 +1,44 @@
+
+\section{Discussion}
+
+In \cite{Rubin15AAMAS} it was shown that the PVP is undecidable for two synchronous robots on a line, reachability tasks, and allowing the robots ``remote'' position-tests. In Section \ref{sec:PVPundec} we refine this result and prove that the problem is still undecidable even if we only allow robots ``local'' position-tests. 
+% \todo{\sout{or even just local ``collision tests''.}}
+The fact that the proof works for both the synchronous and asynchronous models (Remark \ref{rem:synch}), strongly suggests that {further} limiting the robots' sensing capabilities may not be a very fruitful direction for decidability. In Section \ref{sec:dec} we showed that for asynchronous robots, if one imposes a bound on the number of times the robots can publish, then PVP is decidable for very general tasks (i.e., those expressible in a new logic called \RLTL), large classes of graphs (i.e., the \courcellian sets of graphs), and allowing robots very powerful testing abilities (i.e., $\msol$ position-tests {and} state-tests). This is the first parameterised decidability result of the PVP for {\em multiple} robots where the environment is the parameter. Thus, our work indicates that if practitioners want formal guarantees on the correctness of the robot protocols they design, then they could design them in the framework given in this paper (i.e., finite-state, bounded number of publications, powerful testing abilities).
+
+The main limitation of our decidability result is the fact that the set of grids is not \courcellian --- grids are the canonical work-spaces since they abstract 2D and 3D real-world scenarios.  However, this limitation is inherent and not confined to our formalisation since the parameterised verification problem even for one robot ($k=1$) on a grid with only ``local'' tests is undecidable \cite{BlHe67,Rubin15AAMAS}. A second limitation is that robots do not have a rich memory (e.g., they cannot remember a map of where they have visited). Extending the abilities to allow for richer memory and communication will result in undecidability, unless it is done in a careful way. 
+
+The complexity of the decision procedure we gave is very high. In its full generality, it is non-elementary, with a matching lower-bound. The reason is that the \msol-satisfiability problem for $\gclass$ is non-elementary even taking $\gclass$ to be the set of binary labeled lines \cite{Stock74}. {Then, }the lower-bound follows from the fact that we allow the robots to test using arbitrary \msol-formulas. Thus, the above mentioned \msol-satisfiability problem can be reduced to the PVP of a single robot with a single transition that is guarded by the given \msol-formula whose satisfiability should be decided (and the very simple task of entering the destination state of that transition). 
+
+Future research challenges involve finding decidability results with reasonable complexity for multi-robot systems that are rich enough. This obviously entails limiting the testing abilities to more simple ones than arbitrary \msol formulas, and perhaps considering sub-classes of the state-machines describing the robots. For example, star-free robots with local testing abilities can exhibit very good complexity as the star-free property eliminates the need to express the transitive closure in Lemma~\ref{lem:zeta}, which removes the associated alternation of quantifiers that increases complexity. Another promising direction is to further exploit the connection between \msol-formulas and automata on specific topologies. For example, \msol on trees is equivalent to tree automata (with satisfiability being equivalent to non-emptiness), and certain natural sub-classes of tree automata (e.g., deterministic tree-walking automata) enjoy a much better complexity for their non-emptiness problem. However, we should note that there are limitations inherent in the problem. For example, already for one robot on trees the PVP with the ``explore and halt'' task is \exptime-complete \cite{Rubin15AAMAS}.
+%We leave for future research the problem of finding  protocols found in the distributed computing literature, e.g., \cite{BeSl95,KKR06,FPS11,FPS12}. \todo{or do we do this?}
+%\item Survey on the rendezvous task \cite{KKR06}
+%\item Two deterministic robots with local traffic report can rendezvous in undirected graphs \cite{BeSl95}
+
+
+% \subsection{Future Challenges} \label{sec:future}
+% 
+% %However, there is also a philosophical difference which might explain why this connection has not been exploited before: a robot is supposed to complete some task on the tree, while a TWA accepts or rejects the tree. Thus, from a robot point of view the interesting question is not whether or not the TWA accepts, but rather what the {\em behaviour} of the TWA on its input looks like --- e.g., does the {\em run} of the TWA visit every node of the input tree?
+% 
+% Here is a general research problem: find other natural robot systems that have decidable or tractable PVP.
+% 
+% In light of the fact that PVP is quickly undecidable in a \emph{dynamic environment} (e.g., this is the case for simple reachability tasks of a single robot that can read and write to every vertex on a line, cf. \cite{Suzuki,EN95}), what restrictions on the robot or the dynamic environment will result in decidable PVP?
+% 
+% On the other hand, we believe it is feasible to extend our framework to \emph{quantitative tasks}, such as minimising the number of steps to complete a task. \todo{really?}
+% 
+% %Also, if one extends the robot capabilities to communicate via rendezvous then howto what extent can one change the modeling choices listed in the introduction? The main challenge is to find natural or useful modeling choices with reasonable tradeoffs. For instance,  e.g., PVP is undecidable if one assumes that robots can communicate by rendezvous (e.g., allowing the robots to communicate their local states) on lines or trees (cf. ) but decidable on cliques (cf. ). \sr{remove all conjectures. make vauge statements}
+% %It is a research topic to vary all of the modeling choices individually or together and look for decidable subcases. AtUnfortunately, the PVP is undecidable if one assumes a dynamic environment instead of a static environment (e.g., allowing the robots to read and write $b \in \nat$ bits at each vertex results in undecidable PVP even for $b=1$, line-graphs, and reachability tasks, cf. \cite{Suzuki}). Also, PVP is undecidable if one assumes that robots can communicate by rendezvous (e.g., allowing the robots to communicate their local states to each other when they are on the same vertex). \sr{CHECK: There is no literature on general formalisms and decidability results dealing with probabilistic robots, continuous environments, asynchronous evolution, or other modes of communication.}
+% 
+% Regarding complexity, we have seen that our general algorithm  for solving the PVP (in Theorem~\ref{thm:PVPdec}) has high computational complexity, and we have seen (in Theorem~\ref{thm:exptime}) that a certain problem on trees is \exptimeC. For which systems (tasks, classes of graphs, and classes of robots) is the PVP solvable in \ptime, \np, or \pspace?
+% 
+% %Third, our framework is limited to a fixed number of agents. Can one extend the framework to include the number of agents as a parameter?
+% %
+% We believe that tackling these questions will open avenues both in automata theory and in the verification of mobile multi-agent systems in partially-known environments.
+% %For which context-free sets $\gclass$ is there an elementary decision procedure to decide if a robot ``explores and stops''? What other tasks have elementary decision procedures?
+% %
+% %Synthesis
+% %
+% %Quantitative objectives/efficiency: e.g., prove rotor robot cover in ptime.
+% %
+% %Open systems
+% %
+% %non-finite state robots: e.g., one counter robots. (see blum+kozen)

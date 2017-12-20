@@ -1,0 +1,104 @@
+
+
+\section{Complexity Considerations}
+\todo{remove this section (see discussion section)}
+
+The computational complexity of the decision procedure in Theorem~\ref{thm:PVPdec}, measured in terms of the size of the input robots $\tup{R}$, is non-elementary, i.e., not bounded by any fixed-height tower of exponentials. The reason is that the \msol-satisfiability problem for $\gclass$ is non-elementary even taking $\gclass$ to be the set of binary labeled lines \cite{Stock74}.
+
+Consequently, in this section we illustrate that improved decision procedures (for PVP) can be found for interesting tasks and sets of graphs.
+
+
+
+
+%Indeed: the size of the computed formula $\phi_{R,\T}$ is exponential in the size of the robot $R$ and linear in the size of the \RLTL\ formula capturing $\T$.}
+
+%\sr{what is the complexity for a fixed T and G = words?
+%\sr{prove that there is inherent high complexity}
+%\subsection{Overcoming the inherent high computational complexity}
+%\sr{discuss undecidability!}
+%
+%
+%
+
+A robot is {\em deterministic} if \sr{complete}
+
+A $\Sigma$-graph is {\em deterministic} if $\lambda(v,w) = \lambda(v,w')$ implies $w = w'$. For instance, $\Delta$-ary trees are deterministic. Note that deterministic robots have at most one run on deterministic graphs.
+
+\begin{theorem}  \label{thm:exptime}
+Fix $\Delta \in \nat$. Let $\gclass_\Delta$ be the $\Delta$-ary trees, let $\rclass$ be all deterministic robots, and let $\T$  be the ``explore and halt'' task. \todo{formalise task} Then $\PVP(\gclass_\Delta,1,\rclass,\{\T\})$ is \exptimeC.
+\end{theorem}
+
+%\sr{basically quantifier free tests are needed.}
+
+\begin{proof}[Sketch] \todo{debug, polish}
+The idea is to inter-reduce the parameterised verification problem with the universality problem for deterministic tree-walking automata (DTWA).
+A DTWA is a deterministic machine that can recognise sets of trees: the automaton starts at the root, at any given time the automaton sits on a node of the input tree, can test if the current node is a leaf, the root, or the $i$th child (for $i \leq \Delta$), and based on these tests the machine updates its internal state and executes one of the commands: ``accept the tree", ``reject the tree", ``go to the parent" or ``go the $i$th child".
+The universality of DTWA is \exptimeC.
+%(this can be deduced from standard facts about DTWA, i.e., emptiness of DTWA is $\exptimeC$,  and complementing DTWA can be achieved by swapping accept and reject states, see \cite{MML06}).
+Indeed, from a DTWA $A$ build a DTWA $B$ that simulates $A$ and rejects whenever $A$ runs forever (this causes a quadratic blowup in the number of states \cite{MML06}); then complement $B$ by swapping accept and reject states to get a DTWA $C$; then convert $C$ into an ordinary frontier-to-root tree automaton $D$ using a subset construction that calculates loops of $C$~\cite[Fact $1$]{Boja08} (this causes an exponential blowup); then test $D$ for emptiness (which can be done in \ptime).
+
+Here is the reduction that gives the upper bound: given a deterministic robot $R$ build a DTWA $A_R$ that operates on trees $t$ with marked nodes $s$ and $v$, written $(t,s,v)$, as follows: first it does a DFS from the root, and when it reaches $s$ it begins the simulation of $R$; after the simulation begins, $A_R$ remembers if $v$ is visited; if $R$ enters a halt state and $v$ was visited then $A_R$ accepts $(t,s,v)$, and if $R$ enters a halt state and $v$ was not visited then $A_R$ rejects input $(t,s,v)$. Thus: $R$ ``explores and halts'' iff for all $(t,s,v)$ the run of $R$ on $t$ starting at $s$ visits $v$ and later enters a halt state iff $A_R$ accepts all inputs of the form $(t,s,v)$. The size of $A_R$ is linear in the size of $R$.
+
+Here is the reduction that gives the lower bound: given a DTWA $A$, build a robot $R_A$ which first explores the input tree $t$ (doing, say, a DFS), then simulates $A$ from the root, and halts iff $A$ accepts (thus $R_A$ runs forever if $A$ rejects). Since $R_A$ always explores its input,  $A$ accepts $t$ iff $R_A$ explores and halts on $t$. The size of $R_A$ is linear in the size of $A$. \qed
+\end{proof}
+
+% Next, build a DTWA $B_R$ that simulates $A_R$ and rejects whenever $A_R$ runs forever. This causes a quadratic blowup in the number of states \cite{MML06}. %\sr{check original paper gives Deterministic TWA}
+%Complement $B_R$ by swapping accept and reject states to get DTWA $C_R$.
+%% of whether there is a tree $t$ and a node $v$ on $t$ such that the TWA $C_R$ accepts $(t,v)$.
+% Indeed, $R$ explores and halts on every tree $t$ if and only if $A_R$ (and hence $B_R$) accepts every pair $(t,v)$, where $v$ is a node on tree $t$, if and only if $C_R$ rejects every pair $(t,v)$, i.e., $C_R$ is empty.  This completes the reduction.
+%\sr{say something about coding robots as TWA, or import techniques from TWA}
+
+%Convert $A_R$ into a DTWA $B_R$ which always halts, i.e., if $A_R$ runs forever, then $B_R$ rejects. %
+%Complement $B_R$ to get a DTWA $C_R$ that accepts $(t,x)$ if and only if Convert $B_R$ into a TWA $C_R$ that accepts tree $t$ if and only if $B_R$ accepts all trees of the form $(t,x)$, for $x \in t$.
+%
+%$\Sigma := \{ok,abort\} \times \Bij$, that accepts exactly those $\Sigma$-labeled trees such that the robot $R$, starting at the root and operating according to the local port numbering encoded by $f$, eventually stops, and along the way does not visit any vertex with a label from $\{abort\} \times \Bij$. If $R$ never stops and only visits vertices with labels from $\{ok\} \times \Bij$ then the TWA $A_R$ will also run forever. The number of states in TWA $A_R$ is linear in the size of $R$.
+%
+%
+%	Convert $B_R$ into a TWA $C_R$ that first runs $B_R$ to see whether it halts in an accepting or rejecting state. If $B_R$ accepts then $C_R$ runs a DFS from the root to ensure that no vertex is labeled by $\{abort\} \times \Bij$. And if $B_R$ rejects then $C_R$ runs a DFS from the root to ensure that some vertex is labeled by $\{abort\} \times \Bij$. Thus $C_R$ accepts a tree $t$ if and only if either a) $B_R$ accepts $t$ and no vertex of $t$ is labeled by $\{abort\} \times \Bij$, or b) $B_R$ rejects $t$ and some vertex of $t$ is labeled by $\{abort\} \times \Bij$. In the first case the robot $R$ does not explore all of $t$ (it does not reach the node labeled  $\{abort\} \times \Bij$), and in the second the robot $R$first case $t$ is a tree on which the robot $R$
+%
+%	Thus $C_R$ is empty if and only if robot $R$ explores and stops on all trees. Emptiness of TWA can be solved in EXPTIME \cite{Boja08}.
+
+\begin{note}
+For every $\Delta \geq 2$, there is no robot that ``explores and halts'' on all local port-numbered $\Delta$-ary trees \cite{Diks200438}.
+The proof above is easily adapted to yield an algorithm that, given a robot $R$ and $\Delta \geq 2$, returns a local-port numbered tree on which the robot does not succeed to ``explore and halt''.
+\end{note}
+
+
+%  A weaker model has $k$ many pebbles which the robot can drop and retrieve at vertices. One may further require that a robot can only retrieve the last pebble it dropped (nested pebbles, see \cite{}). %in map making one stores for each vertex the direction to leave.
+
+%The unrestricted whiteboard model on line-like graphs can simulate Turing machines:
+
+%\begin{thm}[whiteboards] \label{thm:wb_undec}
+%The parameterised verification problem for a robot with $1$-bit whiteboards on rings and with safety tasks is undecidable, in fact co-re complete.
+%\end{thm}
+
+%{\bf Different robots, with individual tasks, that compete.}
+
+%{\bf Faulty Robots.}
+%One can allow some fraction of the robots to be faulty, e.g., that it does not comply with the protocol and behaves arbitrarily.\sr{this requires NONDET}
+
+%{\bf Asynchronous model.}
+%We can require that at every time step, exactly one robot is non-deterministically chosen to make a move. Moreover, we may require that the schedule is fair \sr{expand,,,, diff notions of fairness}.
+
+%Achieving this aim would give techniques to automatically verify a robot protocol for {\em arbitrary values of the graph parameter(s)}. This would lay the foundation for tools which could i) automatically verify existing theorems whose hand-written proofs are error prone and often ad hoc, ii) facilitate computer-aided experimentation in the theory of RAG.
+
+
+
+
+
+
+%\begin{enumerate}
+%\item One might define robots independently of $\Delta$: if a robot enters vertex $v$ by port $d$ and is in state $q$ then it leaves via port $(d+f(q,d,deg(v))) \mod deg(v)$ for some fixed $f:Q \times \mathbb{N} \times \mathbb{N} \to \mathbb{N}$.
+%\end{enumerate}
+
+
+
+
+%\sr{what about a fixed task? what about a fixed robot?}
+%
+%
+%\section{Discussion}
+
+%Consider the case of robots without whiteboards. We have seen that main limitation of the robot-as-token paradigm is that  we need some form of fairness assumption (such as drunk-robots), and the main limitation of the robot-and-task-as-formula paradigm is that the algorithms are not implementable.
+
+% 

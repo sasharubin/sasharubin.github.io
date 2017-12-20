@@ -1,0 +1,147 @@
+Comments to author(s)
+Summary of the Paper
+====================
+The paper studies the parameterized verification problem of MASs constituted by robots moving over graphs. The verification is parameterized in the sense that properties are checked independently of the graphs over which the robots move (while the number of robots is fixed). It is shown that, as expected, the problem is in general undecidable, but it is decidable over context-free graphs. The technique relies on an embedding of the parameterized verification problem into MSOL-validity, which is decidable over context-free graphs.
+
+Justification for the Scores
+============================
+The paper is very well-written. It positions the contribution w.r.t. the literature and provides many interesting pointers to previous works in the areas of MASs, parameterized verification, automata and logics. The results are non-trivial, even though some aspects could have been studied in more details (see below).
+
+Constructive Comments to Improve the Paper
+==========================================
+
+At the end of Section 1, the modeling choices are illustrated. It is not explicitly listed for each dimension, however, what is the choice adopted in the paper. This results in some difficulties when reading the paper. Furthermore, it is not clear which of these choices are necessary towards decidability: a discussion of this would be definitely useful (I think in particular about the robot determinism, which is a strong assumption).
+
+Another issue with the framework is the following: it is not completely clear whether the robot determinism results in a truly deterministic behavior. This depends also on the shape of the graph, doesn't it? In particular, what happens if a deterministic robot chooses to exit from the current vertex along an l-labeled edge, but there are two outgoing edges labeled with "l"?
+
+As for the RTL logic, it seems quite specific: atomic formulae are only of 4 pre-defined types, and it is not explicitly written how these can be composed to build an RTL formula (I guess this is just propositional logic where atomic formulae are the 4 pre-defined ones). Is this true? Isn't it possible to generalize the shape of the 4 pre-defined atomic formulae to a real logic?
+
+The complexity analysis presents two shortcomings:
+1) The EXPTIME upper bound is only given for the "explore and halt" task. What about the entire RTL logic?
+2) Nothing is said about the lower-bound. Apart from the important future works of isolating tractable classes for the problem, is it EXPTIME complete in general?
+
+
+Questions for Rebuttal
+======================
+W.r.t. to the points above
+1) Does the graph labeling affect robot determinism?
+2) Could you better explain the RTL logic?
+3) Does the EXPTIME upper bound work for the entire RTL logic?
+4) What about complexity lower-bound? Is EXPTIME tight?
+
+
+Summary of review
+The paper presents a solid and interesting contribution to the (parameterized) verification of MASs. It provides many interesting open challenges for the future. I recommend acceptance.
+
+
+
+rebuttal
+======
+Thank your for the very insightful review. 
+
+The modeling assumptions made in this paper were italicised in Section 1 (modeling choices). 
+ 
+1) Yes, you are completely correct, my mistake. In fact, the decidability result *does hold* for non-deterministic robots without any change to the proofs (restricting the whole paper to deterministic robots was an oversight, only Theorem 3 requires the assumption that robots are deterministic). 
+
+2) The logic RTL is monadic-second order logic with the pre-defined atoms you mentioned instead of the atoms for =, \epsilon, edg_\sigma, as defined in Section 2.1 (preliminaries). In particular, RTL allows quantification and thus is not propositional. Example RTL formulas can be found in Section 2.4.
+
+3) Unfortunately verification of RTL has non-elementary complexity (the complexity grows with the quantifier alternation in the RTL formulas).
+
+4) The problem is also EXPTIME-hard since emptiness of tree walking automata (TWA), which is EXPTIME-complete, can be reduced to ``explore and stop'' as follows: given TWA A, build a robot R_A which first explores the input tree t (doing, say, a DFS), then simulates A, and halts iff A accepts (thus R_A runs forever if A rejects). Note that A accepts t iff R_A explores and halts on t.
+
+
+Comments to author(s)
+Summary of the Paper
+====================
+
+The paper introduces an approach to verify a set of properties for mobile robots on parametrised graphs modelling an environment. The paper provides several patterns for standard properties of mobile robots and investigates the complexity of the verification problem under a number of assumptions for the structure of the environment.
+
+Justification for the Scores
+============================
+
+The paper provides a set of theoretical results that may be of interest to researchers in several areas. This is not exactly my area of expertise, however from what I could understand the authors provide a theoretical result (lemma 2) for star-free languages that is novel, and so are the complexity considerations in section 4. The paper makes use of a number of previous results and it may be a bit dense in some parts, but overall it is readable and the proofs seem correct. The paper could have benefited from additional examples throughout the presentation. Some suggestions for improvement are provided below.
+
+Constructive Comments to Improve the Paper
+==========================================
+
+- At the end of section 1, before "Our contributions": I think you should state here your assumptions, instead of simply listing the possible modelling choices.
+- Section 3 is quite generic and it is difficult to understand how the existing models are represented concretely. The section should be expanded and more details should be provided.
+- Section 2 is very long, especially if compared to the other sections. Could it be split, clarifying the difference between existing and novel results?
+
+Minor comments:
+- p.4, first paragraph of "Configurations and Runs", "Formally, [...] :if there is a transition" -> remove :
+- p.5: first phrase of column 2, "for all graphs G" -> for all graphs $G \in \cal{G}$?
+- p.6, statement of Lemma 2: "and final state q_i is a star-free" -> is star-free.
+- p.7, section 4: "[36].Complement" -> add space before Complement.
+
+
+Questions for Rebuttal
+======================
+
+- The assumptions of determinism and synchronous evolution are quite strong. Could you justify them, ideally with some concrete examples from the literature and discussing limitations?
+ADD EXAMPLES! DISCUSS LIMITATIONS!
+- Figure 1 (and the paragraph above it): what are the labels lc and rc? I can probably understand them but I don't think they were defined.
+I WILL DEFINE THEM.
+
+Summary of review
+The paper introduces an approach to verify a set of properties for mobile robots on parametrised graphs modelling an environment. The theoretical results seem novel and correct and they address an interesting problem. Additional examples and a more detailed evaluation section (section 3) could have improved the overall presentation.
+
+
+
+
+
+
+rebuttal:
+----------
+Thank you for the thoughtful review and good suggestions for improvements.
+
+'lc' stands for 'left-child' and 'rc' for 'right-child'.
+
+The modeling assumptions made in this paper were italicised (Section 1, modeling choices). 
+
+You asked for a justification of a) determinism and b) synchronous evolution. 
+a) Actually the determinism restriction was not needed. The decidability result also holds for non-deterministic robots without any change to the proofs; while the determinism restriction is used in the reduction of Theorem 3. Many natural protocols from the distributed computing literature are probabilistic --- this case generalises the deterministic case, and is for future work.
+b) Section 3 contains a model of robots from the distributed computing literature that evolve synchronously (see [33] for robot rendezvous in a synchronous setting). The asynchronous case is important in distributed computing, and is for future work. 
+
+A final general comment: since PVP is easily undecidable (Theorem 1) an important aim of this work is to provide a clearer understanding of the decidability/undecidability border.
+
+Comments to author(s)
+Summary of the Paper
+====================
+The paper has presented an approach to modelling systems of multiple mobile agents where environment is encoded as graphs and agent protocols are modelled as finite and deterministic automata. Then, runs of agents on an environment are defined as walks of automata on the graphs. The paper showed that the parameterised verification problem, i.e., whether or not a set of multiple agents can complete a task on any environment, is not decidable in general but decidable when restricting on the class of agents whose protocols can be represented by a star-free regular expression.
+
+Justification for the Scores
+============================
+
+The paper is well presented. Its content is certainly within the scope of AAMAS and should be attractive to researchers from, eg, multi-agent verification and automata theory. My concern is the applicability of the presented result where the restriction on the kind of multiple agents is not trivial.
+
+Constructive Comments to Improve the Paper
+==========================================
+
+I value that the paper is well presented with a clear structure. As mentioned above, I concern about the applicability of the result. My further comment is that the author should explain the decision of modelling choices. Then, the following are some specific and minor points that should be addressed if the paper gets accepted:
+- page 3, figure 1: the transition function was defined on single instruction/action; however, the figure 1 shows transitions by combined ones; an explanation is needed here.
+- page 4, 1st column, line -3 or -1: either INS_{SIGMA,k} = (...)^k or ins \in (INS_{SIGMA,k}^k)^*
+- page 4, 2nd column, line 14: one time step -> one step; line 19: tau_k) ie missing a close parenthesis
+- page 4 and 5, RT1 to RT6: some tasks are defined with formal definitions while others are not. This seems strange without explanation; please state clearer either spell out the formal definitions for all or say which one is not definable.
+- page 5, 1st column, lines 4 and 5: cleared -> clear
+- page 5, 2nd column, line 2: big phi -> small phi
+- page 5, line 9 of lemma 1: psi -> psi^\infty
+- page 5, line 3 of lemma 1's proof: why \subset, would it be \subseteq, this happens in several places such as page 7, 2nd column, line 9.
+
+Questions for Rebuttal
+======================
+Do choices of modelling effect the decidability result (with restriction)? for example if agents are non-deterministic?
+GOOD QUESTION!
+
+Summary of review
+The paper has presented an approach to modelling systems of multiple mobile agents where environment is encoded as graphs and agent protocols are modelled as finite and deterministic automata. Then, runs of agents on an environment are defined as walks of automata on the graphs. The paper showed that the parameterised verification problem, i.e., whether or not a set of multiple agents can complete a task on any environment, is not decidable in general but decidable when restricting on the class of agents whose protocols can be represented by a star-free regular expression.
+
+rebuttal
+======
+Thank you for the excellent review.  Note that the modeling assumptions made in this paper were italicised (Section 1, modeling choices).
+
+You asked how the modeling choices effect the results. 
+
+1. Actually, the decidability restriction was not needed. The decidability result holds for non-deterministic robots without any change to the proofs (restricting the whole paper to deterministic robots was an oversight, only Theorem 3 requires the assumption that robots are deterministic). 
+2. Unfortunately, PVP is undecidable if we allow any of the following modeling choices: non-static environment (see Section 6), general communication such as message passing (see Section 5 on TWA).
+3. I do not know what happens with asynchronous evolution, unknown number of agents, probabilistic agents, or continuous environments. It is a research topic to vary all of the modeling choices individually or together and look for decidable subcases.

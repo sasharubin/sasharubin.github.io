@@ -1,0 +1,153 @@
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+
+\RequirePackage{fix-cm}
+\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+
+\smartqed  % flush right qed marks, e.g. at end of proof
+\usepackage{graphicx}
+% please place your own definitions here and don't use \def but
+% \newcommand{}{}
+ \journalname{JAAMAS}
+
+
+\begin{document}
+
+\title{Verification of Asynchronous Mobile-Robots in Partially-Known Environments\thanks{Benjamin Aminof and Florian Zuleger were supported by the Austrian National Research Network S11403-N23 (RiSE) of the Austrian Science Fund (FWF) and by the Vienna Science and Technology Fund (WWTF) through grant ICT12-059.  Sasha Rubin is a Marie Curie fellow of the Istituto Nazionale di Alta Matematica.}}
+%\thanks{Grants or other notes
+%about the article that should go on the front page should be
+%placed here. General acknowledgments should be placed at the end of the article.}
+
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Benjamin Aminof \and Aniello Murano \and Sasha Rubin \and Florian Zuleger}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{B. Aminof \at TU Wien, Austria\\ \email{benj@cs.huji.il}           
+           \and
+           A. Murano \at     UNINA, Italy\\     \email{murano@na.infn.it}
+	     \and
+     S. Rubin \at     UNINA, Italy\\     \email{sasha.rubin@unina.it}
+     		\and
+	F. Zuleger \at TU Wien, Austria\\ \email{zuleger@forsyte.at}
+}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+This paper establishes a framework based on logic and automata theory in which to model and automatically verify that multiple mobile robots, with remote sensing abilities and moving asynchronously, correctly perform their tasks. The motivation is from practical scenarios in which a) robots have limited memory and b) the environment is not completely know to the robots, e.g., physical robots exploring a maze, or software agents exploring a hostile network. The framework consists of a logical language tailored for expressing agent tasks, and an algorithm for solving the {\em parameterised} verification problem, where the graphs are treated as the parameter. We reduce the parameterised verification problem to classic questions in automata theory and monadic second order logic, i.e., universality and validity problems. The main assumption that yields decidability is that there should be a bound on the number of times any robot senses the positions of any other robot. We prove that dropping this assumption results in undecidability,  even for robots with very limited (``local'') sensing abilities. We illustrate the framework by instantiating it to a popular model of robot system from the distributed computing literature. This importance of this work is that it clarifies the border between classes of mobile-agent systems that have decidable parameterised verification problem, and those that do not. 
+
+\keywords{Computational Models \and Model Checking \and Logic \and Automata Theory \and Autonomous Mobile Agents \and Distributed Robot Systems \and Parameterised Verification}
+% \PACS{PACS code1 \and PACS code2 \and more}
+% \subclass{MSC code1 \and MSC code2 \and more}
+\end{abstract}
+
+\section{Introduction}
+\label{intro}
+
+\section{Section title}
+\label{sec:1}
+Text with citations \cite{RefB} and \cite{RefJ}.
+\subsection{Subsection title}
+\label{sec:2}
+as required. Don't forget to give each section
+and subsection a unique label (see Sect.~\ref{sec:1}).
+\paragraph{Paragraph headings} Use paragraph headings as needed.
+\begin{equation}
+a^2+b^2=c^2
+\end{equation}
+
+% For one-column wide figures use
+\begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \includegraphics{example.eps}
+% figure caption is below the figure
+\caption{Please write your figure caption here}
+\label{fig:1}       % Give a unique label
+\end{figure}
+%
+% For two-column wide figures use
+\begin{figure*}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \includegraphics[width=0.75\textwidth]{example.eps}
+% figure caption is below the figure
+\caption{Please write your figure caption here}
+\label{fig:2}       % Give a unique label
+\end{figure*}
+%
+% For tables use
+\begin{table}
+% table caption is above the table
+\caption{Please write your table caption here}
+\label{tab:1}       % Give a unique label
+% For LaTeX tables use
+\begin{tabular}{lll}
+\hline\noalign{\smallskip}
+first & second & third  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+number & number & number \\
+number & number & number \\
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+% BibTeX users please use one of
+%\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{spmpsci}      % mathematics and physical sciences
+%\bibliographystyle{spphys}       % APS-like style for physics
+%\bibliography{}   % name your BibTeX data base
+
+% Non-BibTeX users please use
+\begin{thebibliography}{}
+%
+% and use \bibitem to create references. Consult the Instructions
+% for authors for reference list style.
+%
+\bibitem{RefJ}
+% Format for Journal Reference
+Author, Article title, Journal, Volume, page numbers (year)
+% Format for books
+\bibitem{RefB}
+Author, Book title, page numbers. Publisher, place (year)
+% etc
+\end{thebibliography}
+
+\end{document}
+% end of file template.tex
+

@@ -1,0 +1,24 @@
+Given $X,x,y,\phi_r$.
+
+We define $\phi_r,{max}(u,v,Y)$ to hold, if $Y \subseteq X$ and $\phi_r(u,v,Y)$ and there is no $Z$ st $Y \subset Z \subseteq X$ and $\phi_r(u,v,Z)$.
+
+Define a formula $\beta_r(x,y,X,P)$ as follows (and the we will say $\exists P. \beta_r(x,y,X,P)$).
+
+\begin{itemize}
+\item $P \subseteq X$,
+\item all nodes in $P$ are reachable from $x$ by some $\phi_r$-path inside $X$,
+\item all nodes in $P$ can reach $y$ by some $\phi_r$-path inside $X$,
+\item for all $a_1,b_1,a_2,b_2$ in $P$ and $Y_1, Y_2 \subseteq X$ with $\phi_r,max(a_1,b_1,Y_1)$,
+  $\phi_r,max(a_2,b_2,Y_2)$ we have that $Y_1 \neq Y_2$ implies that either $a_2$ is reachable
+from $b_1$ by some $\phi_r$-path inside $X$ or $a_1$ is reachable from $b_2$ by some
+$\phi_r$-path inside $X$,
+\item for all $z$ in $X$ there are $a,b$ in $P$ and $Y \subseteq X$ with $\phi_r,max(a,b,Y)$ and
+  $z$ in $Y$.
+  \end{itemize}
+  
+
+We consider the Graph $G = (P,E)$, where $E$ has an edge from $a$ to $b$ labelled by $Y$,
+if there is some $Y \subseteq X$ with $\phi_r,max(a,b,Y)$
+We collapse all SCCs in $G$ to a single node obtaining a graph $H$.
+
+Claim: Every node in $H$ has a single outgoing and incoming edge.
