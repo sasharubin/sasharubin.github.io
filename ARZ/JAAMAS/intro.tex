@@ -1,0 +1,267 @@
+
+
+\section{Introduction} \label{sec:intro}
+% Autonomous agents are designed to achieve some task in an environment without a central control. 
+%or treasure-hunt (locate a resource at an unknown vertex),
+%self-deployment (each agent positions itself so that the set of positions satisfies some coverage criterion), and pursuit-evasion (a set of agents is trying to catch another agent)
+This paper provides a theoretical study of mobile agents moving in discrete spaces that are only partially known.  That is, the exact shape of the space is not known at design time. Rather, only limited information, typically topological, is known, e.g., that the space is connected, or that it is a ring of some unknown size~\cite{FPS11}. The motivation for studying these is that in many practical scenarios agents are unaware of the exact environment in which they are operating, e.g., physical robots that rendezvous in an environment not reachable by humans, or mobile software exploring a new computer network.
+%, or flocking robots \cite{X}.
+
+Foundational tasks\footnote{We use ``task'' and ``goal'' interchangeably.} for mobile agents include rendezvous (gather all agents in a single position), reconfiguration (move to a new configuration in a collision-free way), and exploration (every position in space should be visited by some agent) \cite{KKR07handbook,FPS11,FPS12}. To illustrate, here is an example of the \emph{reconfiguration problem}, see Figure~\ref{fig:tree}.
+\begin{example}
+Suppose that $k$ agents find themselves on different internal nodes of a finite binary tree. The agents, however, do not know, a priori, exactly which tree, e.g., they do not know its depth, or the number of leaves, etc. The task of each agent  is to reach a leaf node such that no two agents are ever in the same node. Each agent can reliably sense if its left (or right) child is occupied by an agent, and whether or not it is at a leaf.
+
+One protocol is for each agent to execute ``go to the left child, then repeatedly go the right child until a leaf is reached''. Each move is guarded by a test that the child it wants to move to is not currently occupied. This protocol ensures that each agent completes its task on all binary trees.
+\end{example}
+
+
+\begin{figure}[h] \label{fig:tree}
+\center {\scalebox{.4}{
+\input{automaton-gotoleaf}
+}}
+\caption{Reconfiguration problem. Three agents (red, green, blue) find themselves on the internal leaves of some binary tree. Each has the same task: to reach a leaf, different from all the others, in a collision free way. An agent has only a bounded amount of memory, can sense if it is at a leaf, can sense if its left (or right) child is occupied, and can move in three directions, i.e., to the left child, to the right child, or to the parent (dotted arrow). In this example, agents move asynchronously.}
+\end{figure}
+
+The aim of this work it to provide a formal framework in which one can reason both mathematically and computationally about multiple mobile-agents moving in partially known environments. In particular, we will define an abstract mathematical model of mobile agents operating in graph-environments, and study the verification problem, i.e., do given agents correctly perform their tasks. 
+Our agents are essentially finite-state automata that walk on finite graphs using guarded-commands such as ``if I am north of agent $2$ then step east''. 
+We introduce a logic based on linear-temporal logic \LTL for defining agent tasks. This logic is powerful enough to specify standard tasks such as gathering, reconfiguration, and exploration.
+
+We do not model partially-known environments using partial-observability, as is common~\cite{RuNo-AI}. Instead, we
+treat the graph-environment as a parameter, e.g., in the reconfiguration example the given agents should achieve their task on {\em all} binary trees, not just the given binary tree. In more detail, fix a class $\gclass$ of environments (e.g., $\gclass$ is the set of all trees, or all grids, or all rings).  The {\em parameterised verification problem (PVP)} states: Given agents $\tup{R}$ and tasks (one for each agent), decide if the agents achieve their tasks on \emph{all} graphs $G \in \gclass$. Since our agents have limited memory, and since there may be infinitely many graphs in $\gclass$, the agents necessarily may only learn a bounded amount of information about the particular graph in which they are deployed, i.e., they have partial information about the graph.  
+
+In contrast, the classic non-parameterised verification problem states: given agents $\tup{R}$ and a graph $G \in \gclass$, decide if agents $\tup{R}$ solve their tasks on $G$. In this setting, the agents can be designed to exploit the exact structure (size, etc.) of the graph, and store all of it in their memory.
+% Requiring the agents to solve their tasks on all graphs from a class $\gclass$ is how we model that the agents operate in partially-known environments --- the agents know they are in a graph from $\gclass$, but they do not know which one.
+This non-parameterised verification problem is often handled using model-checking~\cite{CGP1999}.  That is, one builds a (potentially very large) finite labeled-transition system representing the global state of the system (i.e., the position and local state of every agent in the given graph $G$), one represents the tasks in a formula of a suitable logic (such as linear-temporal logic \LTL), and then one checks whether the transition system satisfies the formula. Since all objects are finite, this problem is typically decidable, although its complexity depends on the size of the transition system and the formula, and the complexity class varies depending on the logic.
+
+On the other hand, the parameterised verification problem (PVP) corresponds to a family of model-checking problems (one for each $G \in \gclass$). This family is typically infinite, and thus the PVP can be seen as model-checking an infinite-state model (consisting of the disjoint union of the infinitely many finite-state systems). A variety of techniques have been applied to verify certain infinite-state systems, and we discuss these in Section~\ref{sec:related} (Related Work). However, before this work, none seem suited to the problem in which the environment is parameterised.
+
+%Our objective is to formalise and study the parameterised verification problem where it is the environment/graph that is parameterised.
+
+%\begin{example}
+% Suppose $k$ many agents have to collaboratively explore an unknown graph. Each agent can  move based on its current local state and the direction in which it entered the current vertex. This problem is known as exploration on anonymous networks \cite{}.
+%\end{example}
+
+
+%A consequence of our main decidability result (Theorem~\ref{thm:PVPdec}) is that, for a fixed task such as reconfiguration or exploration, and a fixed bound $b \in \nat$, one can verify if $k$ given agents can achieve their task (on certain classes of graphs, including lines, trees, rings, and series parallel-graphs, but not grids) with each agent taking at most $b$ turns. A consequence of our undecidability result (Theorem~\ref{thm:PVPundec}) is that this problem is undecidable on lines in the case that there is no assumed bound $b$, and even if one only allows ``local'' testing, i.e., actually we only need to allow a agent to learn which other agents share its current position.
+
+
+
+%A agent moves autonomously from vertex to vertex of a finite graph by following a protocol: it consults its  memory, i.e., its internal state, as well as local information about its current position (e.g., a fixed labeling of the current vertex, the degree of the vertex it is currently at, some information about the location of the other agents); based on this information it moves in some direction  (e.g., left, right, up, down), and changes its internal state. The more general \emph{whiteboard model} allows a agent visiting a vertex to read and write from a variable stored at that vertex.
+%A weak version of a whiteboard is a {\em pebble} which a agent may drop or retrieve from vertices of the graph.
+%We consider the case of identical agents.
+
+
+
+
+
+% Our work can be seen as a chapter about graph-walking automata. The main novelty in the respect is that our automata are not meant to be graph-acceptors, as is traditional, but rather are meant to do something on the graph. Thus, it is the {\em behaviour/runs} of these automata that this paper analyses.
+
+%Since agents move without central control, the area RAG is part of the field of distributed computing.
+%For instance, positive results are of the form ``There is a agent with $f(\Delta)$ states that solves a certain task on all graphs of max degree $\Delta$" and impossibility (and negative) results of the form ``There is no agent (with $f(\Delta)$ states) that solves a certain task on all graphs of max degree $\Delta$".\sr{keep last sentence? or does it set up too high expectations?}
+% {follow in the tradition of rigorous systems engineering and}
+
+%However, until recently~\cite{KoLo13AAMAS,ABCTU13,MPST14,KoLo15} there has been little emphasis on formal analysis of correctness of agents in a parameterised setting. In this paper we apply formal methods to the parameterised verification problem in which it is the {\em environment that is parameterised}. This is how we model that agents operate in unknown environments. Formally, we address the following decision problem.
+%
+%{\bf Parameterised Verification Problem}: Given agents $\tup{R}$, decide if they solve the task $\T$ on all graphs $G \in \gclass$.
+
+%Note that requiring that the agents solve the task $\T$ on all graphs from a class $\gclass$ is how we model that the agents operate in unknown environments.
+
+
+
+%In both these problems we have fixed a set of agent protocols $\rclass$, a set of graphs $\gclass$, and a task $\T$. For instance, $\rclass$ may be all finite-state agent protocols (or all pairs of such agents), $\gclass$ may consist of all graphs of a given degree, and $\T$ may be a task of the form ``some agent infinitely often visits a given subset of the vertices''.
+
+%\sr{perpet explor. may mean visit each vertex infinitely often}
+%or additionally halting once every vertex has been visited (exploration with stop), additionally halting at the vertex it started on (exploration with return),
+%Exploration is often a basic subtask that is useful for more complex tasks \cite{Das13}.
+
+
+%Typical theorems in RAG are positive results of the form ``There is a agent with $f(\Delta)$ states that solves a certain task on all graphs of max degree $\Delta$", and negative results of the form ``Every agent that solves a certain task on all graphs of max degree $\Delta$ has at least $f(\Delta)$ states", or impossibility results of the form ``There is no agent with finitely many states that solves a certain task on all graphs of max degree $\Delta$". Graph-parameters besides max degree $\Delta$ may also used, e.g., the size $n$ of the graph, the diameter $D$ of the graph. See for instance \cite{KKR06, GR08, Diks200438, Das13,Cohen05graphexploration}. The agent is required to succeed on {\em all graphs} from the (typically infinite) class of graphs.
+
+
+
+%The non-parameterised verification problem is often handled using model-checking~\cite{CGP1999}.  The parameterised verification problem corresponds to a family of model-checking problems (one for each $G \in \gclass$), or equivalently, a single infinite-state model-checking problem. A variety of techniques have been applied to such systems, fully discussed in Section~\ref{sec:related} (Related Work),
+%however none seem suited to the problem in which the environment is parameterised.
+%Fortunately, the theory of automata and logic has produced a rich understanding of the expressive power of certain logics, e.g., monadic second-order logic $\msol$, over certain classes of graphs, e.g., context-free sets of graphs \cite{Thomas90, Thomas96, ALG01, CE12}. Our framework reduces the parameterised verification problem to classic questions in automata theory and $\msol$, i.e., universality and validity problems. The key observations are that: i) agents are graph-walking automata, and can be defined in $\msol$, and ii) agent tasks correspond to properties of runs of automata which are often definable in $\msol$.
+
+%\paragraph{Modeling Choices} \label{modeling}There are a number of different modeling choices for mobile agents \cite{Pelc11}. We list them, and emphasise (using underlining) the choices made in this paper: (i) is the environment continuous (e.g., the plane) or \underline{discrete} (e.g. a finite graph whose edges are labeled by directions or port numbers)? (ii) do agents act \underline{synchronously} or asynchronously? (iii) are agents probabilistic or \underline{non-deterministic}? (iv) is there \underline{one} agent or are there \underline{multiple} agents, and are the number of agents \underline{known} or unknown? (v) is the environment \underline{static}, or can agents affect their environment (e.g., by marking the nodes of a graph)? Moreover, (vi) how much information about the environment is known, a priori, to the agents?  We assume agents \underline{do not have global knowledge} of the environment, and in particular the size is not known and nodes in the environment do not have unique identifiers. And finally, (vii) how do agents communicate and sense their environment? We assume agents can {\em sense their positions in the graph} as well as those of the other agents (in the case of multiple agents), i.e., agents acquire information about the current state of the environment solely by vision (we use logical formulas, which we call tests, to define these sensing abilities).
+
+%\sr{for different modeling choices, does the reduction fail? or just decidability?}
+
+% \sr{what about open systems? in which agents are given new tasks as time goes on} We discuss other modeling choices in Section~\ref{sec:discussion!!}.
+% \paragraph{Non-Static Environments}
+%Allowing the agents to read and write $b \in \nat$ bits at each vertex (the $b$-bit \emph{whiteboard} model) results in undecidable PVP even for $b=1$, lines, and reachability tasks, cf. \cite{Suzuki}.
+
+
+
+
+%
+%Here is the suggested methodology for solving the parameterised verification problem for finite-state agents in the basic model (no whiteboards). First we establish that validity of a certain logic $\L$ over a certain class of graphs $\gclass$ is decidable. \sr{give exs}. Second, we find a (computable) translation of a agent protocol $R$ and task $T$ into a logical formula $\varphi_{R,T}$ such that for every graph $G$, protocol $R$ solves the task $T$ on graph $G$ if and only if $G$ satisfies $\varphi_{R,T}$. Thus, $R$ solves the task $T$ on all graphs from $\gclass$ if and only if every graph in $\gclass$ satisfies $\varphi$.  In other words, solving questions of the form ``Does this agent solve this task on all graphs from class $\gclass$?" is reduced to a problem of the form ``Is a certain formula (that depends on the agent and the task) true on every graph from class $\gclass$?". Thus we might call this the {\bf agent\&task-as-formula} paradigm.
+
+\
+
+\head{Contributions.}
+We provide a formal framework for reasoning about multiple mobile-agents on partially-known environments. 
+We make the following modeling choices:
+\begin{itemize}
+ \item environments are finite and discrete (rather than continuous),
+ \item agents have finite memory (rather than being Turing powerful),
+ \item each agent has its own task to complete (rather than having just a single co-operative task),\footnote{Note, however, that many cooperative tasks can be naturally expressed by specifying the induced individual goals.}
+ \item agents are deterministic or nondeterministic (rather than probabilistic),
+ \item the number of agents is fixed and arbitrary (rather than unknown),
+ \item agents have unique identifiers that may be used (rather than required to be anonymous),
+ \item although environments are partially-known agents can test their own positions in the graph using a quite powerful logic, and they have powerful communication abilities: they can choose to publish their states and current/visited positions to a ``bulletin-board'' that can be read by all agents; this allows agents to communicate without being in the same node, i.e., ``remote tests'',
+ \item agent communication and testing is completely reliable (rather than being error prone),
+ \item environments are static, i.e., agents cannot leave information at visited positions,
+ \item agents move asynchronously rather than synchronously (this it motivated by the fact that distributed systems need not have a common notion of time~\cite{Lynch96}).
+%  \item \sr{how to describe and motivate the fact that any number of agents can move at a time?} \sout{agents move asynchronously, rather than synchronously.}
+%  \footnote{The assumption that agents move asynchronously is motivated as follows: processes in distributed systems have no common notion of time since they may be running with different internal clocks, and thus a standard abstraction is to assume that processes' actions are interleaved \cite{Lynch96}. There are two main ways to interleave the agents: an adversary tries to make sure that the agents do not succeed \cite{FPSW99}, and a co-operator tries to help the agents succeed (reminiscent of schedulers in strategic reasoning \cite{CLMM14}).}
+\end{itemize}
+
+
+This framework allows us to model systems of multiple mobile agents, as well as reason about the border between decidable and undecidable verification problems. There are three main dimensions of an agent system that one can vary to try get decidability: a) the sets of graph-environments, b) the testing abilities of the agents, c) the communication abilities of the agents.\footnote{Actually, one may also restrict the movement abilities of agents as is done in~\cite{AAMAS16Grids}.}
+
+% This is the approach taken in \cite{??}.} Our framework allows arbitrary sets of graphs, very powerful testing abilities (i.e., agents can test their own positions in graphs using a powerful logic, i.e., \msol), c) agents can publish their current position, state, and positions visited so far, and other agents can read and act on this data.
+
+\emph{Undecidability Results.}
+Parameterised verification is undecidable already for very simple systems. For a single agent, we get undecidability on grids, even if the agent has very limited testing abilities (i.e., border-detection). For multiple agents, parameterised verification is undecidable already on lines, even if agents have the same limited border-detection testing abilities, and their communication is very limited (i.e., they ``communicate'' by collision-detection). We prove these results by showing how to simulate two-counter machines, a Turing-complete model of computation.
+
+\emph{Decidability Results.}
+In order to regain decidability we make the following two restrictions: a) we consider graph-environments that are definable in monadic second-order logic and are of bounded clique-width. We call these \emph{\courcellian} classes of graphs after Courcelle's Theorem (see Theorem~\ref{thm:courcelle}). These are classes of graphs that are in analogy to the context-free languages. They exclude the set of grids, but include, e.g., the set of lines, the set of trees, and the set of cliques; and b) we require that each agent 
+may publish its current state and position (which other agents can test) at most a bounded number of times. 
+
+This decidability result is very robust: (i) removing either of the two restrictions, a) or b), results in undecidable parameterised verification; (ii) the decidability result also holds with very powerful agent abilities called {\em position-tests} which allow each agent to {remotely} test the positions of all the agents using formulas which include, e.g., the ability to test connectivity, as well as {\em state-tests} that allow each agent to {remotely} test the internal state of the other agents. Moreover, the decidability result holds for tasks that are expressible using a new logic \RLTL\ (Robot \LTL), which can express many natural tasks, e.g., reconfiguration, gathering, and ``safe'' variations (i.e., complete the task without entering dangerous areas of the graph).%; and also there is no restriction on the agents, i.e., they can be arbitrary finite-state machines.
+
+The main novelty of our approach to decidability is to leverage the theory of automata. This theory allows us to reduce our problems to the satisfiability problem of monadic second-order logic $\msol$ over certain classes of graphs, i.e., \courcellian sets of graphs \cite{Thomas90,Thomas96,ALG01,CE12}. The key observations are that: i) agents are graph-walking automata, and can be defined in $\msol$, and consequently we can permit agents to test the current state of the system (i.e., the graph and the positions of all the agents) using tests expressible in $\msol$, and ii) agent tasks correspond to properties of runs of automata which are often definable in $\msol$.
+
+\section{Related Work.} \label{sec:related}
+
+\todo{I suggest to refocus the related work to papers in AI}
+
+
+
+
+We begin by describing the connection between this paper and two conference papers it is based on.
+
+\paragraph{Conference versions of this paper}
+This paper combines and enhances the full versions of two conference papers, \cite{Rubin15AAMAS} and \cite{RZMA15}. The first paper initiated the idea of using automata 
+theory and logic to reason about parameterised verification where the environment is the parameter. Its decidability result (and the corresponding logic for expressing tasks) is for single agent systems, and its undecidability result is for two agents that move  synchronously and use remote tests. The second paper extends the first: the decidability result is for multiple asynchronous agents with very powerful remote testing abilities and a necessary restriction on the asynchronous scheduling of the agents, and its undecidability result is for agents that only need local testing abilities, i.e., the ability to detect which other agents they collide with. 
+
+In this full version we supply a cleaner formalism, including a user-friendly logic for expressing agent tasks; we generalise the decidability result from bounded-switching to bounded-publishing, and from asynchronous scheduling to both synchronous and asynchronous scheduling (and anything in between), and to allow agents to test the set of positions that others have accumulated during the run; 
+and we correct some minor mistakes.
+
+\iffalse
+Systems are considered distributed if they do not have a central control. In light of this, we describe the relationship of our work to formal verification of distributed systems, as well as to work on verification of agent protocols in particular. 
+
+\paragraph{Formal verification of distributed systems}
+
+Typical parameters that arise in the study of distributed systems are the number of agents, the number of assumed faulty agents, etc. Since parameterised problems of distributed systems are, in general, undecidable~\cite{AK86,Suzuki}, the formal methods community developed sound but incomplete methods that require human intervention, e.g., counter- and predicate-abstractions, inductive invariants, regular model checking and acceleration techniques. See for instance~\cite[references on pages 2-3]{PXZ02}.
+
+On the other hand, by simplifying the systems  (e.g., restricting the mode of communication, the abilities of the processes, the specification languages, etc.) one can get decidable PVP. These use techniques from games, automata theory and logic, notably finite-model properties/cutoffs, reduction to Petri nets, and the theory of well-structured transition systems~\cite{GS92,EN95,EsparzaFM99,EmersonK03LICS,CTTV04,KoLo13AAMAS,Delz14,AJKR14,DBLP:conf/icalp/AminofRZS15,AKRSV17}.
+
+
+The formal-verification community has placed emphasis on distributed models in which processes are stationary and interact by sending messages (e.g., in a broadcast or rendezvous manner) or by using guarded commands. Having said that, token-passing systems (i.e., the models in \cite{EN95,CTTV04,AJKR14,AKRSV17}) are the closest to agents --- both tokens and agents move along the vertices of graphs. However, we now argue that the model in these cited papers is incomparable with our model. First, the translation of their token-passing systems into agent systems would require that agents can read and write to variables at the vertices (this is to model the fact that processes have states). However, we assumed environments are static (because otherwise the PVP is quickly undecidable). Conversely, translating agent-systems into the cited token-passing systems requires that the agent-systems satisfy the following unrealistic assumptions (that are used in their decidability proofs): when an agent decides to move, an adversary decides which edge it takes, as well as to which of its internal states to transition (i.e., even the agent's memory may be scrambled). Not even the simplest robots from the distributed computing literature 
+(e.g., the robots from section~\ref{sec:illustration})  satisfy this double restriction.
+
+\fi
+
+\todo{remove next par?}
+\paragraph{Mobile agents in the distributed-computing literature.}
+The distributed-computing community has proposed and studied a number of models of mobile agents systems, which they call \emph{robots}, e.g., recently
+\cite{Bender20021,KKR06,GR08,Das13,Diks200438,Cohen05graphexploration,FIPPP04}. This literature is mostly mathematical, and {\em theorems from this literature are parameterised}, i.e., they may involve {graph-parameters} (e.g., the maximum degree, the number of vertices, the diameter), {memory parameters} (e.g., the number of internal states of the robot protocol), and the {number of robots} may be a parameter.
+Only recently has there been emphasis on formal analysis of correctness of robots in a parameterised
+setting. In these formal analyses, typically it is the {\em number of agents} that is treated as the parameter \cite{KoLo13AAMAS,KoLo13IJCAI,ABCTU13,MPST14,KoLo15,DBLP:journals/ai/KouvarosL16}. In contrast, we apply formal methods to the parameterised verification problem in which it is the {\em environment that is parameterised}.
+
+
+\paragraph{Formal verification of mobile-agent systems}
+
+% \sr{check for new papers since 2015, e.g., widder et al, FRIDA, waluciewicz}
+% Devi11
+
+The formal methods community has begun explicitly verifying and synthesising robot protocols (rather than distributed systems in general)~\cite{HMM11,Bonnet12,Berard13,ABCTU13,DBLP:journals/ipl/CourtieuRTU15,DBLP:conf/wdag/CourtieuRTU16,MPST14,KoLo15}.
+
+
+Some of these works only treat concrete values of the parameters~\cite{HMM11,Bonnet12,Berard13}. 
+% For instance, one such paper concludes
+% \cite[page 11]{Berard13}:
+% 
+% \begin{verbatim}
+% While our method is parameterised by both k [the number of robots]
+% and n [the size of the graph], it does not permit to verify whether a
+% [robot] protocol is valid for every k and n satisfying a particular
+% predicate.
+% \end{verbatim}
+%
+The papers that do treat arbitrary values of the parameters do not give sound and complete decision procedures for their systems, as we do. Indeed, \cite{ABCTU13,DBLP:journals/ipl/CourtieuRTU15,DBLP:conf/wdag/CourtieuRTU16} use a proof assistant to provide certificates (formal proofs) of impossibility results about robot networks and swarms; \cite{MPST14} uses the theory of games on graphs to synthesise a robot protocol for gathering $k$ robots on a ring of size $n$ (for small values of $k,n$), and relies on a hand-proven induction to prove that the synthesised robot protocol works for all values of the parameters $k,n$; and \cite{KoLo15} presents a sound technique that may identify cutoffs using a counter-abstraction in order to draw conclusions about certain swarm algorithms, independently of the number of swarming agents.
+%\sr{mention Allessio's work? they DO PV, but is it robots really?}
+
+% The quotation above continues:
+% \begin{verbatim}
+% Adapting recent advances in parameterised model checking
+% [citation elided] would be a nice way to obtain such results.
+% \end{verbatim}
+
+In contrast, our methodology, i.e., reducing parameterised verification of robot systems to satisfiability problems in logic, allows us to establish decidability, i.e., sound and complete algorithms for solving the parameterised verification problem for certain classes of robots and environments.
+% and have succeeded where other methods and ``recent advances'' (discussed in the previous subsection) have not.
+
+
+
+
+\paragraph{Automata on words, trees, and graphs}
+Our model of a single agent protocol is similar to graph-walking automata with $\msol$-tests~\cite{BlEn97}. The proof idea of Lemma~\ref{lem:zeta} (which compiles agents into formulas over graphs) is inspired by \cite{BlEn97,EnHo06}. Other classical notions of automata on graphs (e.g., \cite{BlHe67}) are often too expressive and lead to undecidable parameterised verification problems (see the proof of Theorem~\ref{thm:undec-1robotgrid}). Distributed graph automata~\cite{DBLP:conf/lics/Reiter15} are a model of computation that mimic synchronous distributed algorithms and are used as graph acceptors, and are equivalent to \msol on finite graphs.
+
+% On the other hand, when restricted to words and trees, there are classical and robust notions of automata, i.e., word- and tree-automata \cite{comon2007tree}. A single robot protocol operating on a word (or tree) can be thought of as a two-way automaton (tree-walking automaton). Two way-automata are classical objects that only define the regular languages but are exponentially more succinct \cite{HMU03}. \sr{where is succinctness proven} Tree-walking automata, and their corresponding regular expressions, have been studied for their own sake \cite{Boja08}, in formal verification, e.g., \cite{Vardi98,BLMV08,Obdr13}, and as tree pattern-matching tools \cite{BrWo00,Schw12}. We use them in Theorem~\ref{thm:exptime} to reason about a single robot on an unknown tree.
+
+% \sout{The walking-automata just discussed have a single moving head. Similarly then, multiple (finite-state) robots operating on words resemble multi-head automata, i.e., read-only Turing machines with multiple heads and a single tape. Indeed, it is not hard to see that the universality problem for such automata (i.e., decide whether a given multi-head automaton accepts all words) is equivalent to the parameterised verification problem for multiple robots operating synchronously on line-environments with the ability to communicate their local states to each other, and with reachability tasks (cf. the proof of Theorem~\ref{}). On the other hand, the restrictions we provide on robot systems that ensure decidability of PV thus yield a class of multi-head automata with decidable universality.\sr{CHECK}
+% Logical aspects of multi-head automata have been studied in \cite{}.}
+
+
+
+
+% \paragraph{Synthesis}
+% Synthesis, the ``big-brother'' of verification, is the problem of automatically producing systems (in our case, robots) that correctly perform the required tasks. There is a smattering of work on parameterised {\em synthesis} of distributed systems (not neccessarily robot systems). In the AI literature this is called {\em generalised planning}:
+% \cite{GFPS10,HuG11,GMRS16IJCAI}. These papers deal with one agent in a parameterised environment. In the verification literature \cite{KJB13CAV,KJB13VMCAI} show \todo{???}
+% 
+% \todo{discuss \cite{MPST14} and \cite{KoLo15}.}
+
+%\item Regular expressions for two way automata \cite{BrWo00}
+%\item Tree walking automata, graph-walking automata, and multi-head TWA/GWA \cite{Boja08,Vardi98}
+%\item graph walking automata \cite{BlHe67}
+%\item reversal bounded multi-counter machines \cite{Ibarra78JACM}
+%\sr{should we mention bounded context-switching multi stack machines \cite{QaRe05}?}
+%\item stack ordered machines \cite{}
+%\item timed automata with stopwatches \cite{}
+%\item {In some work, this setting is described as being {\em online}, in the sense that the robots have to react to the environment as they discover it, rather than {\em offline} in which they can plan to achieve their task on a fixed environment \cite{}.}
+
+%For a detailed discussion relating these models (especially the token-passing systems) to multi-robot systems, see the Related Work in \cite{Rubin15AAMAS}.
+
+
+
+
+
+
+%
+%\begin{itemize}
+%\item Undecidable cases:
+%\begin{enumerate}
+%\item 2 robots on a line, synchronous time, each robot can test itself or the other robot for being at the left and right end of the line, reachability objective, (2CM).
+%\item 2 robots on a tree, synchronous time, each robot can test the position of any other robot (is it at the root? is it at a leaf? is it at the $i$th child of its parent?), reachability objective (2CM).
+%\item 3 robots on a tree, synchronous time, robots can only move down tree, robots have collision detection, robots ca test positions (ie., each robot can detect whether a given robot is in the left-child, the right-child, the root, or a leaf),
+%reachability objective (PCP problem).
+%\item 10 robots on a line, asynchronous time, collision detection, left/right position test, reachability objective (simulate synchrony).
+%\end{enumerate}
+%
+%\item Decidable cases:
+%
+%\begin{enumerate}
+%\item multiple robots on tree-like structures, asychronous time, bounded context-switching, MSO-tests, MSO-objectives (generalises AAMAS paper). \sr{A slight generalisation is this is also decidable: only runs that are considered are those that can be split into $N$ phases (for some fixed $N$), and at each phase there is some subset of robots $F$ that are frozen (i.e., they do not act) and every robot not in $F$ can move as it likes, but can only test the position of itself and the position of robots in $F$ (i.e., robots not in $F$ can not test the positions of other robots not in $F$).}
+%\item multiple robots on a line or a grid, synchronous time, reversal bounded movement, collision detection.
+%\item multiple robots on a tree, synchronous time, only the largest numbered robot not at the root can move towards the root, robots can test positions (adding collision detection results in undecidability, see above).
+%\item one robot on a tree, with MSO tests, and a finite set of nested pebbles that it may drop and pickup.
+%\end{enumerate}
+%
+%\item Unclear cases:
+%\begin{enumerate}
+%\item nested automata
+%\end{enumerate}
+%\end{itemize}
+
