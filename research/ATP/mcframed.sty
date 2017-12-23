@@ -1,0 +1,58 @@
+%%
+%% This is file `mcframed.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mcframed.dtx  (with options: `package')
+%% Copyright (C) 2013 by Alejandro Melo <a.melo.mmuu@gmail.com>
+%% and Michael Kebrt <support@wordtolatex.com>
+%% ---------------------------------------------------------------------------------
+%% 
+
+\def\mcframedversion{1.0}
+\def\mcframedpackagename{mcframed}
+\def\mcframeddate{2013/05/24}
+\def\mcframedrevision{0}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mcframed}%
+[\mcframeddate\ %
+\mcframedversion: \mcframedpackagename]
+\newcommand*\mc@PackageError[1]{\PackageError{\mcframedpackagename}{#1}}
+\PassOptionsToPackage{framemethod=tikz}{mdframed}
+\RequirePackage{mdframed}
+\RequirePackage{etoolbox}
+\RequirePackage{xparse}
+\RequirePackage{calc}
+\newmdenv[%
+   skipabove=\f@baselineskip,
+   skipbelow=\f@baselineskip,
+   hidealllines=true,
+   align=center
+]{mc@frame}
+\newlength{\default@inner@width}
+\newlength{\default@outer@width}
+\global\deflength{\default@outer@width}{\textwidth}
+\global\deflength{\default@inner@width}{\default@outer@width-20pt}
+\newlength{\inner@margin}
+\definecolor{default@color}{cmyk}{0.2,0,0.15,0}
+\DeclareDocumentEnvironment{mcframe}
+{D[]{\default@outer@width} D(){\default@inner@width} D<>{default@color}}{%
+  \ifdimless{#1}{#2}{%
+  \mc@PackageError{'<width>' is smaller than '<text width>' }\expandafter\@@end}
+  {%
+    \deflength{\inner@margin}{(#1-#2)/2}
+    \mdfdefinestyle{mc@style}{userdefinedwidth=#1,innerleftmargin=\inner@margin,%
+       innerrightmargin=\inner@margin, backgroundcolor=#3}
+    \begin{mc@frame}[style=mc@style]
+    }%
+  }%
+{%
+\par\strut\par
+  \unskip\unskip\setbox0=\lastbox
+  \vspace*{\dimexpr\ht\strutbox-\baselineskip\relax}
+  \end{mc@frame}%
+}
+\endinput
+%%
+%% End of file `mcframed.sty'.

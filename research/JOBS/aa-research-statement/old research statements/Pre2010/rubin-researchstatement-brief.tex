@@ -1,0 +1,149 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\input{rubin.macro}
+
+\theoremstyle{plain} \numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{finalremark}[theorem]{Final Remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}{Question} \topmargin-2cm
+
+\textwidth6in
+
+\setlength{\topmargin}{0in} \addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+
+\setlength{\oddsidemargin}{0in}
+
+\oddsidemargin  0.0in \evensidemargin 0.0in %\parindent0em
+\pagestyle{plain}
+
+\lhead{} \rhead{December 2010}
+\chead{{\large{\bf Sasha Rubin}}} \lfoot{} \rfoot{} \cfoot{\thepage}
+
+\begin{document}
+
+%\raisebox{1cm}
+\thispagestyle{fancy}
+
+%begin general intro
+\noindent
+
+\subsection*{Brief research statement for general audience}
+High-school students can be taught how to decide whether a given polynomial (with integer coefficients) has real roots. On the other hand the same problem for integer roots (Diophantine analysis) has occupied mathematicians since at least 800BCE. Why is real-arithmetic so much easier than integer-arithmetic?
+
+One answer to this question relies on results from the foundational days of computer science.
+The most significant step was surely the formalisation, in the 1930s, of the notion of an algorithm. This allows one to prove (as Kurt G\"odel essentially did) that there is no algorithm for deciding the truth or falsity of statements\footnote{Precisely, the statements should be written in the first-order logical language. This allows quantification over elements and in particular one can express that a given equation or inequality has a solution.} of integer arithmetic.
+On the other hand Alfred Tarski proved that there is such an algorithm for real arithmetic. In general then, a coarse measure of the complexity of a problem is whether or not it can be solved by an algorithm.  If `yes', the problem is called {\em decidable} and we think of it as simpler than any undecidable problem.
+
+Theory in computer science serves the task of identifying possibilities and limitations. This has been a motivating theme in my work. Here is the shortest possible introduction, see [Rubi08] for more. Finite automata are models of computation that, informally speaking, can only scan their input. You use one every time you search for a word in a text file.
+It might be surprising then that automata have been used to show that certain sophisticated problems are decidable. Thus, although questions about integer roots of polynomials are generally undecidable, one can use automata to show, for instance, that problems of integer linear arithmetic (such as integer linear programming) are decidable. Of course there are algorithms for integer linear arithmetic that do not use automata. However, in some areas the {\em only} known algorithms come from automata. Anyway, the {\bf central idea} is this: if you can use automata to describe both the objects you are interested in (real numbers, trees, \dots) and the operations on these objects (arithmetic, graph theoretic operations, \dots) then certain problems of your system are decidable.
+
+%This is a broad area of theoretical computer science that deals with discrete and continuous mathematics. The focus is on reasoning about the structure rather than simulation. What systems can be approached with this technique? Some examples include solving arithmetical constraints over $(\N,+)$ and $(\mathbb{R},+)$ \cite{BoWo95, Klae03}; automatic groups from computational group theory \cite{CEHLPT92}; decision methods for various logical theories (S1S,S2S) \cite{Thom90}; querying of databases \cite{BeLi02}; formal verification \cite{VaWo94}.
+
+
+%\subsubsection*{Future work}
+
+%{\bf Decidability via automata:} 
+%	There are many natural structures known to have decidable FO-theory by classical methods such as effective quantifier elimination. An important example mentioned in the introduction is real arithmetic $(\R,+,\times)$. It is not known if this structure is automatic. In fact, automata don't figure into the proof of its decidability at all. This is in contrast with other arithmetics such as $(\N,+,<)$ which is automatic (coding integers as finite binary strings), $(\N,\times)$ is automatic (coding integers as finite trees according to their prime decomposition), $(\R,+,<)$ which is automatic (coding reals as infinite binary strings), $(\Q,+)$ which is automatic in the presence of an advice word $1\#10\#11\#100\#101\#...$ (coding rationals as finite binary strings in factorial base  $\{n!\}_n$). 
+Of course I am interested in identifying the limitations of the automata theoretic approach to decidability. For instance, do automata give any insight into Tarski's result (that real arithmetic $(\R,+,\times)$ has decidable first-order theory)? Although I suspect the answer is `no', only small steps have been taken in this direction. 
+%	On the positive side, there are natural extensions of the notion of automata that can still be used to show decidability.
+%	A collaboration in 2009 with undergrad students has yielded a basic result that seems to have been overlooked. A sample result: we extended the Myhill-Nerode theorem (a basic characterisation of automata in the language of universal algebra) to tree automata with advice.
+On the possibilities side, I am interested in applications of the central idea to other fields.
+ Here are two instances at the front of my mind:
+\begin{enumerate}
+%\item In enumerative combinatorics can anything systematic be said about the generating functions that count the number of paths of a given length through infinite graphs that can be described by automata (specifically graphs in the Pushdown hierarchy \cite{Thom03})? 
+\item
+What sort of (logical) formalism would suit the computational biologists' tasks of reasoning about biological systems? The logic should be expressive enough to answer interesting biological questions, but still computationally tractable so as to be useful.
+
+\item In [BRV04] we presented an optimal solution to the problem of deciding whether a Markov chain satisfies properties expressed by (alternating) automata. An implementation could be used to automatically prove correctness of probabilistic systems arising in, for instance, communication protocols.
+\end{enumerate}
+
+\end{document}
+
+\bibliographystyle{alpha}
+\bibliography{/Users/sasha/Dropbox/texfiles/research}
+\end{document}
+
+
+ \subsubsection*{Automatic Structures}
+
+Specifically, I have investigated {\it automatic structures}. These are structures such as graphs, arithmetics, and algebras that can be described by automata (in the sense that the elements can be coded by words/trees so that the basic relations and functions are computable by finite automata operating synchronously on their inputs).  They were introduced by Khoussainov and Nerode in the mid 90's after the success of automatic groups, a related notion central in computational algebra (see \cite{CEHLPT92}).
+The {\em fundamental theorem of automatic structures} states that there is an effective procedure evaluating every FO-formula of an automatic structure.
+Thus, from a theoretical vantage, these are mathematical objects that can be queried algorithmically. 
+%There are several standard notions of automata - the four main ones operating on finite/infinite words/trees - each yielding a corresponding class of automatic structures.
+A number of fundamental questions immediately present themselves. 
+
+{\em Problem 1.}  How can one build new automatic structures from old? 
+
+{\em Problem 2.}  How do we tell if a structure is not automatic?
+
+{\em Problem 3.}  How can we extend the fundamental theorem? 
+%There are three parameters we can play with: increase the expressiveness of the logical language, enlarge the class of structures, allow partially correct or probabilistic algorithms. 
+
+I have contributed answers to each of these problems \cite{Rubi04, KNRS04, KRS05, BKRu08}. I have written a survey aimed at logicians \cite{Rubi08}, co-authored one placing automatic structures in the larger picture of model checking \cite{BaGrRu11}, and a survey for automata theorists (as a chapter in the forthcoming handbook {\it Automata: from mathematics to applications} to be published by the European Mathematical Society).
+
+\subsubsection*{Formal Methods and Verification}
+
+A fundamental problem in computer science is that of ensuring that a system satisfies a particular property. Moshe Vardi, Doron Bustan and I \cite{BRV04}  considered the complexity of checking that a probabilistic system (modeled by a finite-state discrete-time Markov chain) satisfies properties expressed by automata operating on infinite words. The sorts of properties that can be expressed extend those of linear temporal logic, a typical example is `Does the Markov chain almost surely enter this state infinitely often'? We presented an optimal algorithm that checks whether a given Markov chain satisfies a specification given by an alternating B\"uchi automaton, thus extending known work on linear temporal logic \cite{CoYa90}.
+
+
+\subsubsection*{Finite Model Theory}
+Model theory concerns logical properties of mathematical structures. The restriction to the class of finite structures -  finite model theory -  is a field that has intimate connections with theoretical computer science via descriptional complexity. Typical results exhibit a correspondence between a complexity class (such as NP) and a logic over finite structures (such as existential second order).
+
+In work with no immediate relation to automata, Tobias Ganzow and I compared the expressiveness of two extensions of monadic second-order logic (MSO) over the class of finite structures. These are
+
+\begin{itemize}
+\item counting monadic second-order logic (CMSO) allowing the expression of queries like `the number of elements in the structure is even', and
+\item order-invariant MSO, allowing the use of an additional binary predicate, not contained in the signature of the queried structure, that must be interpreted as an arbitrary linear order on its universe.
+\end{itemize}
+\noindent
+While it is straightforward that every CMSO formula can be translated into an equivalent order-invariant MSO formula, the converse had not yet been settled. Courcelle conjectured that, in general, order-invariant MSO is stronger than CMSO \cite{Cour96}. We affirmed this by presenting a simple class of structures that is order-invariantly definable in MSO but not definable in CMSO \cite{GaRu08}.
+
+
+\begin{center}
+\subsection*{Future projects}
+\end{center}
+\noindent
+Besides the fundamental questions in automatic structures that I've already mentioned, here is a list of planned projects.
+
+\noindent
+{\bf Other models of automata:}  Together with Bakhadyr Khoussainov, Pavel Semukhin and Frank Stephan,
+I want investigate other models of automatic structures.
+Most exciting is automata with oracles. An {\it oracle} refers to a fixed infinite word or tree that the automata have access to. Although it is still unknown whether or not the group of rationals (Q,+) is automatic or not, it is automatic in the presence of a reasonably simple word oracle: coding rationals in base-factorial $\{n!\}_n$ can be achieved with the oracle 1\#10\#11\#100\#101\#... (Stephan, see \cite{Nies}). This oracle has decidable monadic second-order theory (in the signature of order and labeling predicates), which is enough to guarantee that any automatic structure based on this oracle has effective FO query evaluation. In particular, this gives an automata theoretic proof that $(\Q,+)$ has decidable FO theory. %(the standard proof uses effective quantifier elimination).
+
+It turns out that certain structures, such as the random graph, are not (finite word/tree) automatic even in the presence of oracles \cite{CoLo06} - this uses an {\it oracle independent} proof technique. Others techniques dealing with infinite word/tree automatic structures are needed. On the other hand, a proof that the rational group is not automatic would have to be {\it oracle dependent}. This distinction promises to yield deeper insights into the interplay between automata and structures.
+
+\noindent
+{\bf Elementary FO-theory:} Currently there are two classes of automatic structures whose members have elementary decision procedures via automata: structures of bounded degree \cite{Lohr03} and certain arithmetics such as $(\N,+)$ and $(\N,\times)$. I would like a unified reason that at least explains these seemingly disparate cases.
+
+\noindent
+{\bf Learning theory:} Together with Pavel Semukhin, Frank Stephan and Thomas Zeugmann, I would like to explore the connections between automatic structures and learning theory \cite{gold67, angl80}. A starting point is to consider various models of learning in the limit (monotonic, conservative, \ldots) for regularly indexed regular languages: $\{L_a \st a \in A\}$ such that index $A$ and relation $\left<a,x\right>$ with $x \in L_a$ are regular (borrowing the framework of uniformly computable hypothesis spaces/indexed families \cite{angl80, LaZe95}).
+
+\noindent
+{\bf Other applicable domains:} For the long term, I am excited by applications of the basic paradigm to domains outside of my expertise. For instance, in enumerative combinatorics can anything systematic be said about the generating functions that count the number of paths of a given length through infinite graphs that can be described by automata (specifically graphs in the Pushdown hierarchy \cite{Thom03})? Also, I am keen to interact with computational biologists to find out what sort of logical formalism would suit their tasks \cite{Hare04, FiHe06}.
+
+%How far can the `do it with automata principle' be pushed to dynamical systems, or to querying biological systems \cite{AMPWM05}?
+
+%move to teaching
+%I am also in the process of broadening my knowledge about current aspects of theoretical computer science. To this end I am engaged with a PhD candidate, Nick Hay, at the University of Auckland in learning recent advances in theoretical computer science; this consists of discussing papers that have won the G\"odel prize in the hope of finding a fruitful PhD topic.
+
+%{\it Applications} of automata in practical computer science include natural language processing \cite{RoSh97} \cite{Mohr96}, compiler construction \cite{ASU86},
+%representation and indexing of very large natural language texts [] and speech recognition [Mohr], and formal verification \cite{VaWo94} \cite{Holz03}. However, decision procedures based on automata (S1S, S2S) are, at first sight, not suitable for real applications because of their non-elementary complexity. There are two broad approaches to tackling this barrier. First, one can search for {\it sublogics} for which we can give better upper bounds. For instance, linear temporal logic is a fragment of S1S that is decidable in single exponential time in the size of the query \cite{VaWo94}. Second, and closer to automatic structures, one can focus on those {\it structures} that have better complexity. For instance, optimally solving arithmetical constraints expressible in the full first-order language of $(\N,+)$ can be done using automata \cite{BoWo95} \cite{Klae03}.
+
+%A recent Dagsthul Seminar 'Algorithmic-Logical Theory of Infinite Structures', aimed at bridging finite model theory and classical model theory, was motivated by the need to understand typical objects of computer science such as databases, stacks, XML documents, and communication buffers whose sizes can usually not be bounded and are modified during runtime.
+%I gave a keynote address on automatic structures.

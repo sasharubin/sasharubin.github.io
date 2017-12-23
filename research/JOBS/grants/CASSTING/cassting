@@ -1,0 +1,35 @@
+CASSTING will develop a *novel approach* for analysing and =designing collective adaptive systems= in their *totality*, by *setting up* a game theoretic framework. 
+
+Here components are viewed as players, their behaviour is captured by strategies, system runs are plays, and specifications are winning conditions.
+
+The design of collective adaptive systems, as they occur, for example, in home automation, *health care*, and many scenarios of mobile communication, raises fundamental challenges: [pillars of modern life] These systems are distributed, with heterogeneous components interacting continuously among each other and with their environments, components may work collaboratively or as adversaries, they have to adapt over time, they are dynamic in the sense that components can come into existence or vanish, and their specification usually involves multi-dimensional quantitative objectives. [undecidable] [start very big]
+
+Available methods (such as model-based verification and quantitative model-checking) only address *selected aspects* of collective adaptive systems.[no one can do it till now] [assumptions: apples to apples]
+
+[these tools have a defficiency, i don't. also, we comapre to these tools because we are also formal we can do better in all aspects. not a tradeoff.]
+
+[how to make the other person think what you want to think without saying something that can go to court. not actionable. say the least one has to.]
+
+The game theoretic approach of CASSTING is comprehensive and has already proved very successful in *simpler scenarios* such as automatic controller synthesis.
+[talking at two levels]
+
+[gives a wrong impression in a roundabout way]
+
+[make sure reviewers are doing a good job, then you dont have to sell]
+
+The CASSTING research will lift this method to the level of collective adaptive systems and provide *efficient* algorithmic analysis *methods* as well as tools for the automatic synthesis. 
+
+In particular, the simple scenario of zero-sum games is extended to cover a large variety of non-zero-sum games, and concepts of algorithmic game theory are generalised to infinite-duration games.
+[present tense]
+
+The CASSTING teams have made essential contributions in the area and are thus *uniquely* qualified for this project. 
+
+The CASSTING research will strengthen the leading role that Europe already has in this field. 
+
+The proof of concept will focus on the *paradigmatic* application areas of home automation and smart houses, based on case studies provided by the two internationally recognised industrial partners of the consortium.
+--
+[talk at two levels. promise the moon for the general reviewer, leave room in the expert reviewer's mind that what we say is true "in court".]
+--
+[birds flock with their own species and humans with their worth/similar values]
+
+[in communication, what's important is what is in the other person's mind]

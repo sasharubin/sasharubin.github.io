@@ -1,0 +1,180 @@
+Big splash: effiicent simulation of natural phenomena at extremely large scales
+
+Computational simulations of natural phenomena are essential in science, engineering, product design, architecture and computer graphics applications.
+
+X is essential in Y.
+
+However, X + Z is still unfeasible.
+
+State of the art is too fragile, too costly or to ocrude to capture ...
+
+Doing W will improve the situation, but progress will only be incremental until address the problem at its source.
+
+I propose two main approaches to this problem of ...
+
+My first avenue of research combines A and B: I will investigage ...
+I will also develop methods for ...
+
+My second main research direction is ...: we will do X with Y.
+
+The novel approaches resulting from this work will undoubtedly synergize to enable 
+XX and understanding of complciated natural and biliogical process that are presently unfeasible to compiute.
+
+PICTURE on cover of important journal.
+
+A. extended synopsis of the sci proposal (5 pages)
+TITLE
+(repeat abstract more or less)
+
+SOA
+[1 par introducing the main method for SoA]
+The challenge is...
+
+subheadings, in each give mostly your own contributions to SoA.
+
+OBJECTIVES
+the overall goal of this proeject is to \bf develop new algorithms for XXX that require dramatically less computation 
+than state of the art (!compare to SOA). We hope to accomplish this goal by investigating two key hypothesis.
+
+\box{Hyp 1: We can improve simulation efficiency by utilizing as much analytical information as possible. [say a little more]}
+\box{\Hyp 2: We can speed up simulation manipulation tasks by re-using existing simulation data. ...we can do XX to make this process 
+dramatically more interactive.}
+
+[use dramatic words]
+
+Building on these hypotheses, we can formulate the aims of this project:
+
+\box{Aim 1. Develpo efficient computational representations of natural phenomena inspiured by closed-form solutions.
+Aim 2. Develop algorithms for intelligently re-using exisint simulation data}
+
+[efficient, inspired by, intelligently]
+
+Plan of execution: we will achieve htese aims through specifically-targeted projects.
+Project 1 develops XX (aim 1)
+Project 2 develops XX (aim 1)...
+
+Project x: title
+intro to project
+
+subheadings [don't really tell a story though]
+...
+Standard methods are bound/limited by XXX 
+Our proposed approach is immune to XXX because 
+The simplicity of this strategy will likely lead to rapid adoption by practitioners.
+
+This approach should extend to XXX, and we plan to further invesitage problems on YYY. Our preliminary 
+results show remarkable promise: XXX.
+
+Summary, timeline, and risk management: we will first work on wavefront simulation, and subsequently focus on ...
+X and Y will be pursude in parallel.
+Preliminary results are promising, but breakthroughs will occur even if we only meet our goals halfway. for example, finding XXX is imposibbile, but we found that YY still
+dramatically outperform SoA.
+//
+We plan to advance the soa on XX by considering Y and clever use of Z. Each stagfe of this project will be implemented sequentially, comprising a single PhD student disdertation. The chosen student has a strong background in XXX. and has already produced prominsing results... The biggest difficulty is XX. Potential solutions are XX. 
+Regardless, these ideas will be valid for computer graphics, where details and plausability are the priority.
+
+[Show that you have a track record of impriving soa, even if goals are very lofty]
+
+[At the end of each subheading, is a sentence saying how great/novel the idea is]
+these techniques are entirely novel; no other methos is able to iXXX.
+this strategy will be far more efficient than soa which YYY.
+The result of these techinuqes will be several novel and cost-effective ways to ZZZ.
+None of these ideas have been explored before (ttbook), especially for complicated YYY. 
+These new approaches could inspires servarl new approaches.
+Ours will be the first method for computing ... and it will be useful to the fields of AA and YY.
+
+TIME PLAN
+th85% of time to project, 15% supervising gtroup memebers who have independent fellowships. 
+require two post-docs, 2 phd students per year for 5 years. phd students will carry out projects 2 and 3.
+projects 1 and 4 require postdocs with strong existing  skills in XXX.
+
+REFERENCES
+own name in bold
+
+CV
+education 
+2010 Phd
+2004 BsC
+Current 
+2011 -
+previous
+2008 - 2009
+Fellowships and awards
+supervision of grad students and postdocs
+teaching activities
+institutional responsibilities
+commissions of trust (membership of technical papers committees, reviewer... 2014 xxx, 2011 - xxx
+membershipof scientific socieities
+major collaborations
+2012 - name (afffil), topic
+
+Section c
+early achievements track record
+overview: XX pubs, YY cites, ZZ hindex, Phd in Dec 2010, Fac position immed afte rPhd, x pubvs in XX, 3 pubs in YY (top journal in computer graphics)
+
+5 rep publications (citation num excludes self citation; mention if without phd supervisor)
+this paper ... 
+
+invited presentations at peer-reviewed confs
+
+other selected invited lecs
+
+ptrizess and awards
+
+------------------------------------------------------------------------------------------
+B2 (15 pages)
+fleshed out version of B1
+(used almost all 15 pages, incl refs)
+
+Section a. so and objectives
+SOA 2 pages.
+PI's contribution to the field: I have published xx papers in the field, bla bla bla. organised course at SIGGRAPH ...
+
+OBJECTIVES
+hypothesis, aims
+
+Section b. methodology
+
+project X.
+...
+
+Summary
+We plan to advance the soa in XX by YY.
+
+Each stage of this project will be implement by my phd student.....
+i expect that each major step of this project will result in a stong pub for this student.
+
+Risk management
+We have already laid the groundwork for several of these ideas and have confidence in their feasibility.
+while these prels are promising, we believe breakthroughs will pccur even if 
+we only meet our goals partway. e.g., ...
+//
+furhter along, we may encounver difficulty XX because YY. howeover, our initial investigations indidicate that 
+we may be able to safely interpret XXX as a guideline instead of a hard constraint.
+
+EVAL criteria
+below, i list a few concrete examples of challenging feats that will be possible at the end of this project. 
+our achievements of these goals can be viewed as a measuring stick for our research progress.
+Simulating the impossible: this project will enable simultaions of phenon that are so exceedingly 
+complex that they are off-limits fo rcurrent algorithms. some exampels are ...
+//
+our approach will fundamentally change the current workflow for xxx. reduce time... enable XXX. 
+
+IMPACT and RELEVANCe
+scient impact: this proejct will make a strong impact on field of XX. 
+1. it has potential to solve XX or outpeform YY. 
+2. each proposed solution comres from an unxepcted direction, which will inspire research to explore many 
+creative new techniques in num analysis, comp physics, ...
+
+This work will have sig sic impact outside of comp graph. 
+
+Impact on career: the success will attract attention of many experts in the field, because it solves servarl difficult problems 
+with nondstandard approaches. this positive social impact can help bring more strong international rese to the institute. impact careers of 2 phds.
+the reserachers will learn many imporatnc concepts in phytiscs,geomet and num analy. 
+
+Social impoact:
+make life easier for envineers, designers, artists, causal internet users. students.
+also facitlite or inspire a earning for scinetific understanding. 
+influence VR, movies, ...
+
+[expect average of 4 pubs per year

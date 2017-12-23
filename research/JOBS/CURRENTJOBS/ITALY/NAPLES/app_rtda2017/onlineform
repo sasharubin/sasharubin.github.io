@@ -1,0 +1,336 @@
+'17 CORSO DOTTORATO "GAMES ON GRAPHS" UNINA. 
+'15/16 ASSISTENZA DIDATTICA CORSO "TECNICHE DI SPECIFICHE", LAUREA MAGIST. INFORMATICA, UNINA. TITOLARE CORSO PROF.MURANO.
+'10 CORSO LAUREA "LOGIC AND COMPUTATION", U. CAPE TOWN, 
+'08/09 CORSO LAUREA "CALCULUS FOR ENGINEERS" (5 VOLTE), CORNELL U.
+'09 CORSO DOTTORATO "LOGICAL DEFINABILITY AND RANDOM GRAPHS", CORNELL U.
+'07 CORSO LAUREA "DISCRETE STRUCTURES IN MATHEMATICS AND COMPUTER SCIENCE", U. AUCKLAND.
+'07 CORSO LAUREA "MATHEMATICAL FOUNDATIONS OF SOFTWARE ENGINEERING", U. AUCKLAND.
+'06 CORSO DOTTORATO "LOGIC AND COMPUTATION IN FINITELY PRESENTABLE INFINITE STRUCTURES", ESSLLI 06.
+'03 CORSO LAUREA "INTRODUCTION TO FORMAL VERIFICATION", U. AUCKLAND.
+'02/03 CORSO LAUREA (2 VOLTE) "AUTOMATA THEORY", U. AUCKLAND.
+'00/01 CORSO LAUREA "PRE-CALCULUS", U. WISCONSIN.
+'15 CO-SUPERV. STUDENTI DOTTORATO PROF. MURANO (V.MALVONE, A.DI STASIO, L.SORRENTINO)
+'07 CO-MENT. STUDENTI DOTTORATO PROF. GRADEL (TOBIAS GANZOW), RISOLVENDO UN PROBLEMA APERTO DA 12 ANNI.
+'17 CO-SUPERV. TESI: A.BARRIERE, UNINA.
+'17 CO-SUPERV. TESI: P.LAMBIASE, UNINA.
+'12 CO-SUPERV. TESI: S.CHAUBAL, IST AUSTRIA
+'09 SUPERV. TESI: 6 STUDENTI, CORNELL U.
+
+
+'17-OGGI: POSTDOC PRESSO U. NAPOLI, DIETI, LAB. ASTREA(RESP. PROF. MURANO).
+'15-17 POSTDOC BIENNALE PRESSO U. NAPOLI, DIETI, MARIE CURIE FELLOW INDAM “F. SEVERI”. COLLAB. PROF. MURANO.
+'14/15 POSTDOC BIENNALE "RIGOROUS SYSTEMS ENGINEERING (RISE)" PRESSO TU WIEN/TU GRAZ.
+'14/15 POSTDOC BIENNALE "RIGOROUS SYSTEMS ENGINEERING (RISE)" PRESSO TU WIEN/IST AUSTRIA.
+'10/12 HONORARY RESEARCH FELLOW BIENNALE, U. AUCKLAND.
+'11 VISITING RESEARCHER SEMESTRALE, U. TEL AVIV.
+'10 VISITING LECTURER SEMESTRALE, U. CAPE TOWN.
+'09/10 VISITING RESEARCHER BIENNALE, U. AUCKLAND
+'08/09 VISITING ASSISTANT PROFESSOR BIENNALE, CORNELL U.
+'04/07 POSTDOC TRIENNALE, FRST NEW ZEALAND SCIENCE AND TECHNOLOGY (NZST) FELLOWSHIP, U. AUCKLAND.
+
+
+1) Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin. “Verification of Broad-
+casting Multi-Agent Systems against an Epistemic Strategy Logic”. In: International Joint Conference
+on Artificial Intelligence (IJCAI 2017). 2017. DOI 10.24963/ijcai.2017/14
+
+2) Blai Bonet, Giuseppe De Giacomo, Hector Geffner, and Sasha Rubin. “Generalized Planning: Non-
+Deterministic Abstractions and Trajectory Constraints”. In: International Joint Conference on Artificial
+Intelligence (IJCAI 2017). 2017. 
+
+3) Raphael Berthon, Bastien Maubert, Aniello Murano, Sasha Rubin, and Moshe Vardi. “Strategy logic
+with imperfect information”. In: IEEE Symposium on Logic in Computer Science (LICS 2017). 2017.
+DOI 10.1109/LICS.2017.8005136
+
+4) Bakhadyr Khoussainov, André Nies, Sasha Rubin, and Frank Stephan. “Automatic Structures:
+Richness and Limitations”. In: Logical Methods in Computer Science 3.2 (2007).
+DOI 10.2168/LMCS-3 
+
+5) Julian Gutierrez, Aniello Murano, Giuseppe Perelli, Sasha Rubin, and Michael Wooldridge. “Nash
+Equilibria in Concurrent Games with Lexicographic Preferences”. In: International Joint Conference
+on Artificial Intelligence (IJCAI 2017). 2017. DOI 10.24963/ijcai.2017/148
+
+6) Benjamin Aminof and Sasha Rubin. “First Cycle Games”. In: Information and Computation (2016).
+DOI http://dx.doi.org/10.1016/j.ic.2016.10.008
+
+7) Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger. “Automatic Verification of
+Multi-Agent Systems in Parameterised Grid-Environments”. In: Proceedings of the 2016 International
+Conference on Autonomous Agents & Multiagent Systems (AAMAS 2016). 2016, pp. 1190–1199.
+
+8) Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger. “Prompt Alternating-Time
+Epistemic Logics”. In: Principles of Knowledge Representation and Reasoning: Proc. of the 15th
+International Conference, (KR 2016). 2016, pp. 258–267.
+
+9) Benjamin Aminof and Sasha Rubin. “Model Checking Parameterised Multi-token Systems via the
+Composition Method”. In: Proc. 8th International Joint Conference on Automated Reasoning, (IJCAR
+2016). 2016, pp. 499–515. DOI 10.1007/978-3-319-40229-1_34
+
+10) Andrey Grinshpun, Pakawat Phalitnonkiat, Sasha Rubin, and Andrei Tarfulea. “Alternating traps in
+Muller and parity games”. In: Theoretical Computer Science 521 (2014), pp. 73–91.
+DOI 10.1016/j.tcs.2013.11.032
+
+11) Sasha Rubin. “Parameterised Verification of Autonomous Mobile-Agents in Static but Unknown
+Environments”. In: Proc. of the International Conference on Autonomous Agents and Multiagent
+Systems, (AAMAS 2015). 2015, pp. 199–208. 
+
+12) Sasha Rubin. “Automata Presenting Structures: A Survey of the Finite String Case”. In: Bulletin of
+Symbolic Logic 14.2 (2008), pp. 169–209.
+
+
+
+
+
+
+
+Doctor of Philosophy in Mathematics and Computer Science, University of Auckland, 7 May 2007, best thesis in faculty of science
+Bachelor of Science, majored in Mathematics and Computer Science, 11 December 1996, University of Cape Town, Dean's merit list
+Master of Science, Department of Mathematics and Department of Computer Science, 1998, University of Auckland, first class.
+
+2015-2017 PostDoc Biennale (Computer Science), Università di Napoli “Federico II”, Borsa di
+studio Marie Curie dell’ INdAM “F. Severi”., Ricerche condotte in collaborazione con il Prof.
+Aniello Murano e il suo gruppo di ricerca.
+
+2014-2015 PostDoc Annuale (Computer Science), TU Wien e TU Graz, In collaborazione con
+Helmut Veith e Roderick Bloem e i loro gruppi di ricerca.
+
+2012-2014 PostDoc Biennale (Computer Science), TU Wien e IST Austria, In collaborazione con
+Helmut Veith e Krishnendu Chatterjee e i loro gruppi di ricerca.
+
+2010-2012 Honorary Research Fellow Biennale (Computer Science), University of Auckland, In
+collaborazione con Bakhadyr Khoussainov e il suo gruppo di ricerca.
+
+2011 Visiting Researcher Semestrale (Computer Science), University of Tel Aviv, In col-
+laborazione con Alexander Rabinovich.
+
+2010 Visiting Lecturer Semestrale (Mathematics), University of Cape Town.
+
+2009-2010 Visiting Researcher Biennale (Computer Science), University of Auckland, In collabo-
+razione con Bakhadyr Khoussainov e il suo gruppo di ricerca.
+
+2008-2009 Visiting Assistant Professor Biennale (Mathematics), Cornell University, In collabo-
+razione con Anil Nerode e il suo gruppo di ricerca.
+
+2004-2007 PostDoc Triennale (Computer Science), Borsa di studio Foundation for Research, Science
+and Technology (FRST) New Zealand Science and Technology (NZST) Post Doctoral
+Fellowship.
+
+Premio PhD Miglior Tesi di Dottorato alla Facoltà di Scienze, University of Auckland, 2004.
+
+Premio PhD Premio Montgomery in Logica al Dipartimento di Filosofia, 2004.
+
+Premio Paper Premio miglior paper a PRIMA 2015,.
+
+Competizioni Ho vinto le competizioni nazionali di programmazione, e quindi ho rappresentato la
+Nuova Zelanda nelle finali mondiali del 1998 di ACM Programming Contest, Atlanta,
+Georgia USA.
+
+2004-2007 Borsa di studio Triennale, Foundation for Research, Science and Technology
+(FRST) New Zealand Science and Technology (NZST) Post Doctoral Fellowship
+(n. UOAX0413, “Automatic Structures”), 3 anni, NZ$224532.
+
+2015-2016 Borsa di studio Marie Curie Individual Fellowship dell’INdAM “F. Severi”, 2 anni,
+Eu107000.
+
+2011 Exchange Grant (n. 3471) all’ interno del framework dell’ European Science Foun-
+dation (ESF) activity su “Games for Design and Verification“, 12 settimane , Eu 5300.
+
+2015-2016 GNSAGA grants per periodi ricerca allestero, Eu4909.
+
+2011 Short Visit Grant (n. 4391) dell’ European Science Foundation (ESF) activity su
+“Games for Design and Verification“, 15 giorni, Eu1475.
+
+2011 Short Visit Grant (n. 4500) dell’ European Science Foundation (ESF) activity su
+“Games for Design and Verification“, 10 giorni, Eu1350.
+
+2017 École normale supérieure (ENS) de Rennes grant per la visita del gruppo di Sophie
+Pinchinat, Finanziamenti ottenuto e visita da realizzare nell mese di 12/2017.
+
+Partecipazione internazionale di ricerca
+2017-oggi Centro di Servizi Metrologici Avanzati (CESMA) ”Metedologia avanzate di intelligenza
+artificiale per il controllo e l’analisi di sistemi reattivi complessi“ presso il Università di Napoli
+“Federico II”
+2016,2017 Michael Wooldridge (Oxford), European Research Commission (ERC) Advanced Grant
+”RACE“.
+2016,2017 Alessio Lomsucio (Imperial) e Aniello Murano (Università di Napoli “Federico II”), Royal
+Society International Exchanges Scheme.
+2016 Frank Stephan e Sanjay Jain, Academic Research Fund Tier 1 Grant (R146-000-181-112)
+"Automata Theoretic Aspects Of Predicting And Learning".
+2014-2015 Austrian Research Fund (National Research Network) "Rigorous systems engineering (RiSE)",
+presso il TU Wien e TU Graz.
+2014-2015 Austrian Research Fund (National Research Network) "Rigorous systems engineering (RiSE)",
+presso il TU Wien e IST Austria.
+2000/2001 Moshe Vardi (Rice University), Marshall Grant
+
+Mentoring/Tutor di studenti di dottorato
+2015 Ho lavorato in stretta collaborazione con studenti di dottorato di Aniello Murano (Vadim
+Malvone, Antonio di Stasio, Loredanna Sorrentino) con i quali abbiamo prodotto [W2], [C6],
+[C10].
+2007 Ho lavorato in stretta collaborazione con studenti di dottorato di Erich Gradel (Tobias
+Ganzow), risolvendo insieme un problema aperto da 12 anni [C22].
+Supervisione di tesi di laurea
+2017 Tirocinio di laurea. Tirocinante: Aurele Barriere, Università di Napoli, Argomento:
+Epistemic Logic.
+co-supervisore
+2017 Tesi di laurea (4 mesi): Paolo Lambiase, Università di Napoli, Argomento: Graphical
+Games.
+co-supervisore, recentemente terminata, articolo in scrittura
+Undergraduate Supervision
+2012 Undergraduate research project: Siddhesh Chaubal, IST Austria, Argomento: Edit-
+distance e Formal Languages.
+co-supervisore, pubblicato [C19]
+2009 ”Research Experience for Undergraduates“ (REU): Andrey Grinshpun, Pakawat Phal-
+itnonkiat, Andrei Tarfulea, Cornell University, Argomento: Parity Games.
+pubblicato [J7]
+2009 ”Research Experience for Undergraduates“ (REU): Alex Kruckman, John Sheridan,
+Ben Zax, Cornell University, Argomento: Automatic Structures with Advice.
+pubblicato [C20]
+Corsi di dottorato
+2017 Corso di dottorato di 18 ore, Milestones in solving games on graphs, Technical University
+of Vienna, Pianificato 11/2017.
+2017 Corso di dottorato di 10 ore, Games on Graphs, Università di Napoli, Compiti: Organizzato
+e presentato.
+2009 Corso di dottorato semestrale, Topics in Applied Logic: Logical Definability and Random
+Graphs, Cornell University, Compiti: Organizzato e presentato.
+Corsi in Scuole estive
+2006 Corso avanzato di 5 giorni, Logic and Computation in Finitely Presentable Infinite Struc-
+tures, European Summer School in Logic, Language and Information (ESSLLI 2006), Compiti:
+Organizzato e presentato con Valentin Goranko.
+approssimativamente 20 partecipanti
+Corsi universitari
+2015/2016 Tecniche di Specifica, Università di Napoli ”Federico II“, Corso di Laurea Magistrale in
+Informatica, Compiti: Assistenza alla didattica.
+Il titolare del corso e’ il Prof. Murano Aniello.
+2010 Logic and Computation, Department of Mathematics, University of Cape Town, 40 studenti,
+Compiti: Strutturazione del corso, 30 lezioni teoriche, 12 lezioni di tutoraggio, 1 test, 1
+esame finale.
+2008-2009 Calculus for Engineers, Department of Mathematics, Cornell University, 25-30 studenti.
+Corso semestrale tenuto 5 volte, Compiti: Lezioni teoriche, quiz settimanali online, correzioni.
+2007 Discrete Structures in Mathematics and Computer Science, Department of Computer
+Science, University of Auckland, Compiti: Lezioni teoriche, tutoraggio.
+2007 Mathematical Foundations of Software Engineering, Department of Computer Science,
+University of Auckland, Compiti: Lezioni teoriche, tutoraggio.
+2003 Introduction to Formal Verification, Department of Computer Science, University of
+Auckland, Compiti: Lezioni teoriche, tutoraggio.
+2002 Automata theory, Department of Computer Science, University of Auckland, Compiti:
+Lezioni teoriche, tutoraggio.
+2000-2001 Pre-calculus, Department of Mathematics, University of Wisconsin, Madison, +-30 studenti.
+Corso semestrale, tenuto 2 volte, Compiti: Lezioni teoriche, tutoraggio, correzione.
+
+Presentazione di lavori recentemente accettati a conferenza:
+2017 IJCAI, Melbourne, Generalised Planning: Non-Deterministic Abstractions and Trajectory
+Constraints.
+2017 FMAI, Naples, Verification of Multi-agent Systems with Imperfect Information and Public
+Actions.
+2016 SR, New York, LTL Reactive Synthesis under Assumptions.
+2016 KR, Cape Town, Model Checking Prompt Alternating-Time Epistemic Logics.
+2016 IJCAI, New York, Imperfect-Information Games and Generalized Planning.
+2016 AAMAS, Singapore, Automatic Verification of Multi-Agent Systems in Parameterized
+Grid-Environments.
+2015 PRIMA, Bertinoro, Verification of Asynchronous Mobile-Robots in Partially-Known
+Environments.
+2015 HIGHLIGHTS, Prague, The Composition Method and Parameterised Verification.
+2015 AAMAS, Istanbul, Parameterised Verification of Autonomous Mobile-Agents.
+2014 VMCAI, San Diego, Cutoffs for Parameterised Token-Passing Systems.
+2014 SR, Grenoble, First Cycle Games.
+2014 HIGHLIGHTS, Paris, First Cycle Games.
+2014 FRIDA, Vienna, Using automata and logic to reason about parameterised robot protocols.
+2013 LATA, Bilbao, How to Travel between Languages.
+
+Chair, Organisation e partecipazione a comitati di programma
+2018 Membro del Program Committee di International Conference on Autonomous Agents and
+Multi-agent Systems (AAMAS)
+2018 Membro del Program Committee di AAAI Conference on Artificial Intelligence (AAAI)
+https://aaai.org/Conferences/AAAI-18/
+2017 Co-chair e co-organizzatore di Italian Conference su Theoretical Computer Science (ICTCS)
+http://ictcs2017.unina.it/
+2017 Co-chair di International Workshop su Strategic reasoning (SR)
+http://sr2017.csc.liv.ac.uk/
+2017 Co-organizzatore di Convegno Italiano di Logica Computazionale (CILC)
+http://cilc2017.unina.it/
+2017 Co-organizzatore e co-chair di First Workshop on Formal Methods in AI (FMAI)
+https://sites.google.com/site/fmai2017homepage/
+2017 Membro del Program Committees di International Joint Conference on Artificial Intelligence
+(IJCAI)
+2017 Membro del Program Committees di AAAI Conference on Artificial Intelligence (AAAI)
+2017 Membro del Program Committees per IRISA Master Research Internship
+2016 Membro del Program Committees di the International Workshop of Strategic Reasoning
+(SR)
+2016 Membro del Program Committees di International Symposium on Games, Automata, Logics
+and Formal Verification (GandALF)
+2016 Membro del Program Committees di European Conference on Artificial Intelligence (ECAI)
+2013 Co-organizzatore di IST Austria Young Scientist Symposium on the topic ‘Understanding
+Shape: in silico e in vivo’
+ist.ac.at/young-scientist-symposium-2013/
+2012 Fondatore del seminario di computer science a IST Austria il cui obiettivo era quello di
+promuovere collaborazioni all’interno dell’istituto tra informatici e biologi.
+ist.ac.at/computer-science-seminar/
+
+Editoriale
+2017 Guest editor, Special issue of SR 2017, Information and Computation, In process.
+2017 Guest editor, Special issue of ICTCS 2017 and CILC 2017, Theoretical Computer Science, In
+process.
+2017 Editor, Joint proceedings of ICTCS 2017 and CILC 2017, CEUR Workshop proceedings,
+ISSN 1613-0073, ceur-ws.org/Vol-1949/
+
+Coordinatore di progetti
+2013-2016 Partecipazione alla realizzazione del Handbook of Model Checking, pubblicato da Springer
+ed editato da Edmund Clarke, Thomas Henzinger, Helmut Veith e Roderick Bloem. Compiti
+inclusi: Assistente editore in questioni manageriali, organizzative e tecniche, tra cui: organiz-
+zazione di revisioni, revisori e copy-editors; assicurare il collegamento tra gli editori e l’editor
+di Springer. http://www.springer.com/us/book/9783319105741
+
+Attività di revisione
+Book: Handbook of Model Checking
+Funding: Icelandic Research Fund
+Journals: Artificial Intelligence (AIJ), Journal of Symbolic Logic (JSL), Logical Methods in Computer
+Science (LMCS), Transactions on Computational Logic (ToCL), Theory of Computing Sys-
+tems (ToCS), Central European Journal of Mathematics, Information and Computation
+(IC), Journal of Logic and Computation (JLC), Annals of Mathematics and Artificial Intelli-
+gence (AMAI), Theory and Practice of Logic Programming (TLP), Science of Computer
+Programming (SCP)
+Conferenze: IJCAI, KR, AAMAS, AAAI, EUMAS, ECAI, LICS, STACS, ICALP, MFCS, CONCUR, CSL,
+FoSSaCS, FSTTCS, SR, KRR@SAC, CiE, GandALF, RV, LPAR, LATA
+
+
+Visite di ricerca recenti
+2015,2016,2017 Prof: Giuseppe De Giacomo, Sapienza, Roma, Argomento 1: Synthesis under Assump-
+tions; Argomento 2: Generalised Planning with Partial Observability.
+2016,2017 Prof: Mike Wooldridge, Oxford University, Argomento: Rational Synthesis.
+2016,2017 Prof: Alessio Lomuscio, Imperial College London, Argomento: Strategic-Epistemic
+logics for Multi-Agents Systems.
+2016 Prof: Diego Calvanese e Marco Montali, Università di Bolzano, Argomento 1: Data-
+aware strategic logics; Argomento 2: Knowledge Representation for Business Process Man-
+agement, Talk: Removing partial observability from generalised planning.
+2016 Prof: Frank Stephan and Sanjay Jain, National University of Singapore, Argomento:
+Learning Theory and Verification.
+2015 Prof: Helmut Veith, TU Wien, Argomento 1: Logic and Impossibility Results in Distributed
+Computing; Argomento 2: Abstractions for Fault-tolerant Distributed Algorithms.
+Invited Workshop Talks
+2017 Games of Imperfect-information with Public Actions, RoboLog, Rennes.
+2017 Verification of Multi-Agent Systems with Imperfect Information and Public Actions,
+FMAI17, Napoli.
+2012 Finite and Algorithmic Model Theory, Les Houches, France.
+2011 Automata theory and Applications, IMS programme, Singapore.
+2008 Computational Model Theory, CNRS SIG, Bordeaux, France.
+2007 Algorithmic-Logical Theory of Infinite Structures, Dagstuhl, Germany.
+2006 Finite and Algorithmic Model Theory, Newton Institute, England.
+2004 Workshop on Automata, Structures and Logic, Auckland, New Zealand.
+Invited Seminar Talks
+2017 Temporal-Strategic Reasoning for Partial-Observation Games, University of New South
+Wales, Australia.
+2016 Imperfect-Information Games and Generalized Planning, Università di Bolzano, Italy.
+2014 Verification of Mobile Agents in Partially Known Environments, Università di Napoli.
+2014 Memoryless Determinacy of Cycle Games, University of California, San Diego, USA.
+2012 Automata theoretic approach to mixed integer and rational arithmetic, IST Austria.
+2011 Representing infinite structures by automata, TU Wien, Austria.
+2011 An introduction to automatic structures, Tel Aviv University, Israel.
+2011 Representing infinite structures by automata, EPFL, Switzerland.
+2008 Generalised Quantifiers on Automatic Structures, LSV Cachan, France.
+2007 Generalised Quantifiers on Automatic Structures, LIAFA Paris, France.
+2007 Decidable extensions of the Monadic Second-order theory of one successor by unary predicates, Cornell University, USA.
+
+
+
+Doctor of Philosophy in Mathematics and Computer Science, University of Auckland, 7 May 2007 
+(Copia documenti inviati al MIUR per la procedura di equipollenza dei titoli di laurea e dottorato di ricerca)
+
+

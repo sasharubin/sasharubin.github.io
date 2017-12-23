@@ -1,0 +1,75 @@
+--------------
+strategically motivated basic research, 
+
+THEMATIC = scientific challenges
+- Software for Engineering Design, Synthesis, and Autonomous Systems (FM)
+- Model-Based Systems Engineering (FM)
+- Collaboration and Interaction (KRR)
+- Networked and Distributed Systems (FTDA, Cyberphysical systems, TPS)
+
+------------------
+
+
+Lennartson: EFAs, SCT, PN
+CONEX: synthesis, planning, BPM
+
+A problem that is typically encountered in industrial applications is that the resulting supervisor is not easily comprehensible for the users.
+
+First, modeling such huge systems with explicit state-transition models typically results in an intractable mode
+
+The second problem concerns the ease to understand and implement the supervisor.
+
+We propose general Petri net building blocks for the construction of recipes.
+
+Hierarchical supervisory control for batch processes
+
+-------------------
+
+
+Sands: Information Flow in Security (interference, leaking), DYNAMIC systems, Fault-tolerance, unreliable systems
+CONEX: KALT*, DEL, FTDA
+
+The static verification of secure information flow has been a popular theme in recent programming language research, but information flow policies considered are based on multilevel security which presents a static view of security levels
+
+This work is about specifying and ensuring security in unreliable systems
+
+The particular security characterization we study is <i>non-interference</i>, an information-flow security property which says that public outputs of a program (the <i>low</i> security channel) do not reveal anything about its secrets (the <i>high</i> security inputs). 
+
+
+it makes its assumptions precise and provides formal guarantees.
+
+---------------------
+
+
+Bosch: 
+CONEX: KRR for large multi-agent systems
+The importance of
+stressing the components and their connectors of a software
+system is generally recognized and has led to better control
+over the design, development, and evolution of large and
+increasingly dynamic software systems
+
+----------------------
+Pellicionne: KRR for specifying properties
+
+CNEX: TL, graded TL for quantitative properties.
+
+Today, property specification patterns provide general rules that help practitioners to qualify order and occurrence, to quantify time bounds, and to express probabilities of events. Nevertheless, a comprehensive framework combining qualitative, real-time, and probabilistic property specification patterns has remained elusive
+
+--------------------------
+
+
+Heintz: stream-based knowledge processing, autonomous, DYKNOW??
+CONEX: time, knowledge
+
+Engineering autonomous agents that display rational and goal-directed behavior in dynamic physical environments requires a steady flow of information from sensors to high-level reasoning components. The gap between sensing and reasoning...
+DyKnow is also used to generate event streams representing for example changes in qualitative spatial relations, which are used to detect traffic violations expressed as declarative chronicles. 
+
+-------------
+Kragic:
+CONEX: verifications of sensor models; epistemic logics; 
+
+Perception is the basis of any interactive autonomous systems.
+
+
+

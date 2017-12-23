@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% AUTSTR
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%========================================================
+\documentclass{irmaart}
+\input{ha.sty}
+%========== gastex =====================================
+%\usepackage{gastex}
+%========== Shows labels refs linenumbers ==============
+\usepackage[displaymath]{lineno}
+% \usepackage{showkeys}
+%    \linenumbers
+%========== Hyperref at the end ========================
+ \usepackage[hypertex,hyperindex,pagebackref,final]{hyperref}
+%========== Time calculation ==============================
+\usepackage{calc}
+\newcounter{hours}\newcounter{minutes}
+\newcommand\printtime{\setcounter{hours}{\time/60}%
+  \setcounter{minutes}{\time-\value{hours}*60}%
+  \thehours\,h\,\theminutes}
+\newcommand\dateandtime{\today}
+%========== Algorithms ====================================
+%\usepackage[boxed]{algorithm}    % pour les floats algorithmes
+%\usepackage[noend]{algorithmic}  % pour les algorithmes
+  \newlength\commentspace
+  \setlength{\commentspace}{3cm}
+  \newcommand\algcomment[2]{\makebox[0pt][l]{\hspace{-#1em}%
+    \hspace{\commentspace}$\triangleright$ #2}}
+\newcommand{\algorithmicfunc}[1]{\textsc{#1}}
+\newcommand{\FUNC}[1]{\item[\algorithmicfunc{#1}]}
+%========== PSTricks =====================================
+\usepackage{pst-all}
+ \newpsobject{showgrid}{psgrid}{%
+   subgriddiv=1,griddots=10,gridlabels=6pt}
+%========== Proofs =====================================
+%------------- end of proof in equation -------
+\newcommand{\eqed}{\tag*{\qedsymbol}}
+%========== Math notations ===================================
+\input{rubin.macro}
+
+\def\waut{\mbox{\tt S-AutStr}}
+
+\def\taut{\mbox{\tt T-AutStr}}
+
+\def\baut{\mbox{\tt $\omega$S-AutStr}}
+
+\def\raut{\mbox{\tt $\omega$T-AutStr}}
+
+\def\aut{\mbox{\tt AutStr}}
+
+\def\uaut{\mbox{\tt 1S-AutStr}}
+
+\newcommand{\frakA}{\mathfrak{A}}
+\newcommand{\frakD}{\mathfrak{D}}
+\newcommand{\frakS}{\mathfrak{S}}
+\newcommand{\frakT}{\mathfrak{T}}
+\newcommand{\frakB}{\mathfrak{B}}
+\newcommand{\frakC}{\mathfrak{C}}
+\newcommand{\frakG}{\mathfrak{G}}
+\newcommand{\frakU}{\mathfrak{U}}
+\newcommand{\frakW}{\mathfrak{W}}
+\newcommand{\frakN}{\mathfrak{N}}
+\newcommand{\frakR}{\mathfrak{R}}
+\newcommand{\frakO}{\mathfrak{O}}
+\newcommand{\frakM}{\mathfrak{M}}
+\newcommand{\frakJ}{\mathfrak{J}}
+
+
+\newcommand{\eL}{{\mathcal L}}
+
+\newcommand{\calA}{\mathcal{A}}
+\renewcommand{\C}{\mathcal{C}}
+\newcommand{\Sing}{\operatorname{Sing}}
+\newcommand{\twodom}{\{0,1\}^\star}
+
+\def\mso{\mbox{\rm MSO}}
+\def\wmso{\mbox{\rm WMSO}}
+\def\msokappa{\mbox{\rm {MSO}}(\exists^{\geq \kappa})}
+\def\msounc{\mbox{\rm {MSO}}(\exists^{\geq \aleph_1})}
+\def\msocount{\mbox{\rm {MSO}}(\exists^{\geq \aleph_0})}
+\def\msoinf{\mbox{\rm {MSO}}(\exists^\infty)}
+\def\msomod{\mbox{\rm {MSO}}(\exists^{\rm{mod}})}
+\def\msoext{\mbox{\rm {MSO}}(\exists^{\geq \aleph_0}, \exists^{\geq \aleph_1}, \exists^{\rm{mod}})}
+
+\newcommand{\Power}{{\mathcal P}}
+
+%\def\code{\mbox{\rm {c}}}
+
+\newcommand{\FOext}{\mbox{\rm FO}(\exists^{\geq \aleph_0},\exists^{\geq \aleph_1},\exists^{\rm mod})}
+\newcommand{\FOextcount}{\mbox{\rm FO}(\exists^{\geq \aleph_0},\exists^{\rm mod})}
+
+\newcommand{\code}[1]{{\rm code}({#1})}
+
+\newcommand{\av}{\circ}
+
+\newcommand{\conv}{\otimes}
+
+\def\blank{\Box}
+
+\def\buchi{B{\"u}chi }
+
+\DeclareMathOperator{\reg}{Reg}
+
+\usepackage{color}
+\newcommand\todo[1]{\textcolor{red}{::#1::}}
+%====================================================
+\begin{document}
+%========== Headers =============================
+\markboth{S.~Rubin}{Automatic structures}
+%=====================================================
+\title{Automatic structures (draft)}
+\author{Sasha Rubin}
+\address{email:\,\url{rubin@unina.it}\\[4mm]
+\upshape{\dateandtime}}
+
+%=====================================================
+\maketitle\label{chapterAS} 
+%=====================================================
+
+\begin{classification}
+03B70, 03B25, 03D05.
+\end{classification}
+
+\begin{keywords}
+  Synchronous automata, decidable theories, monadic second-order logic, first-order logic
+\end{keywords}
+
+
+%==================================================
+%Abstract 
+\todo{perhaps shorten introduction and focus on examples?}
+
+\todo{make notation uniform between intro and body, e.g., $\chi(X)$ vs $\chi_X$.}
+
+\todo{replace ``FO-formula'' by ``FO formula'' everywhere?}
+
+\todo{update: missing $T_r$}
+
+\todo{replace $()$ by $\left< \right>$}
+
+\todo{replace $:=$ by something more compact, everywhere}
+
+\todo{decide whether or not to hyphenate FO-formula, etc}
+
+\todo{mention theory of non-relational aut str is missing?}
+
+\todo{clean bibliography (no initial caps in titles, check new abbrevs are consistent}
+
+\todo{give citation to every result. more citations!}
+
+\todo{make sure $\frakA$ is for structures and $\A$ for domains}
+
+\todo{remove brackets from $\chi({\mu^{-1}(a_1))}$?}
+
+\todo{cite BSL more?}
+
+\todo{link conclusion to introduction}
+
+\input{as-abstract}
+
+\localtableofcontents
+
+\input{as-body}
+
+\bibliographystyle{abbrv}
+
+\addcontentsline{toc}{section}{References}
+
+\begin{footnotesize}
+  \bibliography{abbrevs,AutStr}
+\end{footnotesize}
+
+
+%\addcontentsline{toc}{section}{Index}
+%\markright{\indexname}\markboth{\indexname}{\indexname}
+\printindex
+
+\end{document}
+
+

@@ -1,0 +1,83 @@
+logics in ai/KR = GDG
+they like what formal methods can bring to AI
+precious person
+need to show that you are really interested in AI, not application of techniques to AI
+
+RESEARCH PLAN
+- start talking about AI
+- FM can help AI
+- show you are working FOR AI.
+- show how FM can help AI
+e.g., planning for TEG is based on FM
+e.g., generalised planning/synthesis based on FM
+
+- now lets focus on the environment
+clearly a first-class citizen in AI, obviosly every AI system has description of the environ.
+however, a specific study of the env has only been looked at in MAS architecture. often it is just another agent.
+but you can have a very rich notion... you embed certain constraints (topo, comm etc). and this is connected to 
+work in FM. this is not done in FM, but other notions in FM that can be exploited... 
+
+- going to HELP AI (NOT FM).
+
+however there are techniques in FM that can be used and *extended* to have a sophisticated 
+notion of environment
+
+- SHOW OFF YOUR KNOWLEDGE IN FM 
+- I see lots of connections between logic based AI and FM.
+- I see that AI is looking at very crucial problems and these problems are not 
+the same, but they resonate with FM. these two fields developed separately, I think I am 
+the person that can show these connections.
+- show I want to collaborate with everybody. as with GDG, HG, ...
+- think how i interact with GDG not NM (somehow lucky that FM to MAS).
+- show why DEEP knowledge is needed; not just to know that there are connections. show there 
+are differences. superficially looks the same. synthesis is offline; planning is done offline by an agent
+that is acting that moment in the world (cannot spent a week, got just a few minutes). this changes the perspective.
+e.g., solving easy problems is the bread-butter in planning; irrelevant in synthesis. 
+
+in spite of the differences can use the UNDERSTANDING/INSIGHTS/THEORIES (not just results) in FM to tackle problems in AI. 
+going to recycle the INSIGHTS, not the results, TO GENERATE NEW RESULTS IN AI.
+e.g., our ijcai papers. and our work on synthesis...
+
+mention PMC and swarms!!
+
+GOING TO ADVANCE AI BECAUSE OF MY KNOWLEDGE IN FM
+HOW?
+- good model of env
+- synthesis and planning and how i have been using it to do gen planning
+- PMC and how it is being used by others for SWARMS (Alessio Lomuscio)
+i.e., studying AI but from a unique perspective that I have developed due to 
+10 years of work in verification and synthesis.
+
+Have a grid that is nxn... use Finite Model Theory... constrain logic that it only uses finite models.
+
+discussion in AI: 
+- does it make sense to ground everything... should we use FOL? but in PDDL the solvers ground.
+- ASP is also always grounded, and does better than PROLOG.
+* everyone has the feeling that avoiding grounding is better. but we don't have the science to prove this*
+they will be happy that i am interested in this.
+
+
+- i am genuinely interested in the issues in AI. 
+this is not typical.
+
+- puts me in a fantastic position
+- i am doing logic with ADVANCED techniques
+parity games, FMT, automata theory, that have not yet penetrated AI
+safety game is contrary of reachability. take advantage of techniques in planning.
+
+- Michael Tischler is GGP person.
+he runs the competition
+he wrote a book on GGP
+lots of invited talks
+what can you do for GGP?
+using game theoretic notions in GGP.
+
+
+1. how is env treated?
+2. how can FM help GGP? FMT...
+
+- agent uses logic to reason... problem of omniscience... want to clip the reasoning mechanism itself.
+agents should not be theorem provers
+- 
+- axiomatisations not considered that important in AI; expressibility yes, algorithms yes.
+

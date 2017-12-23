@@ -1,0 +1,43 @@
+bachelor thesis: 4-6 months, including reading, coding, testing, evaluation, writeup.
+
+THESIS 1. Implement and evaluate a synthesis algorithm for multiplayer games of imperfect information with public actions and epistemic reachabilty goals, and
+test on Muddy Children and Bridge scenarios.
+
+Tasks:
+- read AAMAS paper.
+- sketch algorithm for synthesis that uses solving 2-player safety/reachability game and not tree-automata emptiness.
+- build prototype using a libraries for DFW manipulation and game solving.
+- decide how to model systems (i.e., what modeling language should be used? same as MCMAS? some other standard language?).
+- evaluate code on muddy children and bridge scenarios.
+- writeup.
+
+Time permitting:
+- extend to ATLK.
+- implement DFW and game libraries.
+
+THESIS 2. Implement algorithm for rational synthesis in Boolean Games and test on Graphical Games (each player lives on a node of a graph and has a fixed finite number of actions, and whose payoff, at each step, depends on the actions of its neighbours).
+
+Tasks:
+- read ECAI06 paper on BG and AAAI02 paper on graphical games (Multi-Agent Algorithms for Solving Graphical Games).
+- decide which approach to take (reduction to SAT, reduction to CSP, reduction to MLP, hill-climbing).
+- build prototype.
+- and compare to existing algs for Graphical Games.
+- build GUI that allows a single user to "play", i.e., given a Graphical Game, the player tries to find a NE... at each step they are given information such as "which players have profitable deviations"
+- writeup
+
+Time permitting:
+- extend to E-NASH (i.e., player is trying to find NE that minimises some boolean formula)
+- extend to Iterated Boolean Games (with LDL_f or LTL_f objectives)
+
+THESIS 3. Implement and evaluate a translation of LTL synthesis into automated planning.
+
+Tasks:
+- read paper that translated LTL synthesis to safety games. adapt this to co-safety games.
+- decide how to model games, e.g., see other LTL synthesis tools.
+- learn how to use a classical planner.
+- implement the translation.
+- evaluate on same benchmarks as other tools, e.g., ACACIA
+
+THESIS 4. Implement and evaluate a tool that decides the existence and produces a NE (if one exists) in graph-games.
+
+

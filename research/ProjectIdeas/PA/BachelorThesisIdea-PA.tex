@@ -1,0 +1,37 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Bachelor Thesis Project}
+\author{}
+\date{}
+\usepackage{hyperref}
+
+\begin{document}
+
+\maketitle
+
+\section*{Solving public-action games}
+
+
+
+The aim of this project is to build a tool that solves multiplayer public-action games,
+and test on card-game scenarios.
+
+%(each player lives on a node of a graph and has a fixed finite number of actions, and whose payoff, at each step, depends on the actions of its neighbours).
+
+\subsection*{Plan}
+\begin{enumerate}
+\item READ: CGS, ATLK\footnote{\url{http://krak.ipipan.waw.pl/~wjamroga/papers/jamroga15specifmas.pdf}}, solving public-action games\footnote{\url{http://people.na.infn.it/~murano/pubblicazioni/main-ATL-broad.pdf}}
+\item WRITE: Algorithm for solving two-player public-action games with epistemic reachability objectives.
+% - sketch algorithm for synthesis that uses solving 2-player safety/reachability game and not tree-automata emptiness.
+\item CODE: Algorithm using libraries for DFW manipulation and game solving.
+\item CODE: Modeling language for representing arenas (MCMAS?) 
+\item EVALUATE: on card-game scenarios.
+\item WRITEUP
+\end{enumerate}
+
+
+% \bibliographystyle{plain}
+% \bibliography{refs}
+\end{document}

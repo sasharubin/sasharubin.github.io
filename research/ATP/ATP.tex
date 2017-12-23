@@ -1,0 +1,120 @@
+\documentclass{book}
+
+\usepackage{morgan}
+
+                                % Author-Year bibliography
+\usepackage[square,comma,sort]{natbib}
+                                % numbered bibliography
+%usepackage[square,comma,sort,numbers]{natbib}
+\usepackage[raggedsec]{morplay}
+\usepackage[draft]{ttdefs}
+
+\setcounter{secnumdepth}{2}
+\input{macros}
+
+\begin{document}
+
+ \frontmatter
+\chapter*{Abstract}
+
+
+\mainmatter      
+
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Introduction}
+\section{Target Audience}
+Graduate students who have taken basic courses in discrete mathematics, data structures, logic and computation;
+who want to add to their toolbox a powerful, versatile, tool
+
+\chapter{Formal Methods}
+
+\section{Verification}
+
+\section{Synthesis}
+
+\section{Monitoring}
+
+Testing?
+\section{What is not in this book}
+
+??
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\chapter{Algorithmic Foundations: Decision problems, Automata theory}
+
+\section{Decision problems}
+
+\section{Finite Automata, Regular expressions}
+
+\section{Automata on infinite words}
+
+\section{Automata on infinite trees}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Foundations: Logics for Verification}
+
+\section{What are logics? Syntax, Semantics.}
+
+\section{What are logics good for?}
+
+\section{model checking, satisfiability, realisability.}
+
+\subsection{Linear-time}
+
+\subsection{Branching-time}
+
+\subsubsection{Computational Tree Logic}
+
+\subsubsection{$\mu$-calculus}
+
+\section{Alternating-time}
+
+\section{Epistemic logics}
+
+\section{first-order logics}
+
+\section{second-order logics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Limitations of the method}
+
+\section{Inherent limitations}
+
+\section{Other approaches}
+
+\section{Comparison with other approaches}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{History of the method}
+
+
+\chapter{Inverview? Biography of the inventors}
+
+\chapter{tex}
+
+
+ \input{automata}
+ 
+
+\input{synthesis}
+\bibliographystyle{plainnat}
+\bibliography{lit}
+
+
+ \backmatter                    % back matter
+
+
+\end{document}

@@ -1,0 +1,316 @@
+\begin{thebibliography}{10}
+
+\bibitem{ADGH06}
+I.~Abraham, D.~Dolev, R.~Gonen, and J.~Halpern.
+\newblock Distributed computing meets game theory: Robust mechanisms for
+  rational secret sharing and multiparty computation.
+\newblock In {\em {PODC06}}, pages 53--62, New York, NY, USA, 2006. ACM.
+
+\bibitem{ACMStatement17}
+{ACM U.S. Public Policy Council} and {ACM Europe Policy Committee}.
+\newblock Statement on algorithmic transparency and accountability.
+\newblock ACM, 2017.
+
+\bibitem{DBLP:conf/ijcai/AguasCJ16}
+J.~S. Aguas, S.~J. Celorrio, and A.~Jonsson.
+\newblock Hierarchical finite state controllers for generalized planning.
+\newblock In {\em Proceedings of the Twenty-Fifth International Joint
+  Conference on Artificial Intelligence, {IJCAI} 2016, New York, NY, USA, 9-15
+  July 2016}, pages 3235--3241, 2016.
+
+\bibitem{ABK16}
+S.~Almagor, U.~Boker, and O.~Kupferman.
+\newblock Formally reasoning about quality.
+\newblock {\em J. ACM}, 63(3):24:1--24:56, June 2016.
+
+\bibitem{DBLP:journals/jacm/AlurHK02}
+R.~Alur, T.~A. Henzinger, and O.~Kupferman.
+\newblock Alternating-time temporal logic.
+\newblock {\em J. {ACM}}, 49(5):672--713, 2002.
+
+\bibitem{DBLPconfatalAminofMMR16}
+B.~Aminof, V.~Malvone, A.~Murano, and S.~Rubin.
+\newblock Graded strategy logic: Reasoning about uniqueness of nash equilibria.
+\newblock In {\em Proceedings of the 2016 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2016)}}, pages 698--706,
+  2016.
+
+\bibitem{DBLP:conf/atal/AminofMMR16}
+B.~Aminof, V.~Malvone, A.~Murano, and S.~Rubin.
+\newblock Graded strategy logic: Reasoning about uniqueness of nash equilibria.
+\newblock In {\em Proceedings of the 2016 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2016)}}, pages 698--706,
+  2016.
+
+\bibitem{DBLPconfkrAminofMRZ16}
+B.~Aminof, A.~Murano, S.~Rubin, and F.~Zuleger.
+\newblock Prompt alternating-time epistemic logics.
+\newblock In {\em Principles of Knowledge Representation and Reasoning: Proc.
+  of the 15th International Conference, ({KR} 2016)}, pages 258--267, 2016.
+
+\bibitem{DBLP:conf/aaai/BaierM06}
+J.~A. Baier and S.~A. McIlraith.
+\newblock Planning with first-order temporally extended goals using heuristic
+  search.
+\newblock In {\em {AAAI'06}}, pages 788--795. {AAAI} Press, 2006.
+
+\bibitem{BLMRIJCAI17}
+F.~Belardinelli, A.~Lomuscio, A.~Murano, and S.~Rubin.
+\newblock Verification of broadcasting multi-agent systems against an epistemic
+  strategy logic.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}, 2017.
+
+\bibitem{BLMR17}
+F.~Belardinelli, A.~Lomuscio, A.~Murano, and S.~Rubin.
+\newblock Verification of multi-agent systems with imperfect information and
+  public actions.
+\newblock In {\em Proceedings of the 2017 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2017)}}, 2017.
+
+\bibitem{DBLP:journals/mor/BernsteinGIZ02}
+D.~S. Bernstein, R.~Givan, N.~Immerman, and S.~Zilberstein.
+\newblock The complexity of decentralized control of markov decision processes.
+\newblock {\em Math. Oper. Res.}, 27(4):819--840, 2002.
+
+\bibitem{BMMRV17}
+R.~Berthon, B.~Maubert, A.~Murano, S.~Rubin, and M.~Vardi.
+\newblock Strategy logic with imperfect information.
+\newblock In {\em {LICS'17}}, pages 1--12, 2017.
+
+\bibitem{DBLP:conf/atva/BerwangerMB15}
+D.~Berwanger, A.~B. Mathew, and M.~van~den Bogaard.
+\newblock Hierarchical information patterns and distributed strategy synthesis.
+\newblock In B.~Finkbeiner, G.~Pu, and L.~Zhang, editors, {\em {ATVA'15}},
+  volume 9364 of {\em Lecture Notes in Computer Science}, pages 378--393.
+  Springer, 2015.
+
+\bibitem{BDGR17}
+B.~Bonet, G.~{De Giacomo}, H.~Geffner, and S.~Rubin.
+\newblock Generalized planning: Non-deterministic abstractions and trajectory
+  constraints.
+\newblock In {\em IJCAI}, 2017.
+
+\bibitem{DBLP:conf/aips/BonetPG09}
+B.~Bonet, H.~Palacios, and H.~Geffner.
+\newblock Automatic derivation of memoryless policies and finite-state
+  controllers using classical planners.
+\newblock In {\em ICAPS'09}.
+
+\bibitem{Bowling145}
+M.~Bowling, N.~Burch, M.~Johanson, and O.~Tammelin.
+\newblock Heads-up limit hold{\textquoteright}em poker is solved.
+\newblock {\em Science}, 347(6218):145--149, 2015.
+
+\bibitem{DBLP:journals/corr/BrafmanGP17}
+R.~I. Brafman, G.~{De Giacomo}, and F.~Patrizi.
+\newblock Specifying non-markovian rewards in mdps using {LDL} on finite traces
+  (preliminary version).
+\newblock {\em CoRR}, abs/1706.08100, 2017.
+
+\bibitem{DBLP:journals/acta/BrihayeGHM17}
+T.~Brihaye, G.~Geeraerts, A.~Haddad, and B.~Monmege.
+\newblock Pseudopolynomial iterative algorithm to solve total-payoff games and
+  min-cost reachability games.
+\newblock {\em Acta Inf.}, 54(1):85--125, 2017.
+
+\bibitem{Camacho17}
+A.~Camacho, E.~Triantafillou, C.~Muise, J.~Baier, and S.~McIlraith.
+\newblock Non-deterministic planning with temporally extended goals: Ltl over
+  finite and infinite traces.
+
+\bibitem{Darwiche17}
+A.~Darwiche.
+\newblock Human-level intelligence or animal-like abilities?
+\newblock {\em CoRR}, abs/1707.04327, 2017.
+
+\bibitem{DeGiacomoMRS16}
+G.~{De Giacomo}, A.~Murano, S.~Rubin, and A.~D. Stasio.
+\newblock Imperfect-information games and generalized planning.
+\newblock In {\em IJCAI}, pages 1037--1043, 2016.
+
+\bibitem{DeVa15}
+G.~{De Giacomo} and M.~Vardi.
+\newblock Synthesis for {LTL} and {LDL} on finite traces.
+\newblock In {\em IJCAI}, pages 1558--1564, 2015.
+
+\bibitem{DeVa16}
+G.~{De Giacomo} and M.~Vardi.
+\newblock {LTL}\({}_{\mbox{f}}\) and {LDL}\({}_{\mbox{f}}\) synthesis under
+  partial observability.
+\newblock In {\em IJCAI}, pages 1044--1050, 2016.
+
+\bibitem{DeVa13}
+G.~{De Giacomo} and M.~Y. Vardi.
+\newblock Linear temporal logic and linear dynamic logic on finite traces.
+\newblock In {\em IJCAI}, pages 854--860, 2013.
+
+\bibitem{DeNicola2015}
+R.~De~Nicola, A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock Twitlang(er): Interactions modeling language (and interpreter) for
+  twitter.
+\newblock In R.~Calinescu and B.~Rumpe, editors, {\em {SEFM'15}}.
+
+\bibitem{EasleyK10}
+D.~Easley and J.~Kleinberg.
+\newblock {\em Networks, Crowds, and Markets: Reasoning About a Highly
+  Connected World}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem{DBLP:conf/ijcai/FelliSLR17}
+P.~Felli, L.~de~Silva, B.~Logan, and S.~M. Ratchev.
+\newblock Process plan controllers for non-deterministic manufacturing systems.
+\newblock In {\em IJCAI'17}.
+
+\bibitem{GeffnerBo13}
+H.~Geffner and B.~Bonet.
+\newblock {\em A Concise Introduction to Models and Methods for Automated
+  Planning}.
+\newblock Morgan {\&} Claypool Publishers, 2013.
+
+\bibitem{GMPRW17}
+J.~Gutierrez, A.~Murano, G.~Perelli, S.~Rubin, and M.~Wooldridge.
+\newblock Nash equilibria in concurrent games with lexicographic preferences.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}, 2017.
+
+\bibitem{DBLP:journals/ife/Henzinger13}
+T.~A. Henzinger.
+\newblock Quantitative reactive modeling and verification.
+\newblock {\em Computer Science - R{\&}D}, 28(4):331--344, 2013.
+
+\bibitem{DBLP:conf/aips/KominisG15}
+F.~Kominis and H.~Geffner.
+\newblock Beliefs in multiagent planning: From one agent to many.
+\newblock In R.~I. Brafman, C.~Domshlak, P.~Haslum, and S.~Zilberstein,
+  editors, {\em {ICAPS'15}}, pages 147--155. {AAAI} Press, 2015.
+
+\bibitem{DBLP:journals/trob/Kress-GazitFP09}
+H.~Kress{-}Gazit, G.~E. Fainekos, and G.~J. Pappas.
+\newblock Temporal-logic-based reactive mission and motion planning.
+\newblock {\em {IEEE} Trans. Robotics}, 25(6):1370--1381, 2009.
+
+\bibitem{DBLP:conf/lics/KupfermanV01}
+O.~Kupferman and M.~Y. Vardi.
+\newblock Synthesizing distributed systems.
+\newblock In {\em LICS'01}, pages 389--398. {IEEE} Computer Society, 2001.
+
+\bibitem{DBLP:journals/internet/LiQLL16}
+M.~Li, C.~Qin, J.~Li, and P.~P.~C. Lee.
+\newblock Cdstore: Toward reliable, secure, and cost-efficient cloud storage
+  via convergent dispersal.
+\newblock {\em {IEEE} Internet Computing}, 20(3):45--53, 2016.
+
+\bibitem{DBLP:conf/aaai/LipovetzkyG17}
+N.~Lipovetzky and H.~Geffner.
+\newblock Best-first width search: Exploration and exploitation in classical
+  planning.
+\newblock In {\em Proceedings of the Thirty-First {AAAI} Conference on
+  Artificial Intelligence, February 4-9, 2017, San Francisco, California,
+  {USA.}}, pages 3590--3596, 2017.
+
+\bibitem{DBLP:conf/uai/LittmanDK95}
+M.~L. Littman, T.~L. Dean, and L.~P. Kaelbling.
+\newblock On the complexity of solving markov decision problems.
+\newblock In {\em {UAI} '95: Proceedings of the Eleventh Annual Conference on
+  Uncertainty in Artificial Intelligence, Montreal, Quebec, Canada, August
+  18-20, 1995}, pages 394--402, 1995.
+
+\bibitem{DBLP:journals/tocl/LomuscioMR00}
+A.~Lomuscio, R.~van~der Meyden, and M.~Ryan.
+\newblock Knowledge in multiagent systems: initial configurations and
+  broadcast.
+\newblock {\em {ACM} Trans. Comput. Log.}, 1(2):247--284, 2000.
+
+\bibitem{DBLP:books/mk/Lynch96}
+N.~A. Lynch.
+\newblock {\em Distributed Algorithms}.
+\newblock Morgan Kaufmann, 1996.
+
+\bibitem{DBLP:journals/jlp/MaggiPST17}
+A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock A language-based approach to modelling and analysis of twitter
+  interactions.
+\newblock {\em J. Log. Algebr. Meth. Program.}, 87:67--91, 2017.
+
+\bibitem{DBLP:journals/tocl/MarchioniW15}
+E.~Marchioni and M.~Wooldridge.
+\newblock {\L}ukasiewicz games: {A} logic-based approach to quantitative
+  strategic interactions.
+\newblock {\em {ACM} Trans. Comput. Log.}, 16(4):33:1--33:44, 2015.
+
+\bibitem{MogaveroMPV14}
+F.~Mogavero, A.~Murano, G.~Perelli, and M.~Vardi.
+\newblock Reasoning about strategies: On the model-checking problem.
+\newblock {\em ACM Trans. Comp. Log.}, 15(4):34:1--34:47, 2014.
+
+\bibitem{Neumann17}
+P.~G. Neumann.
+\newblock Trustworthiness and truthfulness are essential.
+\newblock {\em Communication of ACM}, 60(8):26--28, June 2017.
+
+\bibitem{amazon}
+C.~Newcombe, T.~Rath, F.~Zhang, B.~Munteanu, M.~Brooker, and M.~Deardeuff.
+\newblock How amazon web services uses formal methods.
+\newblock {\em Communications of the ACM}, 58(4):66--73, 2015.
+
+\bibitem{DBLP:series/sbis/OliehoekA16}
+F.~A. Oliehoek and C.~Amato.
+\newblock {\em A Concise Introduction to Decentralized POMDPs}.
+\newblock Springer Briefs in Intelligent Systems. Springer, 2016.
+
+\bibitem{DBLP:conf/focs/PetersonR79}
+G.~L. Peterson and J.~H. Reif.
+\newblock Multiple-person alternation.
+\newblock In {\em 20th Annual Symposium on Foundations of Computer Science, San
+  Juan, Puerto Rico, 29-31 October 1979}, pages 348--363. {IEEE} Computer
+  Society, 1979.
+
+\bibitem{DBLP:conf/focs/PnueliR90}
+A.~Pnueli and R.~Rosner.
+\newblock Distributed reactive systems are hard to synthesize.
+\newblock In {\em {FOCS'90}}, pages 746--757, 1990.
+
+\bibitem{DBLPconfatalRubin15}
+S.~Rubin.
+\newblock Parameterised verification of autonomous mobile-agents in static but
+  unknown environments.
+\newblock In {\em Proc. of the International Conference on Autonomous Agents
+  and Multiagent Systems, {(AAMAS 2015)}}, pages 199--208, 2015.
+
+\bibitem{Vardi-symbolic17}
+J.~L. G. P. M. Y.~V. Shufang~Zhu, Lucas M.~Tabajara.
+\newblock Symbolic ltlf synthesis.
+\newblock In {\em Proceedings of the Twenty-Sixth International Joint
+  Conference on Artificial Intelligence, {IJCAI-17}}, pages 1362--1369, 2017.
+
+\bibitem{simon1982models}
+H.~A. Simon.
+\newblock {\em Models of bounded rationality: Empirically grounded economic
+  reason}, volume~3.
+\newblock MIT press, 1982.
+
+\bibitem{TorresB15}
+J.~Torres and J.~Baier.
+\newblock Polynomial-time reformulations of {LTL} temporally extended goals
+  into final-state goals.
+\newblock In {\em IJCAI}, pages 1696--1703, 2015.
+
+\bibitem{TsaiFVT14}
+M.~Tsai, S.~Fogarty, M.~Vardi, and Y.~Tsay.
+\newblock State of b{\"{u}}chi complementation.
+\newblock {\em Logical Methods in Computer Science}, 10(4):1--27, 2014.
+
+\bibitem{DBLP:conf/concur/UmmelsW11}
+M.~Ummels and D.~Wojtczak.
+\newblock The complexity of nash equilibria in limit-average games.
+\newblock In {\em {CONCUR} 2011 - Concurrency Theory - 22nd International
+  Conference, {CONCUR} 2011, Aachen, Germany, September 6-9, 2011.
+  Proceedings}, pages 482--496, 2011.
+
+\bibitem{vanderMeyden2005}
+R.~van~der Meyden and T.~Wilke.
+\newblock Synthesis of distributed systems from knowledge-based specifications.
+\newblock In {\em 05}, LNCS 3653, pages 562--576, 2005.
+
+\end{thebibliography}

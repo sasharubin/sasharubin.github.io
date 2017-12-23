@@ -1,0 +1,44 @@
+art = journals in last 5 years on scopus
+
+h-index = contemporary in last 10 years
+
+cit = citations in last 10 years
+
+sec 	art 	cit 	cont. h-ind
+01/B1 	
+FULL	8	216	8
+ASSC	5	118	6
+
+09/H1 	
+FULL	11	307	9
+ASSC	4	99	6
+
+SCOPUS
+art
+3 journals in last 5 years (-->2017)
+5 journals in last 10 years (-->2017)
+cit
+
+187 citations in last 5 years
+294 citations in last 10 years
+
+h index = 11
+contemporary h index = ?
+
+submitted: 
+JAAMAS, GSL (accepted)
+
+to be sumbitted: 
+TPS, GCTL*
+
+
+researchid M-3557-2017
+
+FULL
+art = journals in last 10 years on scopus
+h-index = contemporary in last 15 years
+CITATIONS in last 15 years
+
+01B1 full	10 	228 	9
+09H1 full	13 	340 	11
+

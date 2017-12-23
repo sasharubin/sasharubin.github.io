@@ -1,0 +1,68 @@
+My background is in Formal Methods (FM), a branch of
+theoretical computer science, that supplies
+mathematical foundations and rigorous methodologies for
+the engineering and analysis of systems with a digital
+component.  The three cornerstones of FM are modeling,
+verification and synthesis of such systems.
+
+Specifically, I have worked on the following models of
+computation: Markov chains, timed systems, multi-agent
+systems that communicate via token-passing, broadcast,
+asynchronous rendezvous,  mobile agents that can detect
+collisions, petri-nets, and others.  I have expertise
+in standard specification languages (e.g., modal
+logics, temporal logics, strategic logics) as well as
+quantitative extensions of these (e.g., by quantifiers
+that can count, and aggregation functions). 
+
+In my work I have used and developed techniques based
+on mathematical logic, automata theory, game theory and
+graph theory. 
+
+My research trajectory has been shifting from the
+investigation of abstract mathematical objects
+[C19-C29] towards more concrete systems [C1-C18]
+inspired by distributed computing, artificial
+intelligence, and multi-agent systems. 
+
+I project the following main research activity at IMT:
+investigate Formal Methods for Multi-agent systems.
+
+MAS involve multiple individual entites (these may be
+people, software, robots, etc.) each with their own
+goals.  Such systems can be viewed as multi-player
+games, and thus notions from game-theory (e.g.,
+strategies, knowledge, and equilibria) are used to
+reason about them.  Agents in realistic MAS often lack
+information about other agents and the environment, and
+this is often categorised in one of two ways: a)
+incomplete information and b) imperfect information. In
+all cases, the basic theoretical problem is to find
+classes of MAS in which verification is decidable, and
+in this case, of low complexity.
+
+In a little more detail, incomplete-information refers
+to uncertainty about the environment (i.e., the
+structure of the game). I have considered two sources
+of incomplete information for MAS: the number of agents
+may not be known [B1,C9,C13,C14,C17,C18,J1,J3]; and the
+environment the agents are operating in is
+partially-known [C7,C12,C16]. 
+
+Imperfect information refers to the fact that even if
+agents have certainty about the structure of the
+system, they may not know exactly which state the
+system is in. The associated logics for reasoning about
+such systems are called epistemic logics. I have
+studied strategic-epistemic logics in [C1, C2, C3, C8,
+C10], including ones in which one can express
+equilibria.
+
+At IMT, I intend to further and deepen this direction.
+In particular, the MAS/AI community is designing and
+analysing many modern and topical systems, e.g.,
+privacy preserving databases, opinion diffusion in
+social networks, mechanism design in economic networks,
+disease spread in epidemiological models.  All of
+these, and many others, have and can benefit from
+methodologies and techniques developed in FM.

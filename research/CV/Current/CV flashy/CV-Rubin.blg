@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CV-Rubin.aux
+The style file: biblatex.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: CV-Rubin-blx.bib
+Database file #2: ../../data/rubin-core.bib
+Reallocated field_info (elt_size=4) to 10004 items from 5000.
+Biblatex version: 2.8
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+You've used 48 entries,
+            6047 wiz_defined-function locations,
+            1445 strings with 19286 characters,
+and the built_in function-call counts, 212943 in all, are:
+= -- 5422
+> -- 17522
+< -- 1889
++ -- 12787
+- -- 13482
+* -- 15439
+:= -- 21541
+add.period$ -- 0
+call.type$ -- 48
+change.case$ -- 551
+chr.to.int$ -- 590
+cite$ -- 94
+duplicate$ -- 18330
+empty$ -- 16787
+format.name$ -- 4368
+if$ -- 38286
+int.to.chr$ -- 0
+int.to.str$ -- 179
+missing$ -- 0
+newline$ -- 1594
+num.names$ -- 2122
+pop$ -- 15448
+preamble$ -- 1
+purify$ -- 825
+quote$ -- 0
+skip$ -- 9600
+stack$ -- 0
+substring$ -- 3152
+swap$ -- 6574
+text.length$ -- 1668
+text.prefix$ -- 47
+top$ -- 1
+type$ -- 1812
+warning$ -- 0
+while$ -- 1239
+width$ -- 0
+write$ -- 1545

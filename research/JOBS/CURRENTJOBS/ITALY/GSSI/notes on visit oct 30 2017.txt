@@ -1,0 +1,76 @@
+talk
+- what is an agent?
+- Problem/approach/issues: mention "model-checking problem", mention model represents state and evolution/transitions of system under agent actions
+- FM101: mention work of institute!
+- missing example CGS
+- remind people of LTL, LTLK, ATL... give pictures of runs and trees!
+- check ESL formula for secret sharing.
+
+- SLK-->ESL
+- asynchronous?
+- three techniques used in imp obs games
+
+3 pillars
+algorithms for "networks"
+formal methods for "reactive systems"
+software engineering
+
+luca:
+- equivalence between processes
+- proof schemes that when instantiated a) determine automata representing process, b) ensure compositionality of various operations
+- distributed runtime verification
+- runtime enforcement?
+[send Hella's paper; send paper on relationship between abstraction and partial observation]
+
+gianlorenzo:
+opinion diffusion on graphs. 
+- centralised questions
+1) compute expected time until all nodes infected/share opinion
+2) find smallest set of initially infected states that optimisises 1).
+- three models: probabilities on edges, on nodes, on thresholds on nodes
+- approximation algorithms
+- greedy alg based on submodularity of expected time is 1-1/e approx.
+
+[in comparison with stability, distributed problem, more than one opinion 
+that must be chosen...]
+
+ludico:
+- software engineer
+- metamodels for PN, SC, etc.
+- models conform to metamodel
+- equivalence?
+- understandability metrics
+[send SC paper]
+
+matti:
+- shortest path queries on very large graphs, that may be dynamic.
+two extremes: dykstra (high query time), precompute (constant query time) 
+labeling of nodes such that d(u,v) = F(l(u),l(v))
+
+cosimo:
+- congestion games
+[send orna's paper: http://www.cs.huji.ac.il/~ornak/publications/fsttcs15a.pdf]
+
+katya:
+- performance analysis. models using probability distributions, MC, etc.
+
+omar:
+- actually simulates/checks large distributed systems.
+- e.g., broadcasting, asynch, goal to compute a matching. key insight: pairwise rendezvous ok if nbrs don't change much; otherwise bc needed, and this explodes (10k nodes for simulations)
+- what does it mean to have open system in this setting? matching eventually computed?
+[send FTDA, population protocols, esparza]
+
+send to all: flow logic... http://www.cs.huji.ac.il/~ornak/publications/concur17.pdf, 	http://www.morganclaypool.com/doi/10.2200/S00658ED1V01Y201508DCT013
+
+
+Below are some of the promised papers:
+
+Luca: connections between distributed algorithms that run in constant time and modal logic
+https://dl.acm.org/citation.cfm?id=2733679&CFID=1000501585&CFTOKEN=33313663
+
+Omar: verification of population protocols
+https://arxiv.org/abs/1703.04367
+
+
+
+

@@ -1,0 +1,185 @@
+%% PACKAGES %%
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%\usepackage{hyperref}
+\usepackage{xspace,color,upgreek}
+\usepackage{graphicx}
+\usepackage{tikz,pgf}
+  \usetikzlibrary{automata,positioning,matrix,calc,petri,arrows}
+
+%% ENVIRONMENTS %%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{fact}{Fact}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{question}{Question}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+%\newtheorem*{proof*}{Proof}
+
+%% COMMENTS %%
+
+\newcommand\note[1]{{\color{red}{#1}}}
+\newcommand{\todo}[1]{{{\color{blue} #1}}}
+%\renewcommand{\todo}[1]{}
+
+%% LATEX SHORTCUTS %%
+
+\def\it{\begin{itemize} } 
+% \def\-{\item[-] }
+\def\-{\item }
+\def\ti{\end{itemize} }
+\def\en{\begin{enumerate} }
+\def\ne{\end{enumerate} }
+
+%% COMPLEXITY CLASSES %%
+
+\def\UPTime{\textsc{up}\xspace}
+\def\CoUPTime{\textsc{coup}\xspace}
+
+
+\def\exptime{\textsc{exptime}\xspace}
+\def\exptimeC{\exptime-complete}
+
+\def\pspace{\textsc{pspace}\xspace}
+\def\pspaceC{\pspace-complete}
+
+\def\logspace{\textsc{logspace}\xspace}
+\def\nlogspace{\textsc{nlogspace}\xspace}
+
+\def\ptime{\textsc{ptime}}
+\def\np{\textsc{np}}
+
+
+
+%% LOGIC %%
+\def\fol{\mathsf{FOL}}
+\def\SL{\textsf{SL}}
+
+\def\msol{\mathsf{MSOL}}
+\def\fotc{\mathsf{FOL+TC}}
+
+\def\know{\mathbb{K}}
+\def\dknow{\mathbb{D}}
+\def\cknow{\mathbb{C}}
+\def\eknow{\mathbb{E}}
+
+\def\dualknow{\widetilde{\mathbb{K}}}
+\def\dualdknow{\widetilde{\mathbb{D}}}
+\def\dualcknow{\widetilde{\mathbb{C}}}
+\def\dualeknow{\widetilde{\mathbb{E}}}
+
+\renewcommand\implies{\rightarrow}
+
+%% TEMPORAL LOGIC %%
+\newcommand{\sqsq}[1]{\ensuremath{[\negthinspace[#1]\negthinspace]}}
+
+\DeclareMathOperator{\ctlE}{{\mathsf{E}}}
+\DeclareMathOperator{\ctlA}{\mathsf{A}}
+
+
+\newcommand{\atlE}[1][A]{\ensuremath{\langle\!\langle{#1}\rangle\!\rangle}}
+\newcommand{\atlA}[1][A]{\ensuremath{[[{#1}]]}}
+
+\DeclareMathOperator{\nextX}{\mathsf{X}}
+\DeclareMathOperator{\yesterday}{\mathsf{Y}}
+\DeclareMathOperator{\until}{\mathbin{\mathsf{U}}}
+\DeclareMathOperator{\weakuntil}{\mathbin{\mathsf{W}}}
+\DeclareMathOperator{\since}{\mathbin{\mathsf{S}}}
+\DeclareMathOperator{\releases}{\mathbin{\mathsf{R}}}
+\DeclareMathOperator{\always}{\mathsf{G}}
+\DeclareMathOperator{\hitherto}{\mathsf{H}}
+\DeclareMathOperator{\eventually}{\ensuremath{\mathsf{F}}\xspace}
+\DeclareMathOperator{\previously}{\mathsf{P}}
+\newcommand{\true}{\mathsf{true}}
+\newcommand{\false}{\mathsf{false}}
+
+
+\newcommand{\LTL}{\ensuremath{\mathsf{LTL}}\xspace}
+\newcommand{\PLTL}{\textsf{PROMPT-}\LTL}
+
+\newcommand{\CTL}{\ensuremath{\mathsf{CTL}}\xspace}
+\newcommand{\CTLS}{\ensuremath{\mathsf{CTL}^*}\xspace}
+\newcommand{\PCTLS}{\textsf{PROMPT-}\CTLS}
+\newcommand{\PCTL}{\textsf{PROMPT-}\CTL}
+\newcommand{\CLTL}{\ensuremath{\textsf{C-}\LTL}\xspace}
+\newcommand{\PCLTL}{\ensuremath{\textsf{PROMPT-C}\LTL}\xspace}
+
+\newcommand{\ATL}{\ensuremath{\mathsf{ATL}}\xspace}
+\newcommand{\ATLS}{\ensuremath{\mathsf{ATL}^*}\xspace}
+\newcommand{\PATLS}{\textsf{PROMPT-}\ATLS}
+\newcommand{\PATL}{\textsf{PROMPT-}\ATL}
+
+\newcommand{\KATL}{\ensuremath{\mathsf{KATL}}\xspace}
+\newcommand{\KATLS}{\ensuremath{\mathsf{KATL}^*}\xspace}
+\newcommand{\PKATLS}{\textsf{PROMPT-}\KATLS}
+\newcommand{\PKATL}{\textsf{PROMPT-}\KATL}
+
+
+\def\red{{red}}
+\def\col{{col}}
+\def\alt{\, | \,}
+
+%% PROMPT 
+\def\kmodels{\models^k}
+\def\twokmodels{\models^{2k}}
+\DeclareMathOperator{\Fp}{\eventually_\mathsf{P}}
+\DeclareMathOperator{\Gp}{\always_\mathsf{P}}
+\DeclareMathOperator{\within}{\mathsf{within}}
+
+\newcommand{\AP}{{AP}}
+\def\Ag{{Ag}}
+\def\Act{{Act}}
+
+%% MATH OPERATIONS %%
+\newcommand{\tpl}[1]{\langle {#1} \rangle }
+\newcommand{\tup}[1]{\overline{#1}}
+\def\proj{\mathsf{proj}}
+\newcommand{\defeq}{\ensuremath{\triangleq}}
+
+%% STRUCTURES and STRATEGIES %%
+\newcommand{\cgs}{\ensuremath{\mathsf{S}}}
+\newcommand{\LTS}{\mathsf{S}}
+\newcommand{\Comp}{\mathsf{cmp}}
+\newcommand{\Hist}{\mathsf{hist}}
+\newcommand{\out}{{out}}
+
+\newcommand{\Paths}{\mathsf{pth}}
+
+\newcommand{\nat}{\mathbb{N}}
+\def\int{\mathbb{Z}}
+\newcommand{\natzero}{\mathbb{N}_0}
+
+\newcommand{\trans}[3]{#1 \stackrel{\mathsf{#3}}{\rightarrow} #2}
+
+
+%% HEADINGS ETC %%
+\newcommand{\head}[1]{\noindent {\bf #1}.}
+
+%% COUNTER MACHINES %%
+\newcommand{\cm}{M}
+\newcommand{\CMinc}{\mathsf{inc}}
+\newcommand{\CMdec}{\mathsf{dec}}
+\newcommand{\CMzero}{\mathsf{ifzero}}
+\newcommand{\CMnonzero}{\mathsf{nzero}}
+\newcommand{\CMcommit}{\mathsf{end}}
+
+
+%% CLTL %%
+\def\var{{\sf var}}
+\def\ovar{{\sf ovar}}
+\def\avar{{\sf avar}}
+\def\svar{{\sf svar}}
+\def\bvar{{\sf bvar}}
+
+\def\MOD{\equiv}
+
+%% PVP %%
+\def\PVP{\mathsf{PVP}}
+
+

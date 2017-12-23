@@ -1,0 +1,130 @@
+-----
+gdg
+
+ML = compression
+
+data science = analysis for understanding data, typically statistical
+write application
+
+"what is a link?" wood
+what is the meaning of the links?
+led to DL
+
+-----
+
+arena + LTLf
+
+
+ 4 pillars - synthesis, planning, data-aware proc, KR
+
+planning + data (semantically understood) + LTLf
+
+The WISEMECH vision is to be the first to develop an theoretical and practical framework to synthesise, an automated verification framework that is able
+to verify a significant class of realistic distributed algorithms.
+
+Stunning recent theoretical breakthroughs (LTLf, dec fragments of data-aware, FO version of baby sitting problem 2011-->) chart a revolutionary path for extending planning in AI (and its theory) to embrace rich objectives (safety, progress, and attainment), data, and componentisation.
+
+Engineering self-programming mechanisms that are human-comprehensible and safe by design is 
+
+Recent stunning foundational results by the applicant chart a novel path that will revolutionise Reasoning about Action and Planning in AI by introducing rich objectives, data, and componentisation in order to produce a breakthrough in engineering self-programming mechanisms that are human-comprehensible and safe by design.
+
+strongly suggest that one can extend the domains in which planning is used to include data and goals that can specify safety as well as achievement objectives.
+
+1. finite state (no data)... using theoretical insights from synthesis + algorithmic insights from planning (search AND/OR trees)
+ ... and most-general solns
+
+2. data aware (fo state)... if data is unbounded... complex.
+if data is bounded... process acts analoguesly on most of this data. then you have a way of finding a finite abstraction that can be checked/synthesised.
+e.g., crucial point: explicit things free; on things that are not written explicitly, nothing interesting comes out of what you are not saying; you will act on the unamed object of the domain homogeneously... once you know the relationship everything is known...
+easy cases in the exp many things you need to check... exp on vars that change
+
+3. componentisation
+
+
+
+Levesque:
+AI agents should be kept free to change what they want to do.
+so you want to synthesise for part of their life.
+
+------
+
+- abstract - sounds theoretical
+- where are statistics? ANN?
+
+
+- However it is considered impossible to determine apriori all possible adaptations that may
+be needed: self-programming abilities would be highly disederable.
+straw man?
+
+- Although the interest is clearly apparent, currently these self-programing abilities are missing in actual
+mechanisms, and science is focussing on limited forms of self-programming, e.g., for exception handling
+and recovery, or forms of composition and autonomic reconfiguration.
+citations?
+
+- proof of concept with simplest systems? e.g., temperature control in a house...
+
+WhiSeMech
+
+- 
+. This contrasts with most current approaches which consider acceptable synthesized solutions
+that remain opaque to humans, as long as they work.
+cite?
+
+- What is the scope/framwork of self-programming? there must be some structure that is fixed? or 
+is the code itself reprogrammable? or is it like a universal TM?
+
+- DATA?
+
+- MCMAS does not scale...
+
+- is White-box self-programming mechanisms new? have first steps been done?
+
+- too ambitious? what has been done already? can we do all this in an opaque way?
+
+3. VERIFIABLE
+sounds like monitoring...
+
+4. gaurantee with probability 1???
+
+WP3: what sort of evaluation? tools at TACAS? industrial partners?
+ 
+
+--- read it and make sure it is good enough to continue... to send to reviewers.
+
+ambitious, but feasible
+
+reinforcement learning: know state, learn transitions
+
+ANN - compresses state space, equivalence classes of configs (do same action from elements of a class), 
+then reinforcement learning to learn transitions (Monte Carlo search) mdps
+
+
+--
+ML for runtime prediction
+ML for algorithm selection
+
+Use ML to learn features?
+
+
+Knowledge-based artificial neural networks (KBANNs) 1994
+
+- representation fixes space of possible classifiers/strategies/controllers.
+so, don't we need a dynamic/extensible representation? e.g., instead of fixing signature, 
+learn signature as you go along...
+
+Working in AI and Robotics is not about
+”How to glue the existing pieces together ” ...
+• ... it is about
+”How to build pieces that fit together”
+
+21
+D. Beck and G. Lakemeyer. “Reinforcement learning for Golog programs with first-order state-abstraction”. In:
+Logic Journal of the IGPL 20.5 (2012), pp. 909–942.
+22
+R. Brafman et al. “Service composition under probabilistic requirements”. In: GenPlan Workshop at ICAPS. 2017.
+
+H. Levesque. Common Sense, the Turing Test, and the Quest for Real AI. MIT Press, 2017.
+
+
+
+

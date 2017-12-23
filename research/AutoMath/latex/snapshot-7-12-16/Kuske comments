@@ -1,0 +1,107 @@
+
+X p1 l-1 I understand "highly undecidable" as "$\Sigma_1^1$-hard" (but I
+did not find a definition)
+
+x p4 end of paragraph 2: "... a given finite-string automaton is empty
+..." - I hate this formulation (that one finds rather often): it is not
+the automaton, that is empty, but its language!
+
+x p4 l-7: same
+
+x p4 l-5/-4: "... has decidable MSO-theory." ("theory" is missing twice)
+
+x p5 list of citations in middle: "... computational complexity of their
+theories (...) can be found in [13,...]" - you might add a reference to
+the work by Durand-Gasslin and Habermehl on Presburger arithmetic and on
+automatic structures of bounded degree (using
+Ehrenfeucht-Fraissee-relations)
+
+x p6 l-3: "mean that the sentence $\Phi$ ..." - should this be $\phi$?
+
+x section 2.2, l3: replace $s_0$ and $s_1$ by $suc_0$ and $suc_1$ as in
+Definition 1.1
+
+x p8 last line of proof of Prop. 2.4: you write "lemma 2.3", but I think
+at other occassions, you also write "Lemma 2.3" (I might be wrong).
+
+x p8 l-5: $\rho_1[n]$ is presumably the n'th state in the run $\rho_1$, on
+page 28, $\alpha[i]$ seems to be the prefix of $\alpha$ of length i -
+this should be made consistent and defined.
+
+x section 2.3: you one write about 1-dimensional interpretations. Is this
+sufficient?
+
+x Lemme 2.8: It is important for Prop. 2.9 that $\Phi_{\mathcal I}$ can be
+computed from $\Phi$.
+
+x p10 l8: replace "[27][20]" by "[27,20]"
+
+x Definition 3.2: do one-dimensional interpretations suffice?
+
+x Definition 3.4, last line: "... called aN $\omega$-tree ..."
+
+x Example 3.1: you should, at least, provide proof ideas or references for
+these claims.
+
+x Further down: I would replace $\exists^{\ge\kappa}$ as, e.g., in Prop. 2.4
+
+?? p13 l6: replace reference [54] by [55] (actually, I would not mind if
+you deleted [54] altogether and always refered to [55] instead since
+[55] contains the complete proofs)
+
+x Example 3.2: mention that "bi-interpretable" refers to FO
+
+x Prop. 3.9 needs a reference to the literature
+
+x p16, first line of paragraph "T-AutStr": replace "Except in" by "As
+opposed to"
+where is the non-existence of a regular well-ordering shown?
+did you define what a regular relation is (I don't think you did)?
+
+x following paragraph $\omega$S-AutStr: replace "unique set of
+representatives" by "set of unique representatives"
+
+x p17 l-4/-3: again an empty automaton
+
+x p18 l-2: "number OF distinct shadows"
+
+x p19 l1: "random graph" needs a reference and an explanation since
+computer scientist often do not know this graph (and, even worth, have
+their own understanding of a random graph in algorithmic considerations)
+
+x Definition 4.4: "Let $(\mathfrac B_i)...$" (not $C_i$)
+
+x p21 l2: spelling of decomposable
+
+x Prop. 5.1: you did not define what a regular relation is (same problem
+arises further down)
+
+x Section 6.1 l1: "certain expansionS ... MSO-THEORIES"
+
+x p25 l03: "decidable MSO-THEORIES [19,76]"
+
+x Example 6.2 l7: "decidable MSO-THEORIES"
+
+X p29 Fact 2: spelling of satisfies
+
+X end of proof of Theorem 6.9: Why is V' $\Pi_1^1$-complete?
+
+X References:
+you are not consistent in your style: sometimes, you give long titles of
+conferences, sometimes on abbreviations
+
+X [35] replace / by \ (twice)
+
+X [39] capitalize Ramsey
+
+X [47] delete space before question mark
+
+?? [51] the journal paper contains better results (e.g. regarding linear
+orders) and complete proofs. I would therefore prefer if you cite the
+journal version and not the LICS-paper.
+
+X [54] replace "FIP" by "IFIP" - anyway, this paper can be safely
+substituted by [55]
+
+
+

@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Logic, automata and interpretations}{5}
+\contentsline {subsection}{\numberline {2.1}Logical languages}{5}
+\contentsline {subsection}{\numberline {2.2}Rabin's theorem}{6}
+\contentsline {subsection}{\numberline {2.3}Interpretations}{8}
+\contentsline {section}{\numberline {3}Automatic structures}{9}
+\contentsline {subsection}{\numberline {3.1}Rabin-automatic structures}{9}
+\contentsline {subsection}{\numberline {3.2}Other classes of automatic structures}{12}
+\contentsline {subsection}{\numberline {3.3}Operations on automatic structures}{14}
+\contentsline {section}{\numberline {4}Anatomy of structures}{17}
+\contentsline {section}{\numberline {5}Equivalent presentations}{20}
+\contentsline {section}{\numberline {6}Relatives of automatic structures}{23}
+\contentsline {subsection}{\numberline {6.1}Expansions by predicates and automatic with advice}{23}
+\contentsline {subsection}{\numberline {6.2}Descriptive set theory and Borel presentations}{26}
+\contentsline {section}{\numberline {7}Questions}{29}
+\contentsline {section}{References}{29}

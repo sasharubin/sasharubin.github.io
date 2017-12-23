@@ -1,0 +1,45 @@
+We first combine all agents in $A$ into a single agent. Although this can always be done mathematically, it may not result in a finite iCGS. We show that in case \cgs\
+has public actions, the result is finite.
+
+First, replace $\cgs$ by its unfolding $\cgs^u$:
+\begin{itemize}
+ \item same agents, atoms, and actions as $\cgs$,
+ \item states $S^u = \hist{S}$,
+ \item initial states $S_0^u = S_0$,
+ \item labeling $\lambda^u(h) = \lambda(last(h))$ for $h \in \hist{S}$,
+ \item transition $\delta^u(h,d) = h \cdot \delta(last(h),s)$  for $h \in \hist{S}$,
+ \item relations $\sim^u_i$ defined to be $h \equiv_i h'$,
+\end{itemize}
+
+The natural bijection $\alpha:\hist{S} \simeq \hist{\hist{S}}$ shows that $\cgs^u$ and $\cgs$ are equivalent. \todo{i.e., agree over the logic}
+
+
+
+% An observational strategy for agent $a$ in $\cgs^u$ is a function $\sigma_a^u: \hist{\hist{S}} \to \Act_a$ such that $\sigma_a^u(H) = \sigma_a^u(H')$ for $H \equiv^u_a H'$.
+
+Second, replace $A$ by a single player, call it $0$, and $\Ag \setminus A$ by a single player $1$.
+
+\begin{definition}
+ Given an iCGS $\cgs$ (with states $S$, etc.) and $A \subseteq \Ag$, define $\cgs_A$ to be the iCGS with two agents $0$ and $1$, and with
+ \begin{itemize}
+  \item same states, initial states, atoms, labeling as $\cgs^u$,
+  \item agents $\{0,1\}$,
+  \item actions for agent $0$ (resp. $1$) are sets of observational strategies $\sigma_A$ (resp. $\sigma_{\Ag \setminus A}$) of $\cgs^u$,
+  \item transition function that maps state $h \in \hist{S}$ and decision $\tpl{\sigma_A,\sigma_{\Ag \setminus A}}$ to the state $h' \in \out(\cgs,h,\sigma_\Ag)$ of length $|h|+1$ (here $\sigma_\Ag$ is the union of the sets $\sigma_A$ and $\sigma_{\Ag \setminus A}$).
+  \item $h \sim_0 h'$ iff $|h| = |h'|$. \todo{???}
+ \end{itemize}
+
+\end{definition}
+
+Note that a set of observational strategies $\sigma_A$ of $\cgs^u$ induces an observational strategy $\sigma_0$ for agent $0$ of $\cgs_A$, i.e., $\sigma_0(H) = \sigma_A(H)$ 
+(i.e., always play the same action, i.e., $\sigma_A$); conversely, an observational strategy $\sigma_0$ of $\cgs_A$ induces a set of observational strategies of $\cgs_A$, of $\cgs_A$, i.e., $\sigma_A(H) = \sigma_0(H)$ for all $H \in \hist{\cgs_A}$. Moreover, the strategies induce the same set of computations. Thus, for an \LTL formula $\psi$:
+$\cgs_A \models \atlE[\{0\}] \psi$ iff $\cgs^u \models \atlE \psi$. 
+
+
+\begin{remark}
+Although $\cgs_A$ has uncountable many actions, we can make these countable by allowing, at step $r$, actions of the form $\sigma_A$ restricted to histories of length $r$.
+\end{remark}
+
+\begin{remark}
+The reduction is not effective, i.e., there is no algorithm that, given $\cgs$ and $A \subseteq \Ag$ (one needs $|\Ag| = 3$ and $|A| = 2$), solves the problem of whether $\cgs_A \models \atlE[\{0\}] \eventually p$. 
+\end{remark}

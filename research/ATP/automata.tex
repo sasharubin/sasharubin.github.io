@@ -1,0 +1,108 @@
+%% preliminaries: tree automata
+
+\subsection{Automata Theory Background} \label{sec:prelims:automata}
+
+We use alternating B\"uchi automata over infinite trees, written \ABT. All results can be found in \cite{DBLP:conf/dagstuhl/2001automata}, although we note that
+here we use slight notational variants of the definitions.\footnote{Our trees $t$ have the unconvential but convenient property that their domains do not contain the empty-string. This leads to the need for an initial formula rather than the more common an initial state.}
+
+Let $\B^+(X)$ denote the set of positive Boolean formulas over $X$, i.e., it consists of the constants $\true,\false$, and the formulas from the set containing the elements of $X$ closed under the operations $\vee$ and $\wedge$. Let $\Sigma$ be an alphabet, and let $D$ be a finite non-empty set of \emph{directions}. A $D$-ary $\Sigma$-tree is a function $t:D^+ \to \Sigma$. 
+
+
+Tree automata recognised sets of $D$-ary $\Sigma$-trees. An \emph{alternating B\"uchi tree automaton (\ABT)} over $\Sigma$ and $D$ is a tuple 
+$T = (Q,\iota,\delta,B)$ where $Q$ is a finite non-empty set of states, $\iota \in \B^+(D \times Q)$ is the initial formula, 
+$\delta:Q \times \Sigma \to \B^+(D \times Q)$ is the transition function, and $B \subseteq Q$ is the set of {\em accepting} states. The set $\F = \{\iota\} \cup \{\delta(q,\sigma) : q \in Q, \sigma \in \Sigma\}$ is called the set of \emph{formulas} of $T$.
+
+Since it is intuitive and concise, we give a game-theoretic semantics of what it means for an \ABT to accept or reject a tree.
+An \ABT $T$ accepts tree $t$ if player Automaton has a winning strategy in the following ``membership game'' played against player Pathfinder. 
+Positions of the game are elements of $D^+ \times Q$. From a position $(u,q)$ player Automaton picks (if he can) a set $S \subseteq D \times Q$ satisfying $\delta(q,t(u))$; if there is no such set Automaton loses the game, if the set is empty then Automaton wins, and otherwise Pathfinder picks a position 
+$(d',q') \in S$ and the position is updated to $(ud',q')$. To start the game off Automaton picks $S$ satisfying $\iota$ and Pathfinder picks a position $(d,q) \in S$.
+If the game lasts infinitely many rounds it generates an infinite sequence $(d_0,q_0) (d_0d_1,q_1) (d_0d_1d_2,q_2) \cdots$ (the sequence can be thought of as a path through $t$ labeled by states from $Q$). In this case Player Automaton wins iff there exists infinitely many $n \in \nat$ such that $q_n \in B$. 
+
+% the players play on the parse-tree of the formula $\delta(q,t(u))$ with Automaton resolving disjuncts, Pathfinder resolving conjuncts, resulting in either $\true,\false$ or an expression of the form $(d',q')$; the players begin the game by playing on the parse-tree of the formula $\iota$. In case a parse-tree resolves to $\true$ then Automaton wins the game, and to $\false$ then Automaton loses the game. Otherwise, the game proceeds for another round from position $(ud',q')$. 
+
+
+A \emph{nondeterministic B\"uchi tree automaton (\NBT)} is an \ABT whose formulas are either of the form $\true$, $\false$, or $\bigvee_i \bigwedge_{d \in D} (d,q_{i,d})$, i.e., they are in DNF in which every conjunct contains every direction exactly \todo{at most?} once.
+A \emph{universal B\"uchi tree automaton (\UBT)} is an \ABT in which none of the formulas contain disjunction.
+A \emph{deterministic B\"uchi tree automaton (\DBT)} is an \NBT that is also a \UBT, i.e., every formula that is not $\true$ or $\false$ is of the form $\bigwedge_{d \in D} (d,q_d)$.
+
+We define \emph{alternating co-B\"uchi tree automata (\ACT)} like \ABT but dualise the acceptance condition, i.e., player Automaton wins iff there are only finitely many $n \in \nat$ such that $q_n \in B$.
+
+A $D$-ary $\Sigma$-tree $t$ is \emph{regular} if it is determined by a transducer with input alphabet $D$ and output alphabet $\Sigma$.
+
+
+\todo{define size of automaton.}
+
+
+
+\begin{fact}[Dualising \ABT] \label{fact:dual}
+Fix $\Sigma,D$.
+ The \emph{dual} of an \ABT $T = (Q,\iota,\delta,B)$ is the \ACT $T^\partial = (Q,\iota^\delta,\delta^\partial,B)$ where $\delta^\partial(q,\sigma) := \delta(q,\sigma)^\partial$ and where $\theta^\partial$ is the transformation that swaps $\vee$ with $\wedge$ and swaps $\true$ with $\false$, i.e., $\true^\partial \doteq \false$, $\false^\partial \doteq \true$, $(\theta_1 \wedge \theta_2)^\partial \doteq \theta_1^\partial \vee \theta_2^\partial$ and $(\theta_1 \vee \theta_2)^\partial \doteq \theta_1^\partial \wedge \theta_2^\partial$. It follows from the definitions that, for all trees $t$, $T$ accepts $t$ if and only if $T^\partial$ does not accept $t$. 
+ The size of $T^\partial$ is the same as the size of $T$. 
+\end{fact}
+
+\begin{fact}[Intersection of \ABT] \label{fact:intersection}
+ Fix $\Sigma, D$ and \ABT $T_i = (Q_i,\iota_i,\delta_i,B_i)$ for $i = 1,2$. 
+ Then the following \ABT accepts those trees $t$ that are accepted by both $T_1$ and $T_2$: it is the disjoint union of $T_1$ and $T_2$ with initial formula $\iota_1 \wedge \iota_2$.  
+ \end{fact}
+
+
+ 
+
+
+\begin{fact}[Emptiness of \ABT] \label{fact:ABT-emptiness} 
+Emptiness of \ABT is decidable in \exptime, i.e., 
+$2^{poly(n)}$ where $n$ is the number of states of the \ABT and $poly$ is a fixed polynomial.
+If the \ABT $T$ is non-empty, the procedure can also return a regular tree in $T$. 
+\end{fact}
+
+
+
+\subsection{Automata with Finitary Acceptance}
+
+An \ABT $(Q,\iota,\delta,B)$ has \emph{finitary acceptance condition} if $\delta(b,\sigma) = b$ for all $b \in B, \sigma \in \Sigma$. In particular, in the membership game, player Automaton wins an infinite play $\pi$ iff there exists $n \in \nat$ such that $\pi_n \in B$, i.e., a reachability condition. We write \AFT for these automata. 
+
+\sr{WARNING: We need better notation. AFT usually means input trees are FINITE.}
+
+\begin{fact}[Intersection of \NFT] \label{fact:nft-intersection}
+ Fix $\Sigma, D$ and \NFT $T = (Q,\iota,\delta,B)$ and $T' = (Q',\iota',\delta',B')$. Without loss of generality:
+ \begin{itemize}
+ \item Assume $B = B' = \emptyset$ (this can be done redefining $\delta$ to map $q \in B$ and $\sigma \in \Sigma$ to $\true$).\footnote{We remark that this simplification is not valid for \DFTf 
+ since the automaton would have to guess the end of the branch (although it would be valid if we assumed end-of-branch markers to all input trees).}
+ \item  Assume that $Q,Q'$ are disjoint.
+ \end{itemize}
+ Let $S \doteq (Q \times Q') \cup Q \cup Q'$.
+ For $\theta = \bigvee_{x \in X} \bigwedge_{d \in D} (d,q_{x,d}) \in \B^+(D \times Q)$ and 
+ $\theta'  = \bigvee_{y \in Y} \bigwedge_{d \in D} (d,q_{y,d}) \in \B^+(D \times Q')$, define $\theta \otimes \theta' \in \B^+(D \times S)$ as follows:
+ \begin{itemize}
+ \item  $\theta \otimes \false \doteq \false$ and $\false \otimes \theta \doteq \false$, 
+ \item  $\theta \otimes \true \doteq \theta$ and $\true \otimes \theta' \doteq \theta'$, 
+ \item  $\theta \otimes \theta' \doteq
+  \bigvee_{(x,y) \in X \times Y} \bigwedge_{d \in D} (d,\tpl{q_{x,d},q_{y,d}})$.
+ \end{itemize}
+
+ 
+ 
+ Then the following \NFT accepts those trees $t$ that are accepted by both $T_1$ and $T_2$: 
+ its states are $S$, its initial state is $\iota \otimes \iota'$, and its transition function on input $\sigma$ sends state $\tpl{q,q'}$ to formula 
+ $\delta(q,\sigma) \otimes \delta'(q',\sigma)$.
+ \todo{This construction needs to be checked/debugged}
+ \end{fact}
+ 
+ 
+Just as the acceptance condition of a tree automaton can be viewed as a ``membership game'', so too the emptiness check can be viewed as an ``emptiness game''. For \NFT this means that classic fixpoint algorithms (used for solving games) can be applied to solve the emptiness problem of tree automata, see, e.g., \cite{DBLP:conf/dagstuhl/2001automata}. 
+
+\begin{fact}[Emptiness of \NFT] \label{fact:nft-emptiness}
+Emptiness of \NFT is decidable in linear time. Moreover, if an \NFT $T$ is non-empty, one can also return a regular tree in $T$. 
+\sr{Can be cut... Emptiness of \NFT $N$ is equivalent to deciding if Player Automaton has a winning strategy in the following two-player zero-sum game of perfect information played on $N$. The adversary is called Pathfinder. Play goes as follows: from a state $q$ Player Automaton picks a symbol $\sigma$ and a conjunct $\bigwedge_{d \in D} (d,q_d)$ in $\delta(q,\sigma)$, and player Pathfinder picks $d \in D$, and play proceeds to state $q_d$; play starts with Automaton picking a disjunct in $\iota$ and Pathfinder picking the next direction and state; if $\delta(q,\sigma) = \false$ then Automaton loses, and if $\delta(q,\sigma) = \true$ then Automaton wins.}
+\end{fact}
+
+\head{Automata for finite sequences \NFWf} We only need the definition of nondeterministic word automaton. For conciseness, we reuse our existing definitions.
+
+% We define word automata. For conciseness we reuse the definition of tree automata. 
+% A \emph{$\Sigma$-word} is a tree with $|D| = 1$. Define word automata as special cases of tree automata in which $|D| = 1$. To ease notation, we drop mention of $D$, and thus write formulas in $\B^+(Q)$. We write \ABW, \NBW, \UBW, \DBW, etc.
+
+
+Formally, a \emph{finite $\Sigma$-word} is a partial function $t:D^+ \to \Sigma$ with $|D| = 1$, whose domain 
+is finite and closed under taking non-empty prefixes. Define \NFWf to be like an \NFT except that it operates on finite words, 
+and the membership game has the following additional rule:  from a position $(u,q)$, if the word has ended, then Automaton wins iff $q \in B$. 
+Thus, \NFWf is simply a notational variants of the usual nondetermistic word automata (sometimes denoted NFA in the literature).

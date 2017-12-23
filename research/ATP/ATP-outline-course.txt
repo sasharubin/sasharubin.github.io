@@ -1,0 +1,22 @@
+This course is intended for graduate students who have taken basic
+courses in discrete mathematics, data structures, logic and
+computation and who want to add to their toolbox a versatile tool for
+reasoning about dynamic systems.
+
+1. Algorithmic Foundations: Decision problems, Automata theory
+
+ Decision problems, Finite Automata, Regular expressions, Automata on
+ infinite words, Automata on infinite trees
+
+
+2. Foundations: Logics for Verification
+
+ What are logics? Syntax, Semantics.
+
+ What are logics good for? model checking, satisfiability, realisability.
+ 
+ Modal logics for multi-agent systems: modal logic, epistemic operators,
+ temporal operators, strategic operators
+ 
+ 
+

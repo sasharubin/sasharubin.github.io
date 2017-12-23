@@ -1,0 +1,2134 @@
+%??? when mentioning Decision procedures, talk about satisfiability. and complexity of sat in aut str is undec.
+
+% what is complexity of sat of QF frag? useful in appls? hoare logic?
+
+%kuske ramsey quantifier
+
+
+%??? unify DFA notation with rest of book
+
+%cite BlCoLo07; iteration preserves fo dec as operation? generalised sum?
+%caucal hierarchy can be gotten via MSO + advice. 
+
+%Every graph in the pushdown hierarchy is the result of an mso interpretation in some
+%decidable colouring of the tree. The corresponding automatic structures with advice have decidable
+%FO theory.
+
+%??? make sure w[n] is consistent notation for nth symbol of w
+
+%??? A is for alphabet, or domain of structure?
+
+%cite/read puppis
+% read gurevich/rabin for survey style
+
+
+%=====================================================
+\section{Introduction} \label{AS:sec:introduction}
+%=====================================================
+
+\subsubsection*{Decidability.}
+%I imagine that high-school students dream of having a systematic procedure
+%answering all of their mathematical problems. 
+Much elementary algebra and geometry can be
+expressed in the first-order (FO) language of the structure of {\em real arithmetic}
+\[(\R,+,\times,<,+1,=,0,1).\]
+Formulas in this FO language allow quantification over elements of $\R$, 
+make use of the operations $+, \times$ and $+1$, the relations $<$ and $=$, the constants $0$ and $1$,
+and the Boolean connectives (negation, conjunction, etc).
+%complexity? Students are in luck.
+Tarski proved that there is an algorithm that decides the truth or falsity of
+every FO-sentence in this language (a sentence is a formula with no free variables). One says that the FO-theory (i.e. the set of true FO-sentences) of real arithmetic
+is decidable. Tarski's proof uses a
+technique called effective quantifier elimination. The approach looks familiar:
+the statement that a quadratic has two real roots
+\[
+\exists x \exists y [x \neq y \wedge ax^2 + bx + c = 0 \wedge ay^2 + by + c =0]
+\]
+(written with abbreviations such as $x^2$ for $x \times x$) 
+can be replaced by the simpler quantifier-free condition
+$a \neq 0 \wedge 4ac < b^2.$ 
+
+This technique does more than just prove decidability. It gives
+some insight into the nature of the sets and relations definable by
+formulas of the language.  Indeed, Tarski's procedure transforms a
+formula into an equivalent formula with no quantifiers and without changing its
+free variables, and it also provides a proof (from the axioms for a real closed field) that the two formulas are equivalent. 
+A model-theoretic consequence is that every FO-definable set in real arithmetic is a finite union of intervals with algebraic endpoints. An algorithmic consequence
+is that one can effectively determine the number of real roots of a given polynomial.
+Tarski's paper \cite{Tars51} contains a nice discussion of his result
+and its uses. For an elementary proof see \cite{MiOz02}.
+
+There are a number of techniques for proving theories decidable and understanding the definable relations. Notable approaches
+are providing a finite (or computably enumerable) axiomatisation of a theory\footnote{Here a theory is any set of FO-sentences closed under logical deduction. If, in addition to being finitely axiomatisable, the theory is also complete (every sentence or its negation is in the set), then the theory is decidable. Showing completeness is the bread and butter of model theorists.}; and  the composition method
+(associated with the names Feferman, Vaught and Shelah) that leverages a decomposition of the structure into pieces whose theories determine (and can be used to compute) the original theory.
+
+Of course not all theories are decidable. A good heuristic is that if a long unsolved problem is expressible then the theory is probably undecidable. 
+The canonical example is the FO-theory of the structure of integer arithmetic $(\N,+,\times,<,=,0,1)$ --- its theory is very expressive and highly undecidable.\footnote{Since a pairing function is definable one can code sequences of integers and so express whether or not a given FO-sentence of arithmetic is provable from a given computable set of FO-axioms; or if one prefers, whether or not a given Turing machine halts on a given input.}
+On the other hand the FO-theory $(\N,+,\text{Pr})$ where $\text{Pr} \subset \N$ is the set of primes is only known to be undecidable
+under some number theoretic assumptions related to the twin-primes conjecture \cite{BJW93}.
+
+%\subsubsection{Enter automata}
+%
+%\begin{center}
+%Version 1
+%\end{center}
+
+%In the late 1950s, Church summarised the known decision methods for restricted
+%systems of arithmetic. He asked, in particular, whether the weak monadic second-order
+%(WMSO) logic of $\one$ is decidable.  The term (weak) monadic second-order
+%means that variables vary over (finite) subsets of the domain $\N$. After
+%Church's lectures B\"uchi and Elgot leveraged the natural correspondence
+%between finite subsets of $\N$ and certain finite strings over the alphabet $\{0,1\}$. Namely,
+%let $\chi(A)$ be the shortest binary string with a $1$ in position $n \in \N$ if and only if $n \in A$.
+%They proved a fundamental result,  independently established by Trahtenbrot, 
+%that identifies logical definability with recognisability by automata.
+
+%\begin{theorem}[\cite{Buch60, Elgo61, Trah62}] \label{AS:thm:BET}
+%A set of tuples $(A_1,\cdots,A_n)$ of finite sets of natural numbers is weak monadic
+%second-order definable in $\one$ if and only if the corresponding $n$-ary
+%relation of strings $(\chi(A_1),\cdots,\chi(A_n))$ is a synchronous rational relation. Moreover, the translation between formulas and automata is effective.
+%\end{theorem}
+
+%The proof of this theorem can be found in ??. As a simple illustration the reader can find 
+%a formula with one free set variable defining the set $E$
+%\[\{A \subseteq \N \st \mbox{the cardinality of $A$ is even}\}
+%\]
+%and an automaton accepting the corresponding set $\{\chi(A) \in \{0,1\}^\ast \st A \in E\}$.
+
+%\begin{corollary} \label{AS:cor:ws1s}
+%The WMSO-theory of $\one$ is decidable.
+%\end{corollary}
+
+%\begin{proof}
+%%To get this decidability we use one direction of the theorem. 
+%A formula $\phi$
+%with no free variables is (logically equivalent to) one of the form $\exists X
+%\psi(X)$ or $\neg \exists X \psi(X)$. Use the effective procedure guaranteed by
+%theorem \ref{AS:thm:BET} to build an automaton $M$ corresponding to $\psi$. One can
+%effectively decide whether an automaton accepts any string whatsoever. If $M$
+%does then $\exists X \psi(X)$ is true, otherwise it is false.
+%\end{proof}
+
+%B\"uchi and Elgot noticed that the {\it first-order theory} of $(\N,+)$ is
+%decidable\footnote{This theory is called \emph{Presburger arithmetic} after ...
+%Presburger who proved it decidable via effective QE?} as it is interpretable in
+%the WMSO-theory of $\one$. Lets explain what this means (formal definitions
+%appear later).
+%%There is a natural first-order variation on WMSO of $\one$. Namely, the structure 
+%%\[
+%%\power_f(\one) := (\power_f(\Nat),S',\subseteq)
+%%\]
+%%where $\power_f(\Nat)$ consists of the finite subsets of $\Nat$, 
+%%$S'$ is a binary relation holding on
+%%pairs $(\{n\},\{n+1\})$ for $n \in \N$, and $\subseteq$ is the subset relation. 
+%%It is easy to see that a WMSO formula $\Phi(X_1,\cdots,X_N)$ in $\one$ defines
+%%exactly the same set as the FO formula $\phi(x_1,\cdots,x_N)$ in $\power_f(\one)$
+%%where we get $\phi$ from $\Phi$ by replacing the set variables $X_i$ by individual variables $x_i$, 
+%%individual variables $x$ are constrained to be singeletons (a FO definable property),
+%%and relations of the form $x \in Y$ are replaced by $x \subseteq y$.
+%Interpretations appear everywhere
+%in mathematics --- a familiar example of an interpretation is the definition of
+%rational arithmetic in terms of integer arithmetic, with the rationals defined
+%as certain pairs of integers. Interpretations are studies systematically in
+%model theory, see \cite.
+
+%\begin{corollary} \label{AS:cor:PRES}
+%\begin{enumerate}
+%\item Every first-order definable relation of $(\N,+)$ is, modulo coding into binary strings, recognised by a finite-automaton.
+
+%\item The first-order theory of $(\N,+)$ is decidable.
+%\end{enumerate}
+%\end{corollary}
+
+%Here is the argument.
+%Code a natural number as a \emph{finite set} by first
+%representing it in binary (least significant digit first) and then taking the
+%characteristic set. Thus the number eleven is $1101$ in binary which corresponds
+%to the set $\{0,1,3\}$. Although this coding might seem unnatural, there is a
+%simple WMSO-formula $\phi_+(X_1,X_2,X_3)$ of the structure $\one$ expressing that the $X_i$ are non-empty (hence $X_i$ codes a natural, say $x_i$) 
+%and that $x_1 + x_2 = x_3$. The formula implements the usual bit-carry procedure for addition:
+%it guesses the existence of the carry set and uses the successor to scan the
+%sets one place at a time verifying the addition. 
+
+%In this way we find a copy of $(\N,+)$ inside $\one$. Formally we have a
+%{\em finite-set interpretation} of $(\N,+)$ in $\one$ (\ref{}). This allows us to
+%translate a FO-formula $\phi(x_1,\cdots,x_n)$ of $(\N,+)$ into a WMSO-formula
+%$\phi'(X_1,\cdots,X_n)$ of $\one$ (\ref{}) with the property that
+%the two formulas define the same relation, modulo the coding. Finally, theorem \ref{AS:thm:BET} ensures
+%the relation, viewed as a relation on strings, is recognised by a
+%finite-automaton. Also,  the decidability follows as in the proof of
+%corollary \ref{AS:cor:ws1s}.
+
+%This chapter concerns structures such as $(\N,+)$ whose theories are
+%decidable via techniques involving automata. The main technique,
+%set-interpretation in a structure such as $\one$ or more generally $\two$,
+%gives us the \emph{automatic structures}. 
+
+
+\subsubsection*{Enter automata.}
+%
+%\begin{center}
+%version  2
+%\end{center}
+
+%This chapter concerns structures whose theories are decidable via techniques involving automata.
+Various systems of arithmetics furnish a hunting ground for questions of decidability. 
+It is reported in \cite{Robi58} that Tarski had asked: is the (weak) monadic second order theory of $\one$ decidable? Here there are additional variables that
+range over (finite) {\em subsets} of the domain $\N$. Viewing finite subsets of $\N$ as finite binary strings B\"uchi \cite{Buch60}, Elgot \cite{Elgo61} and Trahtenbrot \cite{trah62} (independently) showed that WMSO-formulas of $\one$ define regular languages. In slogan form: formulas can be compiled into automata. This establishes that WS1S, the WMSO-theory of $\one$, is decidable. Indeed, a sentence of the form $\exists X \phi(X)$ holds in $\one$ if and only if the automaton for $\phi$ has non-empty language (itself a decidable property). B\"uchi \cite{Buch62} then introduced $\omega$-string automata in order to settle that S1S, the MSO-theory of $\one$, is decidable.
+There is a natural next step.
+
+\begin{definition}
+The structure  $\frakT_r$ has domain $\{0,1, \cdots,r-1\}^\ast$ and binary relations $\suc_i$ ($i \in \{0,1, \cdots, r-1\}$) 
+consisting of the pairs $(w,wi)$, where $w \in \{0,1,\cdots,r-1\}^\ast$. The (W)MSO theory of $\frakT_r$ is called $(W)SrS$. 
+\end{definition}
+Note that $\frakT_1$ is isomorphic to $\one$. B\"uchi \cite{Buch62} asked  whether the 
+MSO-theory of $\frakT_2$ is decidable. Subsets of $\2$ are naturally viewed as $\{0,1\}$-labeled trees.
+Doner \cite{Done70} and Thatcher and Wright \cite{ThWr68} used tree automata to show that WS2S is decidable. In a milestone paper Rabin \cite{Rabi69} introduced automata operating on 
+$\omega$-trees to prove that S2S is decidable.
+%\footnote{Shelah \cite{Shel75} uses his composition to prove many decidability results (including S1S). 
+%However, the only known proofs that S2S is decidable use automata.}
+
+Actually more than just decidability was established. We have already seen, on the way to decidability, that definable relations are, modulo a coding, recognised by automata. The converse also holds. We illustrate for $\omega$-tree automata. For a set $A \subseteq \2$ write $\chi(A)$ for its characteristic $\{0,1\}$-labelled tree (Definition \ref{AS:dfn:chartree}). For a tuple of trees $(t_1,\cdots,t_n)$ write $\conv(\tup{t})$
+for the convoluted $\{0,1\}^n$-labelled tree (Definition \ref{AS:dfn:convtrees}).  
+
+\begin{theorem}[\cite{Rabi69}] \label{AS:thm:RABIN}
+A set of tuples $(A_1,\cdots,A_n)$ of sets of strings is MSO definable in $\two$ if and only if the set of $\{0,1\}^n$-labelled trees 
+$\conv(\chi(A_1),\cdots,\chi(A_n))$ is recognised by an $\omega$-tree automaton. Moreover, the translation between formulas and automata is effective.
+\end{theorem}
+
+An accessible proof of this central theorem can be found in \cite{Thom90}. Similar theorems hold for (W)MSO of $\frakT_r$.
+%As a simple illustration the reader can find 
+%a formula with one free set-variable defining the set
+%\[
+%\{A \st A \subseteq \2 \mbox{ is infinite}\}
+%\]
+%and an automaton accepting the corresponding set of trees $\{\chi(A) \st A \subseteq \2  \mbox{ is infinite}\}$.
+These theorems can be leveraged to deduce many other decidability and definability results. The method of interpretations is one such lever.
+Interpretations are familiar in mathematics --- e.g., arithmetic on the rationals can be interpreted in arithmetic on the integers ---
+and are studied systematically in model theory (see \cite{Hodg93}). Let's illustrate the method with two examples.
+
+
+%The basic idea is to {\em interpret} a theory $T$ in $S2S$, say, and so
+%reduce the question of the decidability $T$ to that of $S2S$. 
+
+
+
+\begin{corollary} \label{AS:cor:pres}
+ Every FO-definable relation of $(\N,+)$ is, modulo a certain coding of natural numbers into binary strings, recognised by an automaton. 
+The translation from formulas to automata is effective. Consequently, the FO-theory of $(\N,+)$ is decidable.\footnote{The FO-theory of $(\N,+)$ is called {\em Presburger arithmetic} after M. Presburger who showed it decidable using effective quantifier elimination \cite{Pres29}.}
+
+\end{corollary}
+
+The following argument establishing the corollary can be found in \cite{Robi58} \cite{Buch60} \cite{Elgo61}. There is a {\em finite-set interpretation} of the FO-theory of $(\N,+)$ in WS1S.
+The interpretation codes $n \in \N$ as a finite subset of $\N$ (e.g., thirteen is coded first in binary as $1101$ and then as the set $\{0,2,3\}$). This coding has the property that there is a WMSO formula $\phi_+(X_1,X_2,X_3)$ expressing that 
+$X'_1 + X'_2 = X'_3$, where $X'_i$ is the unique number coded by the set $X_i$. The formula implements the usual bit-carry procedure for addition:
+it guesses the existence of the carry set and uses the successor to scan the
+sets one place at a time verifying the addition. 
+This allows one to translate every FO-formula $\phi(y_1,\cdots,y_n)$ of $(\N,+)$ into a WMSO-formula
+$\Phi(Y_1,\cdots,Y_n)$ of $\one$  with the property that
+the two formulas define the same relation modulo the coding. This relation, viewed as one on strings,
+is recognised by a finite-automaton (cf. Theorem \ref{AS:thm:RABIN}).
+
+The second example concerns the MSO-theory of the rational order $(\Q,<)$.
+
+\begin{corollary} \label{AS:cor:rationals}
+Every MSO-definable relation of $(\Q,<)$ is, modulo a certain coding of rational numbers into $\omega$-trees, recognised by an automaton. The translation from formulas to automata is effective. Consequently, the MSO-theory of $(\Q,<)$ is decidable.
+\end{corollary}
+
+Rabin \cite{Rabi69} provides a {\em monadic second-order interpretation} of the MSO-theory of $(\Q,<)$ in S2S.
+First consider the binary relation 
+%There is a MSO-definition in  $\frakT_2$ of the relation
+ $\prec$ on $\frakT_2$ where $x \prec y$ if $(x \sqcap y)0$ is a prefix of $x$ or 
+$(x \sqcap y)1$ is a prefix of $y$ (here $x \sqcap y$ is the longest common prefix of $x$ and $y$). %%% CHECK
+Note that $(\2,\prec)$ is a countable dense linear order with no endpoints;  so it is isomorphic to $(\Q,<)$.
+Since the relation $\prec$ is MSO-definable in $\frakT_2$ one can translate every MSO-formula $\phi(X_1,\cdots,X_n)$ of $(\Q,<)$ into an MSO-formula
+$\phi'(X_1,\cdots,X_n)$ of $\frakT_2$  with the property that
+the two formulas define the same relation modulo the isomorphism. Finally, Theorem \ref{AS:thm:RABIN}  ensures
+the relation, viewed as a relation on $\omega$-trees, is recognised by an automaton.
+
+Thus MSO-interpretations allow the transfer of MSO decidability to MSO decidability while set-interpretations
+allow the transfer of MSO decidability to FO decidability. This paper focuses on the latter.
+A structure that is set-interpretable in $\frakT_2$ is called {\em Rabin-automatic} (cf. Definition \ref{AS:dfn:raut}); for instance we have seen that
+the structure $(\N,+)$ is Rabin-automatic.
+%Consequently its FO-definable relations are recognised by automata and it 
+%has a decidable FO-theory (see theorem \ref{}).
+The fact that formulas can be compiled into automata gives
+the {\em fundamental theorem of automatic
+structures} which says that a FO-definable relation in a Rabin-automatic structure
+is, modulo coding, recognised by an automaton (Theorem  \ref{AS:thm:fundthm}). Many results about automatic structures exploit this theorem.  
+
+%Why the shift from MSO to FO? By downgrading the expressive power of the logical
+%language we enlarge the collection of the structures whose theories are
+%decidable. On the other hand,
+%every MSO structure has a FO-variant (Definition \ref{AS:dfn:powerset}) and so this is merely a shift in perspective.
+
+Here is an outline of the types of problems discussed in this chapter.
+
+\begin{enumerate}
+\item To what extent can we increase the expressive power of the logical language (FO) and still retain decidability of automatic structures? 
+This is the problem of extending the fundamental theorem of automatic structures.
+\item Which operations on structures preserve being automatic?
+\item What do automatic structures look like? Meaningful answers can be used to show that a given structure is not automatic.
+\item An automatic structure may be set-interpretable in a number of ways. How are these ways different?
+This is the problem of studying non-equivalent automatic presentations.
+\end{enumerate}
+
+{\bf Other accounts and omissions.}
+The introduction above reflects one approach to motivating and defining automatic structures. The definition via interpretations rather than automata follows \cite{Blum99,BlGr00} and \cite{CoLo07}. 
+Automatic structures were originally introduced in \cite{Hodg76,Hodg83} for proving decidability. They were independently introduced in \cite{KhNe95} where the motivation stresses that automatic structures are part of computable model theory, a subject that looks at the effective content of mathematical statements. Here one asks for the automatic content of standard theorems from mathematics such as K\H{o}nig's tree lemma, Ramsey's partition results or Cantor's results on countable linear orders, see \cite{Rubi08,Kusk03,Kusk10,KuLo10}. An equivalent way of identifying MSO and automata is that strings or trees are themselves considered to be structures (over a certain natural signature) and the regular languages correspond to sets of structures satisfying MSO {\em sentences}. This is usually discussed in the context of finite model theory, see for instance \cite{EbFl95}.  There is a sense in which automatic structures are complex --- see  see \cite{KRS05} \cite{KhMi08} for the complexity of automatic structures measured by common rankings such as Scott rank, Cantor-Bendixson rank, and ordinal height. For model theoretic considerations (quantifier-elimination, VC-dimension) see \cite{BLSS03}. Useful resources regarding the relationship between automatic structures and other finitary formalism (automatic groups, numeration systems, pushdown graphs, \dots) as well as the computational complexity of query evaluation and model checking on automatic structures can be found in \cite{BlGr00}  \cite{KuLo09} \cite{BaGrRu11}.  See  \cite{Gure85} for a treatment of decision problems  for MSO via automata as well as via composition, \cite{Rabi77} for FO decision problems via standard techniques  (quantifier elimination and completeness considerations), and the comprehensive book \cite{BGG97} for the classical decision problem. 
+
+A note on citations. By default I have cited what I think is the best, though not necessarily the first, reference for a given result. The interested reader may refer to \cite{Rubi08} for some historical comments.
+
+%This chapter is split into three parts.  The first part (sections \ref{AS:sec:back} and \ref{AS:sec:beyond}) looks at logical and automata-theoretic background. The second part (sections \ref{AS:sec:autstr} through \ref{AS:sec:equiv}) defines and characterises automatic structures.  General results are stated (such as the fundamental theorem and its extensions), algebraic properties are explored, and we discuss the problem of equivalent presentations of a given structure. The third part (sections \ref{AS:sec:gen} and \ref{AS:sec:summary}) mentions extensions of the notion of automatic structure and some open questions. 
+
+%I have put a key to notation at the end.
+
+
+{\bf Acknowledgements.} I am grateful to the following for their comments and corrections: Vince B{\'a}r{\'a}ny, Olivier Finkel.  I thank Achim Blumensath for serving as friendly referee; Wolfgang Thomas and Anil Nerode for clearing up some historical questions; and Jean-Eric Pin for his patient encouragement.
+
+%=====================================================
+\section{Logic, automata and interpretations} \label{AS:sec:back}
+%=====================================================
+
+%Mathematical logic studies the nature of definability. For this we need a logical language and a structure in which to interpret
+%formulas written in this language.
+ 
+\subsection{Logical languages}
+
+A \emph{structure}  $\frakA = (\A, R_1, \cdots, R_N)$ consists of a set $\A$ called the {\em domain}, and relations\footnote{We deal with relational structures. This is no real handicap since we can replace an operation by its graph. For instance, addition is taken as those triples $(x,y,z)$ such that $x+y = z$.} $R_i \subseteq \A^{r_i}$. The names of the $R_i$ together with their arities $r_i \in \N$ form the \emph{signature} of the structure. If $\frakB$ is the restriction of $\frakA$ to some set $\B \subseteq \A$ then write $\frakB \subseteq \frakA$ and say that $\frakB$ is a \emph{substructure} of $\frakA$.
+
+\begin{example}
+The structure  $\frakT_r$ has domain $\{0,1, \cdots,r-1\}^\star$ and for each  $i$ from $\{0,1, \cdots, r-1\}$ a binary relation $\suc_i$ consisting of pairs $(w,wi)$. 
+Note that $\frakT_1$ is isomorphic to $\one$.
+\end{example}
+
+We write $(\frakA,P)$ for the structure $\frakA$ expanded by the predicate $P$. %, namely $(\A,R_1,\cdots,R_N,P)$.
+%As shorthand we write $(\frakA,P)$ for the expansion $(\A,R_1,\cdots,R_n,P)$.
+To talk about structures we need a logical language. Formulas of monadic
+second-order logic (MSO) are constructed using logical connectives (`and',
+`or', `not'), individual variables $x,y,z$ (that are intended to range over
+elements of the domain), set variables $X,Y,Z,\cdots$ (that are intended to
+range over subsets of the domain), quantification over these variables, and the
+subset $X \subseteq Y$ and membership $x \in X$ relations, and finally they may
+use the names of the relations in a fixed signature such as $R(x,y)$.
+
+Formulas of weak monadic second-order logic (WMSO) are defined as for MSO
+except that set variables are intended to range over finite subsets of the
+domain. Formulas of first-order logic (FO) are defined as for MSO but without 
+set variables. A formula written $\phi(X_1,\cdots,X_n,x_1,\cdots,x_m)$ means that $\phi$'s
+free variables are included in the set $\{X_1,\cdots,X_n,x_1,\cdots,x_m\}$.
+A {\em sentence} is a formula without free variables. 
+Here is a formula of two free individual variables $x,y$ in the signature of the structure $(\N,+1)$:
+\[
+(\forall Z) [x \in Z \wedge (\forall z)(z \in Z \implies z+1 \in Z) \implies y \in Z].
+\]
+We can see that it is satisfied by those pairs of natural numbers $(x,y)$ such that $x \leq y$. 
+One can similarly define the prefix relation $\pref$ in $\frakT_2$. We often write (W)MSO formulas as $\phi(\tup{X})$ even if some of the free
+variables are individual variables.
+
+Note that we are appealing to our natural sense of what it means for a
+sentence to be true of a structure. 
+%The discussion above has conflated syntax and semantics. 
+For a rigourous definition of truth and satisfaction in
+mathematical logic see, for instance, \cite{Bool07}. We will use the shorthand $\frakA \models \Phi$
+(read $\frakA$ models $\Phi$) to mean that the sentence $\Phi$ is true in
+$\frakA$. Two formulas $\phi(\tup{X})$ and $\psi(\tup{Y})$ are {\em equivalent over $\frakA$}
+if \[\frakA \models \forall \tup{X} \forall \tup{Y} [\phi(\tup{X}) \iff \psi(\tup{Y})].\]
+
+An MSO-formula $\phi(\tup{X},\tup{x})$, in the signature of $\frakA$,
+{\em defines} the relation 
+\[
+\phi^\frakA := \{(A_1,\cdots,A_k,a_1,\cdots,a_n) \st \frakA \models \phi(\tup{A},\tup{a}), A_i \subseteq \A, a_j \in \A \}.
+\]
+
+A central problem in mathematical logic has been establishing  the (non-)decidability
+of theories.
+Let $\eL$ be one of MSO, WMSO, or FO. The {\em $\eL$-theory} of a structure is the set
+of $\eL$-sentences true in that structure.  A set $X$ of sentences is {\em
+decidable} if there is an algorithm that correctly decides, given a sentence
+$\phi$ in the language of $\eL$, whether or not $\phi \in X$.  We say that a
+structure has {\em decidable $\eL$-theory} if its $\eL$-theory is decidable.  
+
+\subsection{Rabin's theorem}
+
+The B\"uchi/Elgot/Trahtenbrot revolution led to increasingly complex
+structures in which definable relations correspond with some type of automata. 
+The cornerstone is Rabin's theorem: MSO definability in $\two$ coincides with recognisability by $\omega$-tree automata.
+%The first breakthrough was for
+%MSO-definability in $\frakT_1$ a
+%We code tuples of sets as $\omega$-strings in two steps. 
+%In the first step code a set as a string.
+%\begin{definition}[characteristic $\omega$-string of a set]
+%For a set $Y \subseteq \N$ define
+%its {\em characteristic string} $\chi_Y$ as the $\{0,1\}$-labeled $\omega$-string with a $1$ in position $n$ if and only if $n \in Y$.
+%For a tuple $(Y_1,\cdots,Y_n)$ write $\chi_{\tup{Y}}$ for $(\chi_{Y_1},\cdots,\chi_{Y_n})$.
+%\end{definition}
+%
+%{\em Notation.} For a string $w$ write $w(n)$ for the $n$th symbol in $w$ and $w(n,m)$ for the substring starting at position $n$ and ending at $m$.
+%
+%In the second step code a tuple of strings as a single string by laying the strings in the tuple along side each other.
+%
+%\begin{definition}[convoluting $\omega$-strings]
+%Let $\tup{w} = (w_1,\cdots,w_k)$ be a $k$-tuple of $\{0,1\}$-labelled $\omega$-strings. 
+%The {\em convolution} $\conv(\tup{w})$ is the $\{0,1\}^k$-labelled $\omega$-string such that for all positions $n \in \N$
+%the $i$th component of $\conv(\tup{w})(n)$ is equal to $w_i(n)$.
+%\end{definition} 
+%
+%\begin{theorem}[B\"uchi's theorem]
+%For each MSO-formula $\phi(\tup{X})$ in the signature of $\frakT_1$ there is an $\omega$-string automaton 
+%(and vice-versa) so that the language recognised by the automaton is
+%\[
+%\{\conv(\chi_{X_1},\cdots,\chi_{X_k}) \st \frakT_1 \models \phi(\tup{X})\}.
+%\]
+%The translations are effective.
+%\end{theorem}
+%
+%\begin{proposition}
+%The emptiness problem for B\"uchi-automata is decidable and consequently the MSO-theory of $\frakT_1$ is decidable.
+%Moreover, there is an effective procedure that given a non-empty automaton $M$ produces (a finite presentation of) an 
+%ultimately periodic $\omega$-string accepted by $M$. 
+%\end{proposition}
+Tree automata operate on {\em (binary) $A$-labeled trees} $T:\2  \to A$. 
+For a definition of Rabin tree-automaton see \cite{Thom90}. 
+We code tuples of sets as $\omega$-trees in two steps. 
+In the first step code a set as a tree.
+
+\begin{definition}[characteristic $\omega$-tree] \label{AS:dfn:chartree}
+For a set $Y \subseteq \2$ define
+its {\em characteristic tree} $\chi_Y$ as the $\{0,1\}$-labeled $\omega$-tree with a $1$ in position $w \in \2$ if and only if $w \in Y$.
+%For a tuple $(Y_1,\cdots,Y_n)$ write $\chi_{\tup{Y}}$ for $(\chi_{Y_1},\cdots,\chi_{Y_n})$.
+\end{definition}
+
+Second, code a tuple of trees as a single tree by laying the tuples alongside each other.
+
+\begin{definition}[convoluting $\omega$-trees] \label{AS:dfn:convtrees}
+Let $\tup{t} = (t_1,\cdots,t_k)$
+be a $k$-tuple of $\{0,1\}$-labelled $\omega$-trees. 
+The {\em convolution} $\conv(\tup{t})$ is the $\{0,1\}^k$-labelled $\omega$-tree such that for all positions $w \in \2$
+the $i$th component of $\conv(\tup{t})(w)$ is equal to $t_i(w)$.
+\end{definition} 
+
+%\begin{definition}[characteristic tree]
+%For sets $X_1, \cdots,  X_n \subseteq \2$ define their {\em characteristic
+%tree} $T_{\tup{X}}$ as the $\{0,1\}^n$-labeled tree such that the $i$th
+%component of $T_{\tup{X}}(w)$ is $1$ if and only if $w \in X_i$.
+%\end{definition}
+
+\begin{theorem}[Rabin's theorem \cite{Thom90}]
+For each MSO-formula $\phi(\tup{X})$ in the signature of $\frakT_2$ there is an $\omega$-tree automaton (and vice-versa) such that the language recognised by the automaton is
+\[
+\{\conv(\chi_{X_1},\cdots,\chi_{X_k}) \st \frakT_2 \models \phi(\tup{X})\}.
+\]
+The translations are effective.
+\end{theorem}
+
+\begin{proposition} \cite{Thom90}
+The emptiness problem for Rabin-automata is decidable and consequently the MSO-theory of $\frakT_2$ is decidable.
+Moreover, there is an effective procedure that given a non-empty automaton $M$ produces (a finite presentation of) a 
+regular $\omega$-tree accepted by $M$ (this fact is called Rabin's basis theorem).
+\end{proposition}
+
+{\bf Remark.} Similar results hold with $\frakT_1$ replacing $\frakT_2$ and are know as B\"uchi's theorem(s). 
+These can be proven directly  or as corollaries by coding $X \subseteq \N$ by the tree $T$ with $T^{-1}(1) = \{0^n \st n \in X\}$.
+Similar results also hold for WMSO. The standard reference is \cite{Thom90}.
+%By replacing $\frakT_2$ by $\frakT_1$ and $\omega$-trees by $\omega$-strings one gets B\"uchi's theorem.
+%
+%\begin{theorem}[B\"uchi's theorem]
+%For each MSO-formula $\phi(\tup{X})$ in the signature of $\frakT_1$ there is an $\omega$-string automaton 
+%(and vice-versa) so that the language recognised by the automaton is
+%\[
+%\{\conv(\chi_{X_1},\cdots,\chi_{X_k}) \st \frakT_1 \models \phi(\tup{X})\}.
+%\]
+%The translations are effective. The emptiness problem for B\"uchi-automata is decidable and consequently the MSO-theory of $\frakT_1$ is decidable.
+%Moreover, there is an effective procedure that given a non-empty automaton $M$ produces (a finite presentation of) an 
+%ultimately periodic $\omega$-string accepted by $M$.
+%\end{theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsubsection*{Rabin's theorem with additional set quantifiers} \label{AS:sec:beyond}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%=====================================================
+%\subsection{Additional quantifiers} \label{AS:sec:addquan}
+%=====================================================
+
+We show that we can enrich MSO by certain set quantifiers (such as `there are finitely many sets $X$ such that \dots')
+and still get decidability  for $\frakT_2$. We do this by showing that formulas with the additional quantifiers are actually equivalent to vanilla MSO formulas. 
+
+%{\bf Remark.} For a formal treatment of quantifiers see \cite.
+
+%%We can then push this to automatic structures.
+
+%finite-string/tree: exists infinitely many, exists modulo
+
+%infinite-string: as well as exists countably many
+
+%infinite-tree:
+%For a cardinal $\kappa$ write $\msokappa$ for the extension of MSO with the
+%quantifier `There are at least $\kappa$ many sets $X$'.
+
+\begin{lemma} \label{AS:lem:msofindef}
+The property `$X$ is finite' is $\mso$-definable in $\frakT_2$.
+\end{lemma}
+
+\begin{proof}
+The following simple argument is from \cite{Rabi69}.
+The lexicographic (total) ordering $\lex$ on $\2$ is $\mso$-definable in $\frakT_2$.
+Thus `$X \subseteq \2$ is finite' is definable by the formula that says that every $B \subseteq X$ has
+both a maximum and minimum element with respect to $\lex$.
+\end{proof}
+
+{\bf Remark.} So every WMSO-definable relation $R$ of $\frakT_2$ is MSO-definable in $\frakT_2$ 
+(simply relativise the set quantifiers). In particular the following results also hold with WMSO replacing MSO.
+
+For a cardinal $\kappa$ let $\exists^{\geq \kappa}$ denote the quantifier `there exists at least $\kappa$ many sets $X$ such that \dots'.
+Write $\msokappa$ for $\mso$ enriched by the quantifier $\exists^{\geq \kappa}$. 
+%Now, $\msocount$-definable relations in $\frakT_2$ are already $\mso$-definable.
+
+\begin{proposition} \cite{BKRa}
+For every $\msocount$ formula $\phi(\tup{X})$ there is an $\mso$ formula 
+$\phi'(\tup{X})$ equivalent to $\phi(\tup{X})$ over $\frakT_2$.
+\end{proposition}
+
+\begin{proof}
+The following are equivalent:
+\begin{enumerate}
+\item There are only finitely many $X$ satisfying $\phi(X,\tup{Y})$. 
+\item There is a finite set $Z$ such that every pair of different sets $X_1,X_2$ which both satisfy $\phi(X_i,\tup{Y})$ differ on $Z$.
+\end{enumerate}
+The second condition can be expressed in $\mso$ using lemma \ref{AS:lem:msofindef}.
+\end{proof}
+
+\begin{theorem} \cite{BKRa}
+For every $\msounc$ formula $\phi(\tup{X})$ there is an $\mso$ formula
+$\phi'(\tup{X})$ equivalent to $\phi(\tup{X})$ over $\frakT_2$.
+\end{theorem}
+
+\begin{proof}
+The proof uses the composition method and basic ideas from descriptive set theory. We sketch a proof of the simpler case of $\frakT_1$ following \cite{KuLo05}. Say that two subsets of $\N$
+have the {\em same end} if their symmetric difference is finite.  There is a constant $K$ (that depends only on $\phi$) such that the following are equivalent for all $\tup{Y}$:
+%This equivalence relation comprises uncountably many classes, each of countable size. The following are equivalent over $\frakT_1$:
+\begin{enumerate}
+\item There are uncountably many $X$ satisfying $\phi(X,\tup{Y})$.
+\item There are $K$ many sets $X$, each satisfying $\phi(X,\tup{Y})$, and that pairwise have different ends.
+\end{enumerate}
+The second condition can be expressed in MSO. We argue correctness.
+The forward direction follows since each end class is countable. For the reverse let $K$ be larger than the number of states of an $\omega$-automaton for $\phi$. The idea is that if there are too many sets with different ends we can find two that behave the same and so shuffle these to get uncountably many.  For ease of writing assume that $\tup{Y}$ is a singleton and so write $Y$ instead. Write  $\rho_i$ for an accepting run of the automaton on $\conv(\chi_{X_i},\chi_Y)$. There are two sets, say $X_1$ and $X_2$, and an infinite set $H \subset \N$ such that $\rho_1[n] = \rho_2[n]$ for all $n \in H$ (otherwise from some point on all pairs of runs disagree contradicting that the automaton has $<K$ states). Without loss we can assume, by passing to an infinite subset if required, that for all $n < m \in H$ with no element of $H$ between them, 
+both $\rho_1[n,m]$ and $\rho_2[n,m]$ mention final states and $x_1[n,m-1] \neq x_2[n,m-1]$. List $H$ as $h_1 < h_2 < h_3 < \cdots$.
+By knitting segments of the runs we see that the automaton accepts every string of the form $\conv(x_1[0,h_1-1]z_1z_2z_3\cdots,\chi_Y)$ where $z_n \in \{x_1[h_n,h_{n+1}-1],x_2[h_n,h_{n+1}-1]\}$.
+This gives uncountably many distinct sets $X$ satisfying $\phi(X,Y)$.
+\end{proof}
+
+Write $\msomod$ for $\mso$ enriched by all quantifiers parameterised by $k,m \in \N$ of the form `exists a set $X$, whose cardinality is congruent to $k$ modulo $m$, such that \dots'. The proof of the following theorem can be adapted from \cite{KRS04} or \cite{KuLo05}.
+\begin{theorem} 
+For every $\msomod$ formula $\phi(\tup{X})$ there is an $\mso$ formula
+$\phi'(\tup{X})$ equivalent to $\phi(\tup{X})$ over $\frakT_2$.
+\end{theorem}
+
+%\begin{proof}
+%We sketch a proof based on ideas from \cite{KRS04} and \cite{KuLo06}. We may suppose, since finiteness is definable, that for every $\tup{Y}$,  
+%$\phi(-,\tup{Y))$ is satisfied by only finitely many sets. We show that the set of $\tup{Y}$ such that there are $k$ modulo $m$ many $X$ satisfying $\phi(X,%\tup{Y})$ is recognised by an automaton.
+%\end{proof}
+
+\begin{remark}
+Since $\frakT_r$ (for $r < \omega$) is MSO-interpretable in $\frakT_2$, the results above hold, for instance, with $\frakT_1$ replacing $\frakT_2$.
+\end{remark}
+
+\subsection{Interpretations}
+
+A good reference for interpretations is \cite{Hodg93}.
+Let $\eL$ denote FO or MSO or WMSO. Let  $\I = (\delta, \Phi_1, \cdots, \Phi_N)$ be $\eL$-formulas in the signature of a structure $\frakB$ in 
+which the free variables are individual variables.
+Suppose that $\delta$ has $1$ free variable and $\Phi_i$ has $r_i$ free variables.
+If $\Phi_i^\frakB$ are relations over $\delta^\frakB$ then we can define the structure 
+$\I(\frakB) := (\delta^\frakB, \Phi_1^\frakB, \cdots, \Phi_N^\frakB).$ 
+This structure is said to be {\em $\eL$-definable in $\frakB$}. The tuple $\I$ is called an {\em $\eL$-definition}.
+
+{\bf Remark.} We have overloaded the phrase `$\eL$-definable': here one structure is definable in another; 
+and the earlier meaning is that a relation is definable in a structure.
+
+The following lemma says, in particular, that every relation FO-definable in $\I(\frakB)$ is 
+FO-definable in $\frakB$.
+
+\begin{lemma} \label{AS:lem:translation} 
+Fix an $\eL$-definition $\I$ and an $\eL$-formula $\Phi(x_1,\cdots,x_k)$ in the signature of $\I(\frakB)$.
+There is an $\eL$-formula $\Phi_\I(x_1,\cdots,x_k)$ in the signature of $\frakB$ such that for all elements $b_i$ of $\delta^\frakB$,
+\[
+\I(\frakB) \models \Phi(b_1,\cdots,b_k) \mbox{ if and only if } \frakB \models \Phi_\I(b_1,\cdots,b_k).
+\]
+\end{lemma}
+
+\begin{proof}
+The idea is to relativise all quantifiers to $\delta$ and replace and the $i$th atomic formula $R_i$ in the signature of $\I(\frakB)$ 
+by $\Phi_i$.
+Formally, define $\Phi_\I$ inductively by $(R_i)_\I := \Phi_i$ and for the other cases:
+
+\begin{align*}
+(\Psi \wedge \Xi)_\I & := \Psi_\I \wedge \Xi_\I  					&(\neg \Psi)_\I & := \neg \Psi_\I \\
+(\exists x_i \Psi)_\I & := \exists x_i [\delta(x_i) \wedge \Psi_\I]  		&(\exists X_i \Psi)_\I & := \exists X_i [(\forall x \in X_i \delta(x)) \wedge \Psi_\I]\\
+(x \in X)_\I &:= (x \in X)  & (X \subseteq Y)_\I &:= (X \subseteq Y) .
+\end{align*}
+\end{proof}
+
+\begin{definition}
+Let $\I$ be an $\eL$-definition. If $\frakA$ is isomorphic to $\I(\frakB)$, say via $f$, then say that {\em $\frakA$ is  $\eL$-interpretable in $\frakB$ via co-ordinate map $f$}.
+\end{definition}
+
+\begin{proposition}
+Suppose that $\frakA$ is $\eL$-interpretable in a structure with decidable $\eL$-theory. Then $\frakA$ has decidable $\eL$-theory.
+\end{proposition}
+
+\begin{proof}
+For a sentence $\phi$ of $\frakA$, lemma \ref{AS:lem:translation} produces a sentence $\phi^\I$ preserving truth. 
+Apply the given decision procedure to $\phi^\I$. 
+\end{proof}
+
+For example  for $r < \omega$ the structure $\frakT_r$ is MSO-interpretable in $\frakT_2$ and consequently the MSO-theory of $\frakT_r$ is decidable.
+
+
+% \subsection{FO Interpretations.}
+% 
+% Let  $\I = (\delta, \Phi_1, \cdots, \Phi_N)$ be FO-formulas in the signature of a structure $\frakB$.
+% Suppose that $\delta$ has $1$ free variable and $\Phi_i$ has $r_i$ free variables.
+% If $\Phi_i^\frakB$ are relations over $\delta^\frakB$ then we can define the structure 
+% \[
+% \I(\frakB) := (\delta^\frakB, \Phi_1^\frakB, \cdots, \Phi_N^\frakB).
+% \] 
+% This structure is said to be {\em FO-definable in $\frakB$}.\footnote{We have overloaded the phrase `FO-definable': here one structure is definable in another; 
+% and the other meaning is that a relation is definable in a structure.} The tuple $\I$ is called a {\em FO-definition}.
+% 
+% For example ??
+% 
+% \begin{proposition}[Interpretations compose] \label{AS:prop:compose}
+% If $\frakA$ is FO-interpretable in $\frakB$, and $\frakB$ is FO-interpretable in $\frakC$, then $\frakA$ is FO-interpretable in $\frakC$.
+% \end{proposition}
+% 
+% The following lemma says that every relation FO-definable in $\I(\frakB)$ is FO-definable in $\frakB$.
+% %one can translate formulas about the definable structure $\I(\frakB)$ into formulas about the defining structure $\frakB$.
+% 
+% \begin{lemma}[Translation Lemma] 
+% Fix a FO-definition $\I$ and a FO-formula $\Phi(x_1,\cdots,x_k)$ in the signature of $\I(\frakB)$.
+% There is a FO-formula $\Phi_\I(x_1,\cdots,x_k)$ in the signature of $\frakB$ such that for all elements $b_i$ of $\delta^\frakB$,
+% \[
+% \I(\frakB) \models \Phi(b_1,\cdots,b_k) \mbox{ if and only if } \frakB \models \Phi_\I(b_1,\cdots,b_k).
+% \]
+% \end{lemma}
+% 
+% \begin{proof}
+% The idea is to relativise all quantifiers to $\delta$ and replace and the $i$th atomic formula by $\Phi_i$.
+% Formally, define $\Phi_\I$: $(\Psi \wedge \Xi)_\I$ is defined by $\Psi_\I
+% \wedge \Xi_\I$; $(\neg \Psi)_\I$ by $\neg \Psi_\I$; $(\exists x_i \Psi)_\I$ by
+% $\exists x_i \delta(x_i) \wedge \Psi_\I]$.
+% \end{proof}
+% 
+% 
+% A structure $\frakA$ isomorphic to $\I(\frakB)$ is called {\em FO-interpretable in $\frakB$}.
+% An isomorphism from $\frakB$ to $\frakA$ is called a {\em co-ordinate map} of the interpretation. 
+% 
+% For example ??
+% 
+% \begin{proposition}
+% Suppose that $\frakA$ is FO-interpretable in a structure with decidable FO-theory. Then $\frakA$ has decidable FO-theory.
+% \end{proposition}
+% 
+% \begin{proof}
+% For a sentence $\phi$ of $\frakA$, the translation lemma produces a sentence $\phi^\I$ preserving truth. Apply the decision procedure for the interpreting structure to $\phi^\I$. \end{proof}
+% 
+
+There are other types of interpretations that could be introduced here, namely
+(finite)-set interpretations \cite{ElRa66} \cite{CoLo07}.  For the sake
+of filling in undefined notions in the introduction we define a {\em (finite)-set
+interpretation} of $\frakA$ in $\frakB$ to be like a (W)MSO-interpretation except
+that the free variables are (finite) set
+variables. Thus elements of $\frakA$ are coded by (finite) subsets of the domain
+of $\frakB$.
+
+\iffalse
+?? ALT DFN ??
+
+\begin{definition}
+\begin{enumerate}
+\item A structure FO-interpretable in $\Power_f(\frakT_1)$ is called {\em finite-string automatic}.
+\item A structure FO-interpretable in $\Power(\frakT_1)$ is called {\em $\omega$-string automatic}.
+\item A structure FO-interpretable in $\Power_f(\frakT_2)$ is called {\em finite-tree automatic}.
+\item A structure FO-interpretable in $\Power(\frakT_2)$ is called {\em $\omega$-tree automatic}.
+\end{enumerate}
+\end{definition}
+\fi
+%=====================================================
+\section{Automatic structures} \label{AS:sec:autstr}
+%=====================================================
+
+\subsection{Rabin-automatic structures}
+
+MSO-definability can be thought of as FO-definability in a powerset structure. We use this idea to define the automatic structures.
+Let $\Power(X)$ denote the set of subsets of $X$. 
+
+\begin{definition} \label{AS:dfn:powerset} \cite{CoLo07}
+The {\em power set} of a structure $\frakA = ({\A},R_1,\cdots,R_N)$ is the structure
+\[
+\Power[\frakA] := (\Power({\A}),{R'_1}, \cdots,{R'_N}, \subseteq)
+\]
+where 
+\[
+ R'_i := \{ (\{x_1\},\cdots,\{x_{r_i}\}) \st (x_1,\cdots,x_{r_i}) \in R_i\}. 
+\]
+\end{definition}
+
+For example, $\Power[\one]$ is the structure with domain $\Power(\N)$, the subset relation $\subseteq$, and the binary relation $\{(\{n\},\{n+1\}) \st n \in \N\}$.
+The following says that FO definability in the power set of a structure is the same as MSO definability in the structure.
+%In particular $\frakA$ is (finite-)set interpretable in $\frakB$ if and only if $\frakA$ is FO-interpretable in $\Power_{(f)}[\frakB]$.
+
+\begin{proposition} \label{AS:prop:translation}
+For every FO-formula $\phi(\tup{x})$ there is an MSO-formula $\Psi(\tup{X})$ (and {\it vice versa}) such that for all structures $\frakA$ and all $U_i \in \Power({\A})$
+\[
+\Power[\frakA] \models \phi(\tup{U}) \ \mbox{ if and only if } \  \frakA \models \Psi(\tup{U}) .
+\]
+\end{proposition}
+
+As a consequence we can transfer MSO-decidability of $\frakT_r$ to FO-decidability of the power set structure.
+\begin{corollary}
+The FO-theory of $\Power[\frakT_r]$ is decidable.
+\end{corollary}
+
+%This whole section is valid with the following simultaneous replacements: 
+%MSO by WMSO, $\Power$ by $\Power_f$ (called the {\em finite-power set}), and restrict all subsets to be finite.
+Since FO-interpretations preserve decidability we make the following definition.
+
+\begin{definition} \label{AS:dfn:raut} \cite{Blum99}
+A structure FO-interpretable in $\Power[\frakT_2]$ is called 
+{\em Rabin-automatic} or {\em $\omega$-tree automatic}. The collection of these structures is written $\raut$.
+\end{definition}
+
+Note that any structure that is FO bi-interpretable with $\Power[\frakT_2]$ could be used in this definition. For instance we can use the following structure \cite{Blum99}:
+%Define a structure $\frakR_\Sigma$ with domain consisting of all finite $\Sigma$-labelled trees
+%  and has operations
+%\[
+%        (\exteq, \edom, (\suc_a^l)_{a \in \Sigma}, (\suc_a^r)_{a \in \Sigma}, (\epsilon_a)_{a \in \Sigma} )
+%\]
+%  where
+%%  
+%
+%  Similarly the structure $\frakR^\omega_\Sigma \in \raut$ has d
+the domain consists of all finite and infinite trees\footnote{Here a tree is a function $T$ from a prefix-closed subset of $\{0,1\}^\ast$ to $\{0,1\}$.}  and the atomic relations are
+ \[
+       \exteq, \, \edom,\,  (\suc_a^d)_{a \in \{0,1\}}^{d \in \{0,1\}},  \epsilon_0, \epsilon_1, \F 
+ \]
+where  $T \exteq S$ if $\dom(T) \subseteq \dom(S)$
+and $S(w) = T(w)$ for $w \in \dom(T)$; $T \edom S$ if $\dom(T) = \dom(S)$;  $\suc_a^d(T) = S$ if the finite tree $S$ is formed from the finite tree $T$ by extending its leaves in direction $d$
+and labeling each new such node by $a$; $\epsilon_a$ is the tree with domain $\{\lambda\}$ labelled $a$; and $\F$ is the set of finite trees.
+ 
+\begin{corollary}
+The FO-theory of every Rabin-automatic structure is decidable.
+\end{corollary}
+
+The elements of the Rabin-automatic structure are naturally viewed as $\omega$-trees. 
+%Let $\I$ be a FO-definition in $\Power[\frakT_2]$. 
+%If $f$ is an isomorphism from $\frakA$ to $\I(\Power[\frakT_2])$ then for $a \in \A$,  $f(a) \subset \{0,1\}^\ast$ is a set and $\chi_{f(a)}$ is a tree.
+
+%Indeed an element $X$ of $\Power[\frakT_2]$
+%is a subset of $\2$. A FO-definition in $\Power[\frakT_2]$ produces a structure $\frakB$ whose domain is a collection of such sets.
+%But each set $X$ may be viewed as a tree $T_X$ and so the relations of $\frakB$ may be viewed as relations on trees. Now pass to an isomorphic copy $\frakA$ via $f$.
+%Lets formalise this.
+
+\begin{definition}
+For a Rabin-automatic structure $\frakA$ (isomorphic via $f$ to a FO-definable structure $\I(\Power[\frakT_2])$) and any relation $R \subseteq \A^k$, denote by
+$\code{R}$ the set of $\omega$-trees 
+\[\{\conv(\chi_{f(a_1)},\cdots,\chi_{f(a_k)}) \st  (a_1,\cdots,a_k) \in R\}.\]
+\end{definition}
+
+The following is called the {\em fundamental theorem of automatic structures} and says that FO-definable relations in Rabin-automatic structures are, modulo coding, regular. 
+
+\begin{theorem}[Fundamental theorem, cf. \cite{KhNe95,BlGr00}] \label{AS:thm:fundthm} 
+Let $\frakA$ be Rabin-automatic.
+\begin{enumerate}
+\item For every first-order definable relation $R$ in $\frakA$ the set of trees $\code{R}$ is recognised by an $\omega$-tree automaton.
+\item The first-order theory of a Rabin-automatic structure is decidable.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For the first item apply Proposition \ref{AS:prop:translation} to get that $f(R)$, being FO-definable in $\Power[\frakT_2]$, is 
+MSO definable in $\frakT_2$. Now apply Rabin's theorem.
+For the second item use the fact that it is decidable whether or not an $\omega$-tree automaton accepts some tree.
+\end{proof}
+
+Since formulas are seen as automata, we may view a Rabin-automatic structure as being presented by automata.
+
+% \begin{definition}[convoluted tree]
+% Let $\tup{t} = (t_1,\cdots,t_k)$
+% be a $k$-tuple of $\{0,1\}$-labelled trees. 
+% The {\em convolution} $\conv(\tup{t})$  
+% is the $\{0,1\}^k$-labelled tree such that for all $w \in \2$ the $i$th component of $\conv(\tup{t})(w)$ is $1$ if and only if $t_i(w) = 1$.
+% \end{definition}
+
+\begin{definition}[$\omega$-tree automatic presentation \cite{BlGr00}] \label{AS:dfn:rap} 
+Suppose that $f: \frakA \simeq  (B,S_1,\cdots,S_N)$ and
+\begin{enumerate}
+\item the elements of $B$ are $\{0,1\}$-labeled trees;
+\item the set $B$ is recognised by an $\omega$-tree automaton, say $M_B$; 
+\item the set $\{\conv(\tup{t}) \st \tup{t} \in S_i\}$ is recognised by an $\omega$-tree automaton, say $M_i$, for $i \leq N$.
+\end{enumerate}
+Then the data $\left<(M_B,M_1,\cdots,M_N), f \right>$ is called a {\em $\omega$-tree automatic presentation} of $\frakA$.
+\end{definition}
+
+The following characterisation is typically taken as a definition of a structure being Rabin-automatic. 
+
+\begin{proposition}[Machine theoretic characterisation \cite{BlGr00}]
+A structure $\frakA$ is FO-interpretable in $\Power[\frakT_2]$ if and only if $\frakA$ has an $\omega$-tree automatic presentation.
+\end{proposition}
+
+\begin{proof}
+The forward direction follows from the fundamental theorem \ref{AS:thm:fundthm}. For the reverse direction convert regular sets and relations in the presentation
+into MSO formulas over $\frakT_2$ (using Rabin's theorem) and then into FO-formulas using  proposition \ref{AS:prop:translation}.
+%For the forward direction define $\frakB = ([{\A}], [R_1], \cdots, [R_N])$ and apply the fundamental theorem.
+	%For the reverse direction use Rabin's tree theorem to convert the regular set $B$ to a formula $\delta(s)$ and regular sets $S_i$ to formulas $\Phi(s_1,\cdots,s_{r_i})$, giving
+	%a FO-interpretation. ???details???
+\end{proof}
+
+\begin{example}
+ The following structures are Rabin-automatic.
+\begin{enumerate}
+ \item The power set structure $\Power[\frakT_r]$ ($r \geq 1$) as well as its substructure $\Power_f[\frakT_r]$ whose domain consists of the finite subsets of $\frakT_r$.
+ \item The power set structure of the ordering of the rationals, namely $\Power[(\mathbb{Q},<)]$.
+ \item Presburger arithmetic $(\N,+)$.
+ \item Skolem arithmetic $(\N,\times)$.
+ \item The structure $(\Power(\N),\subseteq, =^*)$ where $X =^* Y$ means that $X$ and $Y$ have finite symmetric difference.
+ \item Every ordinal $(\alpha,<)$ where $\alpha < \omega^{\omega^\omega}$.
+\end{enumerate}
+
+
+
+%{\bf Remark.} Similarly define the {\em B\"uchi-automatic structures}, also called {\em $\omega$-string automatic structures}, by replacing 
+%$\omega$-trees by $\omega$-strings, Rabin automata by B\"uchi automata, and $\frakT_2$ by $\frakT_1$. The collection of 
+%B\"uchi-automatic structures is denoted $\baut$. The fundamental theorem and machine theoretic characterisation go through.
+
+
+\end{example}
+\subsubsection*{Extension of the fundamental theorem}
+
+We now rephrase the results on additional quantifiers on MSO into FO. We overload notation so that, for example, $\exists^\kappa$ denotes the quantifier `there exists at least $\kappa$ many individual elements $x$ such that'. The following theorem is now immediate. Instances of it can be found in \cite{BlGr00,KRS04,KuLo05}.
+%%Denote by $\FOext$ the enrichment of the FO-language with the quantifiers $\existsmod$, $\exists^\aleph_0$ and $\exists^\aleph_1$.
+%Since FO-definability in $\Power[\frakT_2]$ corresponds to MSO-definability in $\frakT_2$  we get a useful extension of the fundamental theorem.
+
+\begin{theorem}[Extension of fundamental theorem] \label{AS:thm:FOext}
+Let $\frakA$ be Rabin-automatic.
+\begin{enumerate}
+\item For every $\FOext$-definable relation $R$ in $\frakA$ the set $\code{R}$ is recognised by an $\omega$-tree  automaton.
+\item The $\FOext$ theory of $\frakA$ is decidable.
+\end{enumerate}
+\end{theorem}
+
+How far can we push this? First we need a rigourous definition of quantifier.
+This is neatly provided by Lindstr\"om's definition of `generalised quantifier',
+see \cite{Lind66}. We don't have a clear picture of those generalised quantifiers that can
+be added to FO and still get the properties as in Theorem \ref{AS:thm:FOext}.
+However here is a special case. Define the
+{\em cardinality quantifier parameterised by $C$}, for $C$  a class of
+cardinals, as `there exists exactly $\alpha$ many elements $x$ such that \ldots,
+where $\alpha \in C$'. Examples include $\exists, \existsmod,\exists^{\geq \kappa}$, and
+`there exist a prime number of elements such that \dots'.
+
+It turns out that the only cardinality quantifiers we can add to FO and still get the fundamental theorem are, essentially, 
+the ones mentioned in Theorem \ref{AS:thm:FOext}.
+
+\begin{theorem} [cf. \cite{Rubi08}]
+Let $Q_C$ be a cardinality quantifier parameterised by $C$.  Suppose for every
+$\frakA \in \raut$ and every $\FO(Q)$-definable relation $R$ in $\frakA$,
+the set $\code{R}$ is recognised by a Rabin-automaton.  Then every $\FO(Q)$-definable relation 
+is already $\FOext$-definable in $\frakA$. 
+\end{theorem}
+
+%Details rqd. %careful: uses translations in both directions! T_1 into T_2 and T_2 restricted to 0^* to T_1. REALLY? where is this from?
+
+\begin{proof} 
+We illustrate the proof for a set $C \subset \N$ of finite cardinals.
+Consider the Rabin-automatic presentation of  $\frakA := (\N,\leq)$ in which $n \in \N$ is coded
+by the set $\{0^n\} \subset \{0,1\}^\ast$. Since the set $C \subset \N$  is $\FO(Q_C)$-definable in $\frakA$, $\code{C}$ is
+is recognised by a tree-automaton. But the trees in $\code{C}$ are essentially unary strings and so the language $\code{C}$ is ultimately periodic. So $C$ is already $\FO(\existsmod)$-definable in $\frakA$. 
+%Second, suppose $C$ is a set of infinite cardinals. %??? say something about infinite case, see laaw.
+\end{proof}
+
+What about extensions of FO by set quantification?  Unfortunately $\wmso$ is
+too much to hope for.  Since the configuration graph $\frakG$ of a Turing machine (with the
+single-transition edge relation) is automatic, and reachability
+is expressible in $\wmso$, the halting problem reduces to the $\wmso$-theory of a certain $\frakG$. It is a research programme to understand
+which quantifiers can be added to automatic structures and retain decidability, see \cite{KuLo08,Rubi04}. %CITE FIX KUSKE CITATION?
+
+%=====================================================
+%=====================================================
+%=====================================================
+%Part 2
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsection{Other classes of automatic structures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+We introduce subclasses of $\raut$ related to automata on finite strings/trees and infinite strings. 
+Each has a machine theoretic charactersation as in Definition \ref{AS:dfn:rap}.
+A member of any of the four classes is said to be {\em automatic}. %The relationships are summarised in figure \ref. %?? ref to pic
+
+\subsubsection*{Finite-string automatic structures}
+
+Recall  $\Power_f(\frakA)$ is the substructure of $\Power(\frakA)$ restricted to the finite subsets of $\A$.
+
+\begin{definition} 
+A structure is called {\em finite-string automatic} if it is FO-interpretable in $\Power_f[\frakT_1]$. This collection of structures is written $\waut$.
+\end{definition}
+
+We have seen in Corollary \ref{AS:cor:pres} that $(\N,+)$ is {\em finite-string automatic}. 
+Note that such structures have countable domain. 
+
+\begin{example}
+The following structures are bi-interpretable with $\Power_f[\frakT_1]$:
+\begin{enumerate} 
+\item For $|\Sigma| \geq 2$, $(\Sigma^\ast,\{\sigma_a\}_{a \in \Sigma},\pref,\el)$ 
+where $\sigma_a$ holds on pairs $(w,wa)$, $\el$ holds on pairs $(u,v)$ such that $|u|=|v|$, and $\pref$ is the prefix relation.
+\item For $k \geq 2$, $(\N,+,|_k)$
+where $|_k$ is the binary relation on $\N$ with $x |_k y$ if $x$ is a power of $k$ and $x$ divides $y$.
+\end{enumerate}
+\end{example}
+
+The following definition turns a finite set $Y$ into a finite string $\chi_Y$ as in $\chi_{\{1,3\}} = 0101$.
+
+\begin{definition}[characteristic finite-string]
+For a finite set $Y \subset \N$ define
+its {\em characteristic string} $\chi_Y$ as the $\{0,1\}$-labeled string of length $\max_{y \in Y} y + 1$ with a $1$ in position $n$ if and only if $n \in Y$.
+%For a tuple $(Y_1,\cdots,Y_n)$ write $\chi_{\tup{Y}}$ for $(\chi_{Y_1},\cdots,\chi_{Y_n})$.
+\end{definition}
+
+
+\begin{definition}[convoluting finite strings]
+Let $\tup{w} = (w_1,\cdots,w_k)$
+be a $k$-tuple of $\{0,1\}$-labelled finite strings. Let $l:= \max_i |w_i|$.
+The {\em convolution} $\conv(\tup{w})$ is the $\{0,1,\blank\}^k$-labelled string of length $l$ such that for all positions $n \leq l$
+the $i$th component of $\conv(\tup{w})[n]$ is equal to $w_i[n]$ if $n \leq |w_i|$ and the blank symbol $\blank$ otherwise.
+\end{definition} %??? make sure w(n) is consistent notation for nth symbol of w
+
+
+\begin{definition}
+Suppose $f$ is an isomorphism witnessing $\frakA \in \waut$. For a relation $R \subseteq \A^k$ denote by
+$\code{R}$ the set of finite-strings  $\{\conv(\chi_{f(a_1)},\cdots,\chi_{f(a_k)}) \st  \tup{a} \in R\}$.  %??? say what \chi is in this case
+\end{definition}
+
+Just as for Rabin-automatic structures, there is a fundamental theorem for finite-string automatic structures. We do not state it in full;
+simply replace Rabin-automatic by finite-string automatic and $\omega$-tree automata by finite-string automata.
+However, we do slightly generalise the analogous definition of automatic presentation to cover an arbitrary alphabet $\Sigma$.
+
+\begin{definition}[finite-string automatic presentation \cite{KhNe95}] \label{AS:dfn:fsap}
+Fix a finite alphabet $\Sigma$. Suppose that $f: \frakA \simeq  (\B,S_1,\cdots,S_N)$ and
+\begin{enumerate}
+\item the elements of $\B$ are finite strings from $\Sigma^\ast$;
+\item the set $\B$ is recognised by a finite-string automaton, say $M_\B$; 
+\item the set $\{\conv(\tup{t}) \st \tup{t} \in S_i\}$ is recognised by a finite-string automaton, say $M_i$, for $i \leq N$.
+\end{enumerate}
+The data $\left<(M_\B,M_1,\cdots,M_N), f \right>$ is called a {\em finite-string automatic presentation} of $\frakA$.
+\end{definition}
+
+\begin{proposition}[Machine theoretic characterisation \cite{BlGr00}] \label{AS:prop:MTC}
+A structure is FO-interpretable in $\Power_f[\frakT_1]$ if and only if it 
+has a finite-string automatic presentation over an alphabet with $|\Sigma| \geq 2$.
+\end{proposition}
+
+\begin{proof}
+If $|\Sigma| > 2$ recode a string $w$ by replacing individual symbols with binary blocks of size $\log_2 |\Sigma|$.
+\end{proof}
+
+%\subsubsection{$\omega$-string automatic structures}
+
+%\begin{definition}
+%A structure is called {\em $\omega$-string automatic} (also called {\em \buchi-automatic}) if it is FO-interpretable in $\Power[\frakT_1]$. This collection is written $\baut$.
+%\end{definition}
+
+%Since `$x$ is finite' is a FO-definable property in $\frakT_1$, examples of $\omega$-string automatic structures 
+%include all finite-string automatic structures.
+%The structure $([0,1],+,<)$, where addition is taken modulo one, is an uncountable example.
+
+
+%\subsubsection{finite-tree automatic structures}
+
+%\begin{definition}
+%A structure is called {\em finite-tree automatic} if it is FO-interpretable 
+%in $\Power_f[T_2]$.  This collection is written $\taut$.
+%\end{definition}
+
+%Since $\Power_f[\frakT_1]$ is FO-interpretable in $\Power_f[\frakT_2]$, every
+%finite-string automatic structure is also finite-tree automatic.  Also
+%$(\N,\times)$ is finite-tree automatic (decompose $n$ into prime powers,
+%$n=\prod_{i} p_i^{e_i}$, and code it as a tree with $e_i$ written in binary on
+%the $i$th branch). It is not finite-string automatic \cite.
+
+
+\subsubsection*{Relationships amongst the classes of automatic structures}
+
+There are two more standard classes of automatic structures, see \cite{Blum99}.
+A {\em B\"uchi-automatic structure} is one FO-interpretable in $\Power[\frakT_1]$. Collectively these are denoted $\baut$. An {\em $\omega$-string} is a function from $\N$ to $\{0,1\}$ and automata operating on (convolutions of tuples of) these are called {\em $\omega$-string automaton}. One can similarly characterise $\omega$-string automatic structures as those with {\em $\omega$-string automatic presentations}. For example, $([0,1),+,<) \in \baut$ where $+$ is taken modulo $1$ (the usual binary coding works).
+A {\em finite-tree automatic structure} is one FO-interpretable in $\Power_f[\frakT_2]$. Collectively these are denoted $\taut$. A {\em finite tree} is a function from a finite prefix closed subset of $\2$ to $\2$ and automata operating on (convolutions of tuples of) these are called {\em finite-tree automata}. These automatic structures are those with {\em finite-tree automatic presentations}. For example  $(\N,\times) \in \taut$ (decompose $n$ 
+$n=\prod_{i} p_i^{e_i}$ where $p_i$ is the $i$th prime and so code $n$ as a tree with $e_i$ written in binary on
+branch $0^i1^\ast$).  For the case of unranked finite-tree automatic structures see \cite{BeLiNe07}.
+
+%The following lemma justifies figure \ref.
+
+\begin{proposition} \label{AS:prop:relations}
+$\waut$ is a proper subset of $\baut$ and of $\taut$, each of which is a proper subset of $\raut$.
+\end{proposition} 
+
+\begin{proof} The inclusions follow since finite-strings are special cases of finite-trees, etc.
+The structure of Skolem arithmetic $(\N,\times)$ separates $\taut$ from $\waut$ (see \cite{Blum99}).
+We will see (Theorem \ref{AS:thm:sep}) that a structure separating $\raut$ from $\baut$ is $(\Power(\{l,r\}^\star),\subset,V)$ where $V$ is the unary relation consisting of those sets $X$ such that the characteristic tree of $X$ has the property that every infinite path is labelled with only finitely many $1$s.
+\end{proof}
+
+\begin{proposition}
+If $\frakA \in \baut$ is countable then $\frakA \in \waut$.
+If $\frakA \in \raut$ is countable then $\frakA \in \taut$.
+\end{proposition}
+
+\begin{proof}
+The reason is that every $\omega$-string automaton whose language is countable accepts only ultimately periodic strings with a uniform bound on the length of the periods. A similar conditions holds for $\omega$-tree automata that accept countable languages.
+\end{proof}
+
+%?? in dfn have f be part of interpretation $\I$ ???
+%
+%\begin{definition}
+%For an automatic structure $\frakA$ (isomorphic to some $\I(\T_2)$ via $f$) and relation $R$ in $\frakA$ denote by
+%$[R]$ the set of $\omega$-trees $\{T_{f(a_1),\cdots,f(a_k)} \st  \tup{a} \in R\}$.
+%\end{definition}
+
+%The following theorem says that FO-definable relations in automatic structures are, modulo coding into strings or trees, regular.
+
+%\begin{theorem}[Fundamental theorem of automatic structures]
+%Let $\frakA$ be set-interpretable in $\T_2$.
+%\begin{enumerate}
+%\item For every first-order definable relation $R$ in $\frakA$ the set of trees $[R]$ is recognised by an automaton.
+%\item The first-order theory of an automatic structure is decidable.
+%\end{enumerate}
+%\end{theorem}
+
+%\begin{proof}
+%Combine the translation lemma for set-interpretations and Rabin's theorem.
+%\end{proof}:q
+
+%look again at the finite-set interpretation of $(\N,+)$ in $\one$. An element $n$ of
+%the interpreted structure can be viewed as a finite binary string $(n)_2$.
+%What happens to definable sets and relations on $\N$ under $\code:\N \to \2$?
+%The fundamental theorem says that image under $f$ of an FO-definable relation $R$ of $(\N,+)$ is regular.
+%Write $\code(R)$ for $\{f(a_1,\cdots,a_k) \st (a_1,\cdots,a_k) \in R\}$.
+%In particular, $f(\N)$ is a regular set and $f(+)$ is a regular relation.
+%
+%%=====================================================
+%\subsection{Universal automatic structures}
+%%=====================================================
+%
+%A structure $\frakU$ is called {\em universal} for the $\av$-automatic structures
+%if it is $\av$-automatic and every $\av$-automatic structure is FO-interpretable in $\frakU$.
+%For instance, $\Power(\frakT_2)$ is universal for $\raut$. Clearly if $\frakU$ is universal for $\av$-automatic structures,
+%and $\frakA$ is $\av$-automatic, then  $\frakA$ is universal if and only if $\frakU$ is FO-interpretable in $\frakA$.
+%
+%In the following $\Sigma$ is a finite set. Define the structure 
+%\[\mathfrak{S}_\Sigma := (\Sigma^\ast,\{\sigma_a\}_{a \in \Sigma},\pref,\el)\]
+%where $\sigma_a$ holds on pairs $(w,wa)$, $\el$ holds on pairs $(u,v)$ such that $|u|=|v|$, and $\pref$ is the prefix relation.
+%For $k \geq 2$ define the structure
+%\[
+% \frakN_k := (\N,+,|_k)
+%\]
+%where $|_k$ is the binary relation on $\N$ with $x |_k y$ if $x$ is a power of $k$ and $x$ divides $y$.
+%
+%\begin{proposition}
+%If $|\Sigma| \geq 2$ then $\mathfrak{S}_\Sigma$ is universal for $\waut$ and $\mathfrak{S}_{\Sigma}^\omega$ is universal for $\baut$.
+% For $k \geq 2$, $\frakN_k$ is universal for $\waut$.
+%%If $|\Sigma| \geq 2$ then 
+%\end{proposition}
+%
+%%{\bf Remark.} For a discussion of $\mathfrak{S}_\Sigma$ for an infinite set $\Sigma$ see \cite.
+% 
+%Define the structure
+%\[
+%\mathfrak{S}_{\Sigma}^\omega := (\Sigma^{\omega} \cup \Sigma^\ast,\{\sigma_a\}_{a \in \Sigma},\pref,\el)
+%\]
+%whose domain consists of all finite and $\omega$-strings, $\sigma_a$ and $\el$ are only defined on the finite strings, 
+%and $u \pref v$ if $u$ is a prefix of $v$ where $u$ is finite and $v$ is finite or infinite.
+%
+%
+%Define a structure $\frakR_\Sigma$ with domain consisting of all finite $\Sigma$-labelled trees
+%  and has operations
+%\[
+%        (\exteq, \edom, (\suc_a^l)_{a \in \Sigma}, (\suc_a^r)_{a \in \Sigma}, (\epsilon_a)_{a \in \Sigma} )
+%\]
+%  where
+%$T \exteq S$ if $\dom(T) \subseteq \dom(S)$ and $S(\alpha) = T(\alpha)$ for $\alpha \in \dom(T)$;
+%  $T \edom S$ if $\dom(T) = \dom(S)$;
+%  $\suc_a^d(T) = S$ if $S$ is formed from $T$ by extending its leaves in direction $d$
+%  and labeling each new such node by $a$; and
+%  $\epsilon_a$ is the tree with a single node labelled $a$.
+%
+%  Similarly the structure $\frakR^\omega_\Sigma \in \raut$ has domain consisting of
+%  all finite and infinite trees and operations
+%  \[
+%        (\exteq, \edom, (\suc_a^l)_{a \in \Sigma}, (\suc_a^r)_{a \in \Sigma}, (\epsilon_a)_{a \in \Sigma} )
+%  \]
+%  that are restricted to finite trees, except that $T \exteq S$ is
+%  defined as above but allows $S$ to be an infinite tree.
+%
+%\begin{proposition}
+% if $|\Sigma| \geq 2$ then $\frakR_\Sigma$ is universal for $\taut$ and $\frakR^{\omega}_\Sigma$ is universal for $\raut$.
+%\end{proposition}
+%
+%%
+%%\begin{proof}
+%% Details rqd.
+%%\end{proof}
+%
+%What about the cases $|\Sigma| = 1$? Well, $\mathfrak{S}_\Sigma \in \uaut$ and this structure is isomorphic to $(\N,+1,<,=)$.
+%However, $\mathfrak{S}_\Sigma$ is not universal for $\uaut$.
+%
+%Define the structure $\frakO := (\N,+1,<,\{m\N\}_{m > 1})$ where $m\N$ is the unary predicate consisting of multiples of $m$.
+%
+%\begin{proposition}[\cite{Nabe76,Blum99}]
+%The structure $\frakO$ is universal for $\uaut$.
+%\end{proposition}
+%
+%{\bf Remark.} $\frakO$ has infinite signature. In order for us to conclude that it has decidable FO-theory  
+%note that every FO-formula consists of finitely many predicates and there is a unary 
+%presentation of $\frakO$ in which $m \mapsto \code{m\N}$ is computable.
+%
+%
+%\begin{proposition}
+% If $\frakA \in \uaut$ then $\Power_f(\frakA) \in \waut$.
+%\end{proposition}
+%
+%\begin{proof}
+%Every element $x$ of $\frakA$ corresponds to a unary string $f(x)$. Thus subsets of $\frakA$ correspondence
+%to binary strings. The required presentation codes $X \subseteq\A$ by its characteristic string.
+%\end{proof}
+%
+%The converse follows from a much more general result, see \cite{CoLo07}. The present proof is from \cite{Bara07}.
+%
+%\begin{proposition}
+% If $\Power_f(\frakA) \in \waut$ then $\frakA \in \uaut$.
+%\end{proposition}
+%
+%\begin{proof}
+%Take a finite-string automatic presentation $f: \Power_f(\frakA) \simeq (B,S_1,\cdots,S_N)$. 
+%Let $L \subset \Power_f(\calA)$ denote the set of singeletons, and
+%$L_{\leq n}$ denote the set $\{x \in L \st |f(x)| \leq n\}$.
+%
+%As in the proof of proposition \cite{AS:prop:locfin} there is a constant $K$ such that $|f(x)| \leq |f(y)| + K$ for $x \subset y$.
+%Each subset of $L_{\leq n}$ is coded by a string of length at most $n+K$. But there are at most $2^{n+K+1}$ strings of length at most $n+k$. We conclude that $|L_{\leq n}| \leq n + K + 1$. So  $f(L)$ is a regular language of linear growth
+%and by a result from \cite{SYZS92} this implies that $f(L)$ is a finite union of sets of the form $uv^\ast w$.
+%In particular the size of $D_n := L_{\leq n+1} \setminus L_{\leq n}$ is bounded, say by $K$.
+%
+%Construct a unary presentation of $\frakA$ as follows. For $a \in D_n$ suppose the position of $f(a)$ in the set
+%$f(D_n)$ under the lexicographic order is $j$. Then $a$ is coded by the unary string of length $Kn + j$. The relations
+%of $\frakA$ induced by this coding are regular.
+%\end{proof}
+%
+%% \begin{theorem}
+%%  The following are equivalent.
+%% \begin{itemize}
+%%  \item $\frakA$ has a finite-string unary-automatic presentation.
+%%  \item $\frakA$ is FO-interpretable in $(\N,+1,<,\{m\N\}_{m \in \N})$.
+%%  \item $\Power_f(\frakA)$ is finite-string automatic.
+%%  \item $\frakA$ is MSO-interpretable in $\frakT_1$. ! WHAT?! 
+%% \end{itemize}
+%% 
+%% \end{theorem}
+%
+%%that there is a constant $K$ such that
+%%the number of subsets 
+%
+%%By proposition \ref there is a constant $K$ such that
+%%\[
+%% x \in \Power(S_n) \implies |f(x)| \leq n + k
+%%\]
+%
+%=====================================================
+%=====================================================
+%=====================================================
+\subsection{Operations on automatic structures}
+%=====================================================
+%=====================================================
+%=====================================================
+
+This section asks and gives some basic answers to the question:
+\begin{quote}
+Which operations on automatic structures preserve automaticity?
+\end{quote}
+ See \cite{BCL07} for a survey of operations that preserve decidability.
+ 
+\subsubsection*{Closure under interpretations}
+Let $\av$ stand for `finite-string', `$\omega$-string', `finite-tree', or `$\omega$-tree'.
+Since FO-definitions compose we have that:
+\begin{proposition} \cite{Blum99}
+The $\av$-automatic structures are closed under FO-interpretations.
+\end{proposition}
+
+\begin{example}
+$\av$-automatic structures are closed under FO-definable expansions: if $\frakA$ is $\av$-automatic and $\phi$ is a FO-formula over the signature of $\frakA$ then $(\frakA,\phi^\frakA)$ is $\av$-automatic.
+\end{example}
+
+There is a more general notion of interpretation called a {\em FO-interpretation of dimension $d$}.
+Here $\delta$ has $d \in \N$ free variables and each $\Phi_i$ has $d\times r_i$ free variables.
+
+\begin{proposition} \cite{BlGr00}
+The $\av$-automatic structures are closed under  FO-interpretations of dimension $d$.
+\end{proposition}
+
+\begin{proof}
+We illustrate the idea for $\waut$. Suppose $\frakB \in \waut$. It is enough to show that if $\frakA = \I(\frakB)$ then we can find a finite-string automatic presentation of $\frakA$. 
+An element $a$ of $\frakA$ is a $d$-tuple of elements $(b_1,\cdots,b_d)$ of $\frakB$ each of which is coded by a finite string 
+$\code{b_i}$. Coding the element $a$ by the string $\conv(\code{b_1},\cdots,\code{b_d})$ we get a finite-string automatic presentation of $\frakA$ over alphabet 
+$\{0,1,\blank\}^d$. By proposition \ref{AS:prop:MTC} $\frakA$ is in $\waut$.
+\end{proof}
+%??? CHECK
+%\begin{proof}
+%Details rqd.
+% We illustrate the idea for Rabin-automatic structures.
+% Say $\frakA$ is $d$-dimensionally interpretable in $\frakT_2$. Then $\code{a}$, for an element $a$, is
+% a $\{0,1\}^d$-labeled tree. Recode $a$ by replacing the node $u$
+% by a left-most path whose $i$th label is the $i$th coordinate of $\code{a}(u)$. For each successor $u0$ and $u1$ do the same starting at the end of the path just constructed for $u$.
+% This transformation sends regular relations of $\{0,1\}^d$-labeled trees to regular relations of $\{0,1\}$-labeled trees.
+%\end{proof}
+
+Say $\frakA$ and $\frakB$ are FO-interpretable in $\frakU$. Then the disjoint union of $\frakA$ and $\frakB$ is $2$-dimensionally interpretable in $\frakU$. Similarly for their direct product.
+Thus $\av$-automatic structures are closed under disjoint union and direct product.
+
+The {\em (weak) direct power} of $\frakA$ is a structure with the same signature as $\frakA$, its domain consists 
+of (finite) sequences of $\A$, and the 
+interpretation of a relation symbol $R$ is the set of sequences $\sigma$ such that $R^\frakA(\sigma(n))$ holds for all $n$.
+For example the weak direct power of $(\N,+)$ is isomorphic to $(\N,\times)$; the isomorphism sends $n$ to  the finite sequence $(e_i)_i$ where
+$ \prod p_i^{e_i}$ is the prime power decomposition of $n$. Since $(\N,\times)$ is neither in $\waut$ nor $\baut$, these string classes are not closed under weak direct power (or direct power).
+ 
+\begin{proposition} \label{AS:prop:powerclosure} \cite{Blum99}
+Each of  $\taut$ and $\raut$ is closed under under weak direct power. The class $\raut$ is closed under direct power.
+\end{proposition}
+
+\begin{proof}
+We illustrate the second statement.
+Let $\frakA$ be a Rabin-automatic structure with relation symbol $R$.
+Let $\sigma = (a_n)_n$ be an element of the direct power of $\frakA$.
+Code the sequence $\sigma$ by the tree $t_\sigma$ whose subtree at $0^n1$ is the tree $\code{a_n}$.
+The interpretation of $R$ in the direct power is recognised by a tree automaton: it  processes $t_\sigma$ by checking
+that the convolution of the subtrees rooted at $0^n1$ is recognised by the automaton for $R^\frakA$.
+\end{proof}
+
+\subsubsection*{Closure under quotients} \label{AS:subsub:quotient}
+Let $\frakA = ({\A},R_1,\cdots,R_N)$ be a structure.
+An equivalence relation $\epsilon$ on the domain ${\A}$ is called a {\em congruence for $\frakA$} if each relation $R_i$ satisfies the following property:
+for every pair of $r_i$-tuples $\tup{a},\tup{b}$ of elements of ${\A}$, if $(a_j,b_j) \in  \epsilon$ for $1 \leq j \leq r_i$ then $R_i(\tup{a})$ if and only if $R_i(\tup{b})$.
+The {\em quotient of $\frakA$ by $\epsilon$}, written $\frakA/\epsilon$ is the structure whose domain is the set of equivalence classes of $\epsilon$ and whose $i$th relation
+is the image of $R_i$ by the map sending $u \in {\A}$ to the equivalence class of $u$. We ask and give partial answers to the following question:
+
+\begin{quote}
+If $(\frakA,\epsilon)$ is $\av$-automatic, is $\frakA/\epsilon$ $\av$-automatic?
+\end{quote}
+
+\subsubsection*{$\waut$:} Yes \cite{BlGr00}.
+There is a regular well-ordering of the set of finite strings, for instance the length-lexicographic
+ordering $\llex$. Use this order to define a regular set $D$ of unique $\epsilon$-representatives.
+Then restrict the presentation of $\frakA$ to $D$ to get a presentation of $\frakA / \epsilon$.
+
+\subsubsection*{$\taut$:} Yes \cite{CoLo07}.
+Except in the finite string case, there is no regular well ordering of the set of
+all finite trees. 
+However one can still convert a finite-tree automatic presentation of $(\frakA,\epsilon)$ into
+one for $\frakA/\epsilon$. The idea is to associate with each tree $t$ a
+new tree $\hat{t}$ of the following form: the domain is the intersection 
+of the prefix-closures of the domains of all trees that are $\epsilon$-equivalent to $t$; 
+a node is labelled $\sigma$ if $t$ had label $\sigma$ in that position; 
+a leaf $x$ is additionally labelled by those states $q$ from which the 
+automaton for ${\epsilon}$ accepts the pair consisting of the subtree of $t$ 
+rooted at $x$ and the tree with empty domain.
+Using transitivity and symmetry of $\epsilon$, if $\hat{t} = \hat{s}$ 
+then $t$ is $\epsilon$-equivalent to $s$. 
+Moreover each equivalence class is associated with finitely many new trees, 
+and so a representative may be chosen using any fixed regular linear ordering 
+of the set of all finite trees.\footnote{The construction 
+given in \cite{CoLo07} is slightly more general and allows one to effectively 
+factor finite-subset interpretations in any tree.}
+
+
+%In fact, Arnaud says he has a proof that every finite-tree regular equivalence
+%relation has a regular set of representatives
+
+\subsubsection*{$\baut$:} It depends.
+Kuske and Lohrey \cite{KuLo05} observed that there is no unique set of representatives of the equal almost-everywhere relation $\sim_{\textrm{ae}}$ that is regular.
+Thus we can't quotient using the trick that worked for $\waut$. In fact, there is a structure in $\baut$ whose quotient is not $\omega$-string 
+automatic \cite{HKMN08}. The proof actually shows that the structure has no Borel presentation, see Theorem \ref{AS:thm:borel}.
+However, every regular $\omega$-string equivalence relation with countable index has an $\omega$-regular set of unique representatives.
+This follows from the following more general result  \cite{BKRu08}:
+If $\epsilon$ has countable index on $A$ then there exist finitely many $\omega$-strings $x_1,\cdots,x_c$ 
+so that every $x$  in $A$ is $\approx$-equivalent to some $y$ which is $\sim_{\textrm{ae}}$-equivalent to some  $x_i$.  Thus if $\frakA /\epsilon$ is 
+countable and $(\frakA,\epsilon) \in \baut$ then $\frakA/\epsilon \in \baut$.
+
+\subsubsection*{$\raut$:} A finer analysis shows that the quotient of the Rabin-automatic structure from the previous paragraph is not in $\raut$ \cite{HKMN08}.
+Thus $\raut$ is not closed under quotients. However it is not yet known what happens in the case that congruence-relation has countable index.
+~\\
+
+Nonetheless, quotients still have decidable theory since to decide the truth in the quotient structure, for a given sentence replace $=$ by $\epsilon$ and apply the decision procedure for $(\frakA,\epsilon)$.
+
+\begin{proposition} \cite{CoLo07}
+If $(\frakA,\epsilon)$ is $\av$-automatic then the quotient $\frakA/\epsilon$ has decidable FO-theory.
+\end{proposition}
+
+\subsubsection*{Countable elementary substructures}
+
+%In algebra one looks at structures up to isomorphism. In logic 
+In this section we show a way of producing, from an uncountable B\"uchi- or Rabin-automatic structure $\frakB$, a countable substructure $\frakA$
+with the same theory. Thus although $\frakA$ may not itself be automatic, it has decidable theory.
+
+
+\begin{example}
+This example is taken from \cite{Dauc93} (pg. $106$). Code reals in base $2$ and so get an $\omega$-string automatic presentation of  $\frakA := (\R,+,<)$. The substructure of $\frakA$ consisting of those reals coded by ultimately periodic $\omega$-strings is isomorphic to $\frakB := (\Q,+,<)$. We will see that the $\FO$-theory of these two structures are  identical and so conclude that $(\Q,+,<)$ has decidable $\FO$-theory. A recent breakthrough establishes that $(\Q,+)$ is not in $\waut$ \cite{Tsan11}. For further work towards classifying the torsion-free abelian groups that are in $\waut$, see \cite{BrSr11}. It is not known whether or not $(\Q,+,<) \in \raut$. 
+\end{example} 
+
+Two structures with the same FO-theory are called {\em elementary equivalent}. Let $\frakA,\frakB$ have the same signature. 
+Say that $\frakA$ is an {\em elementary substructure} of $\frakB$ if
+$\A \subseteq \B$ and for all formulas $\phi(\tup{x})$ and all $\tup{a}$ from $\A$,
+\[
+\frakA \models \phi(\tup{a}) \mbox{ if and only if } \frakB \models \phi(\tup{a}) \hspace{5pt} (\dagger)
+\]
+
+Then in particular: $\frakA$ and $\frakB$ are elementary equivalent (take $\phi$ to be a sentence) 
+and $\frakA$ is a substructure of $\frakB$ (they agree on the atomic relations of $\frakA$).
+There is a simple characterisation of being an elementary substructure.
+
+\begin{lemma}[Tarski-Vaught \cite{Hodg93}]
+Let $\frakA$ be a substructure of $\frakB$.
+Then $\frakA$ is an elementary substructure of $\frakB$ if and only if  for every FO-formula $\phi(x,\tup{y})$ and all $\tup{a}$ from $\A$
+\[
+\frakB \models \exists x \phi(x,\tup{a}) \,  \implies\,  \frakA \models \exists x \phi(x,\tup{a}).
+\]
+\end{lemma}
+
+%\begin{proof}
+%For the reverse implication proceed by induction on $\phi$ to show $(\dagger)$. The atomic case follows from the assumption that $\frakA \subseteq \frakB$.
+%Boolean combinations are immediate. Thus suppose $\phi$ is of the form $\exists x \psi(x,\tup{y})$. If $\frakA \models \phi(\tup{a})$, say $\frakA \models \psi(c,\tup{a})$ with $c \in \A$, then $\frakB \models \psi(c,\tup{a})$ by induction and so $\frakB \models \phi(\tup{a})$. The converse follows from the condition in the lemma.
+%\end{proof}
+
+Say $f:\frakA \simeq (\B,S_1,\cdots,S_N)$ is an $\omega$-string automatic presentation of $\frakA$. %??? technically, a presentation includes the automata.
+Write $\frakA_{\rm{up}}$ for the substructure of $\frakA$ isomorphic via $f$ to the substructure whose domain consists of the ultimately periodic strings from $\B$.
+Similarly if $\frakA \in \raut$ define $\frakA_{\rm{reg}}$ as the substructure of $\frakA$ isomorphic via $f$ to the substructure consisting of regular trees from $\B$.
+
+\begin{proposition} \cite{BKRu08,HKMN08}
+\begin{enumerate}
+\item Let $\frakA \in \baut$. The structure $\frakA_{\rm{up}}$ is an elementary substructure of $\frakA$.
+\item Let $\frakA \in \raut$. The structure $\frakA_{\rm{reg}}$ is an elementary substructure of $\frakA$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Use the fact that an automaton --- possibly instantiated with ultimately periodic strings $\tup{a}$ --- is non-empty only if it contains an ultimately periodic string. Similarly for the tree case with `regular tree' replacing 'ultimately periodic string'. %This latter fact is known as Rabin's basis theorem, see \cite{Thom90}.
+\end{proof}
+
+
+
+Similar reasoning shows that $\frakA_{\rm{reg}}$ and $\frakA_{\rm{up}}$ have decidable $\FOextcount$-theory.
+
+%??? tree ex 
+
+
+
+%=====================================================
+%=====================================================
+%=====================================================
+\section{Anatomy of structures}
+%=====================================================
+%=====================================================
+%=====================================================
+
+
+
+Not much is known about uncountable automatic structures. For instance, the only known technique for showing that a structure
+is not in $\raut$ is to show that its theory is sufficiently complex, for instance that the $\FOext$-theory is undecidable.
+In this section we ask and give partial answers to the question:
+\begin{quote}
+What do structures in $\waut$ or $\taut$ look like?
+\end{quote}
+Here is a useful pumping observation:
+
+
+%note needed... Write $h(x)$ for the height of a tree $x$, and $h(\tup{x})$ for the height of the largest tree in $\tup{x}$.
+
+%?? generalise this to loc fin relations ?? where?
+\begin{proposition} \label{AS:prop:locfin} \cite{KhNe95}
+Suppose that the partial function $F:A^n \to A$ is finite-string/tree regular, and let $p$ be the number of states of the automaton.
+If $\tup{x}$ is in the domain of $F$ then the length/height of the string/tree $F(\tup{x})$ is at most $p$ more than the length/height of the largest string/tree in $\tup{x}$.
+\end{proposition}
+
+\begin{proof}
+Otherwise, take a counterexample  $\tup{x}$.
+After all of $\tup{x}$ has been read, and while still reading $F(\tup{x})$, some path in the run must have a repeated state. 
+So the automaton also accepts infinitely many tuples of the form $(\tup{x}, \cdot)$ contradicting the functionality of $F$.
+\end{proof}
+
+\subsubsection*{Growth of generation}
+
+\begin{definition} \label{dfn:growth} \cite{KhNe95}
+Let $\frakA$ be a structure with functions $f_1, \cdots, f_k$ of arities $r_1, \cdots, r_k$ respectively. 
+Let $D \subset \A$ be a finite set.
+Define the
+{\em $n$th growth level}, written $G_n(D)$, inductively by $G_0(D) = D$
+and $G_{n+1}(D)$ is the union of $G_n(D)$ and
+\[
+\bigcup_{i\leq k} \{f_i(x_1,\cdots,x_{r_i}) \st x_j \in G_n(D) \text{ for } 1 \leq j \leq r_i\}.
+\]
+\end{definition}
+
+How fast does $|G_n(D)|$ grow as a function of $n$?  For
+example, consider the free group with generating
+set $D = \{d_1, \cdots, d_m\}$. For $m \geq 2$ the set $G_n(D)$ includes all strings over $D$ of length (in the generators)
+at most $2^n$; so  $|G_n(D)|$ is at least $m^{2^{n}}$.
+
+\begin{proposition} \cite{KhNe95} %{\rm \cite{BlGr00}, cf. \cite{KhNe95}}
+ \label{prop:growth}
+Let $\frakA \in \taut$ and $D \subset \A$ be a finite set. Then there is a
+linear function $t:\N \rightarrow \N$ so that for all $e \in G_n(D)$ the tree $\code{e}$ has
+height at most $t(n)$.
+\end{proposition}
+\begin{proof}
+ Iterate proposition~\ref{AS:prop:locfin}.
+\end{proof}
+
+\begin{corollary} 
+If $\frakA \in \taut$ then $|G_n(D)| \leq 2^{2^{O(n)}}$. If $\frakA \in \waut$ then 
+$|G_n(D)| \leq 2^{O(n)}$.
+\end{corollary}
+\begin{proof}
+Count the number of $\{0,1\}$-labelled trees (strings) of height at most $k$.
+\end{proof}
+
+Thus the free group on more than one generator is not in $\waut$.% It is unknown whether or not it is in $\taut$. ??? is it in taut?
+
+\subsubsection*{Growth of projections}
+
+We will be considering structures $(\frakA,R)$ where $R$ is a relation of arity $> 1$. For a tuple $\tup{u}$ of elements from $\A$ define
+$R(\cdot,\tup{u}) := \{a \in \A \st (a,\tup{u}) \in R\}$.
+
+\begin{definition}
+For finite $E \subset \A$ the  {\em shadow cast by $\tup{u}$ on $E$ via $R$} is the set 
+$R(\cdot,\tup{u}) \cap E$ and the {\em shadow count of $E$ via $R$} is the number distinct shadows
+cast on $E$ via $R$ as $\tup{u}$ varies over tuples of elements of $\A$. We may suppress mention of $R$.
+\end{definition}
+
+For example the random graph $(\A,R)$ has the property that for every pair of disjoint finite sets $E,F \subset \A$ there is a point $x \in \A$ that has an edge to every element in $E$ and to no element of $F$. So for a given finite $E \subset \A$, the shadow count of $E$ via $R$ is 
+the largest possible, namely $2^{|E|}$. The following propositions are due to Christian Delhomm{\'e} \cite{Delh04} (the first one independently due to Frank Stephan) and limit the possible shadow counts in automatic structures.
+
+%?? generalise to $\tup{y}$ ?? why?
+\begin{proposition}
+Suppose $(\frakA,R) \in \waut$.
+Then there is a constant $k$,  that depends on the automata for domain ${\A}$ and $R$, and arbitrarily large finite subsets $E \subset {\A}$ such
+that the shadow count of $E$ via $R$ is at most $k|E|$.
+\end{proposition}
+
+\begin{proof} To simplify readability we suppose $R$ is binary.
+Let $\A_n$ be the set of strings in ${\A}$ of length at most $n$. Let $Q$ be the state set of the automaton for $R$. 
+First,  there is a constant $c := |Q|^{|Q|}$ such that for all $n$ and all $x \in {\A}$ there is a 
+$y \in \A_{n+c}$ such that $x$ and $y$ cast the same shadow on $\A_n$. Indeed, consider the sequence of functions $f_i:Q \to Q$
+with $f_i(q)$ defined to be the state reached when the automaton for $R$ starts in $q$ and reads the
+word $\con(x[n+1,n+i],\lambda)$.  If $|x| > n + c$ then there are two positions  $k < l$ such that $f_k = f_l$. If we remove the segment $x[k,l-1]$ from $x$ we
+get a shorter word $x'$ that casts the same shadow on $\A_n$ as $x$ does. Repeat until the word is short enough.
+Second, consider the sequence of sets
+$\A_{b+nc}$ where $b$ is fixed so that $\A_b \neq \emptyset$. Write $X_n$ for the cardinality of $\A_{b+nc}$ and $S_n$ for the shadow count of $\A_{b+nc}$. 
+We know that $S_n \leq X_{n+1}$. Suppose $t$ were such that for almost all $n$, $S_n > t X_n$.  Then $2^{b+(n+1)c} \geq X_{n+1} \geq S_n > t^n X_0$ for almost all $n$. So  $t$ is smaller than a constant that depends on $b,c$ and $X_0$. So take $k$ larger than this constant and conclude that $S_n \leq k X_n$ for infinitely many $n$, as required.
+%$|E_{n+1}| \leq c'|E_n|$ for some constant $c'$ that depends on the automaton for ${\A}$.
+\end{proof}
+
+The proof of the following proposition is similar.
+\begin{proposition}
+Suppose $(\frakA,R) \in \taut$.
+Then there is a constant $k$, 
+that depends on the automata for $\A$ and $R$, and arbitrarily large finite subsets $E \subset {\A}$ such
+that the shadow count of $E$ via $R$  is at most $|E|^k$.
+\end{proposition}
+
+These are used to show that certain structures are not automatic. An immediate application is that the random graph is not in $\taut$.
+
+\subsubsection*{Sum- and box-decompositions}
+
+All definitions and results in this section are due to Delhomm\'e \cite{Delh04}.
+\begin{definition} 
+Say that a structure $\frakB$ is a {\em sum-decomposition} of a set of structures
+$\mathbf{C}$ (each having the same signature as $\frakB$) if there is a finite partition of $\B
+= \B_1 \cup \cdots \cup \B_n$ such that for each $i$ the substructure $\frakB
+\restriction \B_i$ is isomorphic to some structure in $\mathbf{C}$.
+\end{definition}
+
+\begin{theorem} \label{thm:sumaug}
+Suppose $(\frakA,R) \in \waut$.
+There is a finite set of
+structures $\mathbf{C}$ so that for every tuple of elements $\tup{u}$ from $\A$, the
+substructure ${\frakA} \restriction R(\cdot,\tup{u})$ is a sum-decomposition
+of $\mathbf{C}$.
+\end{theorem}
+
+\begin{proof}
+To simplify readability we suppose that $\frakA = \left<\A, R, S \right>$ and for each $T \in \{R,S\}$ fix a deterministic automaton  $(Q_T,\iota_T,\Delta_T,F_T)$ recognising $\code{T}$.
+Naturally extend $\Delta_T$ to all words and so write
+$\Delta_T(q,w)$. 
+
+%	We will use the following property $(P_T)$: If $T$ has arity $k$ then
+%	for all strings $c_i,d_i$ $(i \leq k)$ with the $c_i$s all the same length 
+%	$$
+%	\Delta_T(\Delta_T(\iota_T,\con(c_1,\cdots,c_k)),\con(d_1,\cdots,d_k)) \in F_T
+%	$$
+%	if and only if $\frakA \models T(c_1d_1,\cdots,c_kd_k)$.
+
+Given a tuple $\tup{u}$ write $|\tup{u}| := \max\{|u_i|\}$. Observe that we can partition the set $R(\cdot,\tup{u})$
+into the finitely many sets: the singletons $\{c\}$ such that $R(c,\tup{u})$ and  $|c| <
+|\tup{u}|$; as well as the sets 
+\[
+R^{a \2}(\cdot,\tup{u}) := \{aw \in \A \st (aw,\tup{u}) \in R, w \in \2\}
+\]
+where $|a| = |\tup{u}|$. There are finitely
+many isomorphism types amongst substructures of the form ${\A} \restriction
+\{c\}$, for $c \in \A$. So, it is sufficient to show that as we vary the tuple
+$(a,\tup{u})$ subject to $|a| = |\tup{u}|$, there are finitely many isomorphism
+types amongst substructures of the form $\frakA \restriction R^{a \2}(\cdot,\tup{u})$.
+
+We do this by bounding the number of isomorphism types in terms of the number
+of states of the automata. To this end, define a function $f$ as
+follows. Its domain consists of tuples $(a,\tup{u})$ satisfying $|a| = |\tup{u}|$; and $f$ sends $(a,\tup{u})$ to the pair of states
+$$
+\left<
+%\Delta_\A(\iota_\A,a),
+\Delta_R(\iota_R,\con(a,\tup{u})),
+\Delta_S(\iota_S,\con(a, \cdots, a) ) \right>.
+$$
+The range of $f$ is bounded by $|Q_R| \times |Q_S|$; in particular, the range is finite.
+
+To finish the proof, we argue that the isomorphism type of the
+substructure $\frakA \restriction R^{a \2}(\cdot,\tup{u})$ depends
+only on the value $f(a,\tup{u})$. This follows from the fact that if
+$f(a,\tup{u}) = f(a',\tup{u'})$, then the corresponding substructures
+are isomorphic via the mapping $aw \mapsto a'w$ ($w \in \2$).
+For instance $(aw,\tup{u}) \in R$ if and only if the automaton for $R$ starting in state
+$\Delta_R(\iota_R,\con(a,\tup{u}))$ and reading $\con(w,\lambda,\cdots,\lambda)$ reaches
+a final state if and only if starting in $\Delta_R(\iota_R,\con(a',\tup{u'}))$ and reading $\con(w,\lambda,\cdots,\lambda)$
+it reaches a final state if and only if $(a'w,\tup{u'}) \in R$. This gives the bijective property.
+A similar argument shows that $(aw_1,\cdots,aw_s) \in S$ if and only if $(a'w_1,\cdots,a'w_s) \in S$.
+\end{proof}
+
+
+\begin{corollary}  \label{cor:omegaomega}
+The ordinal $(\omega^\omega,<)$ is not in $\waut$.
+\end{corollary}
+
+\begin{proof}
+Suppose for a contradiction that $(\omega^\omega,<)$ has an automatic presentation and let $\mathbf{C}$ be the finite set of structures
+guaranteed by the theorem using $<$ for $R$.
+Consider the following fact (proved by induction): if the domain of a well-order,
+isomorphic to some ordinal of the form $\omega^n$ for $n \in \N$, is
+partitioned into finitely many pieces $\{B_i\}_i$, then there is some $i$ so
+that the substructure on domain $B_i$ is isomorphic to $\omega^n$.
+This means that $\mathbf{C}$ must contain (isomorphic copies of) $(\omega^n,<)$ for every $n \in \N$, contradicting
+the finiteness of $\mathbf{C}$.
+\end{proof}
+
+%Since the set of ordinals in $\waut$ are closed downwards, this means that $\omega^\omega$ is the least ordinal not in $\waut$.
+
+We now state the analogous results for $\taut$.
+
+\begin{definition}
+Let $(\frakB_i)_{i \in I}$ be a non-empty finite sequence of structures over the same signature. Their {\em synchronous product} is a structure over the same signature 
+defined as follows. Its domain is $\prod_{i \in I} \B_i$. Write $\pi_j$ for the projection $\prod_{i \in I} \B_i \to \B_j$. The interpretation of an $r$-ary relation symbol $R$
+consists of those tuples $(x_1,\cdots,x_r)$ such that for all $k \in I$, 
+\[
+\frakB_k \models (\pi_k(x_1),\cdots,\pi_k(x_r)) \in R .%\vee \pi_k(x_1) = \cdots = \pi_k(x_r)
+\]
+%and at least one $k \in \I$ satisfies
+%\[
+%\frakB_k \models (\pi_k(x_1),\cdots,\pi_k(x_r)) \in R 
+%\]
+\end{definition}
+
+%The complete product of the singleton $(\frakB_1)$ is simply the structure $\frakB_1$. 
+
+\begin{theorem}
+Suppose $(\frakA,R) \in \taut$.
+There is a finite set of structures $\mathbf{C}$ so that for every tuple of elements $\tup{u}$ from $A$, the
+substructure ${\frakA} \restriction R^{\frakA}(\cdot,\tup{u})$ is a sum-decomposition of the set
+of all synchronous products of sequences from $\mathbf{C}$.
+\end{theorem}
+
+\begin{corollary}
+The ordinal $(\omega^{\omega^{\omega}},<)$ is not in $\taut$.
+\end{corollary}
+
+
+%=====================================================
+%=====================================================
+%=====================================================
+\section{Equivalent presentations} \label{AS:sec:equiv}
+%=====================================================
+%=====================================================
+%=====================================================
+
+In this section we focus on finite-string automatic presentations of a fixed structure. The main result in this section is due to B{\'a}r{\'a}ny \cite{Bara06}. We illustrate with base $k$ presentations of
+$(\N,+)$ where $2 \leq k \in \N$. Write $\mu_k$ for the map sending $n \in \N$ to the base-$k$ representation of $n$.
+The translation between bases $p$ and $q$ is the map $\mu_q \circ \mu_p^{-1}$. It sends a string in base-$p$ to that
+string in base-$q$ that represents the same natural number.
+
+Call two bases $p$ and $q$ {\em multiplicatively dependent} if for some positive integers
+$k,l$
+\[
+ p^k = q^l.
+\]
+
+%In this case the translation sends blocks of $p$-ary digits of size $k$ to blocks of $q$-ary digits of 
+%size $l$.
+
+\begin{proposition} \label{AS:prop:multdep}
+If $p$ and $q$ are multiplicatively dependent, then every relation $R \subseteq \N^r$
+is regular when coded in base $p$ if and only if it is regular when coded in base $q$.
+\end{proposition}
+
+To see this we may use semi-synchronous rational relations: these can be thought of as being
+recognised by a multi-tape automaton where each read-head advances at a
+different, but still constant, speed. In the following definition the $i$th head moves $m_i$ symbols at a time.
+
+\begin{definition}
+Fix a finite alphabet $\Sigma$ and a vector of positive integers $\underline{m} = (m_1,\cdots,m_r)$.  
+Let $\blank$ be a symbol not in $\Sigma$ and write $\Sigma_{\blank}$ for $\Sigma \cup \{\blank\}$.
+For each component $m_i$ introduce the alphabet 
+$(\Sigma_{\blank})^{m_i}$.  The {\em $\underline{m}$-convolution of a tuple} 
+$(w_1,\cdots,w_r) \in (\Sigma^{\star})^r$ is formed as follows. First, consider the intermediate
+string $(w_1\blank^{a_1}, \cdots, w_r\blank^{a_r})$ where the $a_i$ are minimal
+such that there is some $k \in \N$ so that for all $i$, $|w_i|+a_i = km_i$. Second,
+partition each component $w_i\blank^{a_i}$ into $k$ many blocks of size $m_i$,
+and view each block as an element of $(\Sigma_{\blank})^{m_i}$. Thus the string
+$\con_{\underline{m}} (w_1,\cdots,w_r)$ is formed over alphabet
+$(\Sigma_{\blank})^{m_1} \times \cdots \times (\Sigma_{\blank})^{m_r}$.
+The {\em $\underline{m}$-convolution of a relation} $R \subseteq (\Sigma^{\star})^r$ is the
+set $\con_{\underline{m}} R$ defined as 
+\[
+\{\con_{\underline{m}} \tup{w} \st \tup{w} \in R\}.
+\]
+A relation $R$ is {\em \underline{m}-synchronous rational} if there is a finite automaton
+recognising $\con_{\underline{m}} R$.
+Call $R$ {\em semi-synchronous} if it is $\underline{m}$-synchronous rational for some $\underline{m}$.
+\end{definition}
+
+For example, if $\underline{m} = (1,\cdots, 1)$ then $\con_{\underline{m}}$ is the same as $\con$.
+For another example, the base-changing translation from base $p$ to base $q$ assuming $p^k = q^l$ is $(k,l)$-synchronous. Proposition \ref{AS:prop:multdep} now follows
+from the fact that the image of a regular relation under a semi-synchronous transduction is regular. The converse of Proposition \ref{AS:prop:multdep} is also true and follows from the Cobham-Semenov theorem, see \cite{BHMCV94}. For instance, if $p$ and $q$ are multiplicatively independent then the set of powers of $p$ is regular in base-$p$ but not
+regular in base-$q$. This discussion is the inspiration for the following generalisation.
+
+%The Cobham-Semenov theorem is a beautiful generalisation of this fact and says that if $p$ and $q$ are multiplicatively independent
+%then every relation regular in base-$p$ and base-$q$ is already ultimately periodic, 
+
+%??? say more ???
+
+
+%The Cobham-Semenov theorem deals with the other case.
+
+%\begin{theorem}[Cobham-Semenov cf. \cite{BHMV94,Bes00,Much03}] \label{AS:thm:CS}
+%If $p$ and $q$ are multiplicatively independent then a relation $R \subseteq \N^r$ is regular in
+%both base $p$ and base $q$ if and only if $R$ is $\FO$-definable in $(\N,+)$.
+%\end{theorem}
+
+%Informally multiplicatively dependent bases are similar, while multiplicatively independent bases are as different
+%from each other as can be. For instance, the set of powers of $p$ is a regular set when coded in base $p$ but is not regular when
+%coded in bases multiplicatively independent from $p$.
+
+For a given finite-string automatic presentation $\mu:\frakA \simeq (\B,S_1,\cdots,S_N)$ 
+write $\mu_{\reg}$ for the collection of relations
+$$
+\{\mu^{-1}(R) \st R \subseteq \B^k \text{ is a regular relation}, k \in \N\}.
+$$
+
+Let $\nu:\frakA \simeq (\C,R_1,\cdots,R_N)$ be another finite-string automatic presentation of $\frakA$.
+
+\begin{definition} \cite{Bara06}
+The presentations  $\mu$ and $\nu$ of $\frakA$ are {\em equivalent} if $\mu_{\reg}  = \nu_{\reg}$.
+\end{definition}
+
+For instance if $p$ and $q$ are multiplicatively dependent then Proposition \ref{AS:prop:multdep} says that the presentations $\mu_p$ and $\mu_q$ are equivalent.
+
+\begin{theorem} \cite{Bara06}
+The presentations $\mu$ and $\nu$ are equivalent if and only if the map $\nu \mu^{-1}:\B \to \C$, namely
+ \[
+  \{(\mu(x), \nu(x)) \in \B \times \C\st x \in \A\},
+ \]
+is semi-synchronous.
+\end{theorem}
+
+\begin{proof}
+The interesting case is the forward direction.
+%First some definitions.
+% A bijection $f:X \to Y$ between regular sets {\em preserves regularity} ({\em preserves non-regularity})
+% if the image under $f$ (under $f^{-1}$) of every regular relation is regular. 
+ Let $f$ denote the translation $\nu\mu^{-1}:\B \to \C$. 
+% First we define $\pi:C \to C'$ such that 
+% 
+% %$\mu$ is equivalent to the presentation $\pi\nu$ and 
+% 
+% the translation  $f':=\pi\nu\mu^{-1}:B \to C'$ is length monotonic (if $x \leq y$ then $f'(x) \leq f'(y)$)
+% and has $\delta$-delay (if $|y| - |x| > \delta$ then $|f'(y)| > |f'(x)|$).
+% Next, define $\beta:C' \to C''$ such that %$\mu$ is equivalent to $\beta\pi\nu$ and 
+% the translation $f'':= \beta f':B \to C''$ is length-preserving ($|f''(x)| =|x|$).
+Here is an outline: starting with $x \in \B$, we apply $f$ to get $f(x) \in \C$, then pad to get $f'(x) \in \C'$,
+then cut into blocks to get $f''(x) \in \C''$. 
+Write $\pi$ for the padding $\C \to \C'$ and $\beta$ for the blocking $\C' \to \C''$.
+Then $f$ can be decomposed into semi-synchronous maps
+\[
+ \B \stackrel{f''}{\to} \C'' \stackrel{\beta^{-1}}{\to} \C' \stackrel{\pi^{-1}}{\to} \C.
+\]
+
+We need some definitions. 
+For a set $X$ of strings, write $\mathbb{L}_X$ for the regular relation of pairs $(x,y) \in X \times X$ such that $|x| \geq |y|$. 
+The {\em growth} of a function $g$ between regular sets is the function 
+$G:n \mapsto \max_{|a| \leq n} |g(a)|$. A bijection $g$ is {\em length preserving} if $|g(x)| = |x|$.
+It is {\em length-monotonic} if $|x_1| \leq |x_2|$ implies $|g(x_1)| \leq |g(x_2)|$. It has {\em $\delta$-delay} 
+if $|x_2| > |x_1| + \delta$ implies $|g(x_2)| > |g(x_1)|$.
+
+
+\
+
+\noindent
+{\em Claim 1.} There is a constant $\delta$ such that $f$ has $\delta$-delay.
+
+Since $f^{-1}(\mathbb{L}_\C) := \{(a,b) \st |f(a)| \geq |f(b)|\} \subseteq \B \times \B$ is regular (by assumption of equivalence) and locally finite (every $a$ is related to finitely many $b$s) 
+there is a $\delta$ (by a pumping argument as in proposition \ref{AS:prop:locfin}) such that $(a,b) \in f^{-1}(\mathbb{L}_\C)$ implies $|b| \leq |a| + \delta$.% That is, $|f(a)| \geq |f(b)|$ implies $|b| -|a| \leq \delta$.)
+
+\
+
+The next claim says that the strings shorter than $x$ are not translated into strings that are more than a constant longer than the string $x$ is translated into.
+
+\
+
+\noindent
+{\em Claim 2.} There is a constant $K$ with $F(|x|) - |f(x)| \leq K$, where $F$ is the growth of $f$.
+
+Since $f(\mathbb{L}_\B) := \{(f(a),f(b)) \st |a| \leq |b|\} \subseteq \C \times \C$ is regular and locally finite, $|a| \leq |x|$ implies $|f(a)| \leq |f(x)| + K$. Thus
+$F(|x|) := \max_{|a| \leq |x|} |f(a)|$ is at most $|f(x)| + K$.
+
+\
+
+Let $\natural$ be a new symbol. Define $f':x \mapsto f(x) \natural^{F(|x|) - |f(x)|}$, for $x \in \B$. Thus $f'$ pads 
+$f(x)$ by $\natural$ symbols so that the length of the translation by $f'$ of $x$ is no smaller than the length of the translation of any shorter word than $x$. 
+Since the property $\{x \st F(|x|)-|f(x)| = i\}$ is regular for fixed $i$
+ the graph of $f'$ is regular (by the previous claim). Write $\C'$ for $f'(\C)$. Write $F'$ for the growth of $f'$.
+
+\
+
+\noindent
+{\em Claim 3.} The translation $f':\B \to \C'$ is length-monotonic and has $\delta$-delay.
+
+Use the fact that $|f'(x)| = F(|x|) = F'(|x|)$.
+
+\
+
+\noindent
+{\em Claim 4.} There exists $p,s \in \mathbb{N}$ such that the sequence  $F'(n+p) - F'(n) = s$ for almost all $n$.
+
+Let $l_0 < l_1 < \cdots$ be the sequence of integers $l$ for which there is a string in $\B$ of length $l$. Let 
+$u_n \in \C'$ denote the length-lexicographically smallest element amongst $\{f'(x) \st |x| = l_n, x \in \B\}$.
+The set $L$ of all such $u_n$ is regular. Note that $|u_n| = F'(l_n)$ and so $|u_i| \leq |u_{i+1}|$ (length-monotonic) and $|u_i| < |u_{i+\delta}|$ ($\delta$-delay).
+Thus $L$ has at most $\delta$ many strings of any given length.
+So partition $L$ into regular sets $L_k$ for $k \leq \delta$:  $x \in L_k$ if there are exactly $k$ strings of length $|x|$ in $L$. The length-preserving projection of these onto $0^\ast$ results in 
+unary presentations of $L_k$. These are ultimately periodic.
+%
+%Let $u_n$ be the length-lexicographically least word amongst $\{f'(x) \st |x| = n, x \in \B\}$ 
+%if this set is non-empty, and undefined otherwise. 
+%Since  $|u_{n+1}| - |u_n|$ is bounded and the set of pairs $(1^n,u_n)$ is regular,
+%the set of pairs $(1^n,1^{|u_{n+1}| - |u_n|})$ is regular. In particular
+%the sequence $\left<|u_{n+1}|-|u_n|\right>$, or what is the same $\left<F'(n+1) - F'(n)\right>$,
+%is ultimately periodic.  Take $p$ large enough so that $\left<F'(n+p) -F'(n)\right>$ is constant.
+%
+
+\
+
+For simplicity assume the previous claim holds for all $n$. Now for $x \in \B$ of length $n$ write $f'(x) $ as $v_1 v_2 \cdots v_n$ where $|v_i| = s$ (if $|f'(x)|$ is not a multiple of $s$, append
+a (new) blank symbol until it is). For a word $w$ of length $s$ write $\widehat{w}$ for a new alphabet symbol. 
+Define $f'':x \mapsto \widehat{v_1} \cdots \widehat{v_n}$. Write $\C''$ for $f''(\B)$. Clearly 
+the translation $f'':\B \to \C''$ is length-preserving.
+
+\
+
+\noindent
+{\em Claim 5.} Since $f''$ is length-preserving and preserves all regular relations, the graph of $f''$ is regular. 
+
+The idea is that we can use lengths of elements of $\B$ (and $\C''$) as pointers to simultaneously identify the symbols in $x$ and $f''(x)$. For simplicity, suppose that for every $n \in \N$ there is an element in $\B$  of length $n$ (in general the gap between lengths is bounded). For a symbol $\sigma$ define the regular relation $S_\sigma(p,b) \subset \B \times \B$ saying that $\sigma$ occurs in $b$ at position $|p|$. Write $R_\sigma \subset \C'' \times \C''$ for the image of $S_\sigma$ under $f''$. It is also regular. Then $f''(x) = y$ if and only if $|x| = |y|$ and for all $p \in \B$
+and $q \in \C''$ with $|p| = |q|$ and each symbol $\sigma$ we have $S_\sigma(p,x) \iff R_\sigma(q,y)$. This latter condition is regular.
+
+\
+
+
+Finally, write $\pi:\C \to \C'$ for the map sending $f(x) \mapsto f'(x)$, and $\beta:\C' \to \C''$ for the map sending $f'(x) \mapsto f''(x)$.
+Since $\pi^{-1}$ is a projection its graph is regular.
+Finally, $\beta^{-1}$ is semi-synchronous sending blocks of size $1$ to blocks of size $s$.
+\end{proof}
+
+%=====================================================
+%=====================================================
+%=====================================================
+
+
+%=====================================================
+%=====================================================
+%=====================================================
+\section{Relatives of automatic structures}  \label{AS:sec:gen} %and related presentations}
+%=====================================================
+%=====================================================
+%=====================================================
+
+\subsection{Expansions by predicates and automatic with advice}
+
+%\subsection{Expansions by predicates}
+ 
+Elgot and Rabin \cite{ElRa66} use automata theoretic arguments to show that certain expansion of $\frakT_1$ by unary
+predicates have decidable MSO.  For instance they showed that $(\N,+1,\textrm{Fact})$
+with $\textrm{Fact} := \{n! \st n \in \N\}$ has decidable MSO-theory.  For a predicate $P \subseteq \N$, the {\em $P$-membership problem} is to decide, given a B\"uchi-automaton $M$,  whether or not $M$ accepts $\chi_P$. Recall that we write $(\frakA,P)$ for the structure $\frakA$ expanded by the predicate $P$.
+
+\begin{lemma} \cite{ElRa66}
+For every predicate $P \subseteq \N$, the structure $(\frakT_1,P)$ has decidable
+MSO-theory if and only if the $P$-membership problem is decidable.
+\end{lemma}
+
+\begin{proof}
+Let $\Phi$ be a sentence of $(\frakT_1,P)$. Let $X$ be a
+variable not used in $\Phi$.  Build a formula $\Psi(X)$ from $\Phi$ in which
+every occurence of $P$ has been replaced by the variable $X$.  By construction
+$(\frakT_1,P) \models \Phi$ if and only if $\frakT_1 \models \Psi(P)$.  The
+latter condition is equivalent to the problem of whether the automaton
+corresponding to $\Psi$ accepts $P$ or not.
+\end{proof}
+
+We now briefly discuss how to find explicit predicates whose $P$-membership problem is decidable.
+
+\subsubsection*{The contraction method for $P \subseteq \N$.}
+Almost trivially, ultimately periodic $P$ have decidable $P$-membership problem.
+For more general predicates, like the factorials $\mathrm{Fact}$, we use the {\em contraction method} of \cite{ElRa66}
+and its generalisation by Carton and Thomas \cite{CaTo02} that we now explain.
+
+Call $P$  {\em residually ultimately-constant} if there is an infinite sequence $x_0 < x_1 < \cdots$ of numbers such that
+for every semigroup morphism $h:\2 \to S$ with $S$ finite, the sequence $(h(u_i))_{i \geq 0}$ is ultimately constant,
+where $u_i = \chi_P[x_i,x_{i+1})$.
+Call $P$ {\em effectively residually ultimately-constant} if the function $i \mapsto x_i$ is computable and given $h(0),h(1)$ and $S$ one can compute an integer $l$, {\em a lag}, such that for all $m \geq l$, $h(u_l) = h(u_m)$. For example, it can be shown that the set of factorials $\textrm{Fact}$ is effectively residually ultimately-constant.
+
+\begin{proposition} \cite{CaTo02}
+If $P$ is effectively residually ultimately-constant then the $P$-membership problem is decidable.
+\end{proposition}
+
+\begin{proof}
+There is a standard effective way to associate with a given automaton $M$ a morphism and finite semigroup $h:\2 \to (S_M,\star)$ with the following property\footnote{The idea appeared in B\"uchi's complementation proof: define $h:\2 \to 2^{Q \times Q \times \{=,\neq\}}$ so that $(q,q',\oplus) \in h(u)$ if
+and only if there is a path in $M$ from state $q$ to state $q'$ labelled $u$ such that if $C$ are the states occurring on this path then $C \cap F \oplus \emptyset $. Note that if $h(u_i) = h(v_i)$ for $i = 1,2$ then $h(u_1u_2) = h(v_1v_2)$. Thus define the associative operation $\star$ on $S$ by
+$s_1 \star  s_2 = h(u_1u_2)$ where $u_i$ is any element such that $h(u_i) = s_i$.
+}: if a word $\alpha_0\alpha_1\alpha_2\cdots$ ($\alpha_i \in \2$) is accepted by $M$
+then every word $\beta$ that can be decomposed into $\beta_0\beta_1\beta_2\cdots$ ($\beta_i \in \2$) with $h(\alpha_i)=h(\beta_i)$ (for all $i$) is also accepted by $M$.
+Then $\chi_P$ is accepted by $M$ if and only if
+the ultimately periodic string $uv^\omega$ is accepted by $M$, where $u = \chi_P[0,x_l)$ and $v = \chi_P[x_l,x_{l+1})$. The latter property is decidable since we can compute a lag $l$ and the elements $h(u),h(v)$.
+\end{proof}
+
+It turns out that $P$ being effectively residually ultimately-constant is also a necessary condition for $(\frakT_1,P)$ having decidable MSO. See \cite{RaTh06, rabinovich07} for a proof of this and other characterisations of $(\frakT_1,P)$ having decidable MSO. See \cite{CaTo02,Bara07} for explicit effectively residually ultimately-constant predicates, including the morphic predicates.
+  %put thomasrabinov joint paper
+%??? update bara07 to paper dealing with words
+
+Why restrict to expansions by unary predicates only? The reason is that expansions by non-trivial binary relations result in undecidability. 
+
+\begin{theorem} \cite{ElRa66}
+Let $g:\N \to \N$ be a function such that $x < y$ implies $1 + g(x) < g(y)$.
+The expansion of $\frakT_1$ by the relation $G_g:= \{(n,g(n)) \st n \in \N\}$ has undecidable $\wmso$-theory.
+\end{theorem}
+
+In fact, one shows that one can quantify over finite relations which in turn gives the power of recursion to define addition and then multiplication.
+An example is taking $g(n) := 2n$.
+
+%\begin{proof}
+%We illustrate the proof with $g(x) = 2x$.
+%First let $f$ be the function $f:\N \to \N$ satisfying $f^{-1}(n) = \{ 2^m(2n+1) \st m \in \N\}$. Note that $f$ is definable in $(\frakT_1,G_g)$
+%since we can close a set under halving. Now using $f$ (its main property is that $f^{-1}(n)$ is infinite for every $n$) we can define a formula $F$ satisfying that for every finite binary relation $R \subseteq \N \times \N$
+%there exists a finite set $A \subseteq \N$ such that for all $n,m$ we have $F(A,m,n)$ holds if and only if $(m,n) \in R$. Indeed the formula $F(X,y,y')$ says that
+%there exists $x,x' \in X$ such that $x$ is in an odd position in the ordering of $X$, and $x'$ is in the next position in this ordering, and $f(x)=y$ and $f(x') = y'$.
+%Now that we can quantify over finite relations we have the power of recursion and so can define, from $+1$, addition on $\N$, and then multiplication.
+%\end{proof}
+
+What about expansions of $\frakT_2$? For predicate $P \subseteq \2$, define the $P$-membership problem as above but with Rabin automata instead. Then identical arguments show that $(\frakT_2,P)$ has decidable MSO if and only if the $P$-membership problem is decidable.  The pushdown/Caucal hierarchy is a well studied collection of trees (and graphs) 
+with decidable MSO \cite{Cauc02} \cite{Thom03}. We illustrate an approach for decidability due to Fratani \cite{Frat05} (that can yield decidability of all trees in the hierarchy). To a semigroup $(\M,+)$ with finitely many generators $g_1,\cdots,g_k$, associate the Cayley structure 
+$(\M,S_1,\cdots,S_k)$ where $S_i(m) = m+ g_i$. For instance, the semigroup of words under concatenation $(\2,\cdot)$ viewed as a structure is
+$\frakT_2$.  
+
+\begin{theorem} \cite{Frat05}
+Take $\mu:\2 \to \M$ a surjective semigroup morphism and a set
+$R \subset \M$. If  the MSO-theory of $(\M,S_1,\cdots,S_k,R)$ is decidable then the MSO-theory of $(\frakT_2,\mu^{-1}(R))$ is decidable. 
+\end{theorem}
+
+\begin{proof}
+Use the relationship between Rabin automata and parity games (see \cite{Thom90}) to show that a given tree automaton (with state set $Q$, initial state $\iota$, transition set $\Delta$) accepts $\mu^{-1}(R)$ if and only if the first player has a memoryless winning strategy in the parity game defined as follows: the arena is $\M \times (Q \cup \Delta)$; the priority of $(m,q)$ and $(m,(q,\sigma,q_0,q_1))$ is the priority of $q$, the starting node is $(\mu(\lambda),\iota)$, and for every transition $\delta = (q,\sigma,q_0,q_1) \in \Delta$ and $m \in \M$ such that $m \in R \iff \sigma = 1$ the first player's moves are of the form $(m,q)$ to $(m,\delta)$ and the second player's moves are of the form $(m,\delta)$ to $(m+\mu(i),q_{i})$ for $i \in \{0,1\}$. Having a memoryless winning strategy is expressible in MSO over $(\M,S_1,\cdots,S_k,R)$.
+\end{proof}
+
+\begin{example}
+Consider the semigroup morphism  $\mu:\2 \to \N$ that sends
+$u$ to the number of $1$s in $u$ (the operation on $\N$ is addition). We have seen that $(\frakT_1,\textrm{Fact})$ has decidable MSO and so conclude that
+$(\frakT_2,\mu^{-1}(\textrm{Fact}))$ does too.
+\end{example}
+
+%Of course the lemma holds if 
+%we use $P \subseteq \2$, $\frakT_2$ instead of $\frakT_1$, and Rabin-automata instead of B\"uchi automata.
+%Another method based on monoid morphisms, due to Fratani \cite, says, in particular, that given a monoid $(M,\cdot)$ and $R \subset M$, if 
+%$(M,\cdot,R)$ has decidable MSO and $\mu:\2 \to M$ is a surjective and $\mu(u\sigma) = \mu(\sigma) \cdot \mu(\sigma)$ for $\sigma \in \{0,1\}$,
+%then $(\frakT_2,\mu^{-1}(R))$ has decidable MSO.
+%For instance if $(\frakT_1,R)$ has decidable MSO then so does $(\frakT_2,X)$ where $u \in X$ if and only if $|u| \in R$.
+
+\subsubsection*{Automatic with advice}
+
+If $(\frakT_2,P)$ has decidable MSO-theory then every structure FO-interpretable in $\Power[(\frakT_2,P)]$ has decidable FO-theory. This justifies
+the following definition.
+
+\begin{definition} \cite{CoLo07}
+A structure is  {\em Rabin-automatic with advice $P \subseteq \2$} if it is FO-interpretable in $\Power[(\frakT_2,P)]$.
+A structure is  {\em B\"uchi-automatic with advice $P \subseteq \N$}  if it is FO-interpretable in $\Power[(\frakT_1,P)]$.
+\end{definition}
+
+A machine theoretic characterisation holds. A {\em Rabin-automaton with
+advice $P \subseteq \2$} is one that, while in position $u \in \2$, can decide on its next
+state using the additional information of whether or not $u \in P$.\footnote{The word `advice' is meant to connote that we can ask for a bit of information based on the current state and the current symbol being read. The other term found in the literature is 'oracle' which I choose not to use because in computability theory it means that the machine can ask if the whole content written on a tape is in the oracle language.}  In other words, the advice $P$ is simply read as part
+of the input. Thus a structure has a presentation by Rabin-automata with advice $P$ if and only if it is FO-interpretable in $\Power[(\frakT_2,P)]$. An analogous statement holds for B\"uchi-automata with advice $P \subseteq \N$.
+
+%\begin{example}
+%The Caucal Hierarchy provides trees $(\frakT_2,P)$ (and graphs) with decidable MSO. Thus
+%\end{example}
+
+The theory of Rabin-automatic structures with advice is yet to be developed. These generalise Rabin-automatic structures which themselves still hold some mystery, e.g. are the countable quotients already finite-tree automatic? It is known that the extension of the fundamental theorem \ref{AS:thm:FOext} holds: if $\frakA$ is Rabin-automatic with advice $P$ then the code of every $\FOext$-definable relation is recognised by a Rabin-automaton with advice $P$, see \cite{BKRa}. 
+
+Structures in which elements are coded by {\em finite} strings/trees have received some consideration. 
+%To this end, we suggest the following definitions.
+
+\begin{definition} \cite{CoLo07}
+A structure is  {\em finite-tree automatic with advice $P \subseteq \2$} if it is FO-interpretable in $\Power_f[(\frakT_2,P)]$.
+A structure is  {\em finite-string automatic with advice $P \subseteq \N$}  if it is FO-interpretable in $\Power_f[(\frakT_1,P)]$.
+\end{definition}
+
+Again, if $(\frakT_i,P)$ has decidable WMSO then $\Power_f[(\frakT_i,P)]$ has decidable FO-theory. Note that a machine model for, say finite-tree automatic with advice $P$, would
+have to have an infinitary acceptance condtions (such as the Rabin acceptance condition) since the automaton has to process $P$ which is typically infinite \cite{CoLo07}.
+
+\begin{example} The structure $(\Q,+)$, although not finite-string automatic \cite{Tsan11}, is finite-string automatic with 
+advice.\footnote{This was communicated independently by Frank Stephan and Joe Miller and reported in \cite{Nies07}.}
+To simplify exposition we give a presentation $([0,1) \cap \Q,+)$ by finite strings
+over the alphabet $\{0,1,\#\}$ where the automata have access to the advice string
+\[
+10\#11\#100\#101\#110\#111\#1000\#\cdots
+\]
+which is a version of the Champernowne-Smarandache string and known to have decidable MSO \cite{Bara07}. %journal paper rather
+To every rational in $[0,1)$ there is a unique {\em finite}
+sequence of integers  $a_1 \cdots a_n$ such that $0 \leq a_i < i$ 
+and $\sum_{i=2}^n \frac{a_i}{i!}$ and $n$ minimal. The presentation codes this rational as
+$f(a_2)\#f(a_3)\#f(a_4) \cdots \#f(a_n)$ where $f$ sends $a_i$ to the binary string of length $\lceil  \log_2 i \rceil +1$  representing $a_i$. Addition $a+b$ is performed least significant digit first (right to left) based on the fact that 
+\[
+\frac{a_i + b_i + c}{i!} = \frac{1}{(i-1)!} + \frac{a_i + b_i + c - i}{i!}
+\]
+where $c \in \{0,1\}$ is the carry in. In other words, if $a_i+b_i+c \geq i$ then write $a_i+b_i+c-i$ in the $i$th segment and carry a $1$ into the $(i-1)$st segment; and if $a_i +b_i + c < i$ then write this under the $i$th segment and carry a $0$ into the $(i-1)$st segment.  These comparisons and additions can be performed since the advice tape is storing $i$ in the same segment as $a_i$ and $b_i$. Of course since the automaton reads the input and advice from left to right it should non-deterministically guess the carry bits and verify the addition.
+\end{example}
+
+Structures that are finite-tree automatic with advice were first studied in \cite{CoLo07}.
+
+\begin{theorem} \cite{CoLo07}
+If $(\frakA,\equiv)$ is finite-tree automatic with advice $P$ and $\equiv$ is a congruence on $\frakA$ then $\frakA/_\equiv$ is also finite-tree automatic with advice $P$.
+\end{theorem}
+
+%The following useful theorem follows from the main technical result in \cite{CoLo07}.
+\begin{theorem} \cite{CoLo07}
+If $\Power_f[\frakS]$ is finite-tree automatic with advice $P$ then $\frakS$ is WMSO-interpretable in $(\frakT_2,P)$.
+\end{theorem}
+
+Consequently it can be shown that the following structures are not finite-tree automatic with any advice: the free monoid on two or more generators; the random graph; the structure $\Power_f[(\N,+)]$. For instance, the last item follows from the fact that $(\N,+)$ is not WMSO-interpretable in any tree. It is not known what happens in these examples and theorems if we replace WMSO by WMSO and $\Power_f$ by $\Power$.
+
+%mention other colcombet/loding/carayol 
+
+%An automata theoretic characterisation is not hard to come by. An {\em $\omega$-tree automaton with advice $P$} behaves as usual except that it defines the language of trees $T$ such that the convoluted tree $\conv(\chi_T,\chi_P)$ has a successful run. A corollary of Rabin's theorem says:
+
+%
+%\begin{theorem}
+%For each MSO-formula $\phi(\tup{X})$ in the signature of $(\frakT_2,P)$ there is an $\omega$-tree automaton with advice $P$ (and vice-versa) such that the language recognised by the automaton is
+%\[
+%\{\conv(\chi_{X_1},\cdots,\chi_{X_k}) \st \frakT_2 \models \phi(\tup{X})\}.
+%\]
+%The translations are effective.
+%\end{theorem}
+
+%Consequently,
+%\begin{theorem}
+%A structure $\frakS$ is automatic with advice $P$ if and only if 
+%\end{theorem}
+
+%Colcombet and L\"oding prove a quite general result about that says, in particular, that if $\Power_f[\frakT_2,P]$ is FO-interpretable in $\Power_f[\frakT_2,Q]$
+%then already $(\frakT_2,P)$ is WMSO-interpretable in $(\frakT_2,Q)$. 
+
+%%?? say something about the (W)MSO hierarchy...
+
+%
+%A minor variation of Rabin automata work on $A$-labelled trees whose domain may be a prefix-closed subset of $\{0,1\}^\star$.
+%Let $T:\dom(T) \to A$ be such a tree. Such a tree may be considered as the relational structure 
+%\[
+%\frakT = (\dom(T),\suc_0,\suc_1,T^{-1}(A)).
+%\]
+%Then a structure may be called {\em weakly $T$-automatic} if it is FO-interpretable in $\Power_f[\frakT]$. This notion clearly generalises that of tree-automatic structure. 
+
+
+%\subsubsection{$\FrakT_r$}
+\subsection{Descriptive set theory and Borel presentations}
+
+A standard reference for classical descriptive set theory is \cite{Kech95}. See \cite{NiMo11} for a short survey about Borel presentable structures.
+There is a natural topology, called the Cantor topology, on $\{0,1\}^\omega$, namely the one whose basic open
+sets are of the form $\{\alpha \st \tau \prefeq \alpha\}$ for $\tau \in \2$.  A subset $X \subseteq \{0,1\}^\omega$ is called {\em Borel (over $\{0,1\}$)} if it is in the smallest
+class of subsets of $\{0,1\}^\omega$ containing the basic open sets and closed under
+countable unions and complementation. 
+
+\begin{example}
+\begin{enumerate}
+ \item A set $X$ is a  countable union of basic open sets if and only if there exists $W \subseteq \2$ such that
+\[
+ \alpha \in X \iff (\exists i) \alpha[i] \in W.
+\]
+These are the {\em open} sets. 
+
+\item Complements of open sets are called {\em closed}.  Every singeleton is closed and thus
+every countable subset of $\{0,1\}^\omega$ is Borel.
+
+\item A set $X$ is a countable intersection of open sets if and only if there exists $W \subseteq \2$ such that
+\[
+\alpha \in X \iff (\forall j) (\exists i > j)\alpha[i] \in W
+\]
+
+\item A set $X$ is a countable union of closed sets if and only if there exists $W \subseteq \2$ such that
+\[
+\alpha \in X \iff (\exists j) (\forall i > j) \alpha[i] \in W
+\]
+ 
+\item A language $X$ recognised by a {\em deterministic} Muller automaton is a boolean combination of sets of the previous two forms. Thus 
+every $\omega$-regular language is Borel.
+\end{enumerate}
+\end{example}
+
+In a similar way we can form Borel subsets of $A^\omega$ where $A$ is a finite set, not just $\{0,1\}$.
+Thus we can define Borel relations: we call $S \subseteq (\{0,1\}^\omega)^r$ Borel if $\conv S$ is a Borel subset of $(\{0,1\}^r)^\omega$.
+
+\begin{lemma} \label{AS:lem:Borelclosure}
+Borel relations are closed under Boolean combinations and instantiation, i.e. if $R$ is Borel over $X$ and $x \in X^\omega$ is fixed, then
+
+\[
+\{(x_1,\cdots,x_{i-1},x_{i+1},\cdots,x_r) \st (x_1,\cdots,x_{i-1},x,x_{i+1},\cdots,x_r) \in R\}
+\]
+ is Borel for every $i$.
+\end{lemma}
+% preimage/image of Borel functions
+
+\begin{definition}[Borel presentation] \label{AS:dfn:bap}
+A {\em Borel structure} $(\B,S_1,\cdots,S_N)$ is one for which $\B \subseteq \{0,1\}^\omega$ is Borel 
+and each of the relations $S_1,\cdots, S_N$ are Borel. Any structure isomorphic to it is called {\em Borel presentable}.
+\end{definition}
+
+\begin{example} The following structures are Borel presentable.
+ \begin{enumerate}
+  \item Every structure with a countable domain.
+  \item The field $(\mathbb{C},+,\times)$.
+%  \item The order $(\Power(\mathbb{N}),\subseteq)$.
+  \item The order $(\Power(\{0,1\}^\star),\subseteq)$.
+  \item The power set structure of $(\mathbb{N},+,\times)$.
+  \item Every  B\"uchi-automatic structure.
+ \end{enumerate}
+\end{example}
+
+Although Borel presentable structures do not neccessarily have decidable first-order theories, methods of descriptive set theory can
+be used to answer questions about automatic presentations. To illustrate we will make use of expansions and extensions of the Borel presentable
+structure $(\Power(\{0,1\}^\star),\subseteq)$. %We follow \cite{HKMN08} and \cite{FiTo10}.
+
+\begin{lemma} [\cite{HKMN08}] \label{AS:lem:borel}
+Let $C$ be a countable set.
+If $\Phi$ is an isomorphism between two Borel presentations of $(\Power(C),\subseteq)$, say $(D,L)$ and $(D',L')$, 
+then the graph of $\Phi$ is Borel.
+\end{lemma}
+
+\begin{proof}
+Every Borel presentation of  $(\Power(C),\subseteq)$ can be expanded to include the countable unary predicate $\text{Sing} := \{\{u\} \st u \in C\}$.
+So consider expansions $(D,L,S)$ and $(D',L',S')$. 
+Note that $\Phi(X)=Y$ if and only if for every $U$ in the countable set $S$, $(U,X) \in L \iff (\phi(U),Y) \in L'$. Thus the graph of $\Phi$ is a countable intersection of Borel relations (by Lemma \ref{AS:lem:Borelclosure}), and so is itself Borel.
+\end{proof}
+
+We will use the following facts. %see \cite{Kech95} and \cite Hjorth's chapter in handbook of on set theory
+
+{\em Fact $1.$} The graph of a function is Borel if and only if the preimage of every Borel set is Borel.
+
+{\em Fact $2.$}  Suppose a function $F:\{0,1\}^\omega \to \{0,1\}^\omega$ satisifies that for all $X,Y$ 
+the strings $X$ and $Y$ are eventually equal if and only if $F(X) = F(Y)$. Then the graph of $F$ is not Borel.
+
+The following theorem separates $\raut$ from $\baut$.
+
+\begin{theorem}[\cite{HKMN08}] \label{AS:thm:sep}
+There is a structure in $\raut$ that has no Borel presentation; in particular this structure is not in $\baut$.
+\end{theorem}
+
+\begin{proof}
+Consider the structure $\mathfrak{V} = (\Power(\{0,1\}^\star),\subseteq,V)$ where $V$ is the unary relation consisting of those sets $X$ such that
+the characteristic tree of $X$ has the property that every infinite path is labelled with only finitely many $1$s. The structure $\mathfrak{V}$ has a natural presentation placing it in $\raut$. A bijection between $\{0,1\}^\star$ and $\N$ allows us to identify $\Power(\{0,1\}^\star)$ with $\{0,1\}^\omega$.
+Write $\mathfrak{V'} = (\{0,1\}^\omega,\subseteq',V')$ for the corresponding structure. 
+Now if $\mathfrak{V'}$ were Borel presentable, say via isomorphism $\Psi$, then by Lemma \ref{AS:lem:borel} the graph of $\Psi$ would be Borel and so would $V'$ be Borel. But this contradicts the fact that $V'$ is $\Pi_1^1$-complete. % define pi_11 complete
+\end{proof}
+
+The following theorem says that $\baut$ is not closed under quotients.
+
+\begin{theorem}[\cite{HKMN08}] \label{AS:thm:borel}
+There is a structure $(\frakA,\approx)$ in $\baut$ whose quotient $\frakA/_{\approx}$ has no Borel presentation, and is thus not in $\baut$.
+\end{theorem}
+
+\begin{proof}
+Let $\frakB_0$ and $\frakB_1$ be structures with disjoint domain, each isomorphic to $(\Power(\mathbb{N}),\subseteq)$.
+Define $\frakA$ to be the structure with domain $B_0 \cup B_1$ and relations $\leq$, $U$, $f$ where $\leq$ is
+$\subseteq$ restricted to each $B_i$, $U$ holds on the elements of $B_0$ and $f:B_0 \to B_1$ is the identity. Let $=^*$ be an equivalence
+relation on the $B_0 \cup B_1$ which is the identity on $B_0$ and `the symmetric difference is finite' on $B_1$. Clearly 
+$(\frakA,=^*) \in \baut$. We now sketch the proof that $\frakA/_{=^*}$ is not Borel presentable. 
+Assume that $\frakA/_{=^*}$ is isomorphic to a Borel structure $(B',\leq',U',f')$ via $\Phi$ and let $\Phi_0$ be the restriction of 
+$\Phi$ to $[B_0]_{=^*}$ (which is $B_0$). By Lemma \ref{AS:lem:borel} $\Phi_0$ is Borel.
+% Note that $\Phi_0(X) = y$ if and only if for all $n \in \mathbb{N}$ 
+%\[
+%\{n\} \subseteq X \iff \Phi_0(\{n\}) \leq' y. 
+%\]
+%Thus $\Phi_0$, being a countable intersection of Borel relations, is Borel. 
+Then  by Fact $1$ the composition $F: = f' \circ \Phi_0$ is Borel, contradicting Fact $2$.
+\end{proof}
+
+A more sophisticated set-theoretical argument shows that the structure $\frakA/_{\approx}$ from the previous theorem is not in $\raut$ \cite{HKMN08}.
+
+Methods from (descriptive) set theory have also been used to study the isomorphism problem for automatic structures.
+Specifically, writing $\mathcal{M} = (M_B,M_1,\cdots,M_N)$ for a tuple of automata presenting a structure, the {\em isomorphism problem} for a collection
+$\mathbf{C}$ is the set of pairs $(\mathcal{M},\mathcal{M'})$ such that both $\M$ and $\M'$ present the same structure from $\mathbf{C}$. See \cite{Rubi04,KLL10CSL,KLL10LICS} in which various natural isomorphism problems can be placed within the arithmetic and analytic hierarchy (see \cite{Roge67} for definitions). For instance, the complexity of the
+isomorphism problem for $\waut$ is $\Sigma^1_1$-complete.
+
+We end with a stunning result:
+
+\begin{theorem}[\cite{FiTo10}]
+The isomorphism problem for the collection 
+\[
+\{\frakA/_\approx \st (\frakA,\approx) \in \raut\}
+\]
+is not determined by the axiomatic system \textrm{ZFC}.
+\end{theorem}
+
+\begin{proof}
+Here is the barest of sketches. 
+Write $\mathrm{FIN}$ for the ideal of finite subsets of $\N$, and $\mathrm{ANC}$ for the ideal of subsets of $\{l,r\}^\star$ with no infinite antichain with respect to the prefix-order.
+%For an ideal $\mathrm{I}$ write $\equiv_I$ for the relation `the symmetric difference of $X$ and $Y$ is in $\mathrm{I}$'.
+ Both $(\Power(\N),\cap,\cup,\neg,\mathrm{FIN})$ and $(\Power(\{l,r\}^\star),\cap,\cup,\neg,\mathrm{ANC})$ are Rabin-automatic. Write $\frakB_1$ for the Boolean algebra $\Power(\N)/\mathrm{FIN}$ and $\frakB_2$ for $\Power(\{l,r\}^\star)/\mathrm{ANC}$.
+Using results from descriptive set theory it can be proved  that $\frakB_1$ and $\frakB_2$  are isomorphic under ZFC+CH, but  not isomorphic under ZFC+OCA (open colouring axiom).
+\end{proof}
+
+
+%=====================================================
+\section{Questions} \label{AS:sec:summary}
+%=====================================================
+
+This chapter focused on what I consider foundational problems of automatic structures. 
+Here are some directions and questions raised along the way.
+\begin{enumerate}
+\item Which generalised quantifiers can be added to FO to still get definability/decidability for all $\av$-automatic structures as in Theorem \ref{AS:thm:FOext}? 
+What if one restricts to a specific automatic structure? 
+\item Suppose $(\frakA,\epsilon)$ is Rabin-automatic. In general, the quotient $\frakA/\epsilon$ is not Rabin-automatic. If we further suppose that $\frakA/\epsilon$ is countable, is $\frakA/\epsilon$ then Rabin-automatic?
+\item Can automata be used to explain why the countable random graph, which is not finite-tree automatic with any advice,  has a decidable FO-theory? Is it the regular quotient of a Rabin-automatic structure with advice? The same question can be asked of other important structures such as real arithmetic $(\R,+,\times,<)$ which is decidable in double exponential time. 
+\item Find techniques to show that certain structures are not Rabin-automatic or that certain uncountable structures are not B\"uchi-automatic.
+\item If the power structure $\Power[\frakS]$ is Rabin-automatic with advice $Q$ then is $\frakS$ already MSO-interpretable in $(\frakT_2,Q)$?
+\end{enumerate}
+
+
+

@@ -1,0 +1,22 @@
+1. do we want to train people to build tools that they don't understand?
+2. There is only one way a thinking entity (computer or human)
+can work out what would happen in multiple scenarios, including some that it has never
+experienced before. It must possess, consult, and manipulate a mental causal model of
+that reality. (Judea Pearl)
+3. might need to learn from little data
+
+4. machine learning
+traditional = how do map my problem to standard techniques?
+model-based = what is the model that represents my problem?
+
+properties of models
+- compact representation
+- separate inference from training
+- learn one representation
+- captures many standard methods
+- 
+
+5. symbolic AI = intelligence is a process of manipulating discrete symbols
+
+AI: build software that can adpat, learn and reason about the world.
+e.g., given game outcome, deduce skill of player

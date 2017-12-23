@@ -1,0 +1,605 @@
+\section{Extended Synopsis of the scientific proposal}
+
+% \note{5 pages\\
+% The Extended Synopsis should give a concise presentation of the scientific proposal, with particular attention to the ground-breaking nature of the research project, which will allow evaluation panels to assess, in Step 1 of the evaluation, the feasibility of the outlined scientific approach. Describe the proposed work in the context of the state of the art of the field. References to literature should also be included.
+
+% Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margins (2.0 cm side and 1. 5cm top and bottom), single line spacing.
+% }
+
+%\subsection*{MOTIVATION AND LONG TERM VISION}
+
+%\vspace{-1ex}
+
+\subsection*{MOTIVATION}
+
+
+
+We are witnessing an increasing availability of \textbf{mechanisms} that offer
+some form of programmability. 
+%%
+These obviously comprise software in our computers and mobile devices,
+%. These are indeed where programming has developed first and we expect
+%programming effort to be dedicated to it. 
+%%
+%Moreover 
+as well as
+intelligent machines, such as cognitive robots, self-driving cars, flying drones, etc., which are becoming a reality. 
+
+Beside these,  there are less obvious systems, currently considered of pivotal importance in Business, that can be considered programmable mechanisms. For
+example in \textbf{Manufacturing} significant research efforts are focusing on
+improving flexibility, agility and productivity of manufacturing
+systems, under the umbrella term \emph{Industry 4.0}, or \emph{4th industrial
+revolution}. These efforts are shifting interests towards
+cyber-physical systems and cloud computing
+with the ultimate vision of \textbf{manufacturing as-a-service} 
+\autocite[]{Lorenz15}. 
+%\autocite[]{WuRWS15,Lorenz15}. 
+%%
+In this vision, seeing manufacturing systems
+as programmable mechanisms is essential.
+
+Similarly, the rising of the \textbf{Internet of Things} as a
+virtual fabric that connects ``things''
+equipped with chips, sensors and actuators allows for building
+programmable mechanisms acting in the physical world.  The originally
+inanimate objects and spaces can develop into \textbf{smart objects}
+and \textbf{smart spaces} with a level of awareness of the environment
+they are immersed in, which together with their steadily increasing
+computation power, makes them able to interact with human occupants
+in engaging ways \autocite[]{MacGillivray16}. %\autocite[]{MacGillivray16,Sailer16}. 
+
+
+Switching to a different context, \textbf{Business Process
+  Management} advocates explicit conceptual descriptions of a process
+to be enacted within an organization or possibly across
+organizations. Business processes are explicitly modelled and analyzed
+through IT technologies nowadays, and executed through a process
+management system. According to Gartner, business processes
+improvement is the top business strategy of CIOs in enterprises
+\autocite[]{Gartner11}. Such (formalized) \textbf{business processes} can be
+considered programmable mechanisms too.
+%\autocite[]{BPMN-book}.
+
+By no means we should consider programmable mechanisms to be formed by a single unit only. \textbf{Service-Oriented Computing} and \textbf{Open APIs} frameworks are long advocating for \textbf{component-based systems}, in which a set of components are \textbf{customized} and \textbf{orchestrated} to deliver a required service. Such component-based systems are also interesting forms of programmable mechanisms \autocite[]{wsf2014}.
+
+
+All these mechanisms have some built-in capabilities to act and react
+to external stimuli.
+%%
+These capabilities give rise to a
+dynamic behaviour, which can be organized and refined through
+programming.
+%
+ In a sense they can be considered as forms of
+\textbf{Agents} studied in \textbf{Artificial Intelligence}. %(AI)
+\autocite[]{Reiter01} \autocite[]{Wooldridge09}
+
+
+In particular there are compelling reasons to introduce \textbf{self-programming
+abilities} in these systems.
+%%
+For example, it is advocated that cyber-physical systems in
+\textbf{Manufacturing} or \textbf{Internet of Things} should be able
+to \textbf{adapt} themselves to the current users and environment by
+exploiting information gathered at runtime. This would allow for
+evolving into so-called \emph{smart environments}, e.g., smart homes,
+smart offices, smart public spaces, and smart factories. However it is
+considered impossible to determine apriori all possible adaptations
+that may be needed at runtime. Self-programming abilities are required
+\autocite[]{Seiger2016}.
+% \footnote{Ronny Seiger, Steffen Huber, Peter
+%   Heisig, Uwe Assmann: Enabling Self-adaptive Workflows for
+%   Cyber-physical Systems. BMMDS/EMMSAD 2016: 3-17} \footnote{Ronny
+%   Seiger, Christine Keller, Florian Niebling, Thomas Schlegel:
+%   Modelling complex and flexible processes for smart cyber-physical
+%   environments. J. Comput. Science 10: 137-148 (2015)}
+
+In \textbf{Business Processes} it is considered important for the next generation
+of process management systems to allow processes to automatically
+\textbf{adapt executions} when unanticipated exceptions occur, without
+explicitly defining apriori \textbf{recovery policies}, and without the
+intervention of domain experts at runtime. These self-programming
+abilities would reduce costly and error-prone manual ad-hoc changes, and would relieve
+software engineers from mundane adaptation
+tasks \autocite[]{MarrellaMS17}.  
+%%
+Note that such concerns have been shared by
+\textbf{autonomic computing}, which has advocated self-configuration, self-healing, self-optimization, and self-protection, though by using policies provided by
+IT professionals \autocite[]{ibm2005autonomic}.
+
+
+In \textbf{Service-oriented Computing} and \textbf{Open APIs} the
+ability to  automatically customize and orchestrate conversational
+(i.e., stateful) services is considered a foundational feature of the
+field \autocite[]{wsf2014}.
+
+
+
+% \project aims substantially increasing these self-programming abilities, by 
+% laying the fundations, develop methodologies, algorithms and tools
+% that  allowing  mechanisms to \textbf{program
+%   themselves}, without human intervention, while in execution.
+
+
+% \project aims at allowing such mechanisms to \textbf{program
+%   themselves}, without human intervention, while in execution.
+%%
+
+% \begin{quote}\textit{
+% \project long term vision is that self-programming abilities will be increasingly crucial as our mechanisms become more sophisticates and exit the realm of pure software to get into the real world.
+% % }
+% % \end{quote}
+% %
+% % \begin{quote}\textit{
+% Hence \project aims at laying the theoretical foundations and practical
+% methodologies of a ``science and engineering of self-programming mechanisms''.
+% }
+% \end{quote}
+
+% Our intention is to provide the theoretical foundations and practical
+% methodologies in order to convert the ``engineering of integration of
+% smart devices" into a ``science of integration and orchestration of
+% devices in smart spaces".
+
+Although the interest is clearly apparent, currently these
+self-programing abilities are missing in actual mechanisms, and
+science is focussing on limited forms  of self-programming, e.g., for
+exception handling and recovery, or forms of composition and 
+autonomic reconfiguration.
+
+%\vspace{-1ex}
+
+\subsection*{OBJECTIVES}
+
+%\vspace{-1ex}
+
+The overarching objective of \project is the following:
+
+\begin{quote}\textit{
+\project aims at making \textbf{self-programming mechanisms} a reality, by laying the theoretical foundations and practical
+methodologies of a ``science and engineering of self-programming mechanisms''.
+}
+\end{quote}
+
+
+
+%\subsection*{GOALS AND CHALLENGES}
+% \begin{quote}\textit{
+\project intends to make a quantum leap in  self-programming abilities, by introducing into such mechanisms aspects typically studied  in 
+\textbf{Reasoning about Actions} in AI.
+%}
+%\end{quote}
+%%
+Through these  enhanced self-programming abilities such
+mechanisms can tailor their behavior so as to, e.g.:
+%%
+\begin{itemize}
+\item \emph{Achieve desired goals}, that is guarantee that a certain
+  desired state of affair is eventually reached.  For example a
+  manufacturing system may automatically reconfigure the fabrication
+  process if a some tool is producing too many defective pieces, by
+  changing the sequencing of processing units so as to momentarily
+  cut-out the defective tool from the process.
+  % As another example, the manufacturing process may refine itself so that every time a defective piece arrive to a manufacturing island it is
+  % eventually classified and processed accordingly. Note that the
+  % notion of defecting, classification and desired reaction can change
+  % through self-programming while the tool is in execution.
+%%
+\item \emph{Maintain themselves within a safe boundary} in the
+  changing environment in which they operate.  For example a smart
+  space system may keep the desired temperature and humidity in a
+  museum room at some desired level, even in presence of a particularly large
+  crowd of visitors, possibly by momentarily repurposing other
+  actuators, such as the general public air conditioning system.
+\item \emph{Keep following rules, regulations and
+conventions} that evolve over time while enacting their behavior.  
+For example, to answer a new privacy regulation, a business process may refine its behavior to guarantee that the sensible data
+  are eventually erased from the system before the completion of each process instance.
+\end{itemize}
+%These are just some examples. 
+More generally, \project wants to enable
+mechanisms to act in an informed and intelligent way in their
+environment, by changing the way they behave as a consequence of the
+information they acquire from the external world, and they exchange
+with the humans operating therein.
+%% 
+% That is, we want to introduce to such mechanisms some aspects typical
+% of \textbf{Artificial Intelligence} (although limited to their domain of
+% interest) so as to able to act in their environment in an informed
+% way, changing the way they behave as a consequence of the information
+% they acquire from the external world.
+
+Introducing advanced forms of self-programming calls for the ability to
+\textbf{understand} and \textbf{explain}, both for machine and human
+use, the behavior automatically generated by the mechanism.
+%%
+%must be checked to be \textbf{harmless}. 
+In line with a large part of the AI community, 
+\project considers this point essential \autocite[]{RussellDT15}.
+%%
+In every moment the specifications and the mechanisms' possible
+behaviors must be human comprehensible. In other words, we aim at
+obtaining that the resulting behavior of self-programming mechanisms
+is fully \textbf{explainable in human terms}, or in a slogan
+``\textbf{white-box}'', by design. As a result:
+
+\begin{quote}
+\textit{
+\project aims at devising self-programming mechanisms that are \textbf{white-box} by design.}
+\end{quote}
+% This is disruptive wrt earlier approaches which could be say to be ``black-box'', in the sense it is fine if synthesized solutions remain opaque to humans as long as they work.
+% This is quite different from  most current approaches which consider it acceptable if synthesized solutions, and their precise relationship to the specifications, remain opaque to humans, as long as they work.
+
+This contrasts with most current approaches which consider  acceptable synthesized solutions that  remain opaque to humans, as long as they work.
+
+In the first example above, both  the reconfiguration goal
+(cutting out a defective tool) and how the fabrication process has
+been modified need to be explicitly understandable by the humans analyzing
+the manufacturing system.
+%%
+In the second example, the sudden repurposing on the air conditioning system
+also needs to be understandable to humans as a reaction to avoid
+violating certain safety conditions.
+%%
+Similarly, in the third example, the goal of erasing sensible data
+from the system, and even more importantly how
+this is achieved, must be understandable.
+
+%\vspace{-1ex}
+
+\subsection*{CHALLENGES}
+
+%\vspace{-1ex}
+
+Towards the goal of building \textbf{white-box self-programming mechanisms}, \project will address the following challenges.
+\begin{enumerate}
+
+\item \textbf{Mechanisms need general self-programming abilities}, not
+  restricted to a particular task, such as exception recovery, but ready
+  to refine and modify the behavior of the mechanisms as new
+  opportunities or constraints arise. In other words, we need to aim at                           
+  advanced forms of \textbf{process synthesis} as those studied in
+  \textbf{reactive synthesis}.  Over the years the Verification
+  community in Formal Methods has developed a comprehensive and
+  mathematical elegant theory of \textbf{reactive synthesis}
+  \autocite[]{PnRo89}.  Such theory however has not yet found broad practical
+  application because of the \textbf{intrinsic difficulties} of
+  certain algorithms and constructions \autocite[]{TsaiFVT14}.
+%%
+  \project aims at \textbf{sidestepping these notorious difficulties
+    altogether}, by focusing on non-traditional forms of
+  specification formalisms such as LTL and LDL on \textbf{finite
+    traces}, recently proposed in \textbf{reasoning about actions} in
+  AI \autocite[]{TorresB15} \autocite[]{DeVa15} %\autocite[]{DeVa16} 
+and in \textbf{declarative business
+    processes} \autocite[]{AalstPS09}.
+
+
+
+\item \textbf{Self-programming abilities are needed while mechanisms are in operation}, that is while the mechanisms are executing, not just at  design time. We expect self-programming mechanisms to be able to reprogram themselves under new acquired information or changes in the specifications, while already in operation. This deeply relates self-programming to \textbf{Planning} in AI \autocite[]{GeffnerBo13}. %\autocite[]{NauGT15}.  
+In particular like agents in planning, we expect mechanisms to be able to handle quickly and efficiently most cases, i.e., those cases that do not require to solve difficult, ``puzzle-like'', situations. Indeed while the Planning community has concentrated on simpler forms of process synthesis, it has developed a sort of science of search algorithms for planning, which has allowed Planning to improve by orders of magnitude in the last decade. \autocite[]{PommereningHB17} \autocite[]{SteinmetzH17} %\autocite[]{LipovetzkyG17} 
+\autocite[]{DeGMMP17} \project will exploit this knowledge and extend it to generalized forms of planning and to reactive synthesis.
+
+
+\item \textbf{Self-programming mechanisms need to be verifiable.}
+  \project aims at building mechanisms with self-programming abilities
+  that are \emph{verifiable}, e.g., by \textbf{model checking}, possibly
+  \textbf{modulo theories}. %\autocite[]{EiterGS10}. 
+This is a crucial step towards the
+  understandability required by a \textbf{white-box approach}.  For
+  example we need to be able at any moment to understand if important
+  safety conditions are satisfied. In tackling this aspect \project will also leverage on  recent advances of model checking of autonomous agents  %\autocite[]{Wooldridge09} 
+\autocite[]{LomuscioQR17}.
+
+\item \textbf{Self-programming mechanisms need to be able to learn and
+    make stochastic decisions, while remaining within safe
+    boundaries}.  We want to allow mechanisms to have certain forms of
+  decision making that resist formal analysis (at least in human
+  terms), because we want to make use of the possibilities that
+  advancements in deep learning, MDPs, and reinforcement learning
+  bring about. Though, while the actual execution could be chosen in such
+  ways, we do want to have guarantees on \textbf{all possible
+    generated executions}.  In this way, it is the \textbf{entire
+    space of solutions} that has \textbf{formal guarantees}, not the
+  specific solution chosen. Hence, however chosen, the actual solution
+  will need to satisfy the desired guarantees.
+%%
+  This calls for allowing \textbf{coexistence of logical requirements
+    with stochastic solutions} a theme that has only be scratched by
+  the scientific community, so far. \autocite[]{BeckL12} \autocite[]{BDMS17}
+%%
+  We also observe that synthesis has been used to bound the
+  possible solutions in several context, most notably in supervisory
+  control. \autocite[]{Wo14} \autocite[]{BanihashemiGL16}
+
+%%
+
+
+\item \textbf{Self-programming mechanisms need to be comprehensible to
+    humans}. \project requires specifications, the space of
+  solutions and the relationship between solutions and specifications
+  to be \textbf{comprehensible to humans}.  For example neural
+  networks cannot be used as a human comprehensible representation of
+  the solution space, since we do not have control on the
+  abstraction/compression they perform. Though, they can be effectively
+  used for finding a specific solution.
+%%
+This means that specifications and solution spaces must be
+semantically described at high-level using predicates that are
+understandable to humans, as advocated by \textbf{Knowledge
+  Representation} in AI (that is, it is fine to say
+\texttt{BrakeUnderStress} but not to say \texttt{Flag123456=on}).
+\autocite[]{Baral10} \autocite[]{EiterEFS10} \autocite[]{BrewkaEP14} 
+%\autocite[]{Levesque14} 
+ \autocite[]{Shoham16}
+\autocite[]{Levesque17}
+
+\item \textbf{Self-programming mechanisms need to be information-aware.}
+  During the execution, new facts about the environment/world are
+  observed, learned, or received as input. This calls for a
+  representation that distinguishes \textbf{intensional information}
+  such as that provided by knowledge on the domain, from
+  \textbf{extensional information} provided by actual
+  data. Self-programming mechanisms leverage on the intensional
+  information to be able to interpret new data (extensional
+  information) acquired, observed, learned.  Notice that this may call
+  for a \textbf{relational (first-order) representation of the state},
+  and new results on verifiability of \textbf{data-aware processes}
+  are crucial. % \autocite[]{ClassenL08}
+%\autocite[]{HaririCGDM13} \autocite[]{ClassenLLZ14} 
+\autocite[]{HullSV13}
+\autocite[]{BelardinelliLP14} 
+\autocite[]{DeGLP16} % \autocite[]{CDMP17}.
+
+\item \textbf{Self-programming mechanisms need to be component-based
+    systems.}  Understandability calls for building \textbf{high-level
+    components} that are relatively simple to understand,
+  verify and combine. Then, it is crucial to study how
+  \textbf{composing} ``correct'' components leads to an overall
+  ``correct'' behavior.
+%%
+\project will leverage on the body of work on composition and customization developed in SOC and more recently in AI.
+ \autocite[]{SohrabiPM09} \autocite[]{BertoliPT10} \autocite[]{DePS13} %\autocite[]{CalvaneseGLV16} 
+\autocite[]{DeGGPSS16}
+%% \item 
+%%Finally, 
+Moreover, execution should be \textbf{monitored} so that in case of
+failure it is possible to identify the responsible component, and
+recover the situation by reprogramming the mechanisms for alternative
+solutions that circumvent the failing
+component. \autocite[]{DeGMGMM14} \autocite[]{MarrellaMS17}
+
+
+\end{enumerate}
+
+% As a result of the above observations 
+
+% \begin{quote}
+% \textit{
+% \project considers critical that self-programming mechanisms remain \textbf{white-box}.}
+% \end{quote}
+
+% In every moment the
+% specification the generated program complies to are human
+% comprehensible as the resulting programs over the mechanisms behavior
+% are. In other words, we aim at obtaining that the resulting behavior
+% of self-programming mechanisms is fully \textbf{explainable in human
+%   terms} by design.
+
+% The scientific work will leverage on key ideas on how to represent the
+% system and the properties of interest in a high level human
+% comprehensible fashion from \textbf{Knowledge Representation and
+%   Reasoning} in AI.
+
+% It will make use of the mathematical elegant theory of \textbf{Reactive
+%   Synthesis} developed in formal methods in the last 30 years, which
+% however has not found diffused practical application because of the
+% \textbf{intrinsic difficulties} of certain algorithms and constructions.
+
+% We aim at \textbf{sidestepping these difficulties all-together}, by
+% focusing of non-traditional kinds of specification
+% formalisms. Examples of these are Linear-time Temporal Logic and
+% Linear Dynamic Logic on finite traces, recently proposed in
+% \textbf{AI} and in \textbf{declarative business processes}, those
+% adopted to specify target behavior in conversational service
+% compositions in SOC or in \textbf{behavior composition in AI}.
+
+
+%%
+
+
+%\subsection*{INTELLECTUAL MERIT}
+
+% %\subsection*{KEY DELIVERABLES}
+%\vspace{-1ex}
+
+\subsection*{TIMING AND SIGNIFICANCE}
+
+%\vspace{-1ex}
+
+We are seeing the need of self-programming abilities stemming out in several filed of CS and AI. 
+%%
+At the same time, we are currently witnessing a convergence between
+research in \textbf{reasoning about actions} and \textbf{planning} in
+AI, research on \textbf{reactive synthesis} in Formal Methods, which
+are the most prominent areas developing methodologies, algorithms and
+tools related to \textbf{self-programming}. The cross-fertilization
+among knowledge representation, planning and autonomous agents in AI,
+and verification in Formal Methods, is bringing about new feasibility
+results, which sidestep some intrinsic difficulties of reactive
+synthesis algorithms and constructions (e.g., determinization), and
+extend the analysis to mechanisms with a first-order representation of
+the state.
+
+\begin{quote}{\it
+The PI is one of the most prominent AI scientist leading this cross-fertilization.}
+\end{quote}
+
+Moreover, the need to move towards \textbf{white-box} approaches is advocated by a large part of the \textbf{AI community} \autocite[]{RussellDT15}, and has been recently taken up by DARPA within the context of machine learning, through the DARPA-BAA-16-53 ``Explainable Artificial Intelligence (XAI)'' program\footnote{\url{http://www.darpa.mil/program/explainable-artificial-intelligence}}
+
+\begin{quote}{\it
+Knowledge representation, the primary field of the PI, will be central for realizing the shift towards a white-box approach.}
+\end{quote}
+
+These two aspects make the \project very timely and of greatest significance for European science.
+
+
+% \subsection*{METHODOLOGY}
+
+% %\paragraph{KNOWLEDGE REPRESENTATION.} 
+% The foundation work in \project will leverage on key ideas on how to represent the
+% system and the properties of interest in a high level human
+% comprehensible fashion from \textbf{Knowledge Representation and
+%   Reasoning} in AI \autocite[]{Shoham16,Levesque14,DeGLP16}.
+
+% %\paragraph{REACTIVE SYNTHESIS AND GENERALIZED PLANNING}
+% \project  will make use of the mathematical elegant theory of \textbf{Reactive
+%   Synthesis} \autocite[]{PnRo89} developed in formal methods in the last 30 years, which
+% however has not found diffused practical application because of the
+% \textbf{intrinsic difficulties} of certain algorithms and constructions \autocite[]{DFogartyKVW13}.
+
+% We aim at \textbf{sidestepping these difficulties all-together}, by
+% focusing on non-traditional kinds of specification
+% formalisms. Examples of these are Linear-time Temporal Logic and
+% Linear Dynamic Logic on finite traces, recently proposed in
+% \textbf{generalized planning in AI} \autocite[]{DeVa15,DeVa16} and in \textbf{declarative business processes} \autocite[]{AalstPS09}. 
+
+% %\paragraph{COMPOSITION AND CUSTOMIZATION.}
+% Other examples are the form of behavior specification adopted to
+% specify target collective behavior when composing conversational
+% services or component behaviors, adopted in SOC or in \textbf{behavior
+%   composition} in AI \autocite[]{DePS13,DeGGPSS16}.
+
+% %\paragraph{PLANNING ALGORITHMS.}
+% While \project  will consider symbolic techniques adopted in
+% \textbf{synthesis by model checking} \autocite[]{BloemJPPS12}, it aims at leveraging on the
+% exceptional scalability improvements of current algorithms in
+% \textbf{planning in AI}, to devise completely different techniques to
+% effectively tackle reactive synthesis in practice \autocite[]{GeffnerBo13}.
+
+% %\paragraph{APPLICATIONS}
+
+% \project grounds its scientific results in diverse real  \textbf{application domains}, including, business processes (BPM), manufacturing devices (Industry 4.0), and smart objects and spaces (IoT). 
+
+% %\subsection*{HIGH GAIN, HIGH RISK}
+
+% %\texttt{State in a paragraph or two what the research will deliver.}
+
+%\vspace{-1ex}
+
+\subsection*{PROJECT STRUCTURE}
+
+%\vspace{-1ex}
+
+The scientific work in \project will be divided into three workpackages of the duration of the  project.
+% The scientific work in \project will concerns foundational, algorithmic, and applicative aspects of withe-box self-programming mechanisms. Each of these aspects will be dealt with in a specific workpackage within the whole duration of the project.
+
+\textbf{Work Package 1: Foundations.} WP1 will deal with the
+scientific foundations of white-box self-programming mechanisms. The
+research work will span from reasoning about actions, planning, and
+reactive synthesis to non-Markovian MDPs and reinforcement
+learning. But it will also concern work on semantic technologies for
+representing mechanisms states in first-order terms.
+% It will also consider work in MAS related to synthesis, pushing it more towards 
+% synthesizing policies online. 
+
+
+% WP1 will deal with the foundational aspects of realizing white-box self-programming mechanisms. It will leverage on the work in reasoning about actions, in generalized planning and in reactive synthesis. But also on work on semantic technologies for representing mechanisms states in first-order terms. It will also consider work in MAS related to synthesis, pushing it mor towards 
+% synthesizing policies online. Finally is will consider connections with non-Markovian MDPs and reinforcement learning.
+
+\textbf{Work Package 2: Algorithms and Tools.}  WP2 will deal with the
+development of practical algorithms, optimizations and tools for realizing
+white-box self-programming mechanisms. It will concern work in synthesis, including
+synthesis by model checking, and especially work in planning, which is
+delving deeply in the algorithmic aspects of (simplified forms of)
+synthesis.
+
+\textbf{Work Package 3: Applications and Evaluation.}  \project will
+ground its scientific results in diverse real \textbf{application
+  domains}, including business processes (BPM), manufacturing devices
+(Industry 4.0), and smart objects and spaces (IoT), to demonstrate the
+actual applications of the scientific achievements within the project.
+
+
+\textbf{Collaborations.}
+The scientific work for will take advantage of  collaboration with several top research groups working in various aspects related to \project. Specifically:
+%\begin{inparaenum}[\it (i)]
+% \begin{itemize}
+% \item 
+Moshe Vardi (Rice U.) for Reactive Synthesis;
+%
+%\item
+Nello Murano (U.\ Napoli), Sasha Rubin (U.\ Napoli), Benjamin Aminof (TU Wien), for game-theoretic synthesis techniques;%
+%
+%\item 
+Hector Geffner (UPF, Barcelona)
+ and Malte Helmert (U.\ Basil) for Planning;
+%
+%\item 
+Ronen Brafman (Ben-Gurion U.) for MDPs and Reinforcement Learning;
+%
+%\item 
+Alessio Lomuscio (IC London) for Agents;
+%
+%\item 
+Diego Calvanese and Marco Montali (U.\ Bolzano) for Data-Aware Processes;
+%
+%\item 
+Yves Lesperance (York U.) and Hector Levesque (U. Toronto) for Reasoning about Actions;
+%
+%\item 
+Paolo Felli (Nottingham U.) for Manufacturing;
+%
+%\item 
+Maurizio Lenzerini and other colleagues at Sapienza for Semantic Technologies;
+%
+%\item 
+Massimo Mecella and other colleagues at Sapienza for Business Processes and IoT Applications and Manufacturing.
+%\end{inparaenum}
+%\end{itemize}
+The collaboration will allow for reciprocal visits for short and long
+periods to write papers and develop tools and application together, as
+well as to allow for organizing joint scientific workshops on the themes
+of the project.
+
+%%
+%%
+% \begin{tabular}{p{2cm}p{14cm}}
+% %& Benjamin Aminof, Technische Universität Wien, Vienna, Austria\\
+% %& Blai Bonet, Universidad Simón Bolívar, Caracas, Venezuela\\
+% & Ronen Brafman, Ben-Gurion University, Beer-Sheva, Israel \\
+% & Diego Calvanese, Free University of Bozen-Bolzano, Italy\\
+% %& Alin Deutsch, University of California, San Diego, CA, USA\\
+% & Rick Hull, IBM Research, Yorktown Heights, NY, USA\\
+% & Hector Geffner, Universitat Pompeu Fabra, Barcelona, Spain\\
+% %& Alfonso Emilio Gerevini, Universit\`a di Brescia, Italy\\
+% & Alessio Lomuscio, Imperial College London, UK\\
+% & Maurizio Lenzerini, Sapienza Universit\`a di Roma, Italy\\
+% & Yves Lesperance, York University, Toronto, ON, Canada\\
+% & Hector Levesque, University of Toronto, Toronto, ON, Canada\\
+% & Yongmei Liu, University in Guangzhou, China\\
+% %& Aniello Murano, Universit\`a di Napoli, Italy\\
+% & Adrian Pearce, University of Melbourne, Melbourne, SW, Australia\\
+% & Ray Reiter, University of Toronto, Toronto, ON, Canada\\
+% %& Riccardo Rosati, Sapienza Universit\`a di Roma, Italy\\
+% %& Sasha Rubin, Universit\`a di Napoli, Italy\\
+% & Sebastian Sardina, RMIT, Melbourne, SW, Australia\\
+% %& Jianwen Su, University of California, Santa Barbara, CA, USA\\
+% & Moshe Vardi, Rice University, Huston, TX, USA, Topic
+% \end{tabular}
+
+
+% Yves' comments:
+
+% issues:
+% - Feasibility?
+% - Human vs Machine Understandable?
+% - Detail relation to machine learning approaches
+%    - Safe regions vs goals/objective vs optimization criteria
+%    - Dynamism
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "PartB1"
+%%% TeX-PDF-mode: t
+%%% End:

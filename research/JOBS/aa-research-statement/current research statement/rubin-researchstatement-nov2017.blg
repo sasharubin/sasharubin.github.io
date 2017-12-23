@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: rubin-researchstatement-nov2017.aux
+The style file: plain.bst
+White space in argument---line 55 of file rubin-researchstatement-nov2017.aux
+ : \bibdata{/home/sr/svn/forsyte-publications/trunk/rubin.bib,
+ :                                                             otherbib}
+I'm skipping whatever remains of this command
+Database file #1: /home/sr/svn/forsyte-publications/trunk/rubin.bib.bib
+You've used 29 entries,
+            2118 wiz_defined-function locations,
+            669 strings with 10833 characters,
+and the built_in function-call counts, 12708 in all, are:
+= -- 1231
+> -- 621
+< -- 19
++ -- 243
+- -- 213
+* -- 834
+:= -- 1934
+add.period$ -- 90
+call.type$ -- 29
+change.case$ -- 191
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 548
+empty$ -- 1004
+format.name$ -- 213
+if$ -- 2795
+int.to.chr$ -- 0
+int.to.str$ -- 29
+missing$ -- 30
+newline$ -- 149
+num.names$ -- 60
+pop$ -- 256
+preamble$ -- 1
+purify$ -- 163
+quote$ -- 0
+skip$ -- 436
+stack$ -- 0
+substring$ -- 775
+swap$ -- 213
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 114
+warning$ -- 0
+while$ -- 119
+width$ -- 31
+write$ -- 319
+(There was 1 error message)

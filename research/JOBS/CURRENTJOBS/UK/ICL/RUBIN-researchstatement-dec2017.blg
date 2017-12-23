@@ -1,0 +1,75 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: RUBIN-researchstatement-dec2017.aux
+The style file: abbrv.bst
+Database file #1: researchplan.bib
+I was expecting a `,' or a `}'---line 277 of file researchplan.bib
+ :   
+ :   pages     = {1023--1030},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 310 of file researchplan.bib
+ :   
+ :   year      = {2009},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 579 of file researchplan.bib
+ : 
+ : @inproceedings{DBLP:conf/ijcai/TorresB15,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting an "="---line 868 of file researchplan.bib
+ : software 
+ :          Engineering and Formal Methods: 13th International Conference, SEFM 2015, York, UK, September 7-11, 2015. Proceedings",
+I'm skipping whatever remains of this entry
+"{" immediately follows a field name---line 3668 of file researchplan.bib
+ : @article
+ :         {DBLP:journals/trob/Kress-GazitFP09,
+I'm skipping whatever remains of this entry
+Database file #2: References.bib
+Warning--empty booktitle in Camacho17
+Warning--empty year in Camacho17
+Warning--empty year in DeNicola2015
+Warning--empty year in DBLP:conf/ijcai/FelliSLR17
+You've used 16 entries,
+            2118 wiz_defined-function locations,
+            827 strings with 10332 characters,
+and the built_in function-call counts, 6116 in all, are:
+= -- 583
+> -- 330
+< -- 4
++ -- 129
+- -- 112
+* -- 442
+:= -- 1000
+add.period$ -- 49
+call.type$ -- 16
+change.case$ -- 101
+chr.to.int$ -- 0
+cite$ -- 20
+duplicate$ -- 233
+empty$ -- 464
+format.name$ -- 112
+if$ -- 1278
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 18
+newline$ -- 82
+num.names$ -- 34
+pop$ -- 126
+preamble$ -- 1
+purify$ -- 87
+quote$ -- 0
+skip$ -- 161
+stack$ -- 0
+substring$ -- 347
+swap$ -- 57
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 60
+warning$ -- 4
+while$ -- 57
+width$ -- 18
+write$ -- 171
+(There were 5 error messages)

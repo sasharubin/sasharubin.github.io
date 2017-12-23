@@ -1,0 +1,21 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}\sc Personal Details}{}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}\sc Motivation Letter}{}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}\sc University Positions}{}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}\sc {Brief Research Statement}}{}{section.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}\sc {Awards and Distinctions}}{}{section.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}\sc {Recent Research visits}}{}{section.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}\sc {Teaching and Supervision}}{}{section.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}\sc {Recent service}}{}{section.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}\sc {References}}{}{section.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10}\sc {Publications}}{}{section.10}

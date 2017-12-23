@@ -1,0 +1,101 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {italian}
+\defcounter {refsection}{0}\relax 
+\select@language {italian}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Resunto}{3}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}\ignorespaces Allegato B}{4}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}\ignorespaces Allegato C}{7}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}\ignorespaces Allegato D}{9}{section.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}\ignorespaces Curriculum}{10}{section.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}\ignorespaces ID}{17}{section.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}\ignorespaces Elenco degli allegati: titoli e pubblicazioni scientifiche}{18}{section.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Certificato di dottorato di ricerca, autocertificazione, tesi di dottorato}{22}{section.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1}Certificato di dottorato di ricerca}{23}{subsection.8.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.2}Autocertificazione}{25}{subsection.8.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3}Tesi di dottorato}{27}{subsection.8.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9}Pubblicazione scientifiche}{171}{section.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.1}Pubblicazione}{172}{subsection.9.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.2}Pubblicazione}{181}{subsection.9.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3}Pubblicazione}{192}{subsection.9.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.4}Pubblicazione}{219}{subsection.9.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.5}Pubblicazione}{230}{subsection.9.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.6}Pubblicazione}{243}{subsection.9.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.7}Pubblicazione}{261}{subsection.9.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.8}Pubblicazione}{288}{subsection.9.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.9}Pubblicazione}{307}{subsection.9.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.10}Pubblicazione}{320}{subsection.9.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.11}Pubblicazione}{333}{subsection.9.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.12}Pubblicazione}{375}{subsection.9.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.13}Pubblicazione}{457}{subsection.9.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.14}Pubblicazione}{467}{subsection.9.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.15}Pubblicazione}{478}{subsection.9.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.16}Pubblicazione}{491}{subsection.9.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.17}Pubblicazione}{512}{subsection.9.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.18}Pubblicazione}{529}{subsection.9.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.19}Pubblicazione}{538}{subsection.9.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.20}Pubblicazione}{558}{subsection.9.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.21}Pubblicazione}{574}{subsection.9.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.22}Pubblicazione}{591}{subsection.9.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.23}Pubblicazione}{604}{subsection.9.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.24}Pubblicazione}{620}{subsection.9.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.25}Pubblicazione}{791}{subsection.9.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.26}Pubblicazione}{806}{subsection.9.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.27}Pubblicazione}{817}{subsection.9.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.28}Pubblicazione}{831}{subsection.9.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.29}Pubblicazione}{841}{subsection.9.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.30}Pubblicazione}{852}{subsection.9.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.31}Pubblicazione}{863}{subsection.9.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.32}Pubblicazione}{886}{subsection.9.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.33}Pubblicazione}{903}{subsection.9.33}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.34}Pubblicazione}{915}{subsection.9.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.35}Pubblicazione}{923}{subsection.9.35}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.36}Pubblicazione}{933}{subsection.9.36}

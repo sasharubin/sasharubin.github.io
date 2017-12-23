@@ -1,0 +1,209 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+\parindent 0pt
+
+\input{../macros}
+%opening
+\title{Complexities of Automata, Games, Synthesis}
+\author{Sasha}
+
+\begin{document}
+
+\maketitle
+
+\section{Model Checking}
+
+\LTL, \CTLS \pspace
+
+\CTL, \ptime
+
+\section{Satisfiability}
+
+\LTL, \pspace
+
+\CTLS, ??
+
+\CTL, ??
+
+\section{Solving games}
+States $n$, Transitions $m$
+
+\subsection{Perfect Information}
+
+Reachability $O(m)$ 
+
+Buchi $O(mn)$ 
+
+Parity $O(n^{d-1}m)$, $O((\frac{2n}{d})^{\lfloor \frac{d}{2} \rfloor} m)$
+
+\LTL $2^n 2^{2^{O(|\psi|)}}$
+
+
+\subsection{Imperfect Information}
+
+Reachability $\exptime$ \cite{CDHR06, Reif}, belief-space
+
+Buchi $\exptime$ \cite{CDHR06}, belief-space
+
+Parity ?? nondeterministic exptime ??
+
+\LTL $2$\exptime, \cite{KV}
+
+\section{Formulas to automata} 
+\LTL to ABW, linear 
+
+\LTL to NBW,UCW $2^{O(|\phi|)}$ 
+
+
+\CTL, alternation-free $\mu$-calculus to AWT, linear (KVW00)
+
+\CTLS to ART, exponentially many states, ??linearly?? many pairs \cite{BVW94}
+
+\CTLS to HAT, exponential states, linear depth KVW00
+
+$\mu$-Calculus to ART, linear (EJ)
+
+$\mu$-C to APT, linear size, number of colors is alternation depth, KVW00
+
+\section{Automata to Automata}
+$n$ states, $l$ priorities, $r$ pairs
+
+NBW to  DPW, $2^n$ states, $n$ priorities \cite{Piterm06}
+
+NBWs to DRW, $2^n$ states, $O(n)$ pairs (Safra)
+
+APT (or 2APT) to NPT, $2^{nl\log(nl)}$ states, $O(nl)$ priorities \cite{Muller95,Vardi98}
+
+ART to NRT, $(nr)^{O(nr)}$ states and $O(nr)$ pairs \cite{Muller95}
+
+ABT to NBT, ??Exp?? \cite{Muller95}
+
+\section{Membership of Automata}
+
+NPT, $\np \cap co-\np$, equivalent to solving parity games, so $O(n^{d-1}m)$.
+
+ART, \np \cite{KV}
+
+AWT, linear \cite{KV}
+
+\section{Emptiness of Automata}
+$n$ states, $m$ size transition, $d$ degree of trees, $p$ priorities, $l$ input letters
+
+DPW = parity game, $O(n^{p-1}m)$
+
+NRW costs $(np)^{O(p)}$ \cite{PnueliRosner89}
+
+NRT $(lnp)^{O(p)}$ \cite{PnueliRosner89}
+
+NPT $O(dm(n+m)^p)$, \cite{Loding14}
+
+NPT $(|\Sigma| n^{O(d)})^{O(p)}$, \cite{BastienThesis}
+
+\subsection{Alternating}
+
+APT = satisfiability of $\mu$-calculus, \exptime, (Chapter 9 of Automata, Logic, Games)
+
+APT,AWT,AHT, fixed degree $d$, $\exptime$-c (survey by Vardi, Esparza; MSS86, MS95, FL79, Sei90)
+
+\subsubsection{1-letter}
+
+These reduce to emptiness of 1-letter alternating word automata with same condition, i.e., 2 player games. 
+
+1APW = parity game = \np intersect co-\np
+
+1AWW = linear time
+
+1AHW = linear time, space $O(a \log^2b)$ where $a$ is depth and $b$ is size (see survey)
+
+
+\section{Synthesis Perfect-Information}
+
+Alphabets: Input $I$, Output $O$, Hidden environment $E$.
+
+\subsection{\LTL}
+
+$2$\exptime Lower Bound \cite{Rosner92}
+
+$2$\exptime Upper Bound \cite{PnueliRosner89}
+
+
+
+\emph{Method 1 - Orna-Moshe?}
+\en
+\- Translate $\Phi$ to a UCW by dualising the Vardi Wolper. This UCW has 1EXP many states.
+\- Translate the UCW to a UCT by running it on all paths. No blowup.
+\- Test the UCT for emptiness. The total cost is 2EXP.
+\ne
+
+\emph{Method 2 - Pnueli-Rosner}
+\en
+\- Translate $\Phi$ to a UBW by Vardi Wolper. This UBW has 1EXP many states.
+\- Translate the UBW to a DRW by Safra. This DRW has 2EXP states, 1EXP rabin-pairs.
+\- Translate the DRW to a DRT by running it on all paths. No blowup.
+\- Test the DRT for emptiness. The total cost is $(2EXP 1EXP)^{O(1EXP)} = 2EXP$.
+\ne
+
+
+
+\subsection{\CTLS}
+
+\subsection{\CTL}
+
+$\exptime$ Lower from satisfiability \cite{FL97}
+
+$\exptime$ Upper \cite{KV97}
+
+\section{Synthesis Imperfect-Information}
+
+\subsection{\LTL}
+
+$2$\exptime Lower Bound from Perfect-Information.
+
+$2$\exptime Upper Bound \cite{KVV97}
+
+Build ABT that accepts strategy $\sigma:I^+ \to O$ iff every play consistent with $\sigma$ satisfies $\Phi$.
+\en
+\item Translate $\Phi$ to a UBW by Vardi Wolper. This UBW has 1EXP many states.
+\item Build UBT that runs on $t_\sigma$, stores in its memory the belief-state, and universally launches the UBW in all directions. Blowup by size of largest belief-state, 
+$2^{|E|}$ or $|E|^B$.
+\item Emptiness of ABT is exponential. Total cost $2^{2^{O(|\varphi| + |E|)}}$ or $2^{2^{O(|\varphi|)} + |E|^B}$.
+\ne
+
+\subsection{\CTLS}
+
+\subsection{\CTL}
+
+\section{Automata Problem = Game Problem}
+
+\subsection{Emptiness}
+
+?? Right??
+
+?? It seems these are equivalence. i.e., games can be thought of as emptiness problems of automata ??
+
+\begin{enumerate}
+ \item 
+Nondet word emptiness = solving one player game.
+
+\item 
+Alt word emptiness = solving two player blind game ($\exists$-player does not see the state of the automaton) 
+
+\item 
+Nondet tree emptiness = solving two player game.
+
+\item 
+Alt tree emptiness = solving two player game of imperfect information in which observation sets correspond to directions (i.e., $\exists$-player does not see automaton-state, only tree-direction).
+
+\end{enumerate}
+
+\subsection{Membership}
+
+Membership of Alternating Tree Automata are two player games.
+
+
+
+\bibliographystyle{plain}
+\bibliography{../../forsyte-publications/trunk/rubin.bib,../Bibfiles/chapters.bib,../Bibfiles/diss.bib,../Bibfiles/local.bib,../Bibfiles/main.bib,../Bibfiles/thesis.bib}
+
+\end{document}

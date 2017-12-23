@@ -1,0 +1,89 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ABSA.aux
+The style file: abbrv.bst
+Database file #1: researchplan.bib
+I was expecting a `,' or a `}'---line 185 of file researchplan.bib
+ : 
+ : @inproceedings{DBLP:conf/ijcai/TorresB15,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting an "="---line 511 of file researchplan.bib
+ : software 
+ :          Engineering and Formal Methods: 13th International Conference, SEFM 2015, York, UK, September 7-11, 2015. Proceedings",
+I'm skipping whatever remains of this entry
+Database file #2: FWF.bib
+Warning--string name "springer" is undefined
+--line 550 of file FWF.bib
+Warning--string name "concur" is undefined
+--line 551 of file FWF.bib
+Repeated entry---line 1464 of file FWF.bib
+ : @inproceedings{DBLP:conf/concur/MeydenV98
+ :                                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1639 of file FWF.bib
+ : @inproceedings{DBLP:conf/atva/BerwangerMB15
+ :                                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1656 of file FWF.bib
+ : @proceedings{DBLP:conf/atva/2015
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4169 of file FWF.bib
+ : @inproceedings{DBLP:conf/focs/PnueliR90
+ :                                        ,
+I'm skipping whatever remains of this entry
+Database file #3: References.bib
+Database file #4: rubin.bib
+I was expecting a `,' or a `}'---line 407 of file rubin.bib
+ :   
+ :   place = {Singapore, May 9-13, 2016},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "SCIENCEPAPER"
+Warning--empty booktitle in Camacho17
+Warning--empty year in Camacho17
+Warning--empty year in DeNicola2015
+Warning--can't use both author and editor fields in Rajaratnam2016
+You've used 31 entries,
+            2118 wiz_defined-function locations,
+            954 strings with 13984 characters,
+and the built_in function-call counts, 12341 in all, are:
+= -- 1219
+> -- 597
+< -- 13
++ -- 234
+- -- 197
+* -- 858
+:= -- 1952
+add.period$ -- 99
+call.type$ -- 31
+change.case$ -- 181
+chr.to.int$ -- 0
+cite$ -- 35
+duplicate$ -- 488
+empty$ -- 965
+format.name$ -- 197
+if$ -- 2651
+int.to.chr$ -- 0
+int.to.str$ -- 31
+missing$ -- 35
+newline$ -- 157
+num.names$ -- 70
+pop$ -- 220
+preamble$ -- 1
+purify$ -- 155
+quote$ -- 0
+skip$ -- 369
+stack$ -- 0
+substring$ -- 803
+swap$ -- 151
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 114
+warning$ -- 4
+while$ -- 125
+width$ -- 33
+write$ -- 343
+(There were 7 error messages)

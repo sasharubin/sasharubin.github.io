@@ -1,0 +1,58 @@
+A good reference for interpretations is \cite{Hodg93}.
+Let $\eL$ denote FO or MSO or WMSO. Let  $\I = (\delta, \Phi_1, \dots, \Phi_N)$ be $\eL$-formulas in the signature of a structure $\frakB$ in 
+which the free variables are individual variables.
+Suppose that $\delta$ has $1$ free variable and $\Phi_i$ has $r_i$ free variables.
+If $\Phi_i^\frakB$ are relations over $\delta^\frakB$ then we can define the structure 
+$\I(\frakB) := (\delta^\frakB, \Phi_1^\frakB, \dots, \Phi_N^\frakB).$ 
+This structure is said to be {\em $\eL$-definable in $\frakB$}. The tuple $\I$ is called an {\em $\eL$-definition}.
+
+{\bf Remark.} We have overloaded the phrase ``$\eL$-definable'': here one structure is definable in another; 
+and the earlier meaning is that a relation is definable in a structure.
+
+The following lemma says, in particular, that every relation FO-definable in $\I(\frakB)$ is 
+FO-definable in $\frakB$.
+
+\begin{lemma} \label{AS:lem:translation} \todo{It is important for Prop. 2.9 that $\Phi_{\mathcal I}$ can be
+computed from $\Phi$.}
+Fix an $\eL$-definition $\I$ and an $\eL$-formula $\Phi(x_1,\dots,x_k)$ in the signature of $\I(\frakB)$.
+There is an $\eL$-formula $\Phi_\I(x_1,\dots,x_k)$ in the signature of $\frakB$ such that for all elements $b_i$ of $\delta^\frakB$,
+\[
+\I(\frakB) \models \Phi(b_1,\dots,b_k) \mbox{ if and only if } \frakB \models \Phi_\I(b_1,\dots,b_k).
+\]
+\end{lemma}
+
+\begin{proof}
+The idea is to relativise all quantifiers to $\delta$ and replace the $i$th atomic formula $R_i$ in the signature of $\I(\frakB)$ 
+by $\Phi_i$.
+Formally, define $\Phi_\I$ inductively by $(R_i)_\I := \Phi_i$ and for the other cases:
+
+\begin{align*}
+(\Psi \wedge \Xi)_\I & := \Psi_\I \wedge \Xi_\I  					&(\neg \Psi)_\I & := \neg \Psi_\I \\
+(\exists x_i \Psi)_\I & := \exists x_i [\delta(x_i) \wedge \Psi_\I]  		&(\exists X_i \Psi)_\I & := \exists X_i [(\forall x \in X_i \delta(x)) \wedge \Psi_\I]\\
+(x \in X)_\I &:= (x \in X)  & (X \subseteq Y)_\I &:= (X \subseteq Y) .
+\end{align*}
+\end{proof}
+
+\begin{definition}
+Let $\I$ be an $\eL$-definition. If $\frakA$ is isomorphic to $\I(\frakB)$, say via $f$, then say that {\em $\frakA$ is  $\eL$-interpretable in $\frakB$ via co-ordinate map $f$}.
+\end{definition}
+
+\begin{proposition}
+Suppose that $\frakA$ is $\eL$-interpretable in a structure with decidable $\eL$-theory. Then $\frakA$ has decidable $\eL$-theory.
+\end{proposition}
+
+\begin{proof}
+For a sentence $\phi$ of $\frakA$, Lemma \ref{AS:lem:translation} produces a sentence $\phi^\I$ preserving truth. 
+Apply the given decision procedure to $\phi^\I$. 
+\end{proof}
+
+\todo{update: missing $T_r$}
+For example  for $r < \omega$ the structure $\frakT_r$ is MSO-interpretable in $\frakT_2$ and consequently the MSO-theory of $\frakT_r$ is decidable.
+
+There are other types of interpretations that could be introduced here, namely
+(finite)-set interpretations \cite{ElRa66,CoLo07}.  For the sake
+of filling in undefined notions in the introduction we define a {\em (finite)-set
+interpretation} of $\frakA$ in $\frakB$ to be like a (W)MSO-interpretation except
+that the free variables are (finite) set
+variables. Thus elements of $\frakA$ are coded by (finite) subsets of the domain
+of $\frakB$.

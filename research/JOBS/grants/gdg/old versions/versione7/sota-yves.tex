@@ -1,0 +1,552 @@
+This part of the proposal should be read in conjunction with Part B1,
+which is to be considered an integral part of the project description. 
+
+
+\section{State-of-the-art and objectives}
+
+% \vspace{-1ex}
+
+% %\subsection*{MOTIVATION AND LONG TERM VISION}
+
+% \subsection{STATE OF THE ART} % AND OBJECTIVES}
+
+% %
+% \vspace{-1ex}
+
+We are witnessing an increasing availability of \textbf{mechanisms}
+that offer some form of programmability.  These obviously comprise
+software in our computers and mobile devices, as well as intelligent
+machines, such as cognitive robots, self-driving cars, flying drones,
+etc., which are becoming a reality.
+%%
+In particular, programmable mechanisms are increasingly becoming
+important in three contexts considered of pivotal importance in
+%YL
+%Business
+today's economy,
+namely \textbf{Manufacturing}, \textbf{Internet of Things},
+and \textbf{Business Process Management}.  These three areas will act
+as specific testbed of the science and technology developed within
+\project.
+
+
+There are compelling reasons to introduce
+\textbf{self-programming abilities} in these systems, such as
+\textbf{self-adaptability} to changing users and environment
+conditions exploiting information gathered at runtime
+\cite{Seiger2016},  
+%yl
+%or 
+and
+\textbf{automated exception handling} to
+suitably \textbf{recover from unexpected situations}
+\cite{MarrellaMS17}. 
+
+
+
+The current technology, e.g., \textbf{autonomic computing}, which has
+long advocated self-configuration, self-healing, self-optimization,
+and self-protection, however, is essentially based on
+\textbf{preprogrammed solutions} by IT professionals
+\cite{ibm2005autonomic}. That is, although sophisticated languages and
+methodologies for streamlining 
+%YL
+%for writing 
+the development of
+adaptation and exception
+handling recovery procedures are available\cite{???}, IT
+professionals, software engineers and programmers, are still writing
+all code by hand in the end.
+%%
+As a result, in spite of the progresses in the organization of the
+software development process, this traditional way of tacking
+automated reactions in mechanisms is showing serious limitations.
+%YL
+%, for several applications, for which it is 
+In many application areas , it is simply
+too \textbf{costly} and
+\textbf{error-prone} to delegate to software engineers to list and
+handle all possibly adaptation tasks that may arise in the mechanism
+execution.
+%%
+In fact, especially when applications have to handle widely unexpected
+circumstances, stemming from the interaction with the real world or with humans taking decisions based on unmodeled circumstances, as indeed in
+Manufacturing,  Internet of Things and Business Processes, it is
+considered simply \textbf{infeasible} to determine apriori all
+possible adaptations that may be needed at runtime
+\cite{MarrellaMS17}.
+
+In this state of affairs, %YL added "s"
+the fantastic 
+%YL
+%progresses
+progress
+in Machine Learning that we 
+%YL
+%see in these last years 
+have seen in recent years
+is attracting a lot of attention. \textbf{Machine Learning} is
+considered  a powerful tool to avoid \textbf{preprogrammed solutions} % YL added "s"
+in favor of \textbf{learned solutions}, and 
+there are indeed great and fully justified expectations % YL added "s"
+of what machine learning can bring about in relieving 
+%YL
+humans from having to preprogram
+mundane adaptation tasks.
+
+However, in machine learning, we typically don't have an undestanding
+of %YL changed "on" to "of
+how and why a certain solution has been chosen. In a sense the system
+performs its learning and 
+we %YL added 
+hope for the best. This 
+%YL \textbf{inability of undestanding machine learning solution} 
+\textbf{lack of understandability of machine learning solutions} 
+is increasingly becoming a concern in both the AI and CS scientific communities,
+\cite{RussellDT15,ACMStatement07}, and has been recently taken up by DARPA, through the DARPA-BAA-16-53 ``Explainable
+Artificial Intelligence (XAI)''
+program.\footnote{\url{http://www.darpa.mil/program/explainable-artificial-intelligence}}
+
+Hence on the one hand we can say that:
+\begin{quote}\it
+there is a widespread %YL "wide" --> "widespread"
+ recognition in the AI and CS communities that the objectives of
+ \project, that is, building %YL "build" --> "building"
+ self-programming mechanisms that are white-box, are very important.
+\end{quote}
+
+On the other hand, we are currently stuck between 
+two extremes: %YL fixed typo
+%YL rephrased
+either we provide preprogrammed solutions, but this is not
+cost-effective or even feasible for certain applications,
+or we use machine learning to produce solutions, but this often means
+that we give up transparency and accountability, and ultimately human understandability.
+% adopt preprogrammed solutions, but this appears to be not
+% cost-effective or even feasible for certain applications; adopt a
+% machine learning  solutions, but this may mean to give up
+% transparency and accountability, and ultimately human
+% understandability. 
+
+%YL added
+Beyond the opaqueness of machine learming-produced solutions, there
+are also widespread concerns about the \textbf{safety} of using such solutions and
+whether they are thrustworthy.\footnote{These concerns have been
+  widely discussed, see for example
+  \url{https://futureoflife.org/background/benefits-risks-of-artificial-intelligence/}. }
+For any system that operates autonomously, there must be guarantees
+that suitable safety constraints will always be respected. 
+% Using formal methods for verification and/or synthesis supports this
+% objective.
+The relevant safety constraints must be specified in a language that human
+users understand.
+The system should also be able to explain its decisions so that human users
+can understand the system's operation and confirm that it does follow
+the relevant rules of conduct.
+This is crucial for building users'  \textbf{trust} in the system.
+
+\project aims %YL changed "want"
+to address the realization of white-box self-programming mechanisms on radically different bases.
+
+\subsection{Reactive Synthesis}
+The first ingredient of \project approach is \textbf{Reactive Synthesis}.
+
+One of the most significant developments in the area of program
+verification over the last three decades has been the development of
+algorithmic methods for verifying temporal specifications of
+finite-state programs \cite{ClarkeGP:99-ModelChecking,BaKG08}. 
+%%
+Program
+synthesis has beed developed by the same scientific community, with
+the idea of using the specification in the program development process
+in order to guarantee the design of correct programs.
+ In the late 1980s,
+several researchers realized that the classical approach to program
+synthesis, where a program is extracted from a proof that the
+specification is satisfiable, is well suited to closed systems, but
+not to open, i.e.,  reactive, systems \cite{Abadi:1989ur,PnRo89,Vard96}.
+ 
+%%
+In reactive
+systems, the program interacts with the environment, and a correct
+program should then satisfy the specification with respect to all
+environments. These researchers argued that the right way to approach
+synthesis of reactive systems is to consider the situation as a
+(possibly infinite) game between the environment and the program. A
+correct program can be then viewed as a winning strategy in this
+game.
+%%
+It turns out that satisfiability of the specification is not
+sufficient to guarantee the existence of such a strategy, one needs
+\textbf{realizability}. A strategy for a program with inputs in $I$
+and outputs in $O$ maps finite sequences of inputs, words in $(2^I)^*$
+– the actions of the environment so far- to an output in $2^O$ – a
+suggested action for the program. A strategy can then be viewed as a
+labeling of a tree with directions in $2^I$ by labels in $2^O$. The
+traditional algorithm for finding a winning strategy transforms the
+specification into a parity automaton over such trees such that a
+program is realizable precisely when this tree automaton is nonempty,
+i.e., it accepts some infinite tree \cite{PnRo89}. A finite generator
+of an infinite tree accepted by this automaton can be viewed as a
+finite-state program realizing the specification. This is closely
+related to the classical Church's solvability problem
+\cite{Chu63}. Over the years, the verification community has developed
+a \textbf{comprehensive and mathematically elegant theory of reactive
+  synthesis} connecting logics, automata theory and games \cite{Vard95,KuVa97,KupfermanV05,KupfermanPV06,Vardi08,RyanTacas05,ChatterjeeH07,BloemJPPS12,BohyBFJR12,FinkbeinerS13,LustigV13,FogartyKVW15,DGenestPS15,FearnleyPS15,BloemCJK15,AlurMT16,EsparzaKRS17,BrenguierRS17,HunterPR17}.
+
+In spite of the rich theory developed for program synthesis, little of
+this theory has been reduced to practice. 
+% In fact, the main approaches
+% to tackle synthesis are either to use heuristic approaches
+% \cite{RyanTacas05} or to restrict the kind of allowed specification
+% \cite{BloemJPPS12}.
+%%
+Some researchers argue that this is because the realizability problem
+for linear-temporal logic (LTL) specifications is 2EXPTIME-complete
+\cite{PnRo89,Rosner92}, but this argument is not compelling. First,
+experience with verification shows that even nonelementary algorithms
+can be practical, since the worst-case complexity does not arise often
+(cf., the model-checking tool MONA \cite{ElgaardKM98}). Furthermore,
+in some sense, synthesis is not harder than verification. This may
+seem to contradict the known fact that while verification is linear in
+the size of the model and at most exponential in the size of the
+specification \cite{ClarkeGP:99-ModelChecking}, synthesis is
+2EXPTIME-complete. There is, however, something misleading in this
+fact: while the complexity of synthesis is given with respect to the
+specification only, the complexity of verification is given with
+respect to the specification and the program, which can be much larger
+than the specification. In particular, it is shown in \cite{Rosner92}
+that there are temporal specifications for which every realizing
+program must be at least doubly exponentially larger than the
+specifications. Clearly, the verification of such programs is doubly
+exponential in the specification, just as the cost of synthesis.
+
+
+We believe that there are several reasons for the \textbf{lack of practical impact
+of synthesis theory}.  In particular:
+\begin{itemize}
+\item \textbf{Languages used for specification leads to constructions that are too complex.}
+%
+Constructing tree automata for realizing strategies uses
+determinization of B\"uchi automata. Safra's determinization
+construction has been notoriously resistant to efficient
+implementations \cite{TsaiFVT14}. Alternative construction, so called
+safraless constructions \cite{KupfermanV05,KupfermanPV06} did not
+prove to be radically more efficient \cite{FiliotJR11}.
+
+The best-known algorithms for parity-tree-automata emptiness
+\cite{JurdzinskiPZ08} are nontrivial already when applied to simple
+state spaces. Implementing them on top of the messy state space that
+results from the reduction form LTL is awfully complex, and is not
+amenable to optimizations and a symbolic implementation.
+
+An interesting approach is that of bounded synthesis
+\cite{FinkbeinerS13,FiliotJR11,FaymonvilleFRT17} in which the LTL
+formula is first transformed into a coB\"uchi automaton ont trees
+which is then further reduced a safety game given the maximum size of
+the controller to be synthesized. Then iteratively the size in
+incremented until strategy is found or an exponential limit is reached
+which guarantees that no strategy will be found at all. This
+incrementally nature is quite interesting (see below), but
+construction still too complex for being applied in real cases
+\cite{JacobsBBK0KKLNP16}.
+
+However there are quite interesting cases of specification that sidesteps these difficulties, coming from
+generalized planning in AI and declarative business process. These
+advocate the use of LTL, or better ist extension that are MSO complete
+over finite traces . In this case one can standard automata on finite
+words as machinery which are indeed amenable to quite good
+implementations \cite{AalstPS09,DeVa13,DeVa15,DeVa16,TorresB15,CamachoTMBM17}.
+
+
+\item \textbf{Techniques are optimized for solving every kind problems, including puzzle-like ones.}
+%%
+Reactive synthesis as verification, is typically applied to low-level
+problems in which there is no reason to think that solutions are going
+to be easy to find. SO the construction do not try to aim for easy
+solution first (possibly with the exception of bounded synthesis,
+where smaller controllers are explored before larger ones).  However
+white-box self-programming mechanisms will have a high level
+representation of the domain (through knowledge representation) in
+which they operate and will perform synthesis there. Moreover the
+synthesis will be performed while the mechanism are in execution. SO
+it is unrealistic that to require such mechanism to handle ``puzzle
+like settings'', as calle din the Planning literature. Instead exactly
+like advocated in Planning they should aim at easy solutions first,
+which probably will be available indeed. Following this assumption
+Planning has obtained a spectacular improvement in the last two
+decades, relying on heuristics which ultimately can be seen as
+abstraction that relax detail of the problem at hand. This can be done
+also in synthesis and will be explored in \project.
+
+
+
+\item \textbf{Most techniques are not compositional.}
+%%
+Another major issue is methodological. Most current theory of program
+synthesis assumes that one gets a comprehensive set of temporal
+assertions as a starting point. This cannot be realistic in
+practice. A more realistic approach would be to assume an evolving
+formal specification: temporal assertions can be added, deleted, or
+modified. Since it is rare to have a complete set of assertions at the
+very start of the design process, there is a need to develop
+compositional synthesis algorithms. Such algorithms can, for example,
+refine designs when provided with additional temporal properties
+\cite{KupfermanPV06,FiliotJR11,AlurMT16}. The idea of composing solutions has been pioneered in
+service-oriented computing, and indeed the work by the PI pioneered
+this approach \cite{BerardiCGLM03,DeGiacomoFPS10,DePS13,CalvaneseGLV16}.
+\end{itemize}
+
+\subsection{Planning}
+
+The second ingredient of \project approach is \textbf{Planning}.
+Excellent algorithms for problems that are too simple.
+
+\subsection{Knowledge Representation}
+
+The third ingredient of \project approach is \textbf{Knowledge Representation}.
+Excellent representation formalisms but limited algorithms
+
+The key property of white-box self-programming mechanisms is the
+ability of describing their specification, the programs they generate
+and the relationship between the two in human terms.
+
+To do so the domain where the mechanism operates, the 
+mechanism itself, its capabilities and limitations, as well as
+its specifications and goals need to be formally described in terms of concepts that
+can be shared with humans.
+
+\project will consider this issue upfront, by founding white-box self-programming mechanisms on the area of AI called \textbf{Knowledge Representation}. 
+
+\begin{quote}\it
+The PI is  a prominent member of the scientific community working on Knowledge Representation. He is indeed the single researcher with most papers appeared in the Flagship Conference of the community: the International Conference on Principles of Knowledge Representation and Reasoning (KR) - ranked A* according to CORE.
+\end{quote}
+
+
+Knowledge Representation stems from a deep
+tradition in logic. In particular, it aims at building systems that
+know about their world they operate in and are able to act in an informed way in it,
+as humans do.
+%%
+A crucial part of these systems is that knowledge is represented
+``\emph{symbolically}'', and that ``\emph{reasoning procedures}'' are able to extract
+consequences of such knowledge as new symbolic representations. Such
+an ability is used to deliberate in an informed fashion the course of
+actions to take, understanding the consequences of the action performed.
+
+In \cite{Leve14,Leve17}, it is argued that Knowledge Representation is
+radically new idea in human history. It comes about after a long
+gestation, stemming from Aristotle, who developed the initial notion
+of logic though unrelated to notion of computation; continued by
+Leibniz, who brought forward a notion of ``thinking as computation'',
+though not yet symbolic; and later by Frege, who developed the notion
+of symbolic logic, though unrelated to computation; and finally by the
+breakthrough in human thinking of the early part of last century with
+Church, Godel, and Turing, who set the bases for symbolic logic bound
+together with computation and ultimately for Computer Science, though
+even them did not think about logic as a way of representing
+knowledge. The use of a symbolic systems to represent knowledge
+expressed in terms of human concepts can only be traced back to
+McCarthy's 1959 seminal work on Artificial Intelligence \cite{McCa57}.
+
+Knowledge Representation has developed enormously since then in
+diverse directions and subareas. 
+
+%%
+\project will build on work on two subareas in particular:
+\begin{itemize}
+\item \textbf{Description Logics and Ontology-Based Data Access}
+\item \textbf{Reasoning about Actions}
+\end{itemize}
+
+\textbf{Description Logics} are the formalism of election in for
+representing the information on the domain of interest in terms of
+objects grouped in classes or concepts and relationships among such
+classes.  Moreover \textbf{description logics} are nowadays considered
+the standard formalism for ontologies and deeply shaped semantic
+technologies including the current W3C standard OWL 2.
+
+The PI has deeply contributed in the development of description
+logics. First he worked on the correspondence between expressive
+description logics and modal logics of programs such as Dynamic Logic \cite{KR06,PODS98}.
+Then more recently, together with his group in Rome he developed one
+of the best know light weight description logics, DL-lite \cite{JODS07}, which is essentially
+able to formalize UML class diagrams and Entity-Relationship diagrams,
+while keeping inference and conjunctive query answering tractable (the
+latter in AC0, the same cost as standard SQL). DL-lite in turn made it possible to develop \textbf{Ontology Based Data Access}, which can be considered the most successful use of semantic technologie for data integration \cite{PoggiLCGLR08,SequedaM17,Statoil17}. 
+
+The role of these technologies in \project is to represent in terms of an ontology chosen so has to capture the doman on interest in which the mechanism is operating as well as the (high-level) data structures of the mechanism itself in terms that are sharable by humans as e.g., in \cite{TenorthB17}. In particular \project intends to exploiting the techniques for efficient query-aswering provided by DL-lite and Ontology Based Data Access, especially in the write-also variants, explored recently \cite{ISWC16,ISWC17}.
+
+
+
+
+
+
+\textbf{Reasoning about Action} takes a first-person view of an agent. %
+\footnote{This contrast with the work in Multi Agents Systems, where
+  typically a third person view (a ``designer'' view) is adopted.} %
+The agent as a representation of the domain in which it operates;
+a  representation of 
+ the possible actions in terms of preconditions and effects formally expressed over the representation of domain;
+finally it has a representation of  complex agent behaviors and capabilities typically  described through high-level programs, whose atomic instruction and tests corresponds, respectively, to actions and queries over the representation of the domain.
+%%
+Through 
+reasoning on these representations the agent undestand what doing an action or enacting a certain behavior will bring about, enabling it to make informed decisions on which action to choose or to exclude in relation to its current tasks/goals/specifications.
+%%
+Reasoning about actions has been studied in depth through
+comprehensive frameworks, such as that of Situation Calculus \cite{McHa69,Reiter01}.
+
+The PI has deeply contributed to the development of Reasoning about
+Action. In particular, within the framework of Sitation Calculus. Specifically, the PI
+introduced of the high-level programming languages
+ConGolog and IndiGolog, the
+distinction between off-line executions and online executions, the
+notion of execution monitoring and recovery, interleaving execution
+and planning, the notion of ability \cite{DeGiacomoRS98,DeGiacomoLL00,SardinaGLL04,SardinaGLL06}.
+
+It is important ot notice that the work Reasoning about Action in
+Situation Calculus as well as in most other frameworks, is based on a
+\textbf{First-Order Representation of the State}. In other words the
+current state of the Agent is represented in terms of
+predicates/relations.  This give rise to infinite transition systems
+which are typically impossible to verify directly.
+
+Recently the PI has devised a set of novel results
+that shows the effective computability of expressive variants of the
+original full-fledged (predicate based) Situation Calculus [DeLP12,
+DLPV14, DeLV14]. Such results are being complemented by the
+possibility of combining action theories with ontological
+representations in description logics [CDLL13, CDMP13,
+HCMD14]. Moreover, the techniques for applying belief revision to
+transition systems based on dynamic logic of assignments proposed
+recently [HMDW14], open up the possibility of grounding
+computationally the notion of “behavior revision”.
+
+Moreover, in Reasoning about Action restricted forms of representations
+(essentially propositional vs first-order) have been put forward to study efficient
+action deliberation and planning, which in these years is producing a
+vast array of particularly fruitful results [GeBo13, DePS10, DFPS10,
+CaDH11, FeDL12, DePS13, DeVa13, GeTh14, DeDM14, DDGM14].
+
+In fact  the standard language PDDL itself universally used for Planning is largely inspired by the research in Reasoning about Action.
+
+
+\subsection{Data-aware processes}
+
+The fourth ingredient of \project approach is \textbf{Data-aware processes} modeling and analysis.
+
+Excellent results, but no synthesis
+
+
+
+% 
+% \subsection{OBJECTIVES}
+
+% \vspace{-1ex}
+
+% The overarching objective of \project is the following:
+
+% \begin{quote}\textit{
+% \project aims at laying the theoretical foundations and practical
+% methodologies of a science and engineering of \textbf{white-box self-programming mechanisms}. 
+% }
+% \end{quote}
+% \project intends to consider self-programmable mechanisms, as forms
+% of \textbf{Agents} studied in \textbf{Artificial Intelligence}
+% \cite{Reiter01,Wooldridge09}. \footnote{We stress that \project does
+%   not aim at general AI, but envisions self-programming mechanisms
+%   that act intelligently within the specific domain of interest in
+%   which they operate.}
+
+% Since ``\emph{with great power comes great responsibility}'',
+% introducing advanced forms of self-programming calls for the ability
+% to make the behavior automatically synthesized by the mechanism
+% \textbf{understandable} to human supervisors.
+% %%
+% %must be checked to be \textbf{harmless}. 
+% % In line with a large part of the AI community, 
+% % \project considers this point essential \cite{RussellDT15}.
+% %%
+% So it is indeed crucial to develop self-programming mechanisms that are \textbf{white-box}: in every moment the
+% mechanism can be queried for its specifications, its behavior and how
+% it relates to the specifications. Ultimately it is the possibility of \textbf{explain in human terms}
+% the resulting behavior that will make white-box self-programming mechanisms  \textbf{trustworthy} \cite{CaDa10,Neumann17}.
+% %
+% Being white-box contrasts with most current approaches, which consider
+% acceptable synthesized solutions that remain opaque to humans, as long
+% as they work \cite{MnihKSGAWR13,SilverHMGSDSAPL16}.
+
+% We further stress that the need to move towards \textbf{white-box}
+% approaches is advocated by a large part of the \textbf{AI community}
+% \cite{RussellDT15}, and has been recently taken up by DARPA within the
+% context of machine learning, through the DARPA-BAA-16-53 ``Explainable
+% Artificial Intelligence (XAI)''
+% program\footnote{\url{http://www.darpa.mil/program/explainable-artificial-intelligence}}
+
+% \begin{quote}{\it
+% Knowledge representation, the primary field of the PI, will be central for realizing the shift towards a white-box approach.}
+% \end{quote}
+% %\vspace{-1ex}
+
+
+
+% Towards the goal of building \textbf{white-box self-programming mechanisms}, \project will address the following objectives. %challenges.
+% \begin{enumerate}
+
+% \item \textbf{Equip mechanisms with general self-programming abilities.}
+
+% \item \textbf{Make self-programming abilities available while in operation.} 
+
+% \item \textbf{Make white-box self-programming mechanisms verifiable.}
+
+% \item 
+% \textbf{Allow learning and stochastic decisions, while remaining within safe bounds.}
+
+% \item \textbf{Make white-box self-programming mechanisms comprehensible to
+%     humans}. 
+% \item \textbf{Make self-programming mechanisms data-aware.}
+
+% \item \textbf{Favor component-based approaches.}  
+% \end{enumerate}
+
+
+\subsection{High Risk, High Gain}
+
+Technically, \project intends to make a quantum leap in
+mechanisms' self-programming abilities while keeping them white-box. To do so,  \project will push forward the emerging cross-fertilization
+among from \textbf{Knowledge
+  Representation} and \textbf{Planning} in \textbf{Artificial Intelligence}, \textbf{Data-aware Processes} in \textbf{Databases}, and \textbf{Verification and Synthesis} in
+\textbf{Formal Methods}. 
+
+\begin{quote}{\it
+The PI has profoundly contributed to all these areas, and he is %in a unique position to thrive this cross-fertilization.}
+one of the most prominent AI scientist leading this cross-fertilization.}
+\end{quote}
+
+
+As a result, \project is \textbf{very timely} and of \textbf{greatest significance for European science}.
+
+\project is a \textbf{high risk, high gain project}: if successful, it
+will result in a radically more useful automated mechanisms than what
+we have today, namely \textbf{white-box self-programming mechanisms},
+unleashing full potential of \textbf{self-programmability} and
+removing the main barriers to the uptake of automated mechanisms in
+real business context, namely \textit{predefined forms of automation}, and
+difficulties in \textit{formally analyzing their automated behavior in human terms}.
+
+Given the crucial role that automated mechanisms plays in our modern economy and society and that \textbf{white-box self-programming mechanisms} have the potential to resolve a number of central hurdles, % (see part B1 for both), 
+this implies a potentially very high impact on computer science as well as in crucial  business contexts, facilitating the already ongoing uptake of automated mechanisms in industry eventually also on economy and society. 
+
+The \project project involves \textbf{high risk} because the ultimately we need to merge explicit representation, with advanced form of process synthesis/coordination and refinement and  identify novel and useful islands of effective feasibility that \project aims at is technically extremely challenging, much more so than the related Verification and  Planning both of which have made tremendous progresses in the last decade, touching upon several notorious open problems in computer science. 
+%%
+On top of that, the path from theoretical analysis to practically efficient algorithm, which we plan to fully explore within \project, is a huge challenge given that we aim realizing real automated mechanisms to be deployed in real business scenarios. 
+
+Despite the challenges that we will face in \project, the general feasibility of combining Reasoning about Actions with Synthesis, Planning and Service Compositions required in \project has already been demonstrated in our original, exploratory publications \cite{IJCAI13,IJCAI15,IJCAI16,BPM,AIJ13,AIJ14}, and follow ups \cite{IJCAI15,AAAI17,}. 
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "PartB2"
+%%% TeX-PDF-mode: t
+%%% End:

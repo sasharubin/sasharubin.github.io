@@ -1,0 +1,724 @@
+\documentclass[11pt,a4paper,sans]{moderncv}       
+% possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+% personal data
+\name{Sasha}{Rubin}
+\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+\address{University of Naples ``Federico II''}{Naples, Italy}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+% \phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+% \phone[fixed]{+2~(345)~678~901}
+% \phone[fax]{+3~(456)~789~012}
+\email{rubin@unina.it}                               % optional, remove / comment the line if not wanted
+\homepage{forsyte.at/alumni/rubin/}                         % optional, remove / comment the line if not wanted
+% \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
+% \social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+% \social[github]{jdoe}                              % optional, remove / comment the line if not wanted
+% \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+\photo[64pt][0.4pt]{RUBIN_Sasha.jpg}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+% \quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+
+\usepackage[backend=bibtex, sorting=ydnt,maxbibnames = 10,citestyle = ieee,defernumbers]{biblatex}
+
+\bibliography{/home/sr/svn/forsyte-publications/trunk/rubin.bib}
+
+
+% 
+% \usepackage[backend=biber, defernumbers]{biblatex}
+
+% \DeclareSourcemap{
+%     \maps[datatype=bibtex]{
+%       \map{
+%         \step[fieldsource=SJR]
+%         \step[fieldset=usera,origfieldval]
+%     }
+%   }
+% }
+% 
+% \DeclareFieldFormat{usera}{\textbf{#1}}
+% 
+% \AtEveryBibitem{%
+%     \csappto{blx@bbx@\thefield{entrytype}}{% put at end of entry
+%         \iffieldundef{usera}{%
+% }{%
+%            \hfill \printfield{usera}
+%          }
+%     }
+% }
+
+
+
+% \usepackage{hyperref}
+
+% bibliography adjustements (only useful if you make citations in your resume, or print a list of publications using BibTeX)
+%   to show numerical labels in the bibliography (default is to show no labels)
+\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+
+%   to redefine the bibliography heading string ("Publications")
+%\renewcommand{\refname}{Articles}
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+
+
+\def\citeKNRS04{94} % 94 in Feb 2017, 91 in July 2016, 
+\def\citeRubin08{85} % 85 in Feb 2017, 85 in Sept 2016, 84 in July 2016 
+\def\citeThesis{67} % 67 in Feb 2017, 64 in August 2016
+\def\citeAminofJKR14{34} % 34 in Feb 2017, 39?? in July 2016
+
+\section{Personal Information}
+\cvitem{Date of Birth}{16.02.76}
+\cvitem{Place of Birth}{South Africa}
+\cvitem{Citizenship}{New Zealand}
+\cvitem{Languages}{English (first language), Italian (B1)}
+% \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+
+\section{Academic Qualifications}
+\cventry{1999-2004}{PhD}{Department  of Mathematics and Department  of Computer Science}{University of Auckland}{Prize for the \textbf{best doctoral thesis in the Faculty of Science} and  Montgomery memorial prize in logic from the Department of Philosophy}{}
+\cventry{1997-1998}{MSc}{Department  of Mathematics and Department  of Computer Science}{University of Auckland}{First Class}{}
+\cventry{1994-1996}{BSc}{Department  of Mathematics and Department  of Computer Science}{University of Cape Town}{Dean's Merit List}{}
+
+\section{Academic Appointments}
+\cventry{2017-present}{PostDoc. (Computer Science)}{University of Naples ``Federico II''}{Fellow of the ASTREA lab}{}{}
+\cventry{2015-2017}{PostDoc. (Computer Science)}{University of Naples ``Federico II''}{Marie Curie Fellow of INdAM ``F. Severi''}{}{}{}
+\cventry{2014-2015}{PostDoc. (Computer Science)}{TU Wien and TU Graz}{}{}{}{}
+\cventry{2012-2014}{PostDoc. (Computer Science)}{TU Wien and IST Austria}{}{}{}{}
+\cventry{2010-2012}{Honorary Research Fellow (Computer Science)}{University of Auckland}{}{}{}{}
+\cventry{2010-2010}{Visiting Lecturer (Mathematics)}{University of Cape Town}{}{}{}{}
+\cventry{2009-2010}{Visiting Researcher (Computer Science)}{University of Auckland}{}{}{}{}
+\cventry{2008-2009}{Visiting Assistant Professor (Mathematics)}{Cornell University}{}{}{}{}
+\cventry{2004-2008}{Honorary Research Fellow (Computer Science)}{University of Auckland}{New Zealand Science and Technology Postdoctoral Fellowship}{}{}{}{}
+
+
+\section{Research Interests}
+I work in formal methods, a branch of theoretical computer science, and study the power of automata theory (broadly construed) and mathematical logic for describing, reasoning and controlling systems. In particular, 
+I work in the following areas: Formal methods (Modeling, Verification, Synthesis) of Multi-agent Systems (including Parameterised Systems, Distributed Systems, Probabilistic Systems, Timed Systems);  Logics for Games and Strategic Reasoning; Foundations of Planning; Automata Theory; Finite and Algorithmic Model Theory.
+% (including Parameterised Systems, Probabilistic Systems, Distributed Systems, Timed Systems; 
+
+
+\subsection{ACM Computing Classification System}
+\cvitem{}{Theory of Computation [Models of Computation, Logic, Formal Languages and Automata Theory]}
+
+\cvitem{}{Computing Methodologies [Artificial Intelligence: Planning and Scheduling, Knowledge Representation and Reasoning, Distributed Artificial Intelligence]}
+
+% \subsection{Mathematics Subject Classification}
+% {03Bxx (General Logic), 03Cxx (Model Theory); 68Qxx (Theory of Computing), 68Txx (Artificial Intelligence)}
+
+
+
+\subsection{Research Accomplishments} %list  their  five  most  important publications since their last review, along with brief explanations  of  why  each  paper  is  significant.
+\cvitem{1999-2007}{During my PhD I (and my co-authors) pioneered the development of the theory of automatic structures. My most cited publications in this area are:
+\cite{DBLP:conf/lics/KhoussainovNRS04} (\citeKNRS04\ citations; all citation counts are as reported by Google Scholar) and 
+\cite{DBLP:journals/bsl/Rubin08} (\citeRubin08\ citations). }
+% My PhD thesis (\citeThesis\ citations) was awarded  the Vice-chancellor's prize for the best doctoral thesis in the Faculty of Science, and Montgomery memorial prize in logic from the Department of Philosophy. }
+
+\cvitem{2008-2011}{I published a survey and extension of the main results in my thesis in the Bulletin of Symbolic Logic \cite{DBLP:journals/bsl/Rubin08}. 
+With a PhD student of Erich Gr\"adel's (Tobias Ganzow) I solved a 12 year-old conjecture of Courcelle's \cite{DBLP:conf/stacs/GanzowR08}.}
+
+\cvitem{2012-2014}{In the last few years, I (with my co-authors) generalised a cornerstone paper on verification of parameterised systems ("Reasoning about Rings", E.A. Emerson, K.S. Namjoshi, {\textsc POPL}, 1995) from ring topologies to arbitrary topologies (\citeAminofJKR14\ citations) \cite{DBLP:conf/vmcai/AminofJKR14}. We also completed a book, published by Morgan \& Claypool, surveying decidability results in parameterised verification \cite{DBLP:series/synthesis/2015Bloem}.}
+
+\cvitem{2014-2017}{I opened the direction of formal methods for parameterised light-weight mobile agents with \cite{DBLP:conf/atal/Rubin15}.  Subsequently (with my co-authors) I continued this direction and published in top rated conferences \cite{DBLP:conf/prima/RubinZMA15,DBLP:conf/atal/AminofMRZ16} and won a best-paper award \cite{DBLP:conf/prima/MuranoPR15} (invited to {\textsc JAAMAS}.)}
+
+\section{Undergraduate Teaching}
+
+% I have a proactive approach to learning best-teaching practices. 
+During my teaching undergraduate calculus at Cornell, I sought out a number of teaching mentors, including Maria Terrell (Department of Mathematics) and David Way (associate director of the Cornell University Centre for Teaching Excellence) to discuss successful teaching strategies, both philosophical and concrete. As a result, according to my student evaluations, I was clear, organised, proactively willing to help, and motivating.
+
+\subsection{Complete Courses}
+
+
+\cventry{2010}{Logic and Computation}{University of Cape Town, 40 students}{Duties: Designed the course, 30 lectures, 12 tutorials, 1 class test, 1 final exam}{Department of Mathematics, University of Cape Town}{}{}{}
+
+\cventry{2008-2009}{Calculus for Engineers}{Department of Mathematics, Cornell University, 25-30 students, taught 5 times}{Duties: Lectures, weekly online quizzes, marking}{}{}
+
+\cventry{2001}{Pre-calculus}{Department of Mathematics, University of Wisconsin, Madison, +-30 students, taught 4 times}{Duties: Lectures, tutorials, marking}{}{}
+
+
+
+%Computational Biology (undergraduate, TA)\\
+%{Department of Computer Science, University of Auckland} $(2008)$\\
+
+\subsection{Partial Courses}
+
+\cventry{2007}{Discrete Structures in Mathematics and Computer Science}{Department of Computer Science, University of Auckland}{Duties:  Lectures, tutorials}{}{}{}
+\cventry{2007}{Mathematical Foundations of Software Engineering }{Department of Computer Science, University of Auckland}{Duties:  Lectures, tutorials}{}{}{}
+\cventry{2003}{Introduction to Formal Verification}{Department of Computer Science, University of Auckland}{Duties:  Lectures, tutorials}{}{}{} 
+\cventry{2002}{Automata theory}{Department of Computer Science, University of Auckland}{Duties:  Lectures, tutorials}{}{}{}
+
+
+
+%  {\bf Tutoring}\\
+%  {University of Auckland, Department of Mathematics} \\
+%  $1998$ and $1999$: Undergraduate Mathematics\\
+
+
+\iffalse $1998$ and $1999$: Stages $1$, $2$ and $3$ in the Mathematics \\
+   	 %Assistance Room \\
+	 $1999$: Assistant tutor for `Discrete Mathematics', Stage $2$
+	Mathematics\\
+	 $1999$: Demonstrator for `Combinatorial Computing', Stage $3$
+	Mathematics\\
+\fi
+
+%\pagebreak 
+
+
+\section{Undergraduate Mentoring}
+While at Cornell I mentored six students for three months. This resulted in two publications \cite{DBLP:journals/tcs/GrinshpunPRT14,DBLP:journals/corr/abs-1210-2462} and gave students a taste of research to help them decide if they should pursue a PhD. While at IST Austria I co-mentored one intern which resulted in \cite{DBLP:conf/lata/ChatterjeeCR13}. I am currently co-mentoring an undergraduate thesis at the University of Naples.
+
+\cventry{2017}{Undergraduate thesis (4 months)}{University of Naples}{Topic: Graphical Games}{}{}
+\cventry{2012}{Summer undergraduate project (3 months)}{IST Austria}{Topic: Edit-distance and Formal Languages}{}{}
+\cventry{2009}{Summer research experience for undergraduates (3 months)}{Cornell University}{Topic 1: Parity Games; Topic 2: Automatic Structures with Advice}{}{}
+
+ 
+ \subsection{Outreach}
+\cvitem{2010}{I briefly volunteered at a secondary school in Accra, Ghana, teaching, observing and commenting on grade $5$ mathematics classes.}
+\cvitem{2010}{I briefly volunteered in Khayelitsha, South Africa, helping high-school students prepare for their mathematics exams.}
+\cvitem{2009}{I taught two interactive lectures to non-mathematics majors at Cornell University on i) Hilbert's Hotel and Infinite Cardinals and ii) Algorithms and Termination}
+
+ \section{Esteem}
+ 
+ \subsection{Invited Workshop Talks}
+%
+%\subsection*{Recent Seminar Talks}  IST Austria and TU Vienna ($2011,2012$), CNRS Liafa Paris 7 ($2011$), Tel Aviv University ($2011$), University of Cape Town ($2010$) \\
+%Cornell ($2007,2008,2009$),
+%\ifcut LSV Cachan ($2008$), CNRS LIAFA Paris 7 ($2007$), Heidelberg ($2007$)\\
+%\fi
+%\subsection*{Invited Talks}
+\cventry{2017}{Verification of Multi-Agent Systems with Imperfect Information and Public Actions}{FMAI17, Naples}{}{}{} %$02.2017$
+\cventry{2012}{Finite and Algorithmic Model Theory}{Les Houches, France}{}{}{} %$05.2012$
+\cventry{2011}{Automata theory and Applications}{IMS programme,  Singapore}{}{}{}% \hfill $09.2011$
+\cventry{2008}{Computational Model Theory}{CNRS SIG, Bordeaux, France}{}{}{}% \hfill $06.2008$
+\cventry{2007}{Algorithmic-Logical Theory of Infinite Structures}{Dagstuhl, Germany}{}{}{}% \hfill $10.2007$
+\cventry{2006}{Finite and Algorithmic Model Theory}{Newton Institute, England}{}{}{}% \hfill $01.2006$
+\cventry{2004}{Workshop on Automata, Structures and Logic}{Auckland, New Zealand}{}{}{}% \hfill $12.2004$
+
+%\subsection*{Conference Talks} CiE ($2008$),
+
+%$2008 - 2009$: Logic Seminar, Cornell Talks in the Logic Seminar at Cornell. \\
+%Ongoing work with Anil Nerode and Dexter Kozen.\\
+
+%$2.2007$: Attended the 'Model Theory and Computable Model Theory' workshop, part
+%of the University of Florida's Special Year in Logic.\\
+
+% \item Competed as part of a team of three, in the world finals of the 1998 ACM Programming Contest in Atlanta, Georgia USA, representing the University of Auckland and New Zealand.
+
+\subsection{Graduate and School courses}
+\cventry{2017}{Taught 10 hour PhD mini-course}{Games on Graphs}{University of Naples}{}{}
+\cventry{2009}{Taught 1 semester PhD course}{Logical Definability and Random Graphs}{Cornell University}{}{}
+\cventry{2006}{Co-taught 5 day advanced course}{Logic and Computation in Finitely Presentable Infinite Structures}{European Summer School in Logic, Language and Information (ESSLLI)}{}{}
+
+\subsection{Mentoring PhD students}
+\cvitem{2015}{Closely worked with PhD students of Aniello Murano, and produced \cite{DBLP:conf/atal/AminofMMR16,AMMR16-SR,GMRS16IJCAI}}
+\cvitem{2007}{Closely worked with a PhD student of Erich Gradel's and solved a 12-year open problem \cite{DBLP:conf/stacs/GanzowR08}}
+
+\subsection{Chairs, Organisation, Committees}
+\cvitem{2017}{Co-chair of the Italian Conference on Theoretical Computer Science (ICTCS)\newline \url{http://ictcs2017.unina.it/}}
+\cvitem{2017}{Co-chair of the International Workshop on Strategic reasoning (SR) \newline \url{http://sr2017.csc.liv.ac.uk/}}
+\cvitem{2017}{Co-organiser of the Italian Conference on Computational Logic (CILC)\newline  \url{http://cilc2017.unina.it/}}
+\cvitem{2017}{Co-organiser of the First Workshop on Formal Methods in AI (FMAI)\newline  \url{https://sites.google.com/site/fmai2017homepage/}}
+\cvitem{2017}{PC member of the International Joint Conference on Artificial Intelligence (IJCAI) }
+\cvitem{2017}{PC member of the AAAI Conference on Artificial Intelligence (AAAI) }
+\cvitem{2017}{PC member for IRISA Master Research Internship}
+\cvitem{2016}{PC member of the International Workshop of Strategic Reasoning (SR) }
+\cvitem{2016}{PC member of the International Symposium on Games, Automata, Logics and Formal Verification (GandALF) }
+\cvitem{2016}{PC member of the European Conference on Artificial Intelligence (ECAI) }
+\cvitem{2013}{Co-organiser of the IST Austria Young Scientist Symposium on the topic `Understanding Shape: {in silico} and {in vivo}'\newline 
+\url{ist.ac.at/young-scientist-symposium-2013/}}
+\cvitem{2012}{Founded the computer science seminar at IST Austria whose goal was to foster collaborations within the institute between computer scientists and, at the time, biologists.\newline 
+\url{ist.ac.at/computer-science-seminar/}}
+
+
+
+\section{Research Funding}
+\cventry{2004-2007}{3 year New Zealand Science and Technology Postdoctoral Fellowship}{}{}{}{}
+\cventry{2015-2016}{2 year Marie Curie Fellowship of INdAM ``F. Severi''}{Ranked 4th out of 27 applicants \newline \url{https://cofund.altamatematica.it/2012/main/website?page=call-1}}{}{}{}
+
+\section{Refereed Publications}
+% I have 40 refereed publications, most in top conferences and journals, 
+% including 1 (co-authored) book, 1 (sole authored) book-chapter, 6 journal 
+% articles (5 of them invited), 5 {\sc LICS} papers, 4 {\sc AAMAS} papers, 4 {\sc IJCAI} papers, 
+% 3 {\sc STACS} papers,  1 {\sc KR} paper, and a best-paper at {\sc 
+% PRIMA}. Not listed, are 6 invited journal articles (in preparation or under 
+% evaluation) and an invited chapter in a handbook on automata theory and 
+% applications (in preparation, J.E. Pin (ed.), to be published by EMS).
+% 
+
+\nocite{*}
+
+\printbibliography[heading=subbibliography,title={Book}, prefixnumbers={B},type=book]
+
+\printbibliography[heading=subbibliography,title={Book Chapter}, prefixnumbers={BC},type=incollection]
+
+\printbibliography[heading=subbibliography,title={Journal Articles}, prefixnumbers={J},type=article]
+
+\printbibliography[heading=subbibliography,title={Conference Articles}, prefixnumbers={C},type=inproceedings,notkeyword={workshop}]
+
+\printbibliography[heading=subbibliography,title={Workshop Articles}, prefixnumbers={W}, keyword={workshop}]
+
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+% \nocite{*}
+% 
+% \bibliographystyle{plain}
+% \bibliography{/home/sr/svn/forsyte-publications/trunk/rubin.bib}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\section{Service}
+
+\subsection{Editorial assistance}
+\cvitem{2013-2016}{Handbook of Model Checking, to be published by Springer, and edited by Edmund Clarke, Thomas Henzinger, Helmut Veith and Roderick Bloem. Duties included: reviewing chapters, organising reviews and reviewers, liasing between editors and Springer editor. \url{http://www.springer.com/us/book/9783319105741}}
+% \subsection{Grant writing}
+\subsection{Grant writing}
+\cvitem{2016-2017}{I assisted Benjamin Aminof and Florian Zuleger with writing and editing an Austrian Science Fund (FWF) grant application.}
+\cvitem{2014}{I assisted Helmut Veith with writing and editing FWF grant applications and reports for the National Research Network (NFN) of the Austrian Science Fund (FWF) \url{http://arise.or.at/}}
+
+
+
+% \item In 2014, I volunteered for the Vienna Summer of Logic, the largest event in the history of logic.\\
+% \textsf{http://vsl2014.at/}
+
+\subsection{Reviewing}
+\cvitem{Book}{Handbook of Model Checking}
+\cvitem{Journals}
+{Artificial Intelligence, Journal of Symbolic Logic, Logical Methods in Computer Science, Theory of Computing Systems, Central European Journal of Mathematics, Information and Computation, Journal of Logic and Computation, Annals of Mathematics and Artificial Intelligence, Theory and Practice of Logic Programming}
+\cvitem{Conferences}{IJCAI, KR, AAMAS, AAAI, EUMAS, ECAI, LICS, STACS, 
+ICALP, MFCS, CONCUR, CSL, FoSSaCS, FSTTCS, SR, KRR@SAC, CiE, GandALF, RV, LPAR, 
+LATA}
+
+\section{Recent Research visits}
+
+\cventry{2016,2017}{Host: Mike Wooldridge, Oxford University}{Topic: Rational Synthesis}{}{}{}% \hfill $03.2016, 01.2017$\\
+
+\cventry{2016,2017}{Host: Alessio Lomuscio, Imperial College London}% \hfill  $03.2016, 01.2017$\\
+{Topic: Strategic-Epistemic logics for Multi-Agents Systems}{}{}{}
+
+\cventry{2016}{Host: Diego Calvanese and Marco Montali, University of Bolzanno}% \hfill $07.2016$\\
+{Topic 1: Data-aware strategic logics;
+Topic 2: Knowledge Representation for Business Process Management}{}{}{}
+
+
+\cventry{2016}{Hosts: Frank Stephan and Sanjay Jain, National University of Singapore}% \hfill $05.2016$\\
+{Topic: Learning Theory and Verification}{}{}{}
+
+\cventry{2015,2016}{Host: Giuseppe De Giacomo, Sapienza, Rome}% \hfill $12.2015$\\
+{Topic 1: Synthesis under Assumptions;
+Topic 2: Generalised Planning with Partial Observability}{}{}{}
+
+\cventry{2015}{Host: Helmut Veith, TU Wien}% \hfill $08.2015$\\
+{Topic 1: Logic and Impossibility Results in Distributed Computing;
+Topic 2: Abstractions for Fault-tolerant Distributed Algorithms}{}{}{}
+
+% %\item Host: \L ukasz Kaiser, Universit\'e Paris Diderot, France \hfill  $10.2011$\\
+% %Topic: Application of Logic to AI
+% 
+% \item Host: Aniello Murano, Universit\`a degli Studi di Napoli ``Federico II'' \hfill $08.2011$\\
+% Topic: Games of Imperfect Information and Pushdown Automata 
+% 
+% \item Host: Alexander Rabinovich, Tel Aviv University, Israel \hfill $5.2011$ -- $8.2011$\\
+% Topic: Logical-Interpretability and Trees 
+% 
+% %Visited Vince 20 August? till end of September, 2010 in Warsaw.
+% 
+% \item Host: Erich Gr\"adel, RWTH Aachen \hfill $08.2006-01.2007$
+% 
+% 
+% \item Host: Moshe Vardi, Rice University \hfill $01.2001-05.2001$
+% 
+%\item Steffen Lempp at UW Madison \hfill $08.2000-12.2000$
+
+
+\end{document}
+
+
+
+
+\section{\mysidestyle{Awards and Distinctions}}
+\begin{itemize}
+\item 2 individual fellowships (Marie Curie fellow of INdAM, New Zealand Science and Technology Postdoctoral Fellowship).
+\item 2 PhD prizes (best doctoral thesis in the Faculty of Science, Montgomery memorial prize in logic from the Department of Philosophy).
+
+\end{itemize}
+
+
+\begin{itemize}
+
+
+\end{itemize}
+
+%
+%
+%$1998$: Competed as part of a team of three, in the world finals of the $1998$
+%ACM Programming Contest in Atlanta, Georgia USA, representing the University of Auckland
+%and New Zealand. 
+%%The same team won the Regional Programming Contest in $1997$.\\ 
+%\fi
+
+\section{\mysidestyle{Recent service}}
+
+%%%HBMC
+%I am a chair of the ...
+
+\begin{itemize}
+
+%One reviewer wrote "We are extremely grateful to this reviewer for his/her careful reading of the paper, and for his/her constructive suggestions."
+
+%equaleducation.org.za
+
+%\pagebreak
+
+\end{itemize}
+
+% \newpage
+
+
+\section{\mysidestyle{References}}
+
+%\begin{multicols}{2}
+%\subsection*{Primary}
+
+\subsubsection*{\sc{Academic}}
+
+
+
+
+\section{\mysidestyle{Refereed Publications}}
+
+
+
+\nocite{*}
+
+\printbibliography
+
+
+%prima x2, SR special issue, concur, 
+
+%The following conference papers were invited to journals \cite{
+%DBLP:journals/jalc/KhoussainovR01,
+%DBLP:journals/jalc/KhoussainovR03,
+%DBLP:conf/lics/KhoussainovNRS04,
+%DBLP:journals/corr/AminofR14,
+%DBLP:journals/lmcs/KhoussainovNRS07,
+%DBLP:conf/concur/AminofKRSV14}. 
+%The journal versions of the following are under evaluation, and not listed below: \cite{DBLP:conf/concur/AminofKRSV14}.
+
+
+
+
+
+%\begin{description}
+
+%\item[Book]\
+%
+%{Decidability of Parameterized Verification} with R. Bloem, S. Jacobs, A. Khalimov, I.
+%    Konnov, H. Veith and J. Widder, in {Synthesis Lectures in Distributed Computing Theory}, N. Lynch Ed., September 2015, 170 pages
+%    
+%    
+%\item[Book chapters]\
+%
+% {Automatic Structures} in {Automata: From mathematics to applications}, J.E. Pin, Ed., to be published by EMS.
+%
+% {Automata based presentations of infinite structures} with V. B{\'a}r{\'a}ny and E. Gr{\"a}del,
+%in {Finite and Algorithmic Model Theory}, J. Esparza, C. Michaux, and C. Steinhorn, Eds.,
+%Series: London Mathematical Society Lecture Note Series (379), $1-76$, $2011$. \cc{15}
+%
+%\item[Journals]\
+%
+%{First-Cycle Games} with B. Aminof, Information and Computation, $2016$.
+%
+%{Alternating Traps in Parity Games} with P. Phalitnonkiat, A. Grinshpun, A.Tarfulea, Theoretical Computer Science,  $73-91, 2014$.
+%
+%{Automata presenting structures: A survey of the finite-string case}, The Bulletin of Symbolic Logic, 
+%$14 (2), 169-209, 2008$. \cc{66}
+%
+%{Automatic Structures: Richness and Limitations}, with B. Khoussainov, A. Nies and F. Stephan, 
+%Logical Methods in Computer Science, Vol $3$, $2007$.  \cc{78}
+%
+%{Automatic linear orders and trees}, with B. Khoussainov and F. Stephan, 
+%ACM Transactions on Computational Logic,
+%$6 (4), 675-700, 2005$.  \cc{49}
+%
+%
+%%{Automatic Linear Orders and Trees: Revised}, CDMTCS Technical Report $208$,
+%%Department of Computer Science, University of Auckland, $2003$.   
+% 
+% %{Definability and Regularity in Automatic Presentations of Subsystems of
+%%Arithmetic}, CDMTCS Technical Report $209$,
+%%Department of Computer Science, University of Auckland, $2003$.   
+% 
+%{Automatic Structures - Overview and Future Directions}, with 
+%B. Khoussainov,
+%Journal of Automata, Languages and Combinatorics, $8(2), 287-301, 2003$.   \cc{28}
+%
+%{Graphs with Automatic Presentations over a Unary Alphabet}
+%Journal of Automata, Languages and Combinatorics, $6(4), 467-480, 2001$. \cc{15}  
+%
+%{Finite Automata and Well Ordered Sets},
+%New Zealand Journal of Computing, $7(2), 39-46, 1999$. 
+%
+%
+%\item[IJCAI Proceedings]\
+%
+%{Imperfect-Information Games and Generalized Planning}, with
+%G. De Giacomo, A. Di Stasio, A. Murano, $2016$.
+%
+%\item[KR Proceedings]\
+%
+%{Prompt Alternating-Time Epistemic Logics}, with B. Aminof, A. Murano, F. Zuleger, $2016$.
+%
+%\item[AAMAS Proceedings]\
+%
+%{Automatic verification of multi-agent systems in parameterised grid-environments}, with
+%B. Aminof, A. Murano, F. Zuleger, $2016$.
+%
+%{Graded Strategy Logic: Reasoning about Uniqueness of Nash Equilibria}, with
+%B. Aminof, V. Malvone, A. Murano, $2016$.
+%
+%{Parameterised Verification of Autonomous Mobile-Agents in Static but Unknown Environments}, $2015$.
+%
+%\item[PRIMA Proceedings]\
+%
+%{Multi-Agent Path Planning in Known Dynamic Environments}, with A. Murano, G. Perelli, $2015$. {\sc Awarded best-paper.}
+%
+%\item[LICS Proceedings]\
+%
+%{Interpretations in trees with countably many branches}, with A. Rabinovich, $551-560$, $2012$. \cc{3}
+%
+%
+%{Automatic Structures: Richness and Limitations}, with B. Khoussainov, A. Nies and F. Stephan, 
+%$44-53$, $2004$. \cc{78} 
+%
+%{Automatic Partial Orders}, with B. Khoussainov and F. Stephan, $168-177$, $2003$. \cc{33}
+%
+%{Some Results on Automatic Structures}, with B. Khoussainov
+%and H. Ishihara,  $235-244$, $2002$. \cc{13}
+%
+%\item[STACS Proceedings]\
+%
+%{Cardinality and counting quantifiers on omega-automatic structures}, with V.  B{\'a}r{\'a}ny and \L. Kaiser, $385-396$, $2008$.  \cc{22}
+%
+%{Order invariant MSO is stronger than counting MSO}, with T. Ganzow, $313-324$,  
+% $2008$.  \cc{9}
+% 
+%{Definability and Regularity in Automatic Structures}, with B. Khoussainov
+%and F. Stephan,  $440-451, 2004$.  \cc{23}
+%
+%%International Workshop on Logic and Computational Complexity $2007$.\\
+%
+%\item[CONCUR Proceedings]\
+%
+%{ Parameterized model checking of Rendezvous Systems}, with B. Aminof, T. Kotek, F. Spegni and H. Veith, $109-124$, $2014$
+%
+%\item[CAV Proceedings]\
+%
+%{Verifying $\omega$-regular Properties of Markov Chains}, with D. Bustan and
+%M. Vardi, $189-201, 2004$. \cc{18}
+%
+%\item[ICALP Proceedings]\
+%
+%{Liveness of Parameterized Timed Networks}, with B. Aminof, F. Spegni and F. Zuleger, $375-387, 2015$.
+%
+%
+%\item[VMCAI Proceedings]\
+%
+%{Parameterized Model Checking of Token-Passing Systems}, with B. Aminof, S. Jacobs and A. Khalimov, $262-281, 2014$. \cc{6}
+%
+%
+%\item[Other Refereed Proceedings]\
+%
+%{Model Checking Parameterised Multi-Token Systems via the Composition Method}, with
+%B. Aminof, IJCAR $2016$.
+%
+%
+%{On CTL* with Graded Path Modalities}, with
+%B. Aminof, A. Murano, {LPAR}, $2015$.
+%
+%{On the expressive power of communication primitives in parameterised systems},
+%B. Aminof and F. Zuleger, {LPAR} $2015$.
+%
+%{Cycle Games} with B. Aminof, {Strategic Reasoning}, ETAPS workshop, $2014$.
+%
+%{How to Travel Between Languages} with  K. Chatterjee and S. Chaubal, {LATA}, $2013$.
+%
+%{A Myhill-Nerode Theorem for Automata with Advice} with A. Kruckman, J. Sheridan and B. Zax, {GandALF}, $238-246$, $2012$. \cc{2}
+%
+%%{Quantifiers on Automatic Structures} with V. Goranko, {CiE}, $2008$.
+%
+
+%\item[Thesis]\
+%
+%{Automatic Structures}, University of Auckland, $2004$ \cc{55}
+%
+%%{Satisfiability of $CTL^*$ with graded path modalities}, with B. Aminof, A. Murano.
+%    
+%\end{description}
+
+
+
+
+
+
+
+\end{document}
+
+
+
+%----------------------------------------------------
+%----------------------------------------------------
+%----------------------------------------------------
+%----------------------------------------------------
+%----------------------------------------------------
+%----------------------------------------------------
+
+
+\iffalse
+{\bf Dr. Valentin Goranko}\\
+School of Mathematics\\
+University of Witwatersrand\\ 
+Private Bag 3, WITS 2050\\
+Johannesburg, South Africa\\
+goranko@maths.wits.ac.za\\
+Phone : +$27$ $11$ $717$ $6243$ \\
+%Fax   : +$27$ $11$ $717$ $6259$ \\
+\fi
+%- Tutorial co-ordinator for undergraduate paper `Discrete Mathematics', %1999 \\
+%- Project and summer scholarship supervisor for `Application of Elementary \\
+%\phantom{- }Submodels to Topology', 1998\\ 
+%- Lecturer for `Logic and Set Theory', 1998\\ 
+% \enlargethispage*{1cm}
+
+%\section*{Conferences Attended}
+%\begin{tabular}{@{}ll}
+% {\bf 2000} & Computational Group Theory, Sydney\\
+% {\bf 1999} & Third New Zealand Computer Science Research Students'
+%Conference \\
+%	    & April, Waikato\\
+% {\bf 1999} & ACSC - DMTCS/CATS \\
+%	    & January, Auckland \\
+% {\bf 1999} & NZMRI summer workshop, Harmonic Analysis\\
+%	    & January, Raglan, New Zealand\\
+% {\bf 1998} & Second Japan-New Zealand Workshop on 
+%		{\em Logic in Computer Science}\\
+%	    & October, Auckland\\
+% {\bf 1998} & First International Conference on 
+%		{\em Unconventional Models of Computation}\\
+%	    & January, Auckland \\
+% {\bf 1997} & First Japan-New Zealand Workshop on {\em Logic in Computer Science}\\
+%	    & August, Auckland\\
+% {\bf 1997} & Fifth Australasian Mathematics Convention\\
+%	    & July, Auckland\\
+%\end{tabular}
+
+
+\iffalse
+\subsection*{Additional}
+{\bf Dr. David McIntyre}\\
+Department of Mathematics\\
+University of Auckland, New Zealand\\
+mcintyre@math.auckland.ac.nz\\
+Phone : (+64 9) 373 7599 Ext 8763\\
+%- Tutorial co-ordinator for undergraduate paper `Discrete Mathematics',
+%1999 \\
+%- Project and summer scholarship supervisor for `Application of Elementary \\
+%\phantom{- }Submodels to Topology', 1998\\
+%- Lecturer for `Logic and Set Theory', 1998\\
+\enlargethispage*{1cm}
+
+
+%\pagebreak
+\section*{Non Academic}
+\subsection*{University of Auckland}
+{Membership}\\
+  Auckland University Dramatic Society (1998/1999/2000)\\
+  Auckland University Comedy and Improvisation Club (1997) Secretary (1998)\\
+
+
+{Performance}\\
+  `Morte Accidentale Di Un Anarchico', (Dario Fo) (1999)\\
+  Celebration of Performing Arts, Auckland Town Hall (Stoppard, Simon) (1999)\\
+  Three comedy shows, Auckland University (1997 and 1998)\\
+  A duet in an evening of short plays, Auckland University (Stoppard) (1998)\\
+  Cultural Mosaic Festival, Auckland University (Stoppard) (1997)\\
+\begin{center}
+--------------------
+\end{center}
+\fi
+
+
+\section*{Seminars/Talks} 
+
+ 
+`Techniques to prove non-automaticity', University of Heidelberg Logic Seminar, 2002 \\
+
+
+`Some Results on Automatic Structures', with Bakhadyr Khoussainov
+and Hajime Ishihara, 17th Annual IEEE Symposium on Logic in Computer Science, 2002. \\
+
+
+`Automata-theoretic approach to verification of probabilistic systems',
+Rice University Computer Science Theory Seminar, 2001. \\
+
+
+`Automatic Structures', University of Notre Dame Logic Seminar, 2001, and \\
+University of Madison, Wisconsin, Logic Seminar, 2001.\\
+
+
+`Finite Automata and Relational Structures', with Bakhadyr Khoussainov, 
+DCAGRS, July 2000, London, Ontario \\
+
+
+ `Finite Automata and Well Ordered Sets', 
+3rd New Zealand Computer Science Research Conference, 1999, Waikato, New
+Zealand \\
+
+
+{\em Auckland Department of Computer Science:}\\
+ `Finite Model Theory - Ehrenfeucht-Fraisse Theorem', 2000\\
+ `Extracting Algebraic Information from Finite State Machines', 1999\\
+ `Finite Automata and Regular Languages', 1999\\
+
+
+{\em Auckland Department of Mathematics:}\\
+ `Algebraic Structures and Finite Automata', 1999\\
+ `Applications of Elementary Submodels to Topology', 1999\\ 
+\fi
+
+\iffalse
+		
+  {\bf Marking -} {University of Auckland} \\
+	 $1998$: Stage $3$ Assignments for the Department of Mathematics\\
+  	 1997: Stage 1 Assignments for the Departments of 
+	 Computer Science and Mathematics\\
+\fi
+
+

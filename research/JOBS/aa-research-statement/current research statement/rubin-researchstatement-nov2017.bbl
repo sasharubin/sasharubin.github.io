@@ -1,0 +1,194 @@
+\begin{thebibliography}{10}
+
+\bibitem{DBLP:conf/vmcai/AminofJKR14}
+Benjamin Aminof, Swen Jacobs, Ayrat Khalimov, and Sasha Rubin.
+\newblock Parameterized model checking of token-passing systems.
+\newblock In {\em Verification, Model Checking, and Abstract Interpretation -
+  15th International Conference, {VMCAI} 2014, San Diego, CA, USA, January
+  19-21, 2014, Proceedings}, pages 262--281, 2014.
+
+\bibitem{DBLP:conf/concur/AminofKRSV14}
+Benjamin Aminof, Tomer Kotek, Sasha Rubin, Francesco Spegni, and Helmut Veith.
+\newblock Parameterized model checking of rendezvous systems.
+\newblock In {\em {CONCUR} 2014 - Concurrency Theory - 25th International
+  Conference, {CONCUR} 2014, Rome, Italy, September 2-5, 2014. Proceedings},
+  pages 109--124, 2014.
+
+\bibitem{AKRSV17}
+Benjamin Aminof, Tomer Kotek, Sasha Rubin, Francesco Spegni, and Helmut Veith.
+\newblock Parameterized model checking of rendezvous systems.
+\newblock {\em Distributed Computing}, pages 1--36, 2017.
+
+\bibitem{DBLP:conf/prima/RubinZMA15}
+Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger.
+\newblock Verification of asynchronous mobile-robots in partially-known
+  environments.
+\newblock In {\em {PRIMA} 2015: Principles and Practice of Multi-Agent Systems
+  - 18th International Conference, Bertinoro, Italy, October 26-30, 2015,
+  Proceedings}, pages 185--200, 2015.
+
+\bibitem{DBLP:conf/atal/AminofMRZ16}
+Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger.
+\newblock Automatic verification of multi-agent systems in parameterised
+  grid-environments.
+\newblock In {\em Proceedings of the 2016 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2016)}}, pages 1190--1199,
+  2016.
+
+\bibitem{DBLP:conf/kr/AminofMRZ16}
+Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger.
+\newblock Prompt alternating-time epistemic logics.
+\newblock In {\em Principles of Knowledge Representation and Reasoning: Proc.
+  of the 15th International Conference, ({KR} 2016)}, pages 258--267, 2016.
+
+\bibitem{AR16}
+Benjamin Aminof and Sasha Rubin.
+\newblock First cycle games.
+\newblock {\em Information and Computation}, 2016.
+
+\bibitem{DBLP:conf/cade/AminofR16}
+Benjamin Aminof and Sasha Rubin.
+\newblock Model checking parameterised multi-token systems via the composition
+  method.
+\newblock In {\em Proc. 8th International Joint Conference on Automated
+  Reasoning, (IJCAR 2016)}, pages 499--515, 2016.
+
+\bibitem{DBLP:conf/icalp/AminofRZS15}
+Benjamin Aminof, Sasha Rubin, Francesco Spegni, and Florian Zuleger.
+\newblock Liveness of parameterized timed networks.
+\newblock In {\em Automata, Languages, and Programming - 42nd International
+  Colloquium, {ICALP} 2015, Kyoto, Japan, July 6-10, 2015, Proceedings, Part
+  {II}}, pages 375--387, 2015.
+
+\bibitem{DBLP:conf/lpar/AminofRZ15}
+Benjamin Aminof, Sasha Rubin, and Florian Zuleger.
+\newblock On the expressive power of communication primitives in parameterised
+  systems.
+\newblock In {\em Logic for Programming, Artificial Intelligence, and Reasoning
+  - 20th International Conference, {LPAR-20} 2015, Suva, Fiji, November 24-28,
+  2015, Proceedings}, pages 313--328, 2015.
+
+\bibitem{BGR11}
+Vince B{\'{a}}r{\'{a}}ny, Erich Gr{\"{a}}del, and Sasha Rubin.
+\newblock Automata-based presentations of infinite structures.
+\newblock In Javier Esparza, Christian Michaux, and Charles Steinhorn, editors,
+  {\em Finite and Algorithmic Model Theory}, pages 1--76. Cambridge University
+  Press, 2011.
+\newblock Cambridge Books Online.
+
+\bibitem{BLMR17IJCAI}
+Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin.
+\newblock Verification of broadcasting multi-agent systems against an epistemic
+  strategy logic.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}, 2017.
+
+\bibitem{BLMR17}
+Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin.
+\newblock Verification of multi-agent systems with imperfect information and
+  public actions.
+\newblock In {\em Proceedings of the 2017 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2017)}}, pages 1268--1276,
+  2017.
+
+\bibitem{DBLP:series/synthesis/2015Bloem}
+Roderick Bloem, Swen Jacobs, Ayrat Khalimov, Igor Konnov, Sasha Rubin, Helmut
+  Veith, and Josef Widder.
+\newblock {\em Decidability of Parameterized Verification}.
+\newblock Synthesis Lectures on Distributed Computing Theory. Morgan {\&}
+  Claypool Publishers, 2015.
+
+\bibitem{DBLP:journals/sigact/BloemJKKRVW16}
+Roderick Bloem, Swen Jacobs, Ayrat Khalimov, Igor Konnov, Sasha Rubin, Helmut
+  Veith, and Josef Widder.
+\newblock Decidability in parameterized verification.
+\newblock {\em {SIGACT} News}, 47(2):53--64, 2016.
+
+\bibitem{BDGR17ICAPS}
+Blai Bonet, Giuseppe~De Giacomo, Hector Geffner, and Sasha Rubin.
+\newblock Generalized planning: Non-deterministic abstractions and trajectory
+  constraints.
+\newblock In {\em ICAPS 2017 Workshop on Generalized Planning}, 2017.
+
+\bibitem{BDGR17}
+Blai Bonet, Giuseppe~De Giacomo, Hector Geffner, and Sasha Rubin.
+\newblock Generalized planning: Non-deterministic abstractions and trajectory
+  constraints.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}, 2017.
+
+\bibitem{GMRS16IJCAI}
+Giuseppe~De Giacomo, Antonio~Di Stasio, Aniello Murano, and Sasha Rubin.
+\newblock Imperfect information games and generalized planning.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI 2016)}, 2016.
+
+\bibitem{DBLP:conf/lics/IshiharaKR02}
+Hajime Ishihara, Bakhadyr Khoussainov, and Sasha Rubin.
+\newblock Some results on automatic structures.
+\newblock In {\em {LICS 2002}, 17th {IEEE} Symposium on Logic in Computer
+  Science, 22-25 July 2002, Copenhagen, Denmark, Proceedings}, page 235, 2002.
+
+\bibitem{DBLP:conf/lics/KhoussainovNRS04}
+Bakhadyr Khoussainov, Andr{\'{e}} Nies, Sasha Rubin, and Frank Stephan.
+\newblock Automatic structures: Richness and limitations.
+\newblock In {\em {LICS 2004}, 19th {IEEE} Symposium on Logic in Computer
+  Science, 14-17 July 2004, Turku, Finland, Proceedings}, pages 44--53, 2004.
+
+\bibitem{DBLP:journals/lmcs/KhoussainovNRS07}
+Bakhadyr Khoussainov, Andr{\'{e}} Nies, Sasha Rubin, and Frank Stephan.
+\newblock Automatic structures: Richness and limitations.
+\newblock {\em Logical Methods in Computer Science}, 3(2), 2007.
+
+\bibitem{DBLP:conf/lics/KhoussainovRS03}
+Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan.
+\newblock On automatic partial orders.
+\newblock In {\em {LICS 2003}, 18th {IEEE} Symposium on Logic in Computer
+  Science, 22-25 June 2003, Ottawa, Canada, Proceedings}, pages 168--177, 2003.
+
+\bibitem{DBLP:conf/stacs/KhoussainovRS04}
+Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan.
+\newblock Definability and regularity in automatic structures.
+\newblock In {\em {STACS} 2004, 21st Annual Symposium on Theoretical Aspects of
+  Computer Science, Montpellier, France, March 25-27, 2004, Proceedings}, pages
+  440--451, 2004.
+
+\bibitem{DBLP:journals/tocl/KhoussainovRS05}
+Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan.
+\newblock Automatic linear orders and trees.
+\newblock {\em {ACM} Transactions on Computational Logic}, 6(4):675--700, 2005.
+
+\bibitem{DBLP:journals/corr/abs-1210-2462}
+Alex Kruckman, Sasha Rubin, John Sheridan, and Ben Zax.
+\newblock A myhill-nerode theorem for automata with advice.
+\newblock In {\em Proceedings Third International Symposium on Games, Automata,
+  Logics and Formal Verification, GandALF 2012, Napoli, Italy, September 6-8,
+  2012.}, pages 238--246, 2012.
+
+\bibitem{DBLP:conf/prima/MuranoPR15}
+Aniello Murano, Giuseppe Perelli, and Sasha Rubin.
+\newblock Multi-agent path planning in known dynamic environments.
+\newblock In {\em {PRIMA} 2015: Principles and Practice of Multi-Agent Systems
+  - 18th International Conference, Bertinoro, Italy, October 26-30, 2015,
+  Proceedings}, pages 218--231, 2015.
+
+\bibitem{DBLP:conf/lics/RabinovichR12}
+Alexander Rabinovich and Sasha Rubin.
+\newblock Interpretations in trees with countably many branches.
+\newblock In {\em {LICS} 2012, Proceedings of the 27th Annual {IEEE} Symposium
+  on Logic in Computer Science, Dubrovnik, Croatia, June 25-28, 2012}, pages
+  551--560, 2012.
+
+\bibitem{DBLP:journals/bsl/Rubin08}
+Sasha Rubin.
+\newblock Automata presenting structures: {A} survey of the finite string case.
+\newblock {\em Bulletin of Symbolic Logic}, 14(2):169--209, 2008.
+
+\bibitem{DBLP:conf/atal/Rubin15}
+Sasha Rubin.
+\newblock Parameterised verification of autonomous mobile-agents in static but
+  unknown environments.
+\newblock In {\em Proc. of the International Conference on Autonomous Agents
+  and Multiagent Systems, {(AAMAS 2015)}}, pages 199--208, 2015.
+
+\end{thebibliography}

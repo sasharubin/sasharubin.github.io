@@ -1,0 +1,251 @@
+\documentclass[12pt]{article}
+%Updated 2 Sept  2010
+%alex says to be more specific about dfns of automata.
+% and to mention TM or C++ before automata.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\input{../rubin.macro.tex}
+
+\theoremstyle{plain} \numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{finalremark}[theorem]{Final Remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}{Question} \topmargin-2cm
+
+\textwidth6in
+
+\setlength{\topmargin}{0in} \addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+
+\setlength{\oddsidemargin}{0in}
+
+\oddsidemargin  0.0in \evensidemargin 0.0in %\parindent0em
+\pagestyle{plain}
+
+\lhead{Research Statement} \rhead{December 2010}
+\chead{{\large{\bf Sasha Rubin}}} \lfoot{} \rfoot{} \cfoot{\thepage}
+
+\def\tit#1{\subsection*{#1}}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\begin{document}
+
+%\raisebox{1cm}
+\thispagestyle{fancy}
+
+%begin general intro
+
+\tit{Summary for a general audience}
+
+Why is high-school algebra easier than number theory? For instance, deciding whether a polynomial (with integer coefficients) has real roots is relatively easy, while the problem for integer roots (Diophantine analysis) has occupied mathematicians since at least 800BCE.
+
+One answer: there is an algorithm that decides the truth or falsity of any given first-order statement\footnote{First-order statements allow quantification over elements; in particular in the language of arithmetic we can express that a given equation has a solution.} about real arithmetic, while in contrast there is no such algorithm for integer arithmetic. Thus a coarse measure of the complexity of a problem is whether or not it can be solved by an algorithm. If `yes', the problem is called {\em decidable} and we think of it as simpler than an undecidable problem.
+
+There are various ways to get decidability results. Real arithmetic, for instance, was dealt with by Alfred Tarski using a technique called effective quantifier elimination.\footnote{For instance
+\[
+\exists x (ax^2 + bx + c = 0)
+\]
+can be replaced by the simpler condition
+\[
+(a = b = c = 0) \textrm{ or } (a = 0 \neq b) \textrm{ or }  (a \neq 0 \leq b^2 - 4ac)
+\]
+that is free of quantifiers.} Another method involves a model of computation called a (finite-state) automaton that may be loosely viewed as an algorithm with the severe restriction that it can only store a constant amount of data (the constant is independent of the input to the algorithm). For instance, the usual high-school algorithm for adding two integers only requires one to store, temporarily at each step, a single carry bit irrespective of the size of the integers being added. The reason this is constant rather than linear space is that the space can be reused. 
+Another example is that your word-processor's basic search feature consists of finite-state automata disguised as regular expressions. Automata are fundamental objects in computer science (pattern recognition, compression, natural language processing, hardware verification) and play a serious role in mathematics (geometric group theory, semigroup theory, dynamical systems, mathematical logic). Automata have equivalent definitions in the languages of number theory, logic, and universal algebra.
+
+
+How are automata used to get decidability?
+Broadly speaking the paradigm is this: 1) try describe your system or object of interest by automata, and 2) use that description to answer questions about the system. This idea seems due to Alonzo Church in the 1950s. It was formulated for groups in 1986 by William Thurston \cite{CEHLPT92} and later generalised by Bakhadyr Khoussainov and Anil Nerode \cite{KhNe95} to arbitrary mathematical structures.
+It reached the logic in computer science community with the work of Achim Blumensath and Erich Gr\"adel \cite{BLGr02}. Starting with my graduate studies  I have been at the forefront of the development of what is called the theory of {\em automatic structures} \cite{Rubi04} \cite{Rubi08}.
+
+% They naturally find applications in computer science (pattern recognition, compression, natural language processing, harware verification) as well as mathematics (geometric group theory).
+% --- they are a regular feature in conferences in the LICS community.
+
+% (an American mathematician who founded the {\em Journal of Symbolic Logic}).
+
+%Many mathematical questions My main interest is using automata to describe mathematical systems. This is a broad area of {\bf theoretical computer science} whose objects of study may be discrete or continuous.
+%The basic paradigm is this: describe a system by automata, and use that description to solve algorithmic and logical problems about the system. The reason this works is that automata are effectively closed under various operations, both logical (eg. Boolean operations) and algebraic (eg. concatenation).
+
+ %Nonetheless the principle is so broad that one can view virtually any branch of mathematics or computer science through the lens of automatic structures, just as has been done with (Turing) computable structures and computable model theory \cite{}. 
+
+Future plans:
+\begin{enumerate}
+\item 
+Like any new subject there are still open foundational questions (see the three problems in the `Details of past research' section). Answering these would give us a green light to write the first book on automatic structures.
+
+\item Continuing work on structures presentable by automata in the presence of advice/oracles \cite{CoLo06} \cite{KRSZ} \cite{BKRa}. This is a powerful generalisation of automatic structures that requires more general proof techniques.
+%\item Finding tractable algorithms (probabilistic rather than deterministic) for the decidability results. If successful this would have far reaching implications for formal verification which is plagued by the `state-explosion' problem.
+\item Collaborating with people in other areas where automata are applicable, such as finding the right logic(s) for reasoning about biological systems.
+\end{enumerate}
+
+%Finally I am broadly interested in foundational questions in computer science. For instance, I have made a number of attacks with various people (including Khoussainov, Kozen, and some very smart undergraduates) for proving that there is a polynomial time algorithm for deciding the winning region of a parity game.
+
+\tit{Background}
+
+There are two main paradigms for using automata to study systems. 
+
+The first is to use automata as data structures. Here the focus is on large but finite data sets (say dictionaries), and optimal representations and transformations of the data (look up, sorting, compression). This approach has found success in natural language processing \cite{mpr07} and solving hard combinatorial problems using BDDS \cite{Brya86}.
+
+The second approach, in line with my previous work, uses automata to describe (typically) infinite mathematical structures (such as groups, orders, \dots). For example, one can describe the structure $(\N,+)$ by automata --- the natural numbers are coded in decimal and addition is performed by the usual high-school algorithm which is a finite automaton in disguise. The key point is that the description allows us to reason about the structure: we can answer first-order queries about $(\N,+)$ algorithmically. Besides solving arithmetical constraints  this approach has been applied to
+geometric and computational group theory \cite{CEHLPT92}; decision methods for various logical theories such monadic second-order logic of one successor (S1S) or two successors (S2S) \cite{Buch60, Rabi69}; querying of databases \cite{BeLi02}; formal verification \cite{VaWo94}.
+
+Structures such as $(\N,+)$ that are describable by automata in this way are called {\em automatic}. There are models of automata that operate on infinite strings (or even infinite trees) instead of the classical finite-string case as illustrated with integer addition above. Consequently there are automatic structures with uncountable domain, such as $(\mathbb{R},+)$. 
+
+%There are several standard notions of automata - the four main ones operating on finite/infinite words/trees - each yielding a corresponding class of automatic structures. By far the class that has received the most attention is that of the {\em finite-word automatic structures}. % with a focus on proving that certain structures are not automatic (lower-bound type results) \cite{KhNe95, BlGr00, Delh04,Rubi04, KNRS04}. 
+%Some work has been done when structures are presentable by infinite-words, called {\em B{\"u}chi-automatic} structures, eg. $(\mathbb{R},+)$. The most general of these, and the one that has received the least attention, is the class of infinite-tree automatic structures, called {\em Rabin-automatic}.
+
+%end general intro
+
+%My main interest is using automata to describe mathematical systems and structures. This is a broad area of theoretical computer science that addresses algorithmic issues of infinite objects.
+%% in both discrete and continuous mathematics.
+%The basic paradigm is this: describe the basic operations of the structure by automata, and use that representation to solve algorithmic problems. The focus is on reasoning about the structure rather than simulation or using the automata as data structures.
+
+
+%The reason various types of automata are used, rather than more general resource bounded Turing machines, is that they can be manipulated algorithmically (typically this means they are effectively closed under Boolean operations and projection; in some cases they can be determinised or minimised). For this reason they have a rich history in computer science starting with Kleene's original definition and equivalent notion of regular expressions \cite{klee56}.
+
+%Another equivalent presentation of automata goes through mathematical logic - the relations that are computable by automata are exactly those that are expressible in a certain logical language (typically monadic second-order logic MSO, see \cite{Thoma90}).
+
+%%\cite{buch60, buch62, elgo61, trah62, rabi69}.
+%This allows one to describe the behaviour of the automata rather than having to give its inner workings (state set and transition table).
+
+%Properties and queries of the system can then be {\it expressed} in the logical language and evaluated using the automata. Also, one can invariably extract global properties of the system. For instance, the automatic groups of \cite{CEHLPT92} are finitely presentable in the classical sense, and one can compute a presentation from the automata describing the group.
+
+%It is this logical point of view that underpins most of my research, which often involves the invention of techniques to analyse the expressive power of automata that describe structures.
+
+\tit{Details of past research}
+
+A number of fundamental questions in the theory of automatic structures immediately present themselves. 
+
+{\em Problem 1.}  How can one build new automatic structures from old? 
+
+{\em Problem 2.}  How do we tell if a structure is not automatic?
+
+{\em Problem 3.}  
+The fact that we can reason algorithmically about automatic structures is a weak form of a mathematical statement that might be called the {\em fundamental theorem of automatic structures}.  
+How can we extend the fundamental theorem? There are three parameters we can play with: increase the expressiveness of the logical language, enlarge the class of structures, allow partially correct or probabilistic algorithms. 
+%However, the fundamental theorem can not be extended, in general, to monadic second order logic, or in fact any logical language powerful enough to express queries of interest in verification such as graph reachability.
+
+I will briefly outline my contributions to each problem.
+
+{\em Progress on Problem 1}:
+%\subsubsection*{Operations on automatic structures}
+The class of automatic structures are easily seen to be closed under certain mathematical operations including direct product, infinite direct power, disjoint- and ordered-sum. Another fundamental operation is forming a quotient structure (also called factoring in abstract algebra).
+%It is often the case in mathematics that one algebraic object is described as the quotient/factor of another.
+Is the quotient of an automatic structure by an automatic congruence also automatic? The answer depends on the flavour of automaton at hand. 
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Type of automata & Closed under automatic quotient? \\
+\hline
+Finite-string  	& Yes \cite{Blum99}		\\
+Finite-tree 	& Yes	\cite{CoLo06}	\\
+Infinite-string	& No \cite{HKMN07}\\
+Infinite-tree	& ?		\\
+\hline
+\end{tabular}
+\end{center}
+
+With Vince B{\'a}r{\'a}ny and {\L}ukasz Kaiser \cite{BKRu08}, I have shown that the answer in the infinite-string case is `yes' if further restricted to countable quotient structures. Nothing is known in the infinite-tree case.
+
+{\em Progress on Problem 2}:
+It turns out that some classes of finite-word automatic structures are easy to describe up to isomorphism: the automatic ordinals are those strictly below $\omega^\omega$ \cite{Delh04}; the automatic finitely generated groups (in the signature consisting of the group operation) are those that are virtually Abelian (have an Abelian subgroup of finite index) \cite{OlTh05};
+together with Khoussainov, Nies and Stephan \cite{KNRS04}, I showed that the automatic Boolean algebras (in the usual signature) are those that are finite powers of the algebra of finite or co-finite subsets of the natural numbers.
+
+On the other hand for some classes (for instance graphs, trees in the signature of successor, lattices of height 4) we can not hope for such nice characterisations. This is because the isomorphism problem (telling whether or not two sequences of automata describe isomorphic automatic structures) for the class of automatic graphs is as hard as possible, namely $\Sigma_1^1$-complete \cite{KNRS04}. We achieved completeness by a reduction from the isomorphism problem for computable trees, known to be $\Sigma_1^1$-complete.
+
+However there are still some natural classes of structures for which the exact complexity of the isomorphism problem is not known, notably linear orders.
+%ADD LIU/KUSKE stuff
+In some cases we do have some partial invariants. Together with Khoussainov and Stephan \cite{KRS05}, I extended the ideas from \cite{Delh04} to show that automatic trees (in the signature of partial order) and linear orders have finite Cantor-Bendixson rank. 
+
+Progress in all these instances came immediately after breakthroughs in proving non-automaticity.
+
+%Another way to measure the complexity of automatic structures is the time/space resources required to decide its first-order theory. There are automatic structures for which this is non-elementary (queries expressed with $k$ alterations of quantifiers might require time proportional to a $k$-tower of exponentials in the size of the automata describing the structure) \cite{Grad90}. Interestingly there are automatic structures for which an upper bound can be placed on the size of the minimal automata representing a query (in the case of $(\N,+)$ triple exponential in the size of the query \cite{Klae03}).
+
+{\em Progress on Problem 3}:
+Common tasks in formal verification can be expressed in terms of reachability (for instance, whether there is a path between a start node and a target set of nodes). However, reachability is not expressible in the first-order language (even over the class of automatic structures). To be sure, there are automatic structures for which first-order plus reachability is undecidable. A natural extension of first-order that includes reachability is monadic second-order logic. An important open direction is understanding which automatic structures have decidable monadic second-order theory.
+
+These difficulties not withstanding, there are some natural extensions of first-order which are decidable. For instance, we may add to the language quantifiers expressing `there exists k modulo m many elements ...' and `there exists infinitely many elements...' and `there exists countably many elements ...'. Together with Bakhadyr Khoussainov and Frank Stephan \cite{KRS04}, I established the modulo quantifiers in the finite-word case. In discussions with Vince B{\'a}r{\'a}ny  and working with an idea of Moshe Vardi, I helped establish the `exists countably many' quantifier for infinite-tree automatic structures \cite{BKRa}. 
+It is not hard to see that the fundamental theorem can be extended to (possibly non-automatic) quotients of automatic structures by automatic congruences. We extended this to include certain unary cardinality quantifiers \cite{BKRu08} in the infinite-string case. Again, we are ignorant in the infinite-tree case. 
+
+In the framework of generalised quantifiers (see \cite{Hell89}) I have shown that these are the {\em only} unary quantifiers that extend the fundamental theorem \cite{Rubi08}. The binary case is quite open, and is under investigation with Vince B\'ar\'any, Valentin Goranko and Moshe Vardi.
+
+Other contributors to such results are \cite{Blum99, Colc04, KuLo05}.
+\iffalse
+{\bf Other work}: I have also worked in an area called {\em finite model theory.} Model theory concerns logical properties of mathematical structures. The restriction to the class of finite structures -  finite model theory -  is a field that has intimate connections with theoretical computer science via descriptional complexity. Typical results exhibit a correspondence between a complexity class (such as NP) and a logic over finite structures (such as existential second order).
+
+In a result not mentioning automata, Tobias Ganzow and I compared the expressiveness of two extensions of monadic second-order logic (MSO) over the class of finite structures. These are
+
+\begin{itemize}
+\item counting monadic second-order logic (CMSO) allowing the expression of queries like `the number of elements in the structure is even', and
+\item order-invariant MSO, allowing the use of an additional binary predicate, not contained in the signature of the queried structure, that must be interpreted as an arbitrary linear order on its universe
+\end{itemize}
+
+While it is straightforward that every CMSO formula can be translated into an equivalent order-invariant MSO formula, the converse had not been settled. Courcelle conjectured that, in general, order-invariant MSO is stronger than CMSO \cite{Cour96}. We affirmed this by presenting a simple class of structures that is order-invariantly definable in MSO but not definable in CMSO \cite{GaRu08}.
+
+Still undeveloped is the model theory of the class of automatic structures. Ideally this would be a bridge between finite model theory and the classical model theory.
+Together with Frank Stephan and Bakhadyr Khoussainov \cite{KRS05}, I have provided an automatic analog of two classical results from mathematics. First, an automatic version of Ramsey's theorem says that every infinite word-automatic graph has an infinite regular homogeneous set (clique or independent set). Such a set can be effectively extracted from the automata presenting the graph. Second, it is straightforward to see that there is an automatic analog of K\H{o}nig's tree lemma: every infinite finitely-branching finite-word automatic tree (in the signature of partial order) has a regular infinite path (just choose the length-lexicographically leftmost induced by the coding of finite-words). Are all paths regular? Clearly at most countably many infinite paths could be regular since there are only countably many automata. We managed to meet this upper bound: in every (not necessarily finitely branching) finite-word automatic tree with countably many infinite paths, {\it every} infinite path is regular (and this set can be computed uniformly by automata).
+\fi
+
+\tit{Recent and planned projects}
+
+{\bf Other models of automata:} I have started investigating other models of automata for presenting structures. 
+Most exciting are automata with advice (also known as oracles). The advice refers to a fixed additional infinite word or tree that the automaton can access while reading the usual inputs. The group of rationals $(\Q,+)$ is not automatic (a recent result with difficult proof due to \cite{Tsa}) however it is automatic in the presence of a reasonably simple advice word: coding rationals in base-factorial $\{n!\}_n$ and use advice 1\#10\#11\#100\#101\#... (Stephan, see \cite{Nies}).
+% This advice word has decidable monadic second-order theory (in the signature of order and labeling predicates), which is enough to guarantee that any automatic structure based on this advice word has effective first-order query evaluation. 
+In particular, this gives an automata theoretic proof that $(\Q,+)$ has decidable first-order theory. %(the standard proof uses effective quantifier elimination).
+
+A collaboration with undergrad students Alex Kruckman,  John Sheridan, and Ben Zax has yielded a basic result that seems to have been overlooked \cite{KRSZ}. We extended the Myhill-Nerode theorem (a basic characterisation of automata in the language of universal algebra) to automata with advice. In turn, we used this to limit the possible presentations of the automatic well-orders.
+We left open the problem of whether the well-order $\omega^\omega$ has a word-automatic presentation with advice (it is known that the answer is `no' without advice).
+This is part of a larger agenda: provide techniques for showing that certain structures are not automatic even in the presence of advice. The first non-trivial steps have been taken \cite{CoLo06}.
+
+{\bf Decidability:} The automata approach to proving decidability is cleaner than the {\it ad hoc} technique of effective quantifier elimination. However it seems limited. For instance, the countable random graph is easily seen to have a decidable first-order-theory, yet it is not (finite-tree) automatic even in the presence of advice \cite{CoLo06}.
+%is it omega-tree automatic with oracle? unlikely.
+% omega-automatic with oracle + countable --> automatic with oracle?
+I am intrigued by the problem of identifying the limitations of the automata theoretic approach to decidability. Do automata give any insight into why the random graph has decidable first-order-theory? 
+%The same question can be asked of the free term-algebra on finitely many generators and a single binary operation (in this case we do not even know whether it is infinite-tree automatic).
+
+%Also, there are some techniques that combine various decision procedures.
+
+{\bf Elementary decidability:} In the worst case, the decision procedure of the fundamental theorem, is non-elementary (not bounded by any fixed tower of exponentials). Currently there are two known classes of automatic structures whose members have elementary decision procedures via automata: structures of bounded degree \cite{Lohr03} \cite{KuLo09} and certain arithmetics such as $(\N,+)$ and $(\N,\times)$. Is there a unified reason that at least explains these seemingly disparate cases?
+
+%{\bf Tractable decidability:} For practical purposes an elementary (even a single exponential) decision procedure quickly becomes intractable. I am exploring whether there are useful/tractable probabilistic algorithms for the decision procedures of automatic structures. An affirmative answer would have profound implications for formal verification, overcoming the `state-explosion problem' that plagues the scaling of the standard decision procedures (such as those for S2S).
+
+%{\bf Other codings of structures:} Another new project with Michael O'Connor, a PhD student at Cornell University, concerns representing the elements of a structure by regular sets of finite-trees instead of single trees as is done in automatic structures (note that if words are used we get first-order decidability by reduction to S2S). An example from intuitionistic logic is the Heyting algebra on infinitely many propositions.
+
+%{\bf Learning theory:} Together with Pavel Semukhin, Frank Stephan and Thomas Zeugmann, I would like to explore the connections between automatic structures and learning theory \cite{gold67, angl80}. A starting point is to consider various models of learning (monotonic, conservative, \ldots) for regularly indexed regular languages: $\{L_a \st a \in A\}$ such that index $A$ and relation $\left<a,x\right>$ with $x \in L_a$ are regular (borrowing the framework of uniformly computable hypothesis spaces \cite{LaZe95}).
+
+{\bf Other applicable domains:} In the long term, I am interested in applications of the automata approach to domains outside of my expertise. Here are two examples.
+\begin{enumerate}
+\item In enumerative combinatorics can anything systematic be said about the generating functions that count the number of paths of a given length through infinite graphs that can be described by automata (specifically graphs in the Pushdown hierarchy \cite{Thom03})? 
+\item What sort of logical formalism would suit the computational biologists' tasks of reasoning about biological systems \cite{Hare04, FiHe06}? The logic should be expressive enough to answer questions the biologists are interested in but still computationally tractable so as to be useful.
+\end{enumerate}
+
+%How far can the `do it with automata principle' be pushed to dynamical systems, or to querying biological systems \cite{AMPWM05}?
+
+%move to teaching
+%I am also in the process of broadening my knowledge about current aspects of theoretical computer science. To this end I am engaged with a PhD candidate, Nick Hay, at the University of Auckland in learning recent advances in theoretical computer science; this consists of discussing papers that have won the G\"odel prize in the hope of finding a fruitful PhD topic.
+
+%{\it Applications} of automata in practical computer science include natural language processing \cite{RoSh97} \cite{Mohr96}, compiler construction \cite{ASU86},
+%representation and indexing of very large natural language texts [] and speech recognition [Mohr], and formal verification \cite{VaWo94} \cite{Holz03}. However, decision procedures based on automata (S1S, S2S) are, at first sight, not suitable for real applications because of their non-elementary complexity. There are two broad approaches to tackling this barrier. First, one can search for {\it sublogics} for which we can give better upper bounds. For instance, linear temporal logic is a fragment of S1S that is decidable in single exponential time in the size of the query \cite{VaWo94}. Second, and closer to automatic structures, one can focus on those {\it structures} that have better complexity. For instance, optimally solving arithmetical constraints expressible in the full first-order language of $(\N,+)$ can be done using automata \cite{BoWo95} \cite{Klae03}.
+
+%A recent Dagsthul Seminar 'Algorithmic-Logical Theory of Infinite Structures', aimed at bridging finite model theory and classical model theory, was motivated by the need to understand typical objects of computer science such as databases, stacks, XML documents, and communication buffers whose sizes can usually not be bounded and are modified during runtime.
+%I gave a keynote address on automatic structures.
+
+
+\begin{small}
+\bibliographystyle{alpha}
+\bibliography{researchstatement}
+\end{small}
+\end{document}

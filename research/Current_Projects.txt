@@ -1,0 +1,23 @@
+JOURNALS
+- journal version broadcasting
+- journal version TPS...?
+- GCTL* --> ready to submit to IC. then write to Ezio.
+
+CONFERENCES (+- 5 A* needed)
+
+AAMAS
+- ATL2 or ADL2?
+- lex(MP,LTL) 
+- GG
+- bounded broadcasting
+
+IJCAI
+- Synthesis of pushdown/counter systems with HG,BB,GDG for IJCAI
+or synthesis of TMs!
+
+??
+- Imp inf games with AS (peek!)
+- something with intern
+- MSOii with BM,NM for IJCAI
+
+

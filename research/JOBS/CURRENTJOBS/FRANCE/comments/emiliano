@@ -1,0 +1,42 @@
+send to EL + ANDREAS when in final form.
+
+present methodology
+
+2 pages explaining the models, the language, concise way
+synthesis, model checking they know, but probably not the kind of logics
+
+what is a cnrs project? 
+
+erc candidate will be taken; in principle could be submitted to erc.
+ambitious 
+challenging
+concrete
+5 years
+
+stress two things:
+1. they don't like purely theoretical approaches. not "applied research"; but should have some reflection on application.
+2. evaluation?! FMAI. 
+what are the criteria for saying whether a theory/model is good or not.
+criteria for evaluation for methodology.
+empirical validation?
+feasability/implementability?
+https://link.springer.com/chapter/10.1007%2F978-3-662-48561-3_30 --- model checker based on compact runs faster...
+show method is better than existing methods...
+
+QUESTION: concrete examples, benchmarks, ...
+
+andreas' tool: tableaux for ML
+
+
+LILAC only group doing logic...
+working on implementation of logics: QBF solvers, SAT solvers
+
+ELorini had a project on emotions... where they implement logics... 
+planning module... conversational agent (virtual)... trying to plan action in dialogue
+
+
+https://www.irit.fr/EmoTES/
+
+emphasis on team, that you fit. how your work can be useful for IRIT. integrate in the group.
+network at international level.
+mention collab with FrBel.

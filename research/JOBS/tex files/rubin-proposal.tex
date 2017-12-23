@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{graphicx}%
+\usepackage{fancyhdr}
+\input{rubin.macro}
+
+\theoremstyle{plain} \numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{finalremark}[theorem]{Final Remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}{Question} \topmargin-2cm
+
+\textwidth6in
+
+\setlength{\topmargin}{0in} \addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
+
+\setlength{\oddsidemargin}{0in}
+
+\oddsidemargin  0.0in \evensidemargin 0.0in \parindent0em
+\pagestyle{plain}
+
+\lhead{Research Proposal} \rhead{January 2008\\ rubin@cs.auckland.ac.nz}
+\chead{{\large{\bf Sasha Rubin}}} \lfoot{} \rfoot{} \cfoot{\thepage}
+
+\begin{document}
+
+%\raisebox{1cm}
+\thispagestyle{fancy}
+
+%begin general intro
+\noindent
+
+\begin{center}
+{\bf Foundational problems on Rabin-automatic structures}
+\end{center}
+
+{\bf Background}: {\it Automatic structures} are mathematical structures such as graphs, arithmetics, and algebras that can be described by automata (in the sense that the elements can be coded by words/trees so that the domain and basic operations are computable by finite automata operating synchronously on their inputs).  They were introduced by Khoussainov and Nerode in the mid 90's after the success of automatic groups, a related notion central in computational algebra (see \cite{CEHLPT92}).
+
+\smallskip
+
+The {\it Fundamental Theorem} states that there is an effective procedure evaluating first-order formulas on automatic structures. Thus, from a theoretical vantage, these are mathematical objects that can be queried algorithmically. In general however, this can not be extended to monadic second order logic, or in fact any language powerful enough to express reachability.
+
+\smallskip
+
+There are several standard notions of automata - the four main ones operating on finite/infinite words/trees - each yielding a corresponding class of automatic structures. By far the class that has received the most attention is that of the finite-word automatic structures, with a focus on proving that certain structures are not automatic (lower-bound type results) \cite{KhNe95, BlGr00, Delh04,Rubi04, KNRS04}. Some work has been done when structures are presentable by infinite-words, lets call them {\em B{\"u}chi-automatic} structures
+(a common example is $(\mathbb{R},+)$). This proposal focuses on the most general class - the infinite-tree automatic structures, lets call them {\em Rabin-automatic}.
+
+\bigskip
+
+{\bf Problem 1}:  Rabin-automatic structures are closed under first-order interpretations and many natural operations (such as disjoint union, direct product, direct power).
+
+\begin{quote}
+Is the quotient of a Rabin-automatic structure by a (Rabin-)regular congruence also Rabin-automatic?
+\end{quote}
+
+This question was left open in \cite{CoLo06} who gave a positive answer in the case of finite trees.
+I expect the answer is `not always, but yes when the structure is countable' as is the case for B{\"u}chi-automatic structures \cite{HKMN07,BKRu08}.
+
+\medskip
+
+{\bf Problem 2}:
+The Fundamental Theorem can be extended to include additional unary quantifiers such as `there exists finitely many elements', `there exists $k$ modulo $m$ many elements', `there exist countably many elements' \cite{BKRa}. Lets call these {\em counting quantifiers}. Regardless of the answer to the first problem, it makes sense to ask:
+
+\begin{quote}
+Is there an effective procedure evaluating formulas expressed in FO + counting quantifiers on the class of quotients of Rabin-automatic structures (by Rabin-regular congruences)?
+\end{quote}
+
+Using the language of $\omega$-semigroups, we showed that this is the case for quotients of B{\"u}chi-automatic structures \cite{BKRu08}.
+
+\medskip
+
+{\bf Problem 3}:
+In the finite-word case, it is known that the Fundamental Theorem can be extended to certain non-unary quantifiers (in the framework of generalised quantifiers \cite{Hell96}). An example is the Ramsey quantifier which expresses, of a graph, that `there is an infinite clique' \cite{Rubi08}.
+
+
+\begin{quote}
+To which binary-quantifiers can the Fundamental Theorem for Rabin-automatic structures be extended ?
+\end{quote}
+
+This question concerns binary quantifiers (these bind two variables), since all the unary quantifiers with this property are known \cite{KuLo05}, and in fact are expressible in terms of the counting quantifiers listed in the previous problem \cite{Rubi08}.
+
+\medskip
+
+{\bf Approach.}
+One stumbling block in extending our techniques from words to trees is that there is no known semigroup formalism corresponding to Rabin-regular languages. I expect instead that the theory of games as applied to automata will be central, as it is the most successful framework for dealing with Rabin-automata (\cite{GTW02}).
+
+\begin{small}
+\bibliographystyle{alpha}
+\bibliography{researchstatement}
+\end{small}
+\end{document}

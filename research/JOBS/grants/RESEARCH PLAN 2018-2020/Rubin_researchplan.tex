@@ -1,0 +1,274 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{framed}
+
+\input{/home/sr/svn/research/macros.tex}
+
+%opening
+\title{Research plan 2018-2021}
+\author{Sasha Rubin}
+\date{}
+\renewcommand{\thesection}{\arabic{section}}
+
+\begin{document}
+
+\maketitle
+
+\section{Context}\label{sec:context}
+My primary interest is in \textbf{Formal Methods for Artificial Agents}.
+
+\emph{Formal methods (FM)} is an umbrella-term that describes principles and techniques for reasoning 
+about systems with some digital component, such as software, hardware, cyber-physical systems, etc.
+\begin{framed}
+\noindent FM is built on three pillars: modeling, verification, and synthesis.  
+\end{framed}
+All three pillars are founded 
+on techniques from mathematical logic. Indeed, logic is used to formally represent 
+aspects of the system so that both (expert) humans and computers can 
+manipulate and reason about them.
+
+\emph{Artificial Intelligence (AI)} studies the principles behind thinking and reasoning, and it does so 
+in a mathematical and algorithmic way. \emph{Agents} are entities that can interact with each other and 
+their environment using sensors and actuators~\cite{RuNo10}.
+Agents built on the insights of AI are called \emph{artificial agents (AA)}. 
+As artificial agents are increasingly deployed in the world (e.g., 
+software agents on the Internet, driverless cars, software that play and compete with humans at games, 
+robots exploring new and dangerous environments, etc.) a clear challenge has materalised: 
+there is a need for humans to be able to \emph{trust} 
+the decisions made by AA, the need for \emph{meaningful interactions} between humans and AA, 
+and the need for \emph{transparent} AA~\cite{ACMStatement07}. One path to meeting these needs is 
+to create \emph{explainable AI (XAI)}, i.e., to enable humans to understand, trust and manage systems built 
+using AI~\cite{DARPA}.
+
+This is a grand challenge that involves many facets of computer science: psychology (to understand what is a good explanation), 
+knowledge representation and logic (to formalise this in a way accessible to humans and machines), 
+algorithms (to produce good explanations), NLP (to interface 
+with human users), software engineering (to produce reliable and efficient programs), etc.
+
+I take the following as an hypothesis:
+
+\begin{framed}
+ \noindent The challenge of producing transparent and explainable artificial agents (AA) cannot be met without having some formal guarantees on the behaviour of AA.
+\end{framed}
+It is in this context that formal methods will play a role: ``Modeling'' problems at the correct levels of abstraction to be able 
+to reason about them, ``Verification'' for deducing that AA do indeed have specified properties, and ``Synthesis'' for automatically 
+producing correct-by-design AA. 
+
+
+
+\section{What is an environment?}
+
+% Agents are situated and supported by some environment (without
+% an environment, an agent is effectively useless~\cite{DBLP:conf/aose/OdellPFB02}). 
+An \emph{environment} provides the surrounding conditions for agents to exist and
+operate~\cite{DBLP:conf/aose/OdellPFB02}. An environment is {tri-modal}: it consists of 
+a {\bf physical-environment} that supports the agents physically
+(e.g., physical roads, network links); a {\bf communication-environment} that
+supports agent communication (e.g., rules and protocols, pheromones);
+and a {\bf social-environment} that reflects organisational structure in terms of roles, groups,
+etc.
+
+Here are two scenarios that describe artificial agents in an environment. 
+
+\begin{example}[Multiplayer trick-based card-games]\label{bridge}
+ Let us consider one way to model Bridge. The physical-environment entails that the environment deals the cards so that no human agent can see the cards held 
+ by the other agents.
+ %, and thus agents have incomplete information about the cards of the other players.
+ The social-environment consists of players' teams, and a team's objective is to win more tricks than the opposition. 
+ %By viewing the environment as non-deterministic (rather than probabilistic) one can make worst-case analyses. 
+ The communication-environment ensures that agents are required to talk publicly in the bidding stage
+ (and thus learn more information about what cards other agents may have), while private talking is prohibited.
+\end{example}
+
+\begin{example}[Mobile agents]
+Mobile agents can be modeled as multiple agents in a discrete world. The physical environment consists of the common space such as a grid or a graph in which the agents move. 
+The communication environment may enforce that agents only have line of sight, or they may have RDF-sensors, etc. The social environment may include teams (e.g., for finding a missing person), or adversarial individuals (e.g., get to the finish line first).
+\end{example}
+
+
+ In the next 4 years, I plan to focus on one central piece of the problem of creating AA that humans can understand, trust and manage:
+ 
+\
+
+\noindent\textbf{Motivating Problem.} \emph{
+ When an AA interacts with the world, which may include humans and other AAs, it is situated in an \textbf{environment}~\cite{RuNo10}.
+ How should the environment be abstracted, modeled and exploited in the context of formal methods?}
+ 
+ 
+
+I know show that formal-methods models \textbf{environments in an oversimplistic way}. 
+Classically, the FM literature considers the environment to be an amalgam of everything not under the control of the designer, see~\cite{FHMV95,PnRo89,HMC17}. 
+This view is {overly simplistic} as it ignores the multi-modal nature of the environment. 
+Interestingly, the multi-agent systems (MAS) community has established that it is both essential
+and natural to treat the \textbf{environment as a first-class citizen}~\cite{DBLP:journals/aamas/WeynsOO07,DBLP:conf/aose/OdellPFB02}.
+However, \textbf{this was mainly explored in the context of MAS architectures, with no
+formal methods or rigorous mathematical results.} \label{monolithic} 
+% For instance, the social-environment embodies certain 
+% game-theoretic assumptions (e.g., the environment may be helping the agent achieve its goals, or be adversarial, or some-where in between), while it is not natural 
+% to model the physical-environment (e.g., roads) as a rational agent.
+% For instance, consider a single AA interacting with a single human. In many scenarios such as teaching a language or being of service, 
+% the AA is neither purely co-operative nor purely adversarial nor purely indifferent!
+% In the classic approach to the rigorous design of programs/agents the environment is treated in one of three ways: 
+% purely collaborative, helping the program achieve its goals (these are called closed-systems),  
+% purely adversarial, trying to prevent the program/agent from achieving its goal (these are called open-systems), 
+% or indifferent (i.e., probabilistic)~\cite{FHMV95,PnRo89,HMC}. 
+Indeed, FM continues to treat the environment as an amalgam of all its different aspects that is either 
+modeled as another agent or described as a logical theory/formula~\cite{PnRo89,reiter2001knowledge}. 
+Unsurprisingly, this has a number of disadvantages:
+\begin{enumerate}
+ \item  it is a non-trivial
+modeling task to specify and model this way all possible ``behaviors'' or relevant
+aspects of the environment~\cite{Lin14}; 
+\item agents are used to provide
+functionalities and services that are not appropriate for them~\cite{DBLP:journals/aamas/WeynsOO07};
+% \item in the case of infinitely many possible environments (which arise naturally or are
+% used to abstract large intractable instances~\cite{DBLP:conf/tacas/EmersonK02}) one gets infinite-state systems
+% which are, generally, undecidable~\cite{AK86};
+\item all aspects of the environment are entangled with each other and in many cases also with
+in the state-space of the whole system, making reasoning about it difficult~\cite{DBLP:journals/aamas/WeynsOO07}.
+\end{enumerate}
+Note that while treating the environment as another agent may appear as giving it ``first class" status, 
+it still ignores the fact that the environment has very different characteristics than an agent: 
+it need not have any goals, and it need not behave strategically; modeling incomplete information of the agents 
+regarding the environment is very cumbersome; and finally, since simple aspects of the environment are modeled
+with the powerful concept of an agent (e.g., the ability to communicate
+privately with other agents), one can easily end up with an undecidable
+or intractable model-checking or synthesis problem, even for finite-state systems
+and strategies~\cite{DBLP:journals/tocl/MogaveroMPV14,DBLP:conf/focs/PnueliR90}.
+
+In recent years, the above concern that an environment need not be purely collaborative or purely adversarial has 
+lead to the use of multiplayer games in which agents may have overlapping objectives, i.e., non-zero sum games. 
+However, even in this setting, the rest of the deficiencies in modeling the environment remain.
+
+
+\section{Aim and Impact}
+
+\begin{framed}
+\noindent
+I will develop new formal methods in which environments are separated into their three components (physical, communication, social).
+% I propose to develop formal methods for aritificial agents in the context of environments that are treated as first-class citizens.
+\end{framed}
+
+In particular, I plan to define parameters of each of the components and prove theorems that show how the computational complexity of verification and synthesis tasks changes as one varies the parameters. Isolating such parameters will allow for a fine-grained view of the borders of tractability and decidability for verification and synthesis tasks in formal-methods. An immediate payoff of such a theory of the environment is that one will be able to exploit the theorems, algorithms and insights that result in order to verify and synthesise agents that were previously out of reach.
+\begin{framed}
+ \noindent 
+ The separation  will provide the leverage to develop \textbf{meaningful models} and \textbf{tractable problems}.
+\end{framed}
+
+
+
+
+% Isolating these parameters will will allow one to exploit the environment when developing and deploying formal methods for articial agents. In particular, in the foundational work envisaged by this project, I expect that by introducing appropriate parameters of each of the three environment-components (physical, communication, social) one can prove theorems that show how the computational complexity of verification and synthesis change as one varies the parameters. In other words, 
+% 
+% \begin{framed}
+%  \noindent Treating the environment as a first-class citizen will allow us to gain insight into the borders of tractability and decidability of verification and synthesis tasks.
+% \end{framed}
+
+
+\section{Approach and connection to previous work}
+
+I propose a two-stage approach. First, identify relevant parameters of each of the components. Second, devise provably optimal algorithms for verification and synthesis tasks for the parameterised systems. In particular, by isolating the environment components, one can achieve decidability of problems that are undecidable when considering the environment as a single amalgam. The following preliminary works shows the feasability of this approach. 
+\begin{enumerate}
+ \item I have considered the the physical component in my recent Marie-Curie COFUND project on verification of mobile agents in discrete but partially known environments~\cite{Rubin15AAMAS,RZMA15,AMRZ16AAMAS}. This work models the physical-environment as a graph and parameterises these graphs by a natural width-parameter (i.e., clique-width).
+\item I have considered the communication component in the verification of MAS by isolating a class of systems in which agents have imperfect information and communicate by broadcast~\cite{DBLP:conf/lpar/AminofRZ15,BLMR17,BLMR17IJCAI}. 
+% of parameterised verification of distributed computing
+% computing~\cite{DBLP:conf/lpar/AminofRZ15,DBLP:journals/sigact/BloemJKKRVW16,AJKR14,DBLP:conf/icalp/AminofRZS15,RZMA15,DBLP:journals/sigact/BloemJKKRVW16} and in MAS 
+\item I have considered the social component in recent studies of epistemic extensions of strategic logics~\cite{BMMRV17,BLMR17IJCAI}. These works show 
+that one can achieve decidability by carefully restricting the information that agents have about each other.
+% as well as 
+% foundational aspects of generalised planning~\cite{GMRS16IJCAI,BDGR17}. 
+\end{enumerate}
+
+The purpose of this project is to build upon these preliminary works and establish the environment as a first-class citizen in the formal-methods literature. Moreover, these works only deal with decidability; a major aspect of this project will be to find meaningful parameters and values (i.e., that correspond to natural problems) that also yield tractable, or at least low computational complexity, verification and synthesis tasks.
+% This previous work shows that one applied to the physical-environment result in tractable verification tasks; and that completely disallowing private communication limiting the amount of private communication  \begin{enumerate}
+% \item a central component of the physical-environment is the spatial/topological infrastructure (e.g., a computer-network's interlinks layout, or the roads, rooms and corridors in which physical agents move) which is naturally modeled as a graph. Graph-theory is a well-established branch of mathematics that has deep connections with computer science, and as such, offers many possible parameters. Notably, are width-parameters, such as clique-width and tree-width~\cite{}.
+% \item the communication component can be broadly parameterised by how much private communication is allowed~\cite{}, 
+% % which is related to how much imperfect-information each agent has about the other agents~\cite{hierarchical}.
+% \item the social component can be parameterised by the types of interactions in which agents find themselves. Game-theory is another well-established field in mathematics that has deep connections with computer science~\cite{}. As such, it offers the following coarse view of interactions: co-operative (the environment helps an agent achieve its goal), adversarial (the environment actively tries to thwart an agent), or somewhere in-between. Moreover, multi-agent games are natural models of situations in which agents do not share the same purpose.
+% \end{enumerate}
+
+
+
+\bibliographystyle{plain}
+\bibliography{researchplan,FWF,References,rubin}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+the deficiencies in modeling the environment remain: whereas the MAS community has established that it is both essential
+and natural to treat the \textbf{environment as a first-class citizen} (see for
+example the highly cited papers~\cite{DBLP:journals/aamas/WeynsOO07,DBLP:conf/aose/OdellPFB02}),
+%and the workshops ``Environment for Multi-Agent Systems''
+%\url{http://dblp.uni-trier.de/db/conf/e4mas/}.
+\textbf{this was mainly explored in the context of MAS architectures, with no
+formal methods or rigorous mathematical results.} \label{monolithic} Indeed, none of the above
+mentioned developments in formal methods has addressed this crucial point, and
+they continue to treat the environment as an amalgam of all its different
+aspects~\cite{FHMV95}:
+it is either folded into the underlying game structure and the
+agents; represented as an extra agent; or simply remains implicit and dealt
+with in an ad hoc manner (e.g., by a monolithic temporal-logic formula).
+Unsurprisingly, this has many disadvantages, such as: a) it is a non-trivial
+modeling task to specify and model this way all possible ``behaviors'' or relevant
+aspects of the environment~\cite{Lin14}; b) agents are used to provide
+functionalities and services that are not appropriate for them~\cite{DBLP:journals/aamas/WeynsOO07};
+c) in
+the case of infinitely many possible environments (which arise naturally or are
+used to abstract large intractable instances~\cite{Emerson2002} one gets infinite-state systems
+which are, generally, undecidable~\cite{AK86}; d) all aspects of the environment are entangled with each other and in many cases also with
+in the state-space of the whole system, making reasoning about it difficult
+(e.g., in the context of the previous item, it makes it extremely hard to find
+natural decidable fragments)~\cite{DBLP:journals/aamas/WeynsOO07}.
+Note that while treating the environment as
+another agent may appear as giving it ``first class" status, it still ignores the fact that the environment --- \emph{specifically when
+one focuses on the critical physical and communication aspects of it}
+--- has very different characteristics then a rational agent: it does not behave
+strategically; it has no goals; modeling natural aspects of it, such as
+incomplete information of the agents regarding the environment, is very
+cumbersome; and finally, since simple aspects of the environment are modeled
+with the powerful concept of an agent (e.g., the ability to communicate
+privately with other agents), one can easily end up with an undecidable
+or intractable model-checking or synthesis problem, even for finite-state systems
+and strategies~\cite{DBLP:journals/tocl/MogaveroMPV14,DBLP:conf/focs/PnueliR90}.
+
+% (see
+% Section~\ref{sec:model-checking-imperfect} for a simple instantiation of the
+% last two points).
+
+Thus, we propose a very important and timely step in the research program outlined above:
+develop formal methods and tools for reasoning about multi-agent systems in
+complex environments
+%,i.e., dynamic environments allowing imperfect- or incomplete-information,
+by treating the environment as a first-class entity. 
+\emph{This novel approach in formal methods will be accomplished by building on our pilot project on parameterized model-checking of
+multiple finite-state agents in unknown graph environments, the recent developments in model checking of
+distributed algorithms with different communication protocols~\cite{DBLP:conf/lpar/AminofRZ15}, and
+combining these with, and advancing, the state of the art formal methods for
+strategic and epistemic reasoning.}
+
+
+However, while such games have begun to be addressed, the deficiencies in modeling the environment remain: 
+whereas various communities (especially in MAS) have established that it is both essential
+and natural to treat the {environment as a first-class citizen} (see for
+example the highly cited papers~\cite{DBLP:journals/aamas/WeynsOO07,DBLP:conf/aose/OdellPFB02}),
+{this was mainly explored in the context of MAS architectures, with no
+formal methods or rigorous mathematical results.} 
+For instance, it is common to treat the environment as
+another agent. This may suggest that the environment is being given first class status, 
+however it still ignores the fact that the environment has very different characteristics 
+then a rational agent: it need not behave
+strategically; it need not have goals; modeling natural aspects of it, such as
+incomplete information of the agents regarding the environment, is very
+cumbersome.
+
+
+

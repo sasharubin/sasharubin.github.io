@@ -1,0 +1,1766 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{AIRWZ18}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stoilkovska}{S.}%
+     {Ilina}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Widder}{W.}%
+     {Josef}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{conferences}
+  \strng{namehash}{ABSIRS+1}
+  \strng{fullhash}{ABSIRSWJZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{{VMCAI'18}}
+  \field{note}{To appear}
+  \field{title}{Parameterized Model Checking of Synchronous Distributed
+  Algorithms by Abstraction}
+  \verb{file}
+  \verb CORE B
+  \endverb
+  \field{year}{2018}
+\endentry
+
+\entry{DBLP:conf/lics/2017}{proceedings}{}
+  \list{publisher}{1}{%
+    {{IEEE} Computer Society}%
+  }
+  \field{sortinit}{7}
+  \field{isbn}{978-1-5090-3018-7}
+  \field{title}{32nd Annual {ACM/IEEE} Symposium on Logic in Computer Science,
+  {LICS} 2017, Reykjavik, Iceland, June 20-23, 2017}
+  \field{year}{2017}
+\endentry
+
+\entry{AKRSV17}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kotek}{K.}%
+     {Tomer}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Spegni}{S.}%
+     {Francesco}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Veith}{V.}%
+     {Helmut}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABKTRS+1}
+  \strng{fullhash}{ABKTRSSFVH1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb 10.1007/s00446-017-0302-6
+  \endverb
+  \field{issn}{1432-0452}
+  \field{pages}{1\bibrangedash 36}
+  \field{title}{Parameterized model checking of rendezvous systems}
+  \verb{url}
+  \verb http://dx.doi.org/10.1007/s00446-017-0302-6
+  \endverb
+  \verb{file}
+  \verb SJR Q2
+  \endverb
+  \field{journaltitle}{Distributed Computing}
+  \field{year}{2017}
+\endentry
+
+\entry{AMMR16-SR-journal}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malvone}{M.}%
+     {Vadim}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMVMA+1}
+  \strng{fullhash}{ABMVMARS1}
+  \field{sortinit}{7}
+  \field{note}{To appear}
+  \field{title}{Graded Strategy Logic}
+  \verb{file}
+  \verb SJR Q2
+  \endverb
+  \field{journaltitle}{Information and Computation}
+  \field{year}{2017}
+\endentry
+
+\entry{GCTLS-journal}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS1}
+  \strng{fullhash}{ABMARS1}
+  \field{sortinit}{7}
+  \field{note}{Under Review}
+  \field{title}{On {CTL}* with Graded Path Modalities}
+  \field{journaltitle}{Information and Computation}
+  \field{year}{2017}
+\endentry
+
+\entry{robots-journal}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS+1}
+  \strng{fullhash}{ABMARSZF1}
+  \field{sortinit}{7}
+  \field{note}{Accepted with Revisions}
+  \field{title}{Verification of Asynchronous Mobile-Robots in Partially-Known
+  Environments}
+  \field{journaltitle}{Journal of Autonomous Agents and Multi-Agent Systems}
+  \field{year}{2017}
+\endentry
+
+\entry{BLMR17IJCAI}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Belardinelli}{B.}%
+     {Francesco}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lomuscio}{L.}%
+     {Alessio}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BFLAMA+1}
+  \strng{fullhash}{BFLAMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}
+  \verb{doi}
+  \verb DOI 10.24963/ijcai.2017/14
+  \endverb
+  \field{title}{Verification of Broadcasting Multi-Agent Systems against an
+  Epistemic Strategy Logic}
+  \verb{file}
+  \verb CORE A*, 25%, 2540
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{BLMR17}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Belardinelli}{B.}%
+     {Francesco}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lomuscio}{L.}%
+     {Alessio}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BFLAMA+1}
+  \strng{fullhash}{BFLAMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings of the 2017 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2017)}}
+  \field{title}{Verification of Multi-agent Systems with Imperfect Information
+  and Public Actions}
+  \verb{file}
+  \verb CORE A*, 26%, 595
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{DBLP:conf/lics/BerthonMMRV17}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Berthon}{B.}%
+     {Rapha{\"{e}}l}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Maubert}{M.}%
+     {Bastien}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vardi}{V.}%
+     {Moshe~Y.}{M.~Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{IEEE} Computer Society}%
+  }
+  \strng{crossref}{DBLP:conf/lics/2017}
+  \strng{namehash}{BRMBMA+1}
+  \strng{fullhash}{BRMBMARSVMY1}
+  \field{sortinit}{7}
+  \field{booktitle}{32nd Annual {ACM/IEEE} Symposium on Logic in Computer
+  Science, {LICS} 2017, Reykjavik, Iceland, June 20-23, 2017}
+  \verb{doi}
+  \verb 10.1109/LICS.2017.8005136
+  \endverb
+  \field{isbn}{978-1-5090-3018-7}
+  \field{pages}{1\bibrangedash 12}
+  \field{title}{Strategy logic with imperfect information}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{BDGR17}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Bonet}{B.}%
+     {Blai}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Giacomo}{G.}%
+     {Giuseppe~De}{G.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Geffner}{G.}%
+     {Hector}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BBGGDGH+1}
+  \strng{fullhash}{BBGGDGHRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}
+  \field{title}{Generalized Planning: Non-Deterministic Abstractions and
+  Trajectory Constraints}
+  \verb{file}
+  \verb CORE A*, 25%, 2540
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{BDGR17ICAPS}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Bonet}{B.}%
+     {Blai}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Giacomo}{G.}%
+     {Giuseppe~De}{G.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Geffner}{G.}%
+     {Hector}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{workshop}
+  \strng{namehash}{BBGGDGH+1}
+  \strng{fullhash}{BBGGDGHRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{ICAPS 2017 Workshop on Generalized Planning}
+  \field{title}{Generalized Planning: Non-Deterministic Abstractions and
+  Trajectory Constraints}
+  \field{year}{2017}
+\endentry
+
+\entry{GMPRW17}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Gutierrez}{G.}%
+     {Julian}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Perelli}{P.}%
+     {Giuseppe}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Wooldridge}{W.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GJMAPG+1}
+  \strng{fullhash}{GJMAPGRSWM1}
+  \field{sortinit}{7}
+  \field{booktitle}{International Joint Conference on Artificial Intelligence
+  (IJCAI 2017)}
+  \verb{doi}
+  \verb DOI 10.24963/ijcai.2017/148
+  \endverb
+  \field{title}{Nash Equilibria in Concurrent Games with Lexicographic
+  Preferences}
+  \verb{file}
+  \verb CORE A*, 25%, 2540
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{AMMR16-SR}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malvone}{M.}%
+     {Vadim}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{workshop}
+  \strng{namehash}{ABMVMA+1}
+  \strng{fullhash}{ABMVMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings 4th International Workshop on Strategic
+  Reasoning, {SR} 2016, New York, USA.}
+  \field{title}{Graded Strategy Logic}
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/atal/AminofMMR16}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Malvone}{M.}%
+     {Vadim}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMVMA+1}
+  \strng{fullhash}{ABMVMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings of the 2016 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2016)}}
+  \field{pages}{698\bibrangedash 706}
+  \field{title}{Graded Strategy Logic: Reasoning about Uniqueness of Nash
+  Equilibria}
+  \verb{file}
+  \verb CORE A*, 25%, 550
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/atal/AminofMRZ16}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS+1}
+  \strng{fullhash}{ABMARSZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings of the 2016 International Conference on
+  Autonomous Agents {\&} Multiagent Systems {(AAMAS 2016)}}
+  \field{pages}{1190\bibrangedash 1199}
+  \field{title}{Automatic Verification of Multi-Agent Systems in Parameterised
+  Grid-Environments}
+  \verb{file}
+  \verb CORE A*, 25%, 550
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/kr/AminofMRZ16}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS+1}
+  \strng{fullhash}{ABMARSZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{Principles of Knowledge Representation and Reasoning: Proc.
+  of the 15th International Conference, ({KR} 2016)}
+  \field{pages}{258\bibrangedash 267}
+  \field{title}{Prompt Alternating-Time Epistemic Logics}
+  \verb{file}
+  \verb CORE A*, 27%, 182
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{AR16}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABRS1}
+  \strng{fullhash}{ABRS1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb http://dx.doi.org/10.1016/j.ic.2016.10.008
+  \endverb
+  \field{title}{First Cycle Games}
+  \verb{file}
+  \verb SJR Q2
+  \endverb
+  \field{journaltitle}{Information and Computation}
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/cade/AminofR16}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABRS1}
+  \strng{fullhash}{ABRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proc. 8th International Joint Conference on Automated
+  Reasoning, (IJCAR 2016)}
+  \verb{doi}
+  \verb 10.1007/978-3-319-40229-1_34
+  \endverb
+  \field{pages}{499\bibrangedash 515}
+  \field{title}{Model Checking Parameterised Multi-token Systems via the
+  Composition Method}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:journals/sigact/BloemJKKRVW16}{article}{}
+  \name{author}{7}{}{%
+    {{}%
+     {Bloem}{B.}%
+     {Roderick}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jacobs}{J.}%
+     {Swen}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khalimov}{K.}%
+     {Ayrat}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Konnov}{K.}%
+     {Igor}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Veith}{V.}%
+     {Helmut}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Widder}{W.}%
+     {Josef}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BRJSKA+1}
+  \strng{fullhash}{BRJSKAKIRSVHWJ1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb 10.1145/2951860.2951873
+  \endverb
+  \field{number}{2}
+  \field{pages}{53\bibrangedash 64}
+  \field{title}{Decidability in Parameterized Verification}
+  \field{volume}{47}
+  \field{journaltitle}{{SIGACT} News}
+  \field{year}{2016}
+\endentry
+
+\entry{GMRS16IJCAI}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {{De Giacomo}}{D.}%
+     {Giuseppe}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stasio}{S.}%
+     {Antonio~Di}{A.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{DGSADMA+1}
+  \strng{fullhash}{DGSADMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings of the Twenty-Fifth International Joint
+  Conference on Artificial Intelligence {(IJCAI 2016)}}
+  \field{pages}{1037\bibrangedash 1043}
+  \field{title}{Imperfect-Information Games and Generalized Planning}
+  \verb{file}
+  \verb CORE A*, 25%, 2294
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/ijcai/2016}{proceedings}{}
+  \name{editor}{1}{}{%
+    {{}%
+     {Kambhampati}{K.}%
+     {Subbarao}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {{IJCAI/AAAI} Press}%
+  }
+  \strng{namehash}{KS1}
+  \strng{fullhash}{KS1}
+  \field{sortinit}{7}
+  \field{isbn}{978-1-57735-770-4}
+  \field{title}{Proceedings of the Twenty-Fifth International Joint Conference
+  on Artificial Intelligence ({IJCAI 2016})}
+  \verb{url}
+  \verb http://www.ijcai.org/Proceedings/2016
+  \endverb
+  \field{year}{2016}
+\endentry
+
+\entry{DBLP:conf/lpar/AminofMR15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS1}
+  \strng{fullhash}{ABMARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Logic for Programming, Artificial Intelligence, and
+  Reasoning - 20th International Conference, {LPAR-20} 2015, Suva, Fiji,
+  November 24-28, 2015, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-662-48899-7_20
+  \endverb
+  \field{pages}{281\bibrangedash 296}
+  \field{title}{On {CTL}* with Graded Path Modalities}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/prima/RubinZMA15}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABMARS+1}
+  \strng{fullhash}{ABMARSZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{{PRIMA} 2015: Principles and Practice of Multi-Agent
+  Systems - 18th International Conference, Bertinoro, Italy, October 26-30,
+  2015, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-319-25524-8_12
+  \endverb
+  \field{pages}{185\bibrangedash 200}
+  \field{title}{Verification of Asynchronous Mobile-Robots in Partially-Known
+  Environments}
+  \verb{file}
+  \verb CORE B
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/icalp/AminofRZS15}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Spegni}{S.}%
+     {Francesco}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABRSSF+1}
+  \strng{fullhash}{ABRSSFZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{Automata, Languages, and Programming - 42nd International
+  Colloquium, {ICALP} 2015, Kyoto, Japan, July 6-10, 2015, Proceedings, Part
+  {II}}
+  \verb{doi}
+  \verb 10.1007/978-3-662-47666-6_30
+  \endverb
+  \field{pages}{375\bibrangedash 387}
+  \field{title}{Liveness of Parameterized Timed Networks}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/lpar/AminofRZ15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zuleger}{Z.}%
+     {Florian}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABRSZF1}
+  \strng{fullhash}{ABRSZF1}
+  \field{sortinit}{7}
+  \field{booktitle}{Logic for Programming, Artificial Intelligence, and
+  Reasoning - 20th International Conference, {LPAR-20} 2015, Suva, Fiji,
+  November 24-28, 2015, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-662-48899-7_22
+  \endverb
+  \field{pages}{313\bibrangedash 328}
+  \field{title}{On the Expressive Power of Communication Primitives in
+  Parameterised Systems}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:series/synthesis/2015Bloem}{book}{}
+  \name{author}{7}{}{%
+    {{}%
+     {Bloem}{B.}%
+     {Roderick}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jacobs}{J.}%
+     {Swen}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khalimov}{K.}%
+     {Ayrat}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Konnov}{K.}%
+     {Igor}{I.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Veith}{V.}%
+     {Helmut}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Widder}{W.}%
+     {Josef}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Morgan {\&} Claypool Publishers}%
+  }
+  \strng{namehash}{BRJSKA+1}
+  \strng{fullhash}{BRJSKAKIRSVHWJ1}
+  \field{sortinit}{7}
+  \field{booktitle}{Decidability of Parameterized Verification}
+  \verb{doi}
+  \verb 10.2200/S00658ED1V01Y201508DCT013
+  \endverb
+  \field{series}{Synthesis Lectures on Distributed Computing Theory}
+  \field{title}{Decidability of Parameterized Verification}
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/prima/MuranoPR15}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Murano}{M.}%
+     {Aniello}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Perelli}{P.}%
+     {Giuseppe}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MAPGRS1}
+  \strng{fullhash}{MAPGRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{{PRIMA} 2015: Principles and Practice of Multi-Agent
+  Systems - 18th International Conference, Bertinoro, Italy, October 26-30,
+  2015, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-319-25524-8_14
+  \endverb
+  \field{pages}{218\bibrangedash 231}
+  \field{title}{Multi-agent Path Planning in Known Dynamic Environments}
+  \verb{file}
+  \verb CORE B
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/atal/Rubin15}{inproceedings}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RS1}
+  \strng{fullhash}{RS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proc. of the International Conference on Autonomous Agents
+  and Multiagent Systems, {(AAMAS 2015)}}
+  \field{pages}{199\bibrangedash 208}
+  \field{title}{Parameterised Verification of Autonomous Mobile-Agents in
+  Static but Unknown Environments}
+  \verb{file}
+  \verb CORE A*, 25%, 670
+  \endverb
+  \field{year}{2015}
+\endentry
+
+\entry{DBLP:conf/vmcai/AminofJKR14}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Jacobs}{J.}%
+     {Swen}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khalimov}{K.}%
+     {Ayrat}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABJSKA+1}
+  \strng{fullhash}{ABJSKARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Verification, Model Checking, and Abstract Interpretation -
+  15th International Conference, {VMCAI} 2014, San Diego, CA, USA, January
+  19-21, 2014, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-642-54013-4_15
+  \endverb
+  \field{pages}{262\bibrangedash 281}
+  \field{title}{Parameterized Model Checking of Token-Passing Systems}
+  \verb{file}
+  \verb CORE B
+  \endverb
+  \field{year}{2014}
+\endentry
+
+\entry{DBLP:conf/concur/AminofKRSV14}{inproceedings}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Kotek}{K.}%
+     {Tomer}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Spegni}{S.}%
+     {Francesco}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Veith}{V.}%
+     {Helmut}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ABKTRS+1}
+  \strng{fullhash}{ABKTRSSFVH1}
+  \field{sortinit}{7}
+  \field{booktitle}{{CONCUR} 2014 - Concurrency Theory - 25th International
+  Conference, {CONCUR} 2014, Rome, Italy, September 2-5, 2014. Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-662-44584-6_9
+  \endverb
+  \field{pages}{109\bibrangedash 124}
+  \field{title}{Parameterized Model Checking of Rendezvous Systems}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2014}
+\endentry
+
+\entry{DBLP:journals/corr/AminofR14}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Aminof}{A.}%
+     {Benjamin}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \keyw{workshop}
+  \strng{namehash}{ABRS1}
+  \strng{fullhash}{ABRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings 2nd International Workshop on Strategic
+  Reasoning, {SR} 2014, Grenoble, France, April 5-6, 2014.}
+  \verb{doi}
+  \verb 10.4204/EPTCS.146.11
+  \endverb
+  \field{pages}{83\bibrangedash 90}
+  \field{title}{First Cycle Games}
+  \field{year}{2014}
+\endentry
+
+\entry{DBLP:journals/tcs/GrinshpunPRT14}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Grinshpun}{G.}%
+     {Andrey}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Phalitnonkiat}{P.}%
+     {Pakawat}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Tarfulea}{T.}%
+     {Andrei}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GAPPRS+1}
+  \strng{fullhash}{GAPPRSTA1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb 10.1016/j.tcs.2013.11.032
+  \endverb
+  \field{pages}{73\bibrangedash 91}
+  \field{title}{Alternating traps in Muller and parity games}
+  \field{volume}{521}
+  \verb{file}
+  \verb SJR Q2
+  \endverb
+  \field{journaltitle}{Theoretical Computer Science}
+  \field{year}{2014}
+\endentry
+
+\entry{DBLP:conf/lata/ChatterjeeCR13}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Chatterjee}{C.}%
+     {Krishnendu}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chaubal}{C.}%
+     {Siddhesh}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CKCSRS1}
+  \strng{fullhash}{CKCSRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Language and Automata Theory and Applications - 7th
+  International Conference, {LATA} 2013, Bilbao, Spain, April 2-5, 2013.
+  Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-642-37064-9_20
+  \endverb
+  \field{pages}{214\bibrangedash 225}
+  \field{title}{How to Travel between Languages}
+  \field{year}{2013}
+\endentry
+
+\entry{DBLP:journals/corr/abs-1210-2462}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Kruckman}{K.}%
+     {Alex}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Sheridan}{S.}%
+     {John}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zax}{Z.}%
+     {Ben}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KARSSJ+1}
+  \strng{fullhash}{KARSSJZB1}
+  \field{sortinit}{7}
+  \field{booktitle}{Proceedings Third International Symposium on Games,
+  Automata, Logics and Formal Verification, GandALF 2012, Napoli, Italy,
+  September 6-8, 2012.}
+  \verb{doi}
+  \verb 10.4204/EPTCS.96.18
+  \endverb
+  \field{pages}{238\bibrangedash 246}
+  \field{title}{A Myhill-Nerode theorem for automata with advice}
+  \field{year}{2012}
+\endentry
+
+\entry{DBLP:conf/lics/RabinovichR12}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Rabinovich}{R.}%
+     {Alexander}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RARS1}
+  \strng{fullhash}{RARS1}
+  \field{sortinit}{7}
+  \field{booktitle}{{LICS} 2012, Proceedings of the 27th Annual {IEEE}
+  Symposium on Logic in Computer Science, Dubrovnik, Croatia, June 25-28, 2012}
+  \verb{doi}
+  \verb 10.1109/LICS.2012.65
+  \endverb
+  \field{pages}{551\bibrangedash 560}
+  \field{title}{Interpretations in Trees with Countably Many Branches}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2012}
+\endentry
+
+\entry{BGR11}{incollection}{}
+  \name{author}{3}{}{%
+    {{}%
+     {B{\'{a}}r{\'{a}}ny}{B.}%
+     {Vince}{V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gr{\"{a}}del}{G.}%
+     {Erich}{E.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{3}{}{%
+    {{}%
+     {Esparza}{E.}%
+     {Javier}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Michaux}{M.}%
+     {Christian}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Steinhorn}{S.}%
+     {Charles}{C.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Cambridge University Press}%
+  }
+  \strng{namehash}{BVGERS1}
+  \strng{fullhash}{BVGERS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Finite and Algorithmic Model Theory}
+  \field{isbn}{978-0-521-71820-2}
+  \field{note}{Cambridge Books Online}
+  \field{pages}{1\bibrangedash 76}
+  \field{series}{London Mathematical Society Lecture Note Series 379}
+  \field{title}{Automata-based presentations of infinite structures}
+  \field{year}{2011}
+\endentry
+
+\entry{DBLP:conf/stacs/GanzowR08}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Ganzow}{G.}%
+     {Tobias}{T.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{GTRS1}
+  \strng{fullhash}{GTRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{{STACS} 2008, 25th Annual Symposium on Theoretical Aspects
+  of Computer Science, Bordeaux, France, February 21-23, 2008, Proceedings}
+  \verb{doi}
+  \verb 10.4230/LIPIcs.STACS.2008.1353
+  \endverb
+  \field{pages}{313\bibrangedash 324}
+  \field{title}{Order-Invariant {MSO} is Stronger than Counting {MSO} in the
+  Finite}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2008}
+\endentry
+
+\entry{DBLP:conf/stacs/KaiserRB08}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Kaiser}{K.}%
+     {Lukasz}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {B{\'{a}}r{\'{a}}ny}{B.}%
+     {Vince}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KLRSBV1}
+  \strng{fullhash}{KLRSBV1}
+  \field{sortinit}{7}
+  \field{booktitle}{{STACS} 2008, 25th Annual Symposium on Theoretical Aspects
+  of Computer Science, Bordeaux, France, February 21-23, 2008, Proceedings}
+  \verb{doi}
+  \verb 10.4230/LIPIcs.STACS.2008.1360
+  \endverb
+  \field{pages}{385\bibrangedash 396}
+  \field{title}{Cardinality and counting quantifiers on omega-automatic
+  structures}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2008}
+\endentry
+
+\entry{DBLP:journals/bsl/Rubin08}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{RS1}
+  \strng{fullhash}{RS1}
+  \field{sortinit}{7}
+  \field{number}{2}
+  \field{pages}{169\bibrangedash 209}
+  \field{title}{Automata Presenting Structures: {A} Survey of the Finite String
+  Case}
+  \field{volume}{14}
+  \verb{file}
+  \verb SJR Q1
+  \endverb
+  \field{journaltitle}{Bulletin of Symbolic Logic}
+  \field{year}{2008}
+\endentry
+
+\entry{DBLP:journals/lmcs/KhoussainovNRS07}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nies}{N.}%
+     {Andr{\'{e}}}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stephan}{S.}%
+     {Frank}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBNARS+1}
+  \strng{fullhash}{KBNARSSF1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb 10.2168/LMCS-3(2:2)2007
+  \endverb
+  \field{number}{2}
+  \field{title}{Automatic Structures: Richness and Limitations}
+  \field{volume}{3}
+  \verb{file}
+  \verb SJR Q1
+  \endverb
+  \field{journaltitle}{Logical Methods in Computer Science}
+  \field{year}{2007}
+\endentry
+
+\entry{DBLP:conf/csl/KhoussainovR05}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRS1}
+  \strng{fullhash}{KBRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{Computer Science Logic, 19th International Workshop, {CSL}
+  2005, 14th Annual Conference of the EACSL, Oxford, UK, August 22-25, 2005,
+  Proceedings}
+  \verb{doi}
+  \verb 10.1007/11538363_21
+  \endverb
+  \field{pages}{292\bibrangedash 308}
+  \field{title}{Decidability of Term Algebras Extending Partial Algebras}
+  \verb{file}
+  \verb CORE B
+  \endverb
+  \field{year}{2005}
+\endentry
+
+\entry{DBLP:journals/tocl/KhoussainovRS05}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stephan}{S.}%
+     {Frank}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRSSF1}
+  \strng{fullhash}{KBRSSF1}
+  \field{sortinit}{7}
+  \verb{doi}
+  \verb 10.1145/1094622.1094625
+  \endverb
+  \field{number}{4}
+  \field{pages}{675\bibrangedash 700}
+  \field{title}{Automatic linear orders and trees}
+  \field{volume}{6}
+  \verb{file}
+  \verb SJR Q1
+  \endverb
+  \field{journaltitle}{{ACM} Transactions on Computational Logic}
+  \field{year}{2005}
+\endentry
+
+\entry{DBLP:conf/cav/BustanRV04}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Bustan}{B.}%
+     {Doron}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vardi}{V.}%
+     {Moshe~Y.}{M.~Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BDRSVMY1}
+  \strng{fullhash}{BDRSVMY1}
+  \field{sortinit}{7}
+  \field{booktitle}{Computer Aided Verification, 16th International Conference,
+  {CAV} 2004, Boston, MA, USA, July 13-17, 2004, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-540-27813-9_15
+  \endverb
+  \field{pages}{189\bibrangedash 201}
+  \field{title}{Verifying omega-Regular Properties of Markov Chains}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2004}
+\endentry
+
+\entry{DBLP:conf/lics/KhoussainovNRS04}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nies}{N.}%
+     {Andr{\'{e}}}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stephan}{S.}%
+     {Frank}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBNARS+1}
+  \strng{fullhash}{KBNARSSF1}
+  \field{sortinit}{7}
+  \field{booktitle}{{LICS 2004}, 19th {IEEE} Symposium on Logic in Computer
+  Science, 14-17 July 2004, Turku, Finland, Proceedings}
+  \verb{doi}
+  \verb 10.1109/LICS.2004.1319599
+  \endverb
+  \field{pages}{44\bibrangedash 53}
+  \field{title}{Automatic Structures: Richness and Limitations}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2004}
+\endentry
+
+\entry{DBLP:conf/stacs/KhoussainovRS04}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stephan}{S.}%
+     {Frank}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRSSF1}
+  \strng{fullhash}{KBRSSF1}
+  \field{sortinit}{7}
+  \field{booktitle}{{STACS} 2004, 21st Annual Symposium on Theoretical Aspects
+  of Computer Science, Montpellier, France, March 25-27, 2004, Proceedings}
+  \verb{doi}
+  \verb 10.1007/978-3-540-24749-4_39
+  \endverb
+  \field{pages}{440\bibrangedash 451}
+  \field{title}{Definability and Regularity in Automatic Structures}
+  \verb{file}
+  \verb CORE A
+  \endverb
+  \field{year}{2004}
+\endentry
+
+\entry{DBLP:journals/jalc/KhoussainovR03}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRS1}
+  \strng{fullhash}{KBRS1}
+  \field{sortinit}{7}
+  \field{number}{2}
+  \field{pages}{287\bibrangedash 301}
+  \field{title}{Automatic Structures: Overview and Future Directions}
+  \field{volume}{8}
+  \field{journaltitle}{Journal of Automata, Languages and Combinatorics}
+  \field{year}{2003}
+\endentry
+
+\entry{DBLP:conf/lics/KhoussainovRS03}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stephan}{S.}%
+     {Frank}{F.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRSSF1}
+  \strng{fullhash}{KBRSSF1}
+  \field{sortinit}{7}
+  \field{booktitle}{{LICS 2003}, 18th {IEEE} Symposium on Logic in Computer
+  Science, 22-25 June 2003, Ottawa, Canada, Proceedings}
+  \verb{doi}
+  \verb 10.1109/LICS.2003.1210056
+  \endverb
+  \field{pages}{168\bibrangedash 177}
+  \field{title}{On Automatic Partial Orders}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2003}
+\endentry
+
+\entry{DBLP:conf/lics/IshiharaKR02}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Ishihara}{I.}%
+     {Hajime}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{IHKBRS1}
+  \strng{fullhash}{IHKBRS1}
+  \field{sortinit}{7}
+  \field{booktitle}{{LICS 2002}, 17th {IEEE} Symposium on Logic in Computer
+  Science, 22-25 July 2002, Copenhagen, Denmark, Proceedings}
+  \verb{doi}
+  \verb 10.1109/LICS.2002.1029832
+  \endverb
+  \field{pages}{235}
+  \field{title}{Some Results on Automatic Structures}
+  \verb{file}
+  \verb CORE A*
+  \endverb
+  \field{year}{2002}
+\endentry
+
+\entry{DBLP:journals/jalc/KhoussainovR01}{article}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Khoussainov}{K.}%
+     {Bakhadyr}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KBRS1}
+  \strng{fullhash}{KBRS1}
+  \field{sortinit}{7}
+  \field{number}{4}
+  \field{pages}{467\bibrangedash 480}
+  \field{title}{Graphs with Automatic Presentations over a Unary Alphabet}
+  \field{volume}{6}
+  \field{journaltitle}{Journal of Automata, Languages and Combinatorics}
+  \field{year}{2001}
+\endentry
+
+\entry{Automath}{incollection}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Rubin}{R.}%
+     {Sasha}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \name{editor}{1}{}{%
+    {{}%
+     {Pin}{P.}%
+     {Jean-Eric}{J.-E.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {European Mathematics Society (EMS)}%
+  }
+  \strng{namehash}{RS1}
+  \strng{fullhash}{RS1}
+  \field{sortinit}{9}
+  \field{booktitle}{Automata: From mathematics to applications}
+  \field{note}{Invited chapter, in process}
+  \field{title}{Automatic Structures}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

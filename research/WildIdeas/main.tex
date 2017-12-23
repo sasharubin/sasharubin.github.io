@@ -1,0 +1,133 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening aa
+\title{Research Ideas}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Ideas}
+
+\begin{enumerate} 
+
+\item Learn B-automata ala Angluin.
+
+\item Angluin learning for graph grammars. Applications to NLP?
+
+\item Find useful quantitative LTL formalism and extend to SL. e.g, Orna's
+quality, Demri's constraint LTL
+
+\item Give logic to talk about what agents believe/assume about other agent strategies. e.g., x believes that y will make a best-effort. think in terms of classes of strategies (defined in some expressive logic).
+
+\item Reinvent SL... restrict to certain structures, e.g., transition models from planning (i.e., states are evals of vars), and reachability objectives.
+
+\item iCGS with public actions and CGS are similar. Should be able to stretch all computational results from CGS to iCGS with public actions. E.g., results about randomised strategies, about computing NE, etc. 
+
+\item Find logic that talks about non-idealised agents. E.g., agents in the wild behave in certain ways, they have certain behaviours, and perhaps these behaviours, once learned, can be talked about. 
+
+
+\item Recall dfn of ``Action-LTL'' and do synthesis. The idea is simply to be able to express actions more naturally. E.g., can one now express prescriptive actions? 
+
+\item can logic help learn agent behaviours?
+
+ \item 
+LTL[F] 
+finite traces?
+functions in arbitrary algebras? $f:A^k \to A$, atoms map to constants... WHAT IS THE USE?
+process mining?
+runtime verification? PTIME
+
+\item MSO(T) to  LTL(T)?
+
+
+\item 
+alternating automata with classes of boolean functions (rather than all boolean functions);
+e.g., sat formula? "exists $x_1, x_2: phi(x_1,x_2,q_1,...,q_n)$?
+
+\item 
+the following problems are very similar
+\begin{itemize}
+\item control flow synthesis (lustig et al) 
+\item regular open APIs
+\item single entry exit petri nets = components = transducers with exit states
+\item 	read “Network-Formation Games with
+Regular Objectives” by Avni-Kupferman-Tamir,
+2014
+\end{itemize}
+\item
+study modal automata where the modal operators have different meanings.
+e.g., satisfy different axioms, "there exists a path st", "there exists a coloring of the subtree such that...",
+"for some $\sim$-related node" (bastien)...
+
+\item modal automata on graphs.
+
+\item Have a SL whose MC procedure returns memoryless strategies if these exist.
+e.g., $ATL <<A>>G<<Ag>>Fp$ does not necc. return a memless strategy.
+In SL, at least you get a finite state strategy.
+Looks like the usual MC procedure for (iterate fixpoints) mu-calculus gives a memless str.
+\end{enumerate}
+
+
+\section{Wild Ideas}
+
+\begin{enumerate} 
+\item network of majority games... equilibria
+\item nested robots
+\item logic of neural networks
+\item distributed synthesis with message loss
+\item better complexity for BC systems; logic of BC systems (axiomatising epistemic
+formulas)
+\item An evolutionarily stable strategy (ESS) is a strategy which, if adopted by a
+population in a given environment, cannot be invaded by any alternative strategy
+that is initially rare. 
+\item SL which returns simplest strategies
+\item language for expressing strategies explicitly. principled way to combine
+strategies.
+
+\item model iterated eliminitation of dominated strategies by PACGS
+
+\item iCGS with public actions and CGS are similar. Should be able to stretch all computational results from CGS to iCGS with public actions. E.g., results about randomised strategies, about computing NE, etc. 
+
+\item Find logic that talks about non-idealised agents. E.g., agents in the wild behave in certain ways, they have certain behaviours, and perhaps these behaviours, once learned, can be talked about. can logic help learn agent behaviours? See Nick Jenning's work, e.g., 
+
+ \item 
+LTL[F] 
+finite traces?
+functions in arbitrary algebras? $f:A^k \to A$, atoms map to constants... WHAT IS THE USE?
+process mining?
+runtime verification? PTIME
+
+\item MSO(T) to  LTL(T)?
+
+
+\item 
+alternating automata with classes of boolean functions (rather than all boolean functions);
+e.g., sat formula? "exists $x_1, x_2: phi(x_1,x_2,q_1,...,q_n)$?
+
+\item 
+the following problems are very similar
+\begin{itemize}
+\item control flow synthesis (lustig et al) 
+\item regular open APIs
+\item single entry exit petri nets = components = transducers with exit states
+\item 	read “Network-Formation Games with
+Regular Objectives” by Avni-Kupferman-Tamir,
+2014
+\end{itemize}
+\item
+study modal automata where the modal operators have different meanings.
+e.g., satisfy different axioms, "there exists a path st", "there exists a coloring of the subtree such that...",
+"for some $\sim$-related node" (bastien)...
+
+\item modal automata on graphs.
+
+\item Have a SL whose MC procedure returns memoryless strategies if these exist.
+e.g., $ATL <<A>>G<<Ag>>Fp$ does not necc. return a memless strategy.
+In SL, at least you get a finite state strategy.
+Looks like the usual MC procedure for (iterate fixpoints) mu-calculus gives a memless str.
+\end{enumerate}
+
+\end{document}

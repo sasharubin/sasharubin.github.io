@@ -1,0 +1,92 @@
+\begin{thebibliography}{10}
+
+\bibitem{ADGH06}
+I.~Abraham, D.~Dolev, R.~Gonen, and J.~Halpern.
+\newblock Distributed computing meets game theory: Robust mechanisms for
+  rational secret sharing and multiparty computation.
+\newblock In {\em {PODC06}}, pages 53--62, New York, NY, USA, 2006. ACM.
+
+\bibitem{ABK16}
+S.~Almagor, U.~Boker, and O.~Kupferman.
+\newblock Formally reasoning about quality.
+\newblock {\em J. ACM}, 63(3):24:1--24:56, June 2016.
+
+\bibitem{DBLP:conf/aaai/BaierM06}
+J.~A. Baier and S.~A. McIlraith.
+\newblock Planning with first-order temporally extended goals using heuristic
+  search.
+\newblock In {\em {AAAI'06}}, pages 788--795. {AAAI} Press, 2006.
+
+\bibitem{Bowling145}
+M.~Bowling, N.~Burch, M.~Johanson, and O.~Tammelin.
+\newblock Heads-up limit hold{\textquoteright}em poker is solved.
+\newblock {\em Science}, 347(6218):145--149, 2015.
+
+\bibitem{DBLP:journals/corr/BrafmanGP17}
+R.~I. Brafman, G.~{De Giacomo}, and F.~Patrizi.
+\newblock Specifying non-markovian rewards in mdps using {LDL} on finite traces
+  (preliminary version).
+\newblock {\em CoRR}, abs/1706.08100, 2017.
+
+\bibitem{DBLP:journals/acta/BrihayeGHM17}
+T.~Brihaye, G.~Geeraerts, A.~Haddad, and B.~Monmege.
+\newblock Pseudopolynomial iterative algorithm to solve total-payoff games and
+  min-cost reachability games.
+\newblock {\em Acta Inf.}, 54(1):85--125, 2017.
+
+\bibitem{Camacho17}
+A.~Camacho, E.~Triantafillou, C.~Muise, J.~Baier, and S.~McIlraith.
+\newblock Non-deterministic planning with temporally extended goals: {LTL} over
+  finite and infinite traces.
+
+\bibitem{DeNicola2015}
+R.~De~Nicola, A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock Twitlang(er): Interactions modeling language (and interpreter) for
+  twitter.
+\newblock In R.~Calinescu and B.~Rumpe, editors, {\em {SEFM'15}}.
+
+\bibitem{EasleyK10}
+D.~Easley and J.~Kleinberg.
+\newblock {\em Networks, Crowds, and Markets: Reasoning About a Highly
+  Connected World}.
+\newblock Cambridge, 2010.
+
+\bibitem{DBLP:conf/ijcai/FelliSLR17}
+P.~Felli, L.~de~Silva, B.~Logan, and S.~M. Ratchev.
+\newblock Process plan controllers for non-deterministic manufacturing systems.
+\newblock In {\em IJCAI'17}.
+
+\bibitem{DBLP:journals/internet/LiQLL16}
+M.~Li, C.~Qin, J.~Li, and P.~P.~C. Lee.
+\newblock Cdstore: Toward reliable, secure, and cost-efficient cloud storage
+  via convergent dispersal.
+\newblock {\em {IEEE} Internet Computing}, 20(3):45--53, 2016.
+
+\bibitem{DBLP:books/mk/Lynch96}
+N.~A. Lynch.
+\newblock {\em Distributed Algorithms}.
+\newblock Morgan Kaufmann, 1996.
+
+\bibitem{DBLP:journals/jlp/MaggiPST17}
+A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock A language-based approach to modelling and analysis of twitter
+  interactions.
+\newblock {\em J. Log. Algebr. Meth. Program.}, 87:67--91, 2017.
+
+\bibitem{amazon}
+C.~Newcombe, T.~Rath, F.~Zhang, B.~Munteanu, M.~Brooker, and M.~Deardeuff.
+\newblock How {Amazon} web services uses formal methods.
+\newblock {\em Communications of the ACM}, 58(4):66--73, 2015.
+
+\bibitem{DBLP:conf/focs/PnueliR90}
+A.~Pnueli and R.~Rosner.
+\newblock Distributed reactive systems are hard to synthesize.
+\newblock In {\em {FOCS'90}}, pages 746--757, 1990.
+
+\bibitem{TorresB15}
+J.~Torres and J.~Baier.
+\newblock Polynomial-time reformulations of {LTL} temporally extended goals
+  into final-state goals.
+\newblock In {\em IJCAI}, pages 1696--1703, 2015.
+
+\end{thebibliography}

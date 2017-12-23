@@ -1,0 +1,198 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[nohead, nofoot, margin=1.55cm]{geometry}
+\usepackage[german,english,australian]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{textcomp}
+\usepackage{xspace,amsmath,amssymb,url,pslatex,mathptmx,courier%
+}
+\usepackage[tight,hang]{subfigure}
+\usepackage{graphicx%,floatflt
+}
+%% needs to go back to empty or setting the page no. later needs to be fixed
+\pagestyle{empty}
+\makeatletter
+\renewcommand*\bib@heading{}%
+%  \subsection{\refname}\@mkboth{\refname}{\refname}
+%  \small See Sections B10.2 and 10.3 for citations    [e\ldots], [m\ldots], [M\ldots], and [W\ldots].}
+\renewenvironment{thebibliography}[1]{\bib@heading%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+  {\settowidth\labelwidth{\@biblabel{#1}}%
+    \leftmargin\labelwidth
+    %% K begin
+    \advance\leftmargin\labelsep
+    \small%
+    \setlength\lineskip{0pt}%
+    \setlength\parsep{0pt}%
+    \setlength\itemsep{0pt}%
+    %% K end
+    \@openbib@code
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \renewcommand*\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy\clubpenalty4000\widowpenalty4000%
+  \sfcode`\.=\@m}
+{\def\@noitemerr
+  {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
+\makeatother
+
+
+\input{/home/sr/svn/research/CV/data/bibdefs.tex}
+
+\usepackage{xspace}
+\def\TSE{Temporal-Strategic-Epistemic\xspace}
+
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+% Why is my research important?
+% How will I approach it?
+% What are my long-term research goals?
+% What are my career goals?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+\section*{Sasha Rubin, Research Statement, December 2017}
+Systems built on the insights of Artificial Intelligence are increasingly deployed in
+the world as agents, e.g., software agents negotiating on our behalf on the internet, driverless cars, robots
+exploring new and dangerous environments, bots playing games with humans. There is an obvious need
+for humans to be able to trust the decisions made by artificial agents, the need for meaningful interactions
+between humans and agents, and the need for transparent agents.
+
+This need can only be met if humans are able to model, control and predict the {behaviour} of agents. This challenge is made 
+all the more complicated since: 1) agents are often deployed with \emph{other} agents leading to \emph{multi-agent systems}, 2) agent behaviour is complex, and extends into the future, leading to the need for reasoning about \emph{time}, 3)  agents are often ``self-interested'', leading to the need to reason about \emph{strategies}, 4)
+agents may have uncertainty about the state, or even the structure, of other agents and the environment, leading to the need to reason about \emph{knowledge}.
+ 
+
+I approach these needs and questions by developing and applying \textbf{formal and logical methods} to modeling and reasoning about multi-agent systems. Moreover, 
+multi-agent systems can be viewed as multi-player games, and thus I use notions from game-theory (e.g., strategies, knowledge, and equilibria) to reason about them. 
+I also pursue more foundational/speculative questions such as ``What is synthesis and how should it be formalised?".
+
+
+
+\section{Current Research --- Formal methods for multi-agent systems}
+
+I have considered three main aspects of multi-agent systems: 1) {incomplete information}, 2) {imperfect information}, and 3) {quantitative objectives}.
+ 
+ \textbf{1) Incomplete Information} This refers to uncertainty about the environment (i.e., the structure of the game). I have considered two sources of incomplete information for MAS.
+ 
+
+
+First, the \emph{number of agents} may not be known, or may not be bounded a priori.
+In a series of papers, I have contributed to a generalisation of a cornerstone paper on verification of such systems (``Reasoning about Rings'', E.A. Emerson, K.S. Namjoshi, 
+\textsc{POPL}, 1995) from ring topologies to arbitrary topologies \DBLPconfvmcaiAminofJKR14,\DBLPconfconcurAminofKRSV14,\DBLPconfcadeAminofR16,\AKRSV17. Other work on this topic 
+studied the relative power of standard communication-primitives assuming an unknown number of agents \DBLPconflparAminofRZ15, 
+as well as the complexity of model-checking timed systems assuming an unknown number of agents \DBLPconficalpAminofRZS15. 
+I also contributed to a book on this topic published by Morgan \& Claypool in 2015~\DBLPseriessynthesis2015Bloem. %\DBLPjournalssigactBloemJKKRVW16.
+Recently, I have studied abstraction techniques for verifying consensus algorithms from the distributed computing literature~\AIRWZ18. 
+ 
+
+
+
+Second, the \emph{environment} may not be known, or may be partially-known. For instance, the agents may know they are in a ring, but may not know the size of the ring. I initiated the application of automata theory for the verification of high-level properties of light-weight mobile agents in partially-known environments~\DBLPconfatalRubin15. 
+In follow-up work I explored this theme further, including finding ways to model agents on grids --- the most common abstraction of 2D and 3D space~\DBLPconfprimaRubinZMA15,\DBLPconfatalAminofMRZ16,\DBLPconfprimaMuranoPR15. I also explored partially-known environments in the context of \textbf{automated planning}. Planning in AI can be viewed as the problem of finding strategies in succinct representations of one- or two-player graph-games. In this model vertices represent states, edges represent transitions, and the players represent the agents. I have contributed foundational work to such games. Concretely, I recently extended the classic belief-space construction for games of imperfect-information from finite arenas to infinite-arenas~\GMRSIJCAI16. Infinite arenas often arise in the study of MAS with incomplete information (for instance, consider a scenario that an agent needs to chop down a tree but does not know how many chops are needed to fell the tree; this incomplete information about the environment is naturally modeled as a single infinite-state arena). I have also used these ideas to elucidate the role of observation-projections in generalised planning problems~\BDGR17.
+% , i.e., games in which play stops the moment a vertex is repeated. 
+ 
+
+
+ \textbf{2) Imperfect Information} Even if agents have certainty about the structure of the system, they may not know exactly which state the system is in. This is called imperfect information and the associated logics for reasoning about such cases are called \emph{epistemic}. I have studied strategic-epistemic logics in a number of works, namely, with a prompt modality (thus allowing one to express that a property holds ``promptly'' rather than simply ``eventually'')~\DBLPconfkrAminofMRZ16, and on systems with public-actions (such as certain card games, including a hand of Poker or a round of Bridge)~
+\BLMR17,\BLMRIJCAI17. The importance of these last works is that they give the first decidability (and sometimes optimal complexity) results for strategic reasoning about games of imperfect information in which the agents may have arbitrary observations. In contrast, following classical restrictions on the observations or information of agents, I have also shown how to extend strategy logic by epistemic operators and identified a decidable fragment in which one can express equilibria concepts~\BLMRIJCAI17.
+ 
+
+\textbf{3) Quantitative Objectives}
+I have generalised classic results about certain games with quantitative objectives (i.e., Ehrenfeucht and J. Mycielski. Positional strategies for mean payoff games. International Journal of Game Theory, 8:109--113, 1979) to so-called first-cycle games~\AR17, thus providing an easy-to-use recipe for deciding if a given agent can use a memoryless strategy to play optimally. I have studied MAS in which agents have a \emph{mix} of qualitative and quantitative objectives~\GMPRW17, and proved that one can decide if a multi-player game has a Nash Equilibrium in such a setting. Finally,  I recently established and studied a logical formalism, called ``graded strategy-logic'', that is rich enough to \emph{count} equilibria~\AMMRSRjournal16,\DBLPconfatalAminofMMR16. 
+The importance of this result to equilibrium selection is that it gives a computational way to decide if a given game with Boolean objectives has a \emph{unique} Nash equilibrium (and thus supply strong predictions on rational play).
+
+% % \subsection{Logics with Counting Quantifiers}
+% % % Many logics in computer science do not have the ability to count. However, besides being a basic operation, counting allows one to describe finer details of a system.
+% % I have a long-standing interest in logics with quantifiers that count. E.g., the usual first-order quantifier $\exists x$ can be generalised to the counting quantifier $\exists^{\geq k} x$ which says that ``there are at least $k$ many $x$''. Concretely, I have studied logics that count strategies~\cite{AMMR16-SR,DBLP:conf/atal/AminofMMR16}, paths~\cite{DBLP:conf/lpar/AminofMR15}, strings and sets~\cite{DBLP:journals/bsl/Rubin08,DBLP:conf/stacs/KaiserRB08}. With a PhD student of Erich Gr\"adel's (Tobias Ganzow) I
+% % solved a 12 year-old conjecture of Courcelle's on the relationship between order and counting on graphs~\cite{DBLP:conf/stacs/GanzowR08}. I recently established and studied a logical formalism, called ``graded strategy-logic'', that is rich enough to count equilibria \cite{AMMR16-SR,DBLP:conf/atal/AminofMMR16}. The importance of this result to equilibrium selection is that it gives a computational way to decide if a given game has, e.g., a unique Nash equilibrium. 
+
+
+ 
+
+% \end{abstract}
+
+% % http://www.cs.rice.edu/~vardi/comp409/history.pdf
+% A running theme in my work is the development of logical formalisms for describing and reasoning about objects of interest to computer scientists, from the abstract (e.g., graphs, algebras, orders) to the concrete (e.g., multiplayer games). It is often said that ``logic is the calculus of computer science''~\cite{}. Moshe Vardi has said, of computer science, that ``description is our business''~\cite{}. Seen in this light, my work is of a foundational nature: it sheds light on 
+
+\section{Future Research Plans --- Building trustworthy agents}
+As discussed in the introduction, synthesising and analysing trustworthy artificial agents requires \emph{\TSE reasoning on Multi-agent Systems}.
+I plan to develop the mathematical foundations and computational techniques for building and analysing 
+trustworthy artificial agents, by leveraging the insights from my and others' recent results on modeling, control and analysis of single and multi-agent systems.
+I have three specific \textbf{objectives}: 1) discover new classes of systems for which \TSE reasoning is decidable and tractable, 
+2) develop the theory of reasoning about optimal strategies and socially optimal equilibria, and 3) establish scalable algorithms and tools for \TSE reasoning. 
+
+% \emph{State of the art.} Logic-based techniques are a standard approach to modeling, building and analysing computational systems. Indeed, simply {formalising} the reasoning tasks 
+% unambiguously requires a formal language. Not surprisingly, such reasoning is computationally \emph{undecidable} when it involves epistemic reasoning, a fact known since the late 1970s~\cite{DBLP:conf/focs/PetersonR79}. The historical approach to ameliorate this 
+% is to restrict to classes of multi-agent systems in which agents' private knowledge is hierarchical (typically, one assumes some sort of hierarchy on agent observation or information~\cite{DBLP:conf/focs/PetersonR79,DBLP:conf/focs/PnueliR90,DBLP:conf/lics/KupfermanV01, DBLP:conf/atva/BerwangerMB15,BMMRV17}). 
+% Although {mathematically elegant} and well-explored, the \emph{applicability of such assumptions is not very high} since in almost all meaningful scenarios, agents' private knowledge are not hierarchical.
+
+\emph{Proposed approach.}
+In a recent discovery~\BLMRIJCAI17,\BLMR17 we defined and explored a very general class of systems that does not suffer from long-standing limitations~\cite{DBLP:conf/focs/PnueliR90}. The class is that in which \emph{agent actions are fully observable}. This worked showed that \emph{\TSE reasoning is decidable and not harder than the non-epistemic case}. Many scenarios already fall into this class, e.g., distributed computing and multi-party computation based on broadcast communication~\cite{DBLP:books/mk/Lynch96, ADGH06}, multi-player games with public play such as poker~\cite{Bowling145}, e-auctions with public bidding~\cite{EasleyK10}. Moreover, the importance of this recent discovery is that it charts an unanticipated path for applying logic-based methods to 
+\emph{meaningful classes} of artificial agents in a \emph{large variety of fields}, for instance: models of collaborative robot exploration in controlled but dynamic environments~\cite{amazon};  models of cloud manufacturing~\cite{DBLP:conf/ijcai/FelliSLR17};  models of collusion in e-auctions and auction-based mechanisms~\cite{EasleyK10};  models of social networks that use broadcast communication, and thus also formalisations of \emph{twitter}~\cite{DeNicola2015,DBLP:journals/jlp/MaggiPST17}; models of multi-player games in which bidding and play is public, such as poker~\cite{Bowling145}; models of secure cloud-storage that use data-dispersal~\cite{DBLP:journals/internet/LiQLL16} and secret-sharing protocols~\cite{ADGH06}. 
+
+In order to meet objective 1) I propose to generalise systems in which all actions are fully observable, as well as explore orthogonal systems to achieve decidability and tractability; in order to meet objective 2) I propose to enrich the models and specification languages with costs/rewards and analyse these with new measures of strategy quality~\cite{ABK16,DBLP:journals/corr/BrafmanGP17,DBLP:journals/acta/BrihayeGHM17}; in order to meet objective 3) I propose to translate Temporal-Strategic-Epistemic reasoning to Automated Planning extending and refining existing translations~\cite{DBLP:conf/aaai/BaierM06,TorresB15,Camacho17}.
+
+
+\section{Past Research --- Algorithmic Model Theory}
+My prior work contributed to a research program called ``Algorithmic  Model Theory" whose aim is to develop and extend the successes of Finite Model Theory to infinite structures that can be reasoned about algorithmically. 
+Specifically, my PhD work pioneered the development of ``automatic structures'': this is a generalisation of the regular languages from sets to mathematical objects with structure, such as graphs, arithmetics, algebras, etc.  The fundamental property of automatic structures is that one can automatically answer logic-based queries about them (precisely, their first-order theory is decidable). I gave techniques for proving that structures are or are not automatic (similar to, but more complicated than, pumping lemmas for regular languages), I studied the computational complexity of deciding when two automatic structures are the same (isomorphic), and I found extensions of the fundamental property, thus enriching the query language \BGR11,\DBLPconflicsIshiharaKR02,\DBLPconflicsKhoussainovNRS04,\DBLPjournalslmcsKhoussainovNRS07,\DBLPconflicsKhoussainovRS03,\DBLPconfstacsKhoussainovRS04,\DBLPjournalstoclKhoussainovRS05,\DBLPjournalsbslRubin08. 
+Finally, I have also worked on extensions of automatic structures to include oracle computation~\DBLPjournalscorrabs-1210-2462,\DBLPconflicsRabinovichR12.
+ 
+
+
+% 
+% \section{Short-term trajectory}
+% 
+% I recently organised the first workshop on formal methods in artificial intelligence (FMAI) 2017. In the next few years I plan to further integrate into the AI community, and the MAS community specifically. Concretely, I plan to study more richer \emph{models of systems} (rather than richer logics), including finer representations of time, bounded-memory strategies, and probabilistic arenas and strategies.
+
+% traps: \cite{DBLP:journals/tcs/GrinshpunPRT14}
+
+% planning: \cite{DBLP:conf/prima/MuranoPR15}
+
+% \section{Misc}
+% PROMPT: \cite{DBLP:conf/kr/AminofMRZ16}
+
+
+
+% 
+% Probabilistic: \cite{DBLP:conf/cav/BustanRV04}
+%  A fundamental problem in computer science is that of ensuring that a system
+%  satisfies a particular property. Moshe Vardi, Doron Bustan and I \cite{BRV04}
+%  considered the complexity of checking that a probabilistic system (modeled by a
+%  finite-state discrete-time Markov chain) satisfies properties expressed by
+%  automata operating on infinite words. The sorts of properties that can be
+%  expressed extend those of linear temporal logic, a typical example is `Does the
+%  Markov chain almost surely enter this state infinitely often'? We presented an
+%  optimal algorithm that checks whether a given Markov chain satisfies a
+%  specification given by an alternating B\"uchi automaton, thus extending known
+%  work on linear temporal logic \cite{CoYa90}.
+ 
+% \small
+ 
+ 
+%  \nocite*{}
+% \bibliographystyle{plain}
+% \bibliography{/home/sr/svn/forsyte-publications/trunk/rubin.bib}
+
+% \vspace{-3	mm}
+\subsubsection*{References}
+\tiny
+\bibliographystyle{abbrv}
+\bibliography{researchplan,References}
+
+\end{document}
+

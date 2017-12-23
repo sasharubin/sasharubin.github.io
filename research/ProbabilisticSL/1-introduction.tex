@@ -1,0 +1,85 @@
+\section{Introduction}
+
+Outline:
+\begin{enumerate}
+ \item syntax and semantics of \SLR - strategy logic with randomised uniform strategies. perhaps allow probabilistic observations and effects in the CGS.
+ \item model-checking SLR: undecidable for memfull; tarski for memless
+ \item fragments SLR[1], SLR[BG], SLR[NG] ?
+ \item pushdown structures?
+ \item qualitative vs quantitative
+ \item applications: mixed equilibria, mixed rational synthesis.
+\end{enumerate}
+
+
+Deciding existence of mixed NE is undecidable!!! Is there an interesting orthogonal angle?
+
+\subsection{Related Work}
+
+Standard logics for strategic reasoning only allow pure strategies, i.e., \ATL, \ATLS, \SL. 
+
+There are a number of dimensions of extensions of strategic logics by probabilities:
+\begin{itemize}
+ \item deterministic CGS vs probabilistic CGS (MDP),
+ \item boolean probabilistic operators OP(X,Y): 
+\begin{quote}
+the coalition $A$, using the joint-strategy $S$ from $X$, for all counter strategies from $Y$, can ensures that property $\phi$ holds with probability at least $\alpha$. 
+\end{quote}
+ \item quantitative ($c$ can be any constant) vs qualitative ($c = 0,1$)
+ \item deterministic (D) vs. randomised (R) strategies
+ \item memoryless (M) vs. history-dependent (H) strategies
+\end{itemize}
+
+\textbf{Probabilistic extensions of ATL}
+\begin{enumerate}
+ \item PATL and PATLS \cite{DBLP:journals/fmsd/ChenFKPS13}:  extends \ATL by X = memoryless, Y = memoryless. Labeling algorithm. Two player concurrent stochastic parity game.
+ \item PATL with predicted behaviours \cite{DBLP:journals/fuin/BullingJ09}: extends \ATL by X = memless, Y = memless/behavioural.
+ \item PATL and PATL*~\cite{DBLP:conf/fskd/ChenL07a}: extend \ATLS by X = mixed memoryfull, Y = ??
+ \item Stochastic Game Logic SGL~\cite{DBLP:journals/acta/BaierBGK12} is a very expressive logic: it is like \ATL with strategy contexts. It is built over the $\omega$-regular languages (rather than \LTL as in \SL), it allows strategies to be propogated to subformulas (\ATLS does not allow this, but \SL does), and it has probabilistic operators stating "for all (mixed, memoryfull) strategies of agents that have not been assigned strategies, the probability that a run (actually, the projection of a run with respect to given subformulas) is in a given $\omega$-regular language is at least (at most, etc.) $\alpha$". The logic is interpreted over (discrete) probabilistic turn-based game structures. Question: what about deterministic structures? or continuous probability distributions on the structures? There are six types of strategies in this paper: a strategy is either mixed or pure, and either memoryfull, memoryless of finite-memory. SGL can express the existence of mixed Nash Equilibria, i.e., $\atlE[A] \bigwedge_{a \in A} \left( \atlE[\{a\}] \phi_a \to \phi_a\right)$, where $A$ is the set of agents, and $\phi_a$ is the objective of agent $a$. \todo{EXPAND! RELATE!} 
+ 
+ Results: RH undecidable; DM \pspaceC; RM between \pspace and \expspace (automata, then Tarski); RM qualitative \pspaceC; RH qualitative unknown.
+ \item PATL* by Huang et al: LTL + quantifier ``there exists strategies for A such that the probability of phi is at least/most d''.
+\end{enumerate}
+
+
+\textbf{Extensions of ATL in non-probabilistic setting and other stuff}
+\begin{enumerate}
+\item  Extension of \ATL by strategy contexts and memory requirements \cite{DBLP:conf/lfcs/BrihayeLLM09}, 
+\item BSIL~\cite{DBLP:conf/concur/WangHY11} has PSPACE MC (turn based) and is orthogonal to ATL, ATL*, GL, AMC \todo{what fragment of SL does it correspond to?}, similarly \cite{DBLP:conf/tacas/HuangSW13}.
+\item \cite{DBLP:conf/icaart/Schnoor13a}: QAPI is like ATL* with strategy contexts. The ``strategy choice'' variables $S_i$ are bound to quantifiers, i.e., $\atlE[A_i,S_i]$, and $S_i$ is a function such that $S_i(\sigma,\phi)$ is a memoryless uniform strategy for agent $\sigma$ that depends on a ``goal'' $\phi$. Thus the logic is interpreted wrt a CGS and an assignment of the variables. In particular, the meaning of $\atlE[\tpl{A_i,S_i}] \phi$ is that agent $a \in A_i$ uses strategy $S_i(a,\phi)$ (and agents not in the $A_i$s are free, and don't have to play uniform). The operator is probabilistic.
+
+The logic QAPI is actually of the form:
+\[
+\forall S_1 \exists S_2 \dots \forall S_n \Psi
+\] 
+where $\Psi$ has no bound variables, and the $S_i$ are the free variables in $\Psi$.
+The logic is interpreted over deterministic and probabilistic concurrent game structures. Strategies are pure and memoryless (i.e., strategies are functions from states to actions). The logic also has epistemic operators. 
+
+The point is that one can express that the countercoalition continues for its own goal, or that it counteracts $A$'s goal, or that it plays arbitrary (non-uniform) actions.
+
+Decidability follows from the memoryless assumption. The perfect recall case is undecidable.
+\item \cite{DBLP:journals/fuin/KuceraS08} PCTL+LAP, is like  PCTL with long-run average properties, MDPs, synthesis. "the percentage of time spent in bad states is at most 3percent". encode in FO(R).
+
+
+\item \cite{DBLP:conf/aaai/HuangSZ12}: with one player(!), incomplete information and sync perfect recall you can code the emptiness problem for probabilistic automata, which is undecidable.
+\end{enumerate}
+
+
+\textbf{Tools} \cite{DBLP:conf/lics/AlfaroH00} two-player game structure;
+
+
+\subsubsection{This work}
+
+In our work we consider concurrent deterministic game structures, mixed strategies, and we extend \SL (which itself extends \ATLS). Thus, a property that we can express, than can't be expressed in any of the cited models, is the existence of mixed Nash Equilibria in a concurrent game structure. \todo{DO THIS!}
+
+- SGL can almost express this, but it is turn based.
+
+- example. matching pennies. each player has a strategy enforcing a value of at least a half. 
+
+-{not clear how to model check this! can't use automata. and we have free variables. so maybe only some ATL* like fragment}. so maybe the only contribution is to concurrent games. FOCUS ON A LOGIC THAT CAN REASON ABOUT NE IN CONCURRENT GAMES, e.g., matching pennies. What is known about stochastic concurrent games?
+
+{\bf Undecidability}
+Fact: Existence of mixed NE is undecidable for terminal-reward payoffs on concurrent games.
+
+Question: what, exactly, are the assumptions here? does one get decidability by, e.g., looking at strategies in which actions are interleaved, e.g., by restricting to BC?
+
+extend QCTLstar by Probabilities?

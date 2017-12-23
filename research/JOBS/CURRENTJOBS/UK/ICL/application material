@@ -1,0 +1,521 @@
+
+    A full CV including a publication list;
+
+    A list of the four most significant publications. For each of the four publications, please include a short statement (100 words maximum) highlighting the key contributions made by the applicant in that work;
+
+    A research statement that describes your previous research contributions and future research plans (no more than two pages);
+
+    A teaching statement that describes your previous teaching experience and potential contributions to teaching in the Department (no more than two pages).
+
+====================================================
+
+
+year: 2015/2016 
+course title: System specification
+department: Department of Electrical Engineering and Information Technology, University of Naples ''Federico II''
+duties: Teaching assistant
+
+year: 2010
+course title: Logic and Computation
+department: Department of Mathematics, University of Cape Town
+duties: Lecturer, designed course
+
+year: 2008-2009
+course title: Calculus for Engineers
+department: Department of Mathematics, Cornell University
+duties: Lecturer, weekly online quizzes, marking (taught the course 5 times)
+
+year: 2008
+course title: Computational Biology
+department: Department of Computer Science, University of Auckland
+duties: Teaching assistant
+
+year: 2007
+course title: Discrete Structures in Mathematics and Computer Science
+department: Department of Computer Science, University of Auckland
+duties: Lecturer, design course
+
+year: 2007 
+course title: Mathematical Foundations of Software Engineering
+department: Department of Computer Science, University of Auckland
+duties:  Lectures, designed course
+
+year: 2003
+course title: Introduction to Formal Verification
+department: Department of Computer Science, University of Auckland
+duties: Lecturer, designed course
+
+year: 2002: 
+course title: Automata theory
+department: Department of Computer Science, University of Auckland
+duties: Lecturer, designed course
+
+year: 2000-2001
+course title: Pre-calculus
+department: Department of Mathematics, University of Wisconsin, Madison
+duties: Lecturer, tutorials, marking (taught the course 2 times)
+
+========================================================================
+
+year: 2017
+course title: Milestones in Solving Games on Graphs
+department: Institute for Information Systems, Technical University of Vienna
+Duties: Lecturer, course design
+
+year: 2017
+course title: Games on Graphs
+department: Department of Electrical Engineering and Information Technology, University of Naples ''Federico II''
+duties: Lecturer, designed course
+
+year: 2009
+course title: Logical Definability and Random Graphs
+department: Department of Mathematics, Cornell University
+duties: Lecturer, designed course
+
+year: 2006
+course title: Logic and Computation in Finitely Presentable Infinite Structures (advanced course)
+location: European Summer School in Logic, Language and Information (ESSLLI 2006)
+duties: Lecturer, designed course
+
+==========================================================================
+
+
+I taught three semesters of Calculus for Engineers at Cornell
+University, essentially a second course in calculus for first year
+students that follows a textbook very closely. After each lecture I
+reflected on how I could improve presentation of the material. This
+usually involved improving the pace, refining what to write on the
+board, and finding better ways to break up the material into chunks
+that students could follow. My students were generally capable of
+acquiring, on their own, the skills to work routine problems.
+Consequently my main goal was to get them to reason mathematically,
+both verbally and in writing.  I noticed that students are very
+sensitive to the wording I use. I kept a list of phrases to which they
+seem to respond, such as ‘can anyone help A with her answer?’, ‘can
+you explain B’s idea to me?’, ‘what do you mean by X?’, ‘are you
+sure?’, ‘who will summarise today’s class?’, ‘if all I do is teach you
+computational procedures I’m short-changing you’.
+
+I worked hard finding angles on the material that would engage my
+students. This invariably involved finding a question that sounded fun
+to try to solve. My favourite moments in class were those that
+involved discussing the big ideas in calculus. After writing a theorem
+on the board I asked: ‘why should we believe this?’ (a soft version of
+‘how do we prove it?’) and the often overlooked ‘how is this theorem
+useful?’.
+
+I also learned to ask questions that probe student knowledge and
+understanding. For instance ‘why would you say that?’ and ‘tell me
+more’ helps to diagnose their logic, and asking easy recall-level
+questions let me see whether students had been listening.
+
+Although my students were most comfortable with being given algorithms
+to solve problems I instead focused on problem solving techniques ala
+Pólya: 1) identify the unknown, 2) if you can’t solve the problem find
+a problem that you can solve that has a similar unknown.  I
+experimented with small group work in class to alter the pacing of
+lectures and encouraged my students to think and reflect on what they
+had and had not understood.
+
+Here is some student feedback from that course:
+
+- Sasha was a wonderful lecturer -- very organized, clear, and willing
+  to help anyone with difficulties (proactively, as well -- he sought
+  out people who were doing poorly and offered assistance, which was
+  extremely beneficial).
+
+- The class was interesting, fun, and easier. Professor was very well
+  prepared and made us really understand what we were learning by
+  having us write mathematical formulas in words. Instead of
+  memorizing formulas, he helped us understand what we were learning,
+  why we were learning it and why it was useful.
+
+Early in 2010 I designed, taught and administered the undergraduate
+course on logic and computation in the mathematics department at the
+University of Cape Town. Student abilities in the class were very
+mixed which meant I had to structure the course and pace very
+carefully. I slowed the lectures down a bit and moved harder questions
+to the tutorials. One of the strongest students sent me an email at
+the end of the term:
+
+- I have enjoyed your maths course the most of all the maths courses
+I’ve taken so far at UCT. Even more than the content, your delivery
+was excellent... I made the decision during one of your lectures to
+do honours in mathematics and computer science next year at UCT.
+Example experience – Technical University of Vienna
+
+In 2017 I designed and taught an advanced course “Milestones in
+Solving Games on Graphs” at the Technical University of Vienna (2017).
+The course attracted a mix of advanced undergraduates, Msc students,
+and PhD students. The course started from first principles, included
+many motivating examples, and also included lectures on my own
+recently published research.  Here are some student comments:
+
+- I especially liked the fact that you let us engage with the ideas.
+  I think I was able to deepen my understanding of graph games a lot
+  because I never took an actual course in it.
+
+- During the lecture Sasha Rubin promotes logically and mathematically
+  rigorous thinking and achieves a rare level of engagement among the
+  students.  This combination results in a very enjoyable and
+  stimulating course.
+
+
+==========================================================================
+
+Funding source: European Research Council and the Institute for Higher Mathematics ``F. Severi'', Marie Curie Fellowship (cofund)
+Project title: ROBOTS
+Duration (months): 24
+Start date: 2015
+Total value of support: Eu 107000
+Role: PI
+
+==========================================================================
+
+PUBLICATIONS (four best in last 5 years)
+
+1. Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin. 
+“Verification of Broadcasting Multi-Agent Systems against an Epistemic Strategy Logic”. 
+In: International Joint Conference on Artificial Intelligence (IJCAI 2017). 2017.
+
+SUMMARY: In this paper we exhibit a very general and meaningful class of multi-agent 
+systems with imperfect information in which model-checking very expressive logics is 
+decidable. Indeed, a system is in the class if all agents communicate by broadcasting 
+messages, and the logic allows one to express whether or not the system exhibits a 
+Nash Equilibrium, a fundamental concept in game-theory and for the analysis of behaviour 
+of agents. All previous results on model-checking such a rich logic relied on orthogonal 
+assumptions which are far less applicable, i.e., that the agents' observability form a 
+hierarchy.
+
+2. Benjamin Aminof and Sasha Rubin. 
+“First Cycle Games”. 
+In: Information and Computation 254
+(2017), pp. 195–216. doi: 10.1016/j.ic.2016.10.008.
+
+SUMMARY: In this paper we generalise a classic paper that shows how one can deduce important properties about about mean-payoff games (e.g.,
+that players can use memoryless strategies to play optimally) by connecting them to "first-cycle mean-payoff" games, i.e., those in which the winner is determined by the average weight of the first cycle that appears on the play. That classic paper is: 
+Ehrenfeucht and J. Mycielski. "Positional strategies for mean payoff games" In: International Journal of Game Theory, 8:109--113, 1979. 
+
+In our paper we define "first-cycle games" as a game in which players move a token along edges of a graph until a cycle is formed 
+(the cycle determines the winner). We systematically study first-cycle games, and, in particular, show how to connect these with "ordinary" games (in which the winner is determined by the whole play, not just the first cycle). In particular, we provide an easy-to-use recipe for deciding if agents can use a memoryless strategy to play optimally in an ordinary game. Our recipe easily applies to all known classes of games in which both players can play memorylessly, e.g., reachability games, parity games, energy games, mean-payoff games, etc.
+
+3. Giuseppe De Giacomo, Antonio Di Stasio, Aniello Murano, and Sasha Rubin. “Imperfect information
+games and generalized planning”. In: International Joint Conference on Artificial Intelligence (IJCAI
+2016). 2016.
+
+SUMMARY: In this paper we generalise a classic result that shows that a simple "subset-construction" can be used to remove imperfect information 
+from finite-state graph-games. That result appears in the 
+classic paper:
+John H. Reif. 
+"Universal games of incomplete information". 
+In: Proceedings of the eleventh annual ACM symposium on Theory of computing (STOC '79). 
+ACM, New York, NY, USA, 288-308. 
+DOI=http://dx.doi.org/10.1145/800135.804422
+
+Our paper begins with the observation that this subset-construction does not work on infinite-state games (games with infinitely many states appear in 
+models of realistic reactive systems). We then show how to "fix" the construction by using "trajectory constraints", a generalisation of fairness constraints.
+
+4. Benjamin Aminof, Swen Jacobs, Ayrat Khalimov, and Sasha Rubin. “Parameterized Model Checking
+of Token-Passing Systems”. In: Verification, Model Checking, and Abstract Interpretation - 15th
+International Conference, VMCAI 2014, San Diego, CA, USA, January 19-21, 2014, Proceedings.
+2014, pp. 262–281.
+
+SUMMARY: In this paper we generalise a classic paper that shows how one can model-check properties of distributed systems in a) there is no a-priori bound on the number of processes, and b) processes are arranged on a ring and communicate by token-passing. That classic paper is: 
+"Reasoning about Rings", E.A. Emerson, K.S. Namjoshi, POPL, 1995.
+
+In our paper, we supply the largest class of systems for which model-checking *branching-time* logics on *arbitrary* classes of topologies. 
+
+
+
+================================================================================
+
+REFEREED CONFERENCE ARTICLES
+
+[C1] Benjamin Aminof, Ilina Stoilkovska, Sasha Rubin, Josef Widder, and Florian Zuleger. “Parameterized
+Model Checking of Synchronous Distributed Algorithms by Abstraction”. In: VMCAI’18. 2018.
+
+[C2] Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin. “Verification of Broad-
+casting Multi-Agent Systems against an Epistemic Strategy Logic”. In: International Joint Conference
+on Artificial Intelligence (IJCAI 2017). 2017.
+
+[C3] Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin. “Verification of Multi-
+agent Systems with Imperfect Information and Public Actions”. In: Proceedings of the 2017 Interna-
+tional Conference on Autonomous Agents & Multiagent Systems (AAMAS 2017). 2017, pp. 1268–
+1276.
+
+[C4] Raphaël Berthon, Bastien Maubert, Aniello Murano, Sasha Rubin, and Moshe Y. Vardi. “Strategy
+logic with imperfect information”. In: 32nd Annual ACM/IEEE Symposium on Logic in Computer
+Science, LICS 2017, Reykjavik, Iceland, June 20-23, 2017. IEEE Computer Society, 2017, pp. 1–12.
+isbn: 978-1-5090-3018-7. doi: 10.1109/LICS.2017.8005136. url: https://doi.org/10.1109/
+LICS.2017.8005136.
+
+[C5] Blai Bonet, Giuseppe De Giacomo, Hector Geffner, and Sasha Rubin. “Generalized Planning: Non-
+Deterministic Abstractions and Trajectory Constraints”. In: International Joint Conference on Artificial
+Intelligence (IJCAI 2017). 2017.
+
+[C6] Julian Gutierrez, Aniello Murano, Giuseppe Perelli, Sasha Rubin, and Michael Wooldridge. “Nash
+Equilibria in Concurrent Games with Lexicographic Preferences”. In: International Joint Conference
+on Artificial Intelligence (IJCAI 2017). 2017. doi: 10.24963/ijcai.2017/148.
+
+[C7] Benjamin Aminof, Vadim Malvone, Aniello Murano, and Sasha Rubin. “Graded Strategy Logic:
+Reasoning about Uniqueness of Nash Equilibria”. In: Proceedings of the 2016 International Conference
+on Autonomous Agents & Multiagent Systems (AAMAS 2016). 2016, pp. 698–706.
+
+[C8] Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger. “Automatic Verification of
+Multi-Agent Systems in Parameterised Grid-Environments”. In: Proceedings of the 2016 International
+Conference on Autonomous Agents & Multiagent Systems (AAMAS 2016). 2016, pp. 1190–1199.
+
+[C9] Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger. “Prompt Alternating-Time
+Epistemic Logics”. In: Principles of Knowledge Representation and Reasoning: Proc. of the 15th
+International Conference, (KR 2016). 2016, pp. 258–267.
+
+[C10] Benjamin Aminof and Sasha Rubin. “Model Checking Parameterised Multi-token Systems via the
+Composition Method”. In: Proc. 8th International Joint Conference on Automated Reasoning, (IJCAR
+2016). 2016, pp. 499–515.
+
+[C11] Giuseppe De Giacomo, Antonio Di Stasio, Aniello Murano, and Sasha Rubin. “Imperfect information
+games and generalized planning”. In: International Joint Conference on Artificial Intelligence (IJCAI
+2016). 2016.
+
+[C12] Benjamin Aminof, Aniello Murano, and Sasha Rubin. “On CTL* with Graded Path Modalities”.
+In: Logic for Programming, Artificial Intelligence, and Reasoning - 20th International Conference,
+LPAR-20 2015, Suva, Fiji, November 24-28, 2015, Proceedings. 2015, pp. 281–296
+
+[C13] Benjamin Aminof, Aniello Murano, Sasha Rubin, and Florian Zuleger. “Verification of Asynchronous
+Mobile-Robots in Partially-Known Environments”. In: PRIMA 2015: Principles and Practice of Multi-
+Agent Systems - 18th International Conference, Bertinoro, Italy, October 26-30, 2015, Proceedings.
+2015, pp. 185–200.
+
+[C14] Benjamin Aminof, Sasha Rubin, Francesco Spegni, and Florian Zuleger. “Liveness of Parameterized
+Timed Networks”. In: Automata, Languages, and Programming - 42nd International Colloquium,
+ICALP 2015, Kyoto, Japan, July 6-10, 2015, Proceedings, Part II. 2015, pp. 375–387.
+
+[C15] Benjamin Aminof, Sasha Rubin, and Florian Zuleger. “On the Expressive Power of Communication
+Primitives in Parameterised Systems”. In: Logic for Programming, Artificial Intelligence, and Reason-
+ing - 20th International Conference, LPAR-20 2015, Suva, Fiji, November 24-28, 2015, Proceedings.
+2015, pp. 313–328.
+
+[C16] Aniello Murano, Giuseppe Perelli, and Sasha Rubin. “Multi-agent Path Planning in Known Dynamic
+Environments”. In: PRIMA 2015: Principles and Practice of Multi-Agent Systems - 18th International
+Conference, Bertinoro, Italy, October 26-30, 2015, Proceedings. 2015, pp. 218–231.
+
+[C17] Sasha Rubin. “Parameterised Verification of Autonomous Mobile-Agents in Static but Unknown
+Environments”. In: Proc. of the International Conference on Autonomous Agents and Multiagent
+Systems, (AAMAS 2015). 2015, pp. 199–208.
+
+[C18] Benjamin Aminof, Swen Jacobs, Ayrat Khalimov, and Sasha Rubin. “Parameterized Model Checking
+of Token-Passing Systems”. In: Verification, Model Checking, and Abstract Interpretation - 15th
+International Conference, VMCAI 2014, San Diego, CA, USA, January 19-21, 2014, Proceedings.
+2014, pp. 262–281.
+
+[C19] Benjamin Aminof, Tomer Kotek, Sasha Rubin, Francesco Spegni, and Helmut Veith. “Parameter-
+ized Model Checking of Rendezvous Systems”. In: CONCUR 2014 - Concurrency Theory - 25th
+International Conference, CONCUR 2014, Rome, Italy, September 2-5, 2014. Proceedings. 2014,
+pp. 109–124.
+
+[C20] Krishnendu Chatterjee, Siddhesh Chaubal, and Sasha Rubin. “How to Travel between Languages”.
+In: Language and Automata Theory and Applications - 7th International Conference, LATA 2013,
+Bilbao, Spain, April 2-5, 2013. Proceedings. 2013, pp. 214–225.
+
+[C21] Alex Kruckman, Sasha Rubin, John Sheridan, and Ben Zax. “A Myhill-Nerode theorem for automata
+with advice”. In: Proceedings Third International Symposium on Games, Automata, Logics and
+Formal Verification, GandALF 2012, Napoli, Italy, September 6-8, 2012. 2012, pp. 238–246.
+
+[C22] Alexander Rabinovich and Sasha Rubin. “Interpretations in Trees with Countably Many Branches”.
+In: LICS 2012, Proceedings of the 27th Annual IEEE Symposium on Logic in Computer Science,
+Dubrovnik, Croatia, June 25-28, 2012. 2012, pp. 551–560.
+
+[C23] Tobias Ganzow and Sasha Rubin. “Order-Invariant MSO is Stronger than Counting MSO in the
+Finite”. In: STACS 2008, 25th Annual Symposium on Theoretical Aspects of Computer Science,
+Bordeaux, France, February 21-23, 2008, Proceedings. 2008, pp. 313–324.
+
+[C24] Lukasz Kaiser, Sasha Rubin, and Vince Bárány. “Cardinality and counting quantifiers on omega-
+automatic structures”. In: STACS 2008, 25th Annual Symposium on Theoretical Aspects of Computer
+Science, Bordeaux, France, February 21-23, 2008, Proceedings. 2008, pp. 385–396.
+
+[C25] Bakhadyr Khoussainov and Sasha Rubin. “Decidability of Term Algebras Extending Partial Algebras”.
+In: Computer Science Logic, 19th International Workshop, CSL 2005, 14th Annual Conference of
+the EACSL, Oxford, UK, August 22-25, 2005, Proceedings. 2005, pp. 292–308.
+
+[C26] Doron Bustan, Sasha Rubin, and Moshe Y. Vardi. “Verifying omega-Regular Properties of Markov
+Chains”. In: Computer Aided Verification, 16th International Conference, CAV 2004, Boston, MA,
+USA, July 13-17, 2004, Proceedings. 2004, pp. 189–201.
+
+[C27] Bakhadyr Khoussainov, André Nies, Sasha Rubin, and Frank Stephan. “Automatic Structures: Richness
+and Limitations”. In: LICS 2004, 19th IEEE Symposium on Logic in Computer Science, 14-17 July
+2004, Turku, Finland, Proceedings. 2004, pp. 44–53.
+
+[C28] Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan. “Definability and Regularity in Automatic
+Structures”. In: STACS 2004, 21st Annual Symposium on Theoretical Aspects of Computer Science,
+Montpellier, France, March 25-27, 2004, Proceedings. 2004, pp. 440–451.
+
+[C29] Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan. “On Automatic Partial Orders”. In: LICS
+2003, 18th IEEE Symposium on Logic in Computer Science, 22-25 June 2003, Ottawa, Canada,
+Proceedings. 2003, pp. 168–177.
+
+[C30] Hajime Ishihara, Bakhadyr Khoussainov, and Sasha Rubin. “Some Results on Automatic Structures”.
+In: LICS 2002, 17th IEEE Symposium on Logic in Computer Science, 22-25 July 2002, Copenhagen,
+Denmark, Proceedings. 2002, p. 235.
+
+REFEREED JOURNAL ARTICLES
+
+[J1] Benjamin Aminof, Tomer Kotek, Sasha Rubin, Francesco Spegni, and Helmut Veith. “Parameterized
+model checking of rendezvous systems”. In: Distributed Computing (2017), pp. 1–36. issn: 1432-0452.
+doi: 10.1007/s00446-017-0302-6. url: http://dx.doi.org/10.1007/s00446-017-0302-6.
+
+[J2] Benjamin Aminof, Vadim Malvone, Aniello Murano, and Sasha Rubin. “Graded Strategy Logic”. In:
+Information and Computation (2017). To appear.
+
+[J3] Benjamin Aminof and Sasha Rubin. “First Cycle Games”. In: Information and Computation (2016).
+
+[J4] Andrey Grinshpun, Pakawat Phalitnonkiat, Sasha Rubin, and Andrei Tarfulea. “Alternating traps in
+Muller and parity games”. In: Theoretical Computer Science 521 (2014), pp. 73–91.
+
+[J5] Sasha Rubin. “Automata Presenting Structures: A Survey of the Finite String Case”. In: Bulletin of
+Symbolic Logic 14.2 (2008), pp. 169–209.
+
+[J6] Bakhadyr Khoussainov, André Nies, Sasha Rubin, and Frank Stephan. “Automatic Structures: Richness
+and Limitations”. In: Logical Methods in Computer Science 3.2 (2007).
+
+[J7] Bakhadyr Khoussainov, Sasha Rubin, and Frank Stephan. “Automatic linear orders and trees”. In:
+ACM Transactions on Computational Logic 6.4 (2005), pp. 675–700.
+
+[J8] Bakhadyr Khoussainov and Sasha Rubin. “Automatic Structures: Overview and Future Directions”.
+In: Journal of Automata, Languages and Combinatorics 8.2 (2003), pp. 287–301.
+
+[J9] Bakhadyr Khoussainov and Sasha Rubin. “Graphs with Automatic Presentations over a Unary
+Alphabet”. In: Journal of Automata, Languages and Combinatorics 6.4 (2001), pp. 467–480.
+
+REFEREED WORKSHOP ARTICLES
+[W1] Blai Bonet, Giuseppe De Giacomo, Hector Geffner, and Sasha Rubin. “Generalized Planning: Non-
+Deterministic Abstractions and Trajectory Constraints”. In: ICAPS 2017 Workshop on Generalized
+Planning. 2017.
+
+[W2] Benjamin Aminof, Vadim Malvone, Aniello Murano, and Sasha Rubin. “Graded Strategy Logic”. In:
+Proceedings 4th International Workshop on Strategic Reasoning, SR 2016, New York, USA. 2016.
+
+[W3] Benjamin Aminof and Sasha Rubin. “First Cycle Games”. In: Proceedings 2nd International Workshop
+on Strategic Reasoning, SR 2014, Grenoble, France, April 5-6, 2014. 2014, pp. 83–90.
+
+BOOKS AND BOOK CHAPTERS
+[B1] Roderick Bloem, Swen Jacobs, Ayrat Khalimov, Igor Konnov, Sasha Rubin, Helmut Veith, and Josef
+Widder. Decidability of Parameterized Verification. Synthesis Lectures on Distributed Computing
+Theory. Morgan & Claypool Publishers, 2015.
+
+[B2] Vince Bárány, Erich Grädel, and Sasha Rubin. “Automata-based presentations of infinite structures”.
+In: Finite and Algorithmic Model Theory. Ed. by Javier Esparza, Christian Michaux, and Charles
+Steinhorn. Cambridge Books Online. Cambridge University Press, 2011, pp. 1–76.
+
+=============================================================================
+
+Personal Development and Developing Others
+
+I have an interest in engaging in the scholarship of teaching and rigorously investigating
+how to improve student learning, especially of abstract and mathematical concepts. In order 
+to improve my teaching while at Cornell, I had regular meetings to discuss pedagogy and rigorous 
+insights about teaching and learning with David Way, Associate Director of Instructional Support, 
+Center for Teaching Excellence, Cornell University (dgw2@cornell.edu). 
+
+While at IST Austria I volunteered as a contact point for PhD students who wanted to discuss any 
+aspect of being a PhD student.
+
+=============================================================================
+
+ESTEEM
+
+CHAIR
+2017 Co-chair of the Italian Conference on Theoretical Computer Science (ICTCS)
+http://ictcs2017.unina.it/
+
+2017 Co-chair of the International Workshop on Strategic reasoning (SR)
+http://sr2017.csc.liv.ac.uk/
+
+ORGANISER
+2017 Co-organiser of the Italian Conference on Theoretical Computer Science (ICTCS)
+http://ictcs2017.unina.it/
+
+2017 Co-organiser of the Italian Conference on Computational Logic (CILC)
+http://cilc2017.unina.it/
+
+2017 Co-organiser of the First Workshop on Formal Methods in AI (FMAI)
+https://sites.google.com/site/fmai2017homepage/
+
+2013 Co-organiser of the IST Austria Young Scientist Symposium on the topic ‘Understanding
+Shape: in silico and in vivo’
+ist.ac.at/young-scientist-symposium-2013/
+
+PC MEMBERSHIP
+
+2018 PC member of the International Workshop on Strategic reasoning (SR)
+http://projects.lsv.fr/sr18/
+
+2018 PC member of the International Conference on Autonomous Agents and Multi-agent Systems
+(AAMAS)
+
+2018 PC member of the AAAI Conference on Artificial Intelligence (AAAI)
+https://aaai.org/Conferences/AAAI-18/
+
+2017 PC member of the International Joint Conference on Artificial Intelligence (IJCAI)
+
+2017 PC member of the AAAI Conference on Artificial Intelligence (AAAI)
+
+2016 PC member of the International Workshop of Strategic Reasoning (SR)
+
+2016 PC member of the International Symposium on Games, Automata, Logics and Formal
+Verification (GandALF)
+
+2016 PC member of the European Conference on Artificial Intelligence (ECAI)
+
+EDITORSHIP
+2017 Guest-editor, Special issue of SR 2017, Information and Computation, In process.
+
+2017 Guest-editor, Special issue of ICTCS 2017 and CILC 2017, Theoretical Computer Science, In
+process.
+
+2017 Editor, Joint proceedings of ICTCS 2017 and CILC 2017, CEUR Workshop proceedings,
+ISSN 1613-0073, ceur-ws.org/Vol-1949/
+
+PROJECT CO-ORDINATOR
+2013-2016 Handbook of Model Checking, to be published by Springer, and edited by Edmund Clarke,
+Thomas Henzinger, Helmut Veith and Roderick Bloem. Duties included: assisted editors in
+managerial, organisational, and technical matters, including: organising reviews, reviewers,
+and copy-editors; liasing between editors and Springer editor. ISBN 978-3-319-10575-8,
+http://www.springer.com/us/book/9783319105741
+
+FUNDING REVIEWING
+Icelandic Research Fund
+
+BOOK REVIEWING
+Handbook of Model Checking
+
+JOURNAL REVIEWING
+Journals Artificial Intelligence (AIJ), Journal of Symbolic Logic (JSL), Logical Methods in Computer
+Science (LMCS), Transactions on Computational Logic (ToCL), Theory of Computing Sys-
+tems (ToCS), Central European Journal of Mathematics, Information and Computation
+(IC), Journal of Logic and Computation (JLC), Annals of Mathematics and Artificial Intelli-
+gence (AMAI), Theory and Practice of Logic Programming (TLP), Science of Computer
+Programming (SCP)
+
+CONFERENCE REVIEWING 
+IJCAI, KR, AAMAS, AAAI, EUMAS, ECAI, LICS, STACS, ICALP, MFCS, CONCUR, CSL,
+FoSSaCS, FSTTCS, SR, KRR@SAC, CiE, GandALF, RV, LPAR, LATA
+
+INVITED WORKSHOP TALKS
+2017 Games of Imperfect-information with Public Actions, RoboLog, Rennes.
+
+2017 Verification of Multi-Agent Systems with Imperfect Information and Public Actions,
+FMAI17, Napoli.
+
+2012 Finite and Algorithmic Model Theory, Les Houches, France.
+
+2011 Automata theory and Applications, IMS programme, Singapore.
+
+2008 Computational Model Theory, CNRS SIG, Bordeaux, France.
+
+2007 Algorithmic-Logical Theory of Infinite Structures, Dagstuhl, Germany.
+
+2006 Finite and Algorithmic Model Theory, Newton Institute, England.
+
+2004 Workshop on Automata, Structures and Logic, Auckland, New Zealand.
+
+

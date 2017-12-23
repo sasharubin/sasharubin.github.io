@@ -1,0 +1,67 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Bachelor Thesis Project}
+\author{}
+\date{}
+\usepackage{hyperref}
+
+\begin{document}
+
+\maketitle
+
+\section*{Rational Synthesis in Graphical games (GG)}
+
+The aim of this project is to build a tool that a) decides if a graphical game has a NE, and b) allows the user to ``play'' the game of finding a NE.
+
+%(each player lives on a node of a graph and has a fixed finite number of actions, and whose payoff, at each step, depends on the actions of its neighbours).
+
+\subsection*{Plan}
+\begin{enumerate}
+ \item Read paper about graphical games \cite{DBLP:conf/aaai/VickreyK02}. Pick some examples from papers on graphical games, e.g., ROAD, random games, ... \hfill $1$ week
+%  One-shot games (of perfect information): representation in strategic form, boolean games \cite{DBLP:conf/ecai/BonzonLLZ06}, graphical games 
+ \item Decide on libraries to handle a) graphs, b) payoff functions, and code algorithm that decides if a profile is a NE \hfill $3$ weeks % find text on NE
+ \item Code GUI that allow user to ``play'' a graphical game, i.e., the player tries to find a NE (hints can be given, e.g., 
+ which nodes have profitable deviations). \hfill $2$ weeks
+ \item Familiarise with a SAT solver (e.g., \url{minisat.se}) and code algorithm that decides if a GG has a NE \hfill $3$ weeks
+ \item Compare with other algorithms for GG \cite{DBLP:journals/aamas/ClercqBSMNC17}. \hfill $2$ weeks
+ \item Write thesis. \hfill $3$ weeks
+\end{enumerate}
+
+\subsection*{Extensions}
+\begin{enumerate}
+ \item Extend to E-NASH, i.e., given a GG and an extra formula $\Phi$, decide if there exists a NE of GG satisfying $\Phi$.
+ \item Extend to Iterated Graphical Games with $LDL_f$ objectives.
+ \item Extend to real-valued payoffs and aggregation payoffs (e.g., average).
+ \item Extend to Boolean Game.
+ \item Write and implement a PTIME algorithm for the case that the graphs are trees.
+\end{enumerate}
+
+\subsection*{Additional Readings and References}
+
+\begin{itemize}
+ \item \cite{DBLP:conf/atal/NudelmanWSL04} helps generate GG.
+ \item \cite{DBLP:conf/atal/IsmailiBMP13} shows how to code GG in SAT (read Definition $1$, and Section $3$ on SAT).
+ \item \cite{DBLP:journals/corr/abs-1109-2152} shows that a) deciding existence of a NE in a GG is NP-complete (Section $3$), and 
+ a reduction to CSP that shows existence of a NE in a GG is in PTIME for GG of bounded treewidth (Section $4$).
+\end{itemize}
+
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+% 
+% 
+% Tasks:
+% - read ECAI06 paper on BG and AAAI02 paper on graphical games (Multi-Agent Algorithms for Solving Graphical Games).
+% - decide which approach to take (reduction to SAT, reduction to CSP, reduction to MLP, hill-climbing).
+% - build prototype.
+% - and compare to existing algs for Graphical Games.
+% 
+% - writeup
+% 
+% Time permitting:
+% - extend to E-NASH (i.e., player is trying to find NE that minimises some boolean formula)
+% - extend to Iterated Boolean Games (with LDL_f or LTL_f objectives)
+\end{document}

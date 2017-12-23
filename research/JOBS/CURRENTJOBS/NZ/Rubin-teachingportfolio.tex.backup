@@ -1,0 +1,546 @@
+\documentclass[10,a4paper,sans]{moderncv}       
+% possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvcolor{blue}                               % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+% personal data
+\name{Sasha}{Rubin}
+% \title{}                               % optional, remove / comment the line if not wanted
+% \address{University of Naples ``Federico II''}{}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+% \phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+% \phone[fixed]{+2~(345)~678~901}
+% \phone[fax]{+3~(456)~789~012}
+\email{rubin@unina.it}                               % optional, remove / comment the line if not wanted
+% \homepage{forsyte.at/alumni/rubin/}                         % optional, remove / comment the line if not wanted
+% \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
+% \social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+% \social[github]{jdoe}                              % optional, remove / comment the line if not wanted
+\extrainfo{Teaching Portfolio}                 % optional, remove / comment the line if not wanted
+% \photo[70pt][0.4pt]{RUBIN_Sasha.jpg}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put
+% bibliography adjustements (only useful if you make citations in your resume, or print a list of publications using BibTeX)
+%   to show numerical labels in the bibliography (default is to show no labels)
+\makeatletter\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}\makeatother
+%   to redefine the bibliography heading string ("Publications")
+\renewcommand{\refname}{References}
+
+
+% \usepackage[gen]{eurosym}
+
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+
+%-----       letter       ---------------------------------------------------------
+% recipient data
+\recipient{Hiring Committee, Department of Computer Science}{University of Auckland}
+\date{December, 2017}
+\opening{\vspace{-13mm}}
+\closing{I look forward to hearing from you, \vspace{-1cm}}
+% \enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+
+\makelettertitle
+
+This document outlines my teaching and supervision experience and philosophy.
+
+\section{Teaching}
+
+\subsection{My own teachers}
+
+The most influential course I've attended was a graduate level introduction to
+mathematical logic at the University of Auckland.  It was taught by a topologist, David McIntyre, based on Moore's method --- 
+we were given basic definitions, followed by statements of
+fundamental theorems that we were to prove ourselves and present the following
+lesson. The material was to form the background of my
+graduate study. I probably did my best learning when my classmates presented a
+proof that I was unable to produce beforehand. Identifying the points in the proof that I
+did not think of trained me to get a focus on why and where my own reasoning
+had fallen short. It is these sorts of insights that I try generate in my own classroom. 
+
+I also had memorable courses by Christian Calude (algorithmic information theory), Bakhadyr Khoussainov (automata theory), and 
+Michael Dinneen and Peter Gibbons (advanced artificial intelligence). 
+
+\subsection{My teaching experience}
+
+As indicated in my CV, I have designed and taught courses at all academic levels:
+\begin{itemize}
+ \item Graduate-level courses at Technical University of Vienna, University of Naples, Cornell University, and the European Summer School in Logic, Language and Information. 
+ \item Undergraduate-level courses at University of Naples, University of Cape Town, Cornell University, University of Auckland, and University of Wisconsin Madison.
+\end{itemize}
+
+I work hard at improving my teaching. In particular, I have sought out teaching mentors, notably Maria Terrell (Director of Teaching Assistant Programs) and David Way (Associate Director of Instructional Support) at Cornell University. Maria taught me, for instance, the importance of explicitly making material relevant to students' prior knowledge and experience, especially for first-year undergraduate students who may not have developed the stamina and motivation for engaging in more abstract/mathematical material. David taught me that improvement grows out of \textit{reflection} on \textit{feedback} about one's teaching. David also taught me the importance of monitoring student interest and comprehension and adjust one's teaching practice accordingly. I also made an effort to discuss teaching strategies with teachers that have won awards for their teaching (e.g., John Hopcroft), and attend their lectures in order 
+to \textit{experience} good teaching.
+
+Here are my main teaching practices:
+\begin{enumerate}
+ \item \textbf{I try make sure the material engages students:} This often involves asking questions that are fun for students to solve, or discussing the big ideas underlying the technical content. Consequently, students were more engaged during class which made the experience for everyone (including me) more enjoyable than it otherwise would have been. 
+ 
+ \item \textbf{I formally and informally solicit feedback:} I ask for student feedback (positive and negative) after the course is finished in order to understand what worked well and what didn't (from the student point of view). Early on in a course I also ask for basic feedback to fix easy problems (e.g., blackboard writing should be bigger). I have also asked mentors and good teachers to visit my class and observe my teaching, especially if I am concerned about one or another aspect of my teaching or my students.
+ 
+ \item \textbf{I get to know my students:} For instance, while teaching at Cornell I scheduled a 10-15 minute meeting with each student (I had 30 students in each class) in order to find out 
+ why they were studying, what they planned to major in, and what (if any) apprehensions they had about the course. Consequently, I was able to incorporate examples that would interest students, 
+ as well as refine how I pitched higher-level ideas in class.
+ 
+ \item \textbf{I use technology when appropriate:} For instance, while teaching at Cornell I created weekly short online-quizzes using the online learning platform moodle (see \url{moodle.org}) that were explicitly designed to encourage that students read the relevant chapter of the textbook \textit{before} coming to class. Consequently, the level of student understanding and questions during class were \textit{much higher} than they otherwise would have been. 
+ 
+ \item \textbf{I give hints of interesting material that goes beyond the syllabus:} For instance, I connect material in the syllabus to material that will be covered in more advanced courses on the same topic, or I connect material to my own research.
+ 
+ \item \textbf{I try teach students how to identify, formalise and solve problems:} In other words, I try use the syllabus to arm students with general ways of thinking that are useful for solving 
+ any problem, not just the ones in the syllabus. This usually involves demonstrating my thought process, as well as giving students an opportunity to try solve problems in class. 
+ 
+ 
+ \item \textbf{I encourage student interaction:} For instance, I sometimes break students into pairs so they can try solve a problem together or explain an issue to each other (``think-pair-share''). This interaction often helps students realise that they don't yet understand an idea or technique well enough to work with it on their own. 
+ 
+ 
+ \item \textbf{After each lecture I reflect on how I could improve presentation of the material:} This sometimes involves improving the pace, refining what to write on the board, and finding better ways to break up the material into chunks that students could follow. This is especially useful if I teach a course more than once.
+ 
+ \item \textbf{I go to lectures of other academics:} This allows me to see what else is going on in the department, and sometimes serve as a master-class in how to teach (and sometimes in how not to teach!).
+ 
+
+\end{enumerate}
+
+% For instance, after writing a theorem on the board I asked: `why should we believe this?' (a soft version of `how do we prove it?') and the often overlooked `how is this theorem useful?'.
+ 
+ 
+
+
+\
+
+% It seems that the best way, and possibly the only way, to properly absorb mathematics is to do mathematics. 
+% %This makes the usual lecture format for teaching mathematical ideas challenging.
+%  I often discuss teaching strategies with colleagues.
+% Our discussions usually revolve around techniques to engage students to enjoy and think deeply about the material.
+
+\subsection{Example Experience -- Cornell University}
+
+I taught three semesters of Calculus for Engineers at Cornell University, essentially a second course in calculus for first year students that follows a textbook very closely. I now describe this experience.
+
+After each lecture I reflected on how I could improve presentation of the material. This usually involved improving the pace, refining what to write on the board, and finding better ways to break up the material into chunks that students could follow.
+
+My students were generally capable of acquiring, on their own, the skills to work routine problems. %; but they need to feel that the mathematics is relevant.
+Consequently my main goal 
+was to get them to reason mathematically, both verbally and in writing. I noticed that students are very sensitive to the wording I use.
+I kept a list of phrases to which they seem to respond, such as  `can anyone help A with her answer?', `can you explain B's idea to me?', `what do you mean by X?',
+`are you sure?', `who will summarise today's class?', `if all I do is teach you computational procedures I'm short-changing you'.
+
+
+I worked hard finding angles on the material that would engage my students. This invariably involved finding a question that
+sounded fun to try to solve. My favourite moments in class were those that involved discussing the big ideas in calculus. After writing a theorem on the board I asked: `why should we believe this?' (a soft version of `how do we prove it?') and the often overlooked `how is this theorem useful?'.
+
+
+I also learned to ask questions that probe student knowledge and understanding. For instance `why would you say that?' and `tell me more' helps to diagnose their logic, and asking easy recall-level questions let me see whether students had been listening.
+
+
+Although my students were most comfortable with being given algorithms to solve problems I instead focused on problem solving techniques \textit{ala} P\'olya: 1) identify the unknown, 2) if you can't solve the problem find a problem that you can solve that has a similar unknown. 
+
+
+I experimented with small group work in class to alter the pacing of lectures and encouraged my students to think and reflect on what they had and had not understood.
+
+Here is some student feedback:
+\noindent
+\begin{verbatim}
+- Sasha was a wonderful lecturer -- very organized, clear, and willing 
+  to help anyone with difficulties (proactively, as well -- he sought 
+  out people who were doing poorly and offered assistance, which was 
+  extremely beneficial).
+\end{verbatim}
+
+\begin{verbatim}
+- The class was interesting, fun, and easier. Professor was very well 
+  prepared and made us really understand what we were learning by having 
+  us write mathematical formulas in words. Instead of memorizing formulas, 
+  he helped us understand what we were learning, why we were learning it 
+  and why it was useful. 
+\end{verbatim}
+
+\subsection{Example Experience -- University of Cape Town}
+
+Early in 2010 I designed, taught and administered the undergraduate course on logic and computation in the mathematics department at the University of Cape Town. Student abilities in the class were very mixed which meant I had to structure the course and pace very carefully. I slowed the lectures down a bit and moved harder questions to the tutorials. One of the strongest students sent me an email at the end of the term:
+
+\begin{verbatim}
+- I have enjoyed your maths course the most of all the maths courses 
+  I've taken so far at UCT. Even more than the content, your delivery 
+  was excellent... I made the decision during one of your lectures to 
+  do honours in mathematics and computer science next year at UCT. 
+\end{verbatim}
+
+\subsection{Example experience -- Technical University of Vienna}
+
+In 2017 I designed and taught an advanced course ``Milestones in Solving Games on Graphs'' at the Technical University of Vienna (2017). The course attracted a mix of 
+advanced undergraduates, Msc students, and PhD students. The course started from first principles, included many motivating examples, and also included lectures on my 
+own recently published research.
+
+Here are some student comments:
+\begin{verbatim}
+- I especially liked the fact that you let us engage with the ideas. 
+  I think I was able to deepen my understanding of graph games a 
+  lot because I never took an actual course in it.
+\end{verbatim}
+
+\begin{verbatim}
+- During the lecture Sasha Rubin promotes logically and mathematically 
+  rigorous thinking and achieves a rare level of engagement among the students. 
+  This combination results in a very enjoyable and stimulating course.
+\end{verbatim}
+
+\subsection{Future teaching plans}
+
+I believe that computer-science curricula should provide students with a rigorous foundation in computational thinking and in the reasoning required to design and develop computational systems. 
+
+Computational thinking is rooted in mathematical logic. Thus, even if there are not many dedicated logic courses, I believe that one can and should inject computational aspects of logic into existing topics, e.g., Boolean logic and satisfiability in courses on discrete mathematics, unique-readability of logical formulas into courses on parsers, first-order logic and temporal logics in courses on databases, etc. 
+
+% Just as important as learning foundations, is developing creativity in students that will be useful in real-world scenarios. To this end, I like to motivate and illustrate with examples from robot and mobile-agent control, as well as to provide concrete algorithms, the simplest of which can be simulated by hand.
+
+I am open to teaching any course listed on the UoA website. I can immediately, or with a few weeks preparation, teach: COMPSCI 101, 105, 107, 111, 210, 220, 225, 320, 350, 367. Other undergraduate courses would require me more preparation time (e.g., 1 semester). Existing postgraduate courses that I would enjoy teaching include: COMPSCI 720, 750, 761, 765, 767. 	In particular, I would be able to integrate my current research into COMPSCI 761 and 767. 
+
+My research has intersections with the following areas, and as such I could contribute to course-design and teaching on these topics: probabilistic systems (Markov chains, Markov decision problems), database-theory (logics for querying, including fragments of first-order logic such as conjunctive queries, fixpoint queries, first-order temporal logics, DATALOG and its fragments), automata for applications (including tree automata for structured tree-data), game-theory (modeling and verification of rational agents), automated planning (including applications to multi-agent systems such as collaborative mobile robots, swarm protocols), and knowledge representation (design of expressive and computationally-tractable languages to describe systems and specifications).
+
+I could offer the following advanced courses: 
+\begin{itemize}
+\item \textbf{Multi-agent Systems}. A central theme in artificial intelligence (AI) revolves around the concept of an agent,
+which is any entity that can interact with other agents and/or the environment using sensors 
+and actuators. In many cases, one is interested in ``rational agents'' (which can
+include humans, robots, software agents), which try to achieve a specific goal, and whose
+actions are guided by this desire. A system that consists of a group of such interacting
+agents is called a multi-agent system (MAS). Examples include software agents on
+the Internet, driverless cars, humans or software playing multi-player card games, robots
+exploring new and dangerous environments, and biological systems such as cultures of
+bacteria and swarms of insects. In this course we will model MAS as games on graphs, 
+a convenient mathematical model of many phenomena in mathematics and computer science that involve \emph{interaction}.
+The course will provide students with the foundational mathematics and algorithmic tools for modelling and formally 
+reasoning about MAS. 
+
+\item \textbf{The automata-theoretic approach to verification and synthesis}.  Formal methods provide algorithms 
+for automatically determining whether a mathematical model of a system satisfies a specification (verification)
+or, alternatively, to automatically construct a system that satisfies a given specification (synthesis). 
+This field, for which the founders and proponents won two different Turing awards, has been used successfully for
+complex systems, and many hardware and software companies use these methods in practice, 
+e.g., verification of VLSI circuits, communication protocols, software device drivers, real-time embedded systems, and security algorithms.
+In 2000, Moshe Vardi and Pierre Wolper won the G\"odel Prize (an annual prize for outstanding papers in the area of theoretical computer science) for 
+a 1994 paper that launched a unifying paradigm, i.e., the automata-theoretic approach to verification and synthesis. 
+The power of the approach is that it reduces the problems to classic problems in automata-theory, and so neatly separates the encoding from the combinatorics. 
+The course will provide an introduction to the theory of automata and demonstrate its applications to verification and synthesis. 
+\end{itemize}
+
+Finally, I have an interest in engaging in the scholarship of teaching and rigorously investigating how to improve student learning, especially of 
+abstract and mathematical concepts. While at Cornell, I had regular meetings to discuss pedagogy and rigorous insights about teaching and learning with 
+David Way, Associate Director of Instructional Support, Center for Teaching Excellence, Cornell University (dgw2@cornell.edu). 
+As such, I am interested in interacting with Paul Denny and Andrew Luxton-Reilly in the computer-science education group.
+% how do we improve student learning and measure this
+% sigse
+% iticse
+% 
+% http://www.acsw.org.au/
+% 
+% also qualitative approach
+% - experiment under more controlled conditions
+% 
+% interest group: software engineering research group (SERG) 
+% 
+%  how 
+% 
+% 
+
+
+\section{Supervision}
+
+
+\subsection{My own mentors}
+
+I did my Phd under the supervision of Bakhadyr Khoussainov. Bakh taught me how to do research: how to isolate interesting problems, 
+how to write papers and how to give talks. Memorably, when Bakh understood that we needed a more formal foundation in modal logic 
+in order to deeply understand issues in verification, we worked our way through a number of chapters of a textbook of modal logic, meeting 
+once a week to discuss the content. This was highly rewarding for me, and taught me how to process and internalise large amounts of 
+mathematical material.
+
+During my PhD I spent one semester working with Moshe Vardi (Rice University) from whom I benefited immeasurably. For instance, Moshe 
+taught me the importance of formalising intuitions.
+
+\subsection{Experience and philosophy}
+My usual approach to supervision is to discuss possible problems with students and let them pick one to work on. 
+If the student lacks confidence or is unsure about how to proceed, I create a mini-proposal and timeline for them to follow. I meet with students once a week to discuss progress and troubleshoot. I consider undergraduate research successful if the student a) has fun, b) is challenged, and c) produces and publishes novel research.
+
+In 2007 I started collaborations with a number of graduate students, two of which resulted in publications at STACS 2008.
+
+In 2009 I supervised six undergraduate students for a two month research experience (REU). The student selection process was very competitive and so I received exceptionally talented undergraduates. The students formed two groups and worked on two projects. During this time I learned the value of giving students a few days to brew and filter their ideas before group discussions. Overall it was a rich experience for both me and for my students. One exceptional student expressed to me that the experience helped him decide to pursue a career in research. The results were subsequently published in the journal {\em Theoretical Computer Science} and the conference {\em GandALF}. 
+
+In 2012 I co-supervised an undergraduate summer project which led to a publication in the conference {\em LATA}.  While the student was writing up I realised that a proof required some formalities that the student did not know. At that point the student was keen to learn {\em how} I came to realise there was a problem. This episode taught me the value of modelling good mathematical thinking for learners. % as well as `thinking ahead' of the student.
+
+In 2017 I supervised an undergraduate thesis, that included theoretical and practical components, on ``graphical games'', a topic at the interface of game-theory and graph-theory. We are writing up this work.
+
+I recently worked with four junior PhD students, resulting in papers published at VMCAI'14, IJCAI'16, AAMAS'16, and VMCAI'18. In all cases I learned the value of 
+helping graduate students to structure their thinking so they could contribute more to the collaboration than they otherwise might.
+
+\subsection{Future plans}
+
+I am very interested in supervising undergraduate projects and MSc theses (COMPSCI 380, 789) and PhD students, particularly in topics in artificial intelligence. 
+I list a number of project ideas, each having aspects that can suit students with a variety of interests and levels (pre-requisites are listed in parentheses):
+
+\begin{enumerate}
+\item \textbf{Formal methods for collaborative tasks of mobile-robots in partially-known environments.} 
+Study, extend, implement and evaluate algorithms for describing and verifying co-operative mobile-agent 
+tasks (such as patrolling, searching).
+
+\item \textbf{Algorithms for strategic-epistemic analysis of Poker and Bridge.} 
+Study, extend, implement and evaluate synthesis algorithms for multiplayer
+games of imperfect information with public actions and epistemic
+reachabilty goals, and test on Poker and Bridge scenarios (formal methods, artificial intelligence).
+
+\item \textbf{Automatic programming.} Study methods based on synthesis and planning to automatically derive 
+strategies/policies from declarative specifications of problems (artificial intelligence, formal methods). 
+
+\item \textbf{Describing very large game/MDP policies to users.} Study how to 
+decomposed strategies/policies into components that are best described declaratively and best described operationally. 
+Study how to use dimensionality reduction techniques to explain large game/MDP policies to 
+users (machine-learning, knowledge-representation, formal methods).
+
+\item \textbf{Optimal strategies in fully-observable non-deterministic planning problems.} 
+Formalise and study finding optimal solutions to fully-observable non-deterministic planning problems  using recent results in games on graphs 
+(automated planning, formal methods)
+
+\item \textbf{Analysing games on graphs with reinforcement learning.} Study to what extent 
+reinforcement learning can be used to analyse classic objects in formal methods such as safety or liveness games 
+(machine-learning, formal methods).
+
+% \item Extend the theory of graphical games to repeated graphical-games.
+% Implement an algorithm for rational synthesis of such games and evaluate 
+% on scenarios such as gossiping protocols (topic: formal methods for multi-agent systems).
+% 
+\end{enumerate}
+
+% Finally, I am interested to co-supervise students on topics of interest to me such as semantic web, computational biology, 
+% \bibliographystyle{plain}
+
+% \bibliography{/home/sr/svn/forsyte-publications/trunk/rubin.bib}                        % 'publications' is the name of a BibTeX file
+
+
+\end{document}
+
+
+
+% I - happy to be involved in data science program
+% - happy to supervise projects
+% - 2019: change in teaching... there will be capstone projects for those students in last year of graduation with cs degree; 
+% they need to select the projects; there should be supervisor; 300 grads/50 academics; put 3-4 people into one team; based on 
+% things they have learned already; give examples of project topics
+% - 
+
+
+% \subsection{Graduate teaching}
+% 
+% In 2006 I co-taught a five day course at ESSLLI with Valentin Goranko in the area of logic and computation. 
+% 
+% \
+% 
+% In 2009 I taught a course on logical aspects of random graphs. I improved my ability to pace lectures and give intuition
+% behind tricky definitions and proofs. The course was self-contained and my students remained engaged throughout. 
+% There were no exams --- each student presented a lecture on a topic that built on the material presented in class.
+
+% \subsection{Future ideas}
+% 
+% I am keen to teach a course that follows the historical development of a subject. I believe that understanding the
+% motivating problems helps one apply the material and ideas elsewhere. 
+
+%  %I imagine this would be a worthwhile experiment with a first course in calculus; students would appreciate how
+% %certain problems are hard or impossible to solve without calculus.
+% 
+% %I also enjoy participating in a course that follows a book, and requires each student to present some material from it. As a graduate student I learned modal logic and some model theory this way.
+% 
+% My particular teaching strengths, based on experience and familiarity with the material, are in mathematical logic and theory of computation (automata theory, algorithms, discrete mathematics, computational complexity), and calculus. I am comfortable teaching pure mathematics at the undergraduate level (e.g., real analysis, measure theory, probability theory, point-set topology, combinatorics, number theory, abstract algebra, linear algebra, graph theory) and am always interested in teaching something new, especially if it forces me to learn unfamiliar mathematics. % I also hope to run a course based on Moore's method.
+
+
+
+
+TEACHING PORTFOLIO
+
+- underlying views on teaching
+
+- "You could include your current teaching experience and related activities and future plans or developments."
+taught at here and there...
+supervise students...
+
+- based on my teaching experience i've developed my own teaching philosophy - list what you think is important 
+to be a successful teacher
+
+- research and teaching are inseparable
+
+- when students listen to teacher they understand subject better, views of lecturer, get this from research-driven teachers
+can't get this from books
+
+- believe every student has talent and goal is to find this talent; all students are equal
+
+
+teaching in brief: 3/4 pages
+- what and where
+- awards
+- been involved in designing course
+- achieving learning outcomes; how do you achieve learning outcomes; emphasises teamwork with students; designing good assignments
+- student evaluations
+- example of student successes
+
+teaching philosophy: PRINCIPLES
++ teaching and research inseparable
++ motivation matters; motivating students is important
++ training critical and creative students is important; train to think about the problems critically and creatively at same time
++ preparation for lectures matters
++ use your strength; show teacher and human being; have other interests; poem, soccer skills
++ be flexible; when you lecture look at students and feel they are not following you; stop and engage with the class; don't be over-prepared; 
+leave room for improvisation
++ learning os two-way; you also learn from them (how to teach); in long-run they will be managers/doctors
++ self-assessment is important
++ going to colleagues lectures is important; learn what they are talking about and connect what they teach with what you teach; learn how to good job (can also 
+see how not to teach)
+
+care about how to educate students; how to teach students; in that sense can be very closer to CS EDUCATION (paul denny and andrew luxton-reilly)
+
+jill: "we know who he is"... show i know who the department is...
+potentially can work with X,Y,Z
+"data science = analysis of lots of data"
+
+be confident but not over-confident
+
+tell a story...
+need to sell what you are doing...
+40 teaching/40 research/20 admin
+
+
+
+
+
+
+In that sense, content is secondary.
+Content, while essential, can always be learned independently if one knows how to think clearly.
+
+I am well prepared to incorporate my experience as a learner and a teacher into helping to mold core and elective courses. In particular, I know that one can teach computational ways of thinking to students of all backgrounds (I taught an interactive class 
+to non-mathematics majors at Cornell University titled ``Algorithms and Termination''). I look forward to teaming up with seasoned liberal-arts educators to teach such courses as YSC1212 and YCC1122.
+
+All this demonstrates I  make a good fit for teaching and supervising students in the MCS major, as well as supervising a Maths, Computational 
+\& Statistical Science Capstone Project. My background in mathematics and computer science means that I can teach a variety of theoretical courses (including pure mathematics courses) as well as programming courses.
+
+and to expand my work to cover other central aspects of AI such as Formal Methods for Neural Networks.
+
+
+\section{Vision for future research}
+My research trajectory is to help bridge two communities: formal-methods and AI. To that end, I plan to continue bringing formal- and logical-methods to bear on questions of importance to computer scientists and society. Notably, ``explainable AI'' (\url{www.darpa.mil/program/explainable-artificial-intelligence}) will require an integration of Formal Methods, knowledge representation, and machine-learning. 
+
+
+
+The researcher at Yale-NUS whose interests are closest to mine are 
+Aquinas Hobor (verification and automated theorem proving). 
+
+My ``bread-and-butter'' work consists of developing and applying formal and logical methods. As indicated, for the past few years I have been motivated by applications in AI. One notable example of this convergence is my recent IJCAI17 work with Blai Bonet, Giuseppe De Giacomo, and Hector Geffner which is at the intersection of Formal Methods and automated planning in AI. I am also pursuing more speculative questions such as ``What is synthesis and how should it be formalised?".
+%(an active topic of investigation with Giuseppe De Giacomo).
+
+ \textbf{Vision for future research}
+My research trajectory is to help bridge two communities: formal-methods and AI. To that end, I plan to continue bringing formal and logical methods to bear on questions of importance to computer scientists and society. Notably, ``explainable AI'' (\url{www.darpa.mil/program/explainable-artificial-intelligence}) will require an integration of Formal Methods, knowledge representation, and machine-learning.  Concretely, I plan to organise future editions of the ``Formal Methods in Artificial Intelligence'' workshop, and to expand my work to cover other central aspects of AI such as Formal Methods for Neural Networks.
+
+or any of the names listed in my CV.
+Finally, I will remark that there is a non-trivial overlap between formal-methods and AI, both on the level of
+problems and gross techniques. For instance, ``synthesis'' in formal-methods is called ``planning`` 
+in AI; many influential languages for modeling and reasoning in all three fields are 
+explicitly based on mathematical logic (e.g., situation calculus, alternating-time temporal
+logic). That said, there are important differences, e.g., synthesis usually involves exact algorithms on explicit game-graphs while planning typically involves 
+heuristic algorithms on symbolically presented arenas. 
+These communities have a I am currently working to bridge communities, not just technical fields.
+
+
+
+
+
+ \makeletterclosing
+
+
+\end{document}
+
+
+
+I have recently contributed a number of works that import and adapt methodologies and techniques from \FM to
+\MAS/\AI [2,3,4,8,10,14,15]. I stress that besides novel technical content, 
+my key contributions were to identify which models and techniques from \FM, 
+amongst many possibilities, are suitable for \MAS/\AI. 
+
+
+
+
+% I am applying for posn X seen at Y.
+% 
+% Summary of stations of career. Leading project + topic.
+% 
+% Summary of main research interests. 
+% 
+% Organisation. How am integrated into community.
+% 
+% Future research interests/possible topics/possible collaborations at university.
+% 
+% Teaching experience: what have taught, number of students, supervision.
+
+
+
+
+% My main tools come from mathematical logic and related fields such as automata theory. 
+% The \emph{power of logic} in computer science is that it provides a foundation for designing and formally reasoning about 
+% computational systems. The \emph{importance} of this is that as computational systems take more responsibilities in the world 
+% we should train developers of these systems to build safe, secure, and robust systems. Consequently, 
+% 
+% 
+% 
+% 
+% My research is closest to the 
+% 
+% 
+%     
+%     Teach in Msc on AI: Methods in AI research, MAS, Intelligent Agents (BDI), Logic and Computation
+%     People:  	
+%     
+% I am writing to apply for 
+% ntent
+% • State why you are writing and for what position you are applying.
+% • Demonstrate energy and enthusiasm for the position.
+% • Highlight or expand on key information from your resume, but do not simply repeat
+% what is listed.
+% • Actively sell your unique qualities and tell the reader why he or she should choose you.
+% • Target your skills, interests and experience to the needs of the organization.
+% • Show you have done your homework; emphasize why you want to work for that
+% particular organization.
+% • Encourage the reader to take a closer look at your resume
+
+% My research is in Logic has been called the ``calculus of computer science'' since it provides tools and techniques for formally modeling and reasoning about various discrete systems. My work exploits the power and elegance of logic applied to various aspects multi-agent systems, including temporal, strategic and epistemic properties.
+% 
+invigorate and enrich the scope of expertise of our Department and can enhance its involvement in interdisciplinary research projects within and outside the university.
+
+demonstrable motivation to teach
+The preferred candidate has teaching experience, and is actively interested in improving her or his teaching, the courses and the teaching programme. 
+
+
+    PhD in Computer Science, Information Science or another relevant discipline;
+    track record of international publications in leading conferences and journals;
+    experience with or good prospects for acquiring external research funds;
+    vision on future research directions in own area of expertise;
+    experience with or readiness to supervise PhD projects;
+    active role in international scientific communities.
+
+    
+    enthusiasm for teaching and student supervision;
+    ability to teach in departmental BSc and MSc programmes;
+    vision on teaching and your own contribution to teaching.
+
+
+    play an active and cooperative role in the Department and the University;
+    willingness to organize scientific events, such as research seminars or teaching seminars;
+    willingness to partake in departmental committees.
+
+    
+

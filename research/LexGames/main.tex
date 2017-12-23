@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{ijcai17}
+\usepackage{times}
+
+%\usepackage{pdfinfo}
+
+% \usepackage{latexsym} 
+\pdfinfo{
+/Title (Nash Equilibria in Games with Lexicographic Goals)
+/Author (TBA)}
+
+\title{Nash Equilibria in Games with Lexicographic Goals}
+
+%\title{Rational Cost Games}
+%\title{Nash Equilibria in Games with Combined Qualitative and Quantitative Goals}
+
+
+\author{XXX}
+
+
+
+% % \usepackage{times,mathtools}
+% % \usepackage{latexsym,upgreek,wasysym,graphicx,textcomp}
+ \usepackage{xspace,color,upgreek}
+% % \usepackage[inline]{enumitem}
+\include{macros}
+
+
+\def\hist{{\sf Hst}} %history
+\def\plays{{\sf Ply}} %plays
+
+
+
+\def\DCLPC{{\sf{DCL-PC}}}
+\def\ATL{{\sf{ATL}}}
+\def\ATLS{{\sf{ATLS}\xspace}}
+\def\CTLS{{\sf{CTLS}\xspace}}
+\def\CLPC{{\sf{CL-PC}}}
+\def\LCGS{{\sf LCGS}\xspace}
+\def\CGS{{\sf CGS}\xspace}
+\def\cgs{\CGS}
+\def\CCGS{{\sf CCGS}\xspace}
+\def\CCGA{{\sf CCGA}\xspace}
+
+\def\Pth{{\sf Pth}} %set of plays
+\def\playf{{\sf play}}
+\def\Reach{{\sf Reach}}
+\newcommand{\Hst}{{\sf Hst}}
+\newcommand{\St}{St}
+\newcommand{\Str}{{\sf Str}}
+\newcommand{\exec}{{\sf Exec}}
+
+\def\mp{{\sf mp}}
+\def\max{{\sf max}}
+\def\parity{{\sf parity}}
+
+\newcommand\card[1]{|{#1}|}
+
+\newcommand{\C}{{\mathfrak{C}}}
+
+%LOGICS 
+\newcommand{\LATL}{{\sffamily LATL}\xspace}
+\newcommand{\LATLS}{{\sffamily LATLS}\xspace}
+
+
+\def\lex{\prec_{lex}}
+\def\lexeq{\preceq_{lex}}
+\def\LEX{{\sf Lex}}
+
+\def\NE{{\sf NE}}
+
+
+\newcommand{\longtrans}[3]{#1 \stackrel{\mathsf{#3}}{\leadsto} #2}
+\newcommand{\longtranszero}[3]{#1 \stackrel{\mathsf{#3}}{\leadsto_0} #2}
+%\newcommand{\todo}[1]{{{\color{blue} (#1)}}}
+
+\newcommand{\coop}[2][]{\langle\!\langle{#2}\rangle\!\rangle_{_{\!\mathit{#1}}}}
+
+\newcommand{\noavoid}[1]{[\![{#1}]\!]}
+
+
+
+
+\begin{document}
+
+
+
+
+\section*{Decisions}
+
+We agreed i) to have weights on actions and a note/remark about the extension to weights on states or edges; ii) to focus on NE for arbitrary strategies and, if we can prove something useful/interesting, $\epsilon$-NE for finite-memory strategies; iii) we probably have enough material with mean-payoff and can consider max for a journal version; iv) it is probably enough to focus on the following decision problems: NE-emptiness, E-Nash, NE-membership.
+
+
+\section*{Todos}
+
+\begin{enumerate}
+ \item Settle on structure of paper
+
+ \item Fill in the details of the proof sketches already in the draft. Note that bisimilar CGSs may not preserve existence of NE if histories are sequences of states. However, if histories alternate states and actions, then indeed they do. So, we must carefully check the papers we cite/use.
+
+ \item Decide if we want LTL or Lex formulas $\Phi$ for E-Nash. Question: how does one motivate E-Nash with LEX objectives for the government? Potential answer: social welfare. Technically, add an extra component to each tuple of actions in the CGS that belongs to the government.
+  
+ \item Instead of reducing E-Nash to NE-emptiness it seems that one can simply adapt the proof that NE-emptiness is decidable for Lex Games to proving that E-Nash is decidable for Lex Games. Indeed, instead of looking for a secure path in G', look for a secure path in G' that satisfies the given formula $\Phi$. Also, Giuseppe 
+checked that E-Nash reduces to NE-emptiness using the usual matching-pennies gadget. We should decide whether to present NE-emptiness or E-nash ``first''.
+
+
+ \item Discuss ``motivating examples''/``applications''.  Example scenario: i) one wholesaler and a bunch of retailers, each trying to maximise profit (this needs to be formalised); ii) taxation schemes. Perhaps look at motivating examples from papers on mean-payoff games for ideas.
+ 
+ \item If we need extra: If we need more dec probs, we might look at strong NE; other restrictions on strategy memory, myopic.
+ 
+ \item Absorb definition and techniques for $\epsilon$-Nash equilibria.
+\end{enumerate}
+
+\clearpage
+
+\maketitle
+
+\section{Introduction}
+
+\input{prelims}
+
+
+\input{decision-procedures}
+
+\input{related-work-sr}
+
+\section{Conclusion}
+
+\head{Future Work}
+\begin{enumerate}
+ \item Decide if there is a unique NE (cite GSL paper).
+ \item The constrained NE-emptiness problem, i.e., does there exist a NE whose value (for each player) is in some given interval? This is studied for mean-payoff games in \cite{DBLP:journals/corr/abs-1109-6220} where it is shown that constrained NE-emptiness is \np-complete for pure NE.
+\end{enumerate}
+
+
+
+\bibliographystyle{abbrv}
+
+\bibliography{refs}
+
+\end{document}
+

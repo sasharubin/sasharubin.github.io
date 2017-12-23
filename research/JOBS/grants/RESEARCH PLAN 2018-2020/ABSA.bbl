@@ -1,0 +1,176 @@
+\begin{thebibliography}{10}
+
+\bibitem{ADGH06}
+I.~Abraham, D.~Dolev, R.~Gonen, and J.~Halpern.
+\newblock Distributed computing meets game theory: Robust mechanisms for
+  rational secret sharing and multiparty computation.
+\newblock In {\em {PODC06}}, pages 53--62, New York, NY, USA, 2006. ACM.
+
+\bibitem{ACMStatement07}
+{ACM U.S. Public Policy Council} and {ACM Europe Policy Committee}.
+\newblock Statement on algorithmic transparency and accountability.
+\newblock ACM, 2017.
+
+\bibitem{DBLP:journals/jacm/AlmagorBK16}
+S.~Almagor, U.~Boker, and O.~Kupferman.
+\newblock Formally reasoning about quality.
+\newblock {\em {JACM}}, 63(3):24:1--56, 2016.
+
+\bibitem{DBLP:conf/aaai/BaierM06}
+J.~A. Baier and S.~A. McIlraith.
+\newblock Planning with first-order temporally extended goals using heuristic
+  search.
+\newblock In {\em {AAAI'06}}, pages 788--795. {AAAI} Press, 2006.
+
+\bibitem{DBLP:journals/mor/BernsteinGIZ02}
+D.~S. Bernstein, R.~Givan, N.~Immerman, and S.~Zilberstein.
+\newblock The complexity of decentralized control of markov decision processes.
+\newblock {\em Math. Oper. Res.}, 27(4):819--840, 2002.
+
+\bibitem{DBLP:conf/atva/BerwangerMB15}
+D.~Berwanger, A.~B. Mathew, and M.~van~den Bogaard.
+\newblock Hierarchical information patterns and distributed strategy synthesis.
+\newblock In B.~Finkbeiner, G.~Pu, and L.~Zhang, editors, {\em {ATVA'15}},
+  volume 9364 of {\em Lecture Notes in Computer Science}, pages 378--393.
+  Springer, 2015.
+
+\bibitem{DBLP:journals/jcss/BloemJPPS12}
+R.~Bloem, B.~Jobstmann, N.~Piterman, A.~Pnueli, and Y.~Sa'ar.
+\newblock Synthesis of reactive(1) designs.
+\newblock {\em J. Comput. Syst. Sci.}, 78(3):911--938, 2012.
+
+\bibitem{Camacho17}
+A.~Camacho, E.~Triantafillou, C.~Muise, J.~Baier, and S.~McIlraith.
+\newblock Non-deterministic planning with temporally extended goals: Ltl over
+  finite and infinite traces.
+
+\bibitem{DBLP:journals/tcs/CassezMZ16}
+F.~Cassez, R.~van~der Meyden, and C.~Zhang.
+\newblock The complexity of synchronous notions of information flow security.
+\newblock {\em Theor. Comput. Sci.}, 631:16--42, 2016.
+
+\bibitem{DeNicola2015}
+R.~De~Nicola, A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock Twitlang(er): Interactions modeling language (and interpreter) for
+  twitter.
+\newblock In R.~Calinescu and B.~Rumpe, editors, {\em {SEFM'15}}.
+
+\bibitem{DBLP:conf/sp/EggertMSW11}
+S.~Eggert, R.~van~der Meyden, H.~Schnoor, and T.~Wilke.
+\newblock The complexity of intransitive noninterference.
+\newblock In {\em {S{\&}P'11}}, pages 196--211. {IEEE} Computer Society, 2011.
+
+\bibitem{FHMV95}
+R.~Fagin, J.~Halpern, Y.~Moses, and M.~Vardi.
+\newblock {\em {Reasoning about Knowledge.}}
+\newblock MIT Press, 1995.
+
+\bibitem{GeffnerBo13}
+H.~Geffner and B.~Bonet.
+\newblock {\em A Concise Introduction to Models and Methods for Automated
+  Planning}.
+\newblock Morgan {\&} Claypool Publishers, 2013.
+
+\bibitem{GGP}
+M.~Genesereth and M.~Thielscher.
+\newblock General game playing.
+\newblock {\em Synthesis Lectures on Artificial Intelligence and Machine
+  Learning}, 8(2):1--229, 2014.
+
+\bibitem{DBLP:conf/aaai/HuangM14}
+X.~Huang and R.~van~der Meyden.
+\newblock Symbolic model checking epistemic strategy logic.
+\newblock In C.~E. Brodley and P.~Stone, editors, {\em {AAAI'14}}, pages
+  1426--1432. {AAAI} Press, 2014.
+
+\bibitem{DBLP:journals/corr/HuangM16}
+X.~Huang and R.~van~der Meyden.
+\newblock The complexity of approximations for epistemic synthesis (extended
+  abstract).
+\newblock In {\em {SYNT'15}}, pages 120--137, 2015.
+
+\bibitem{Jensen2002}
+F.~V. Jensen.
+\newblock {\em {Bayesian Networks and Decision Graphs}}.
+\newblock Information Science and Statistics. Springer, 2002.
+
+\bibitem{DBLP:conf/aips/KominisG15}
+F.~Kominis and H.~Geffner.
+\newblock Beliefs in multiagent planning: From one agent to many.
+\newblock In R.~I. Brafman, C.~Domshlak, P.~Haslum, and S.~Zilberstein,
+  editors, {\em {ICAPS'15}}, pages 147--155. {AAAI} Press, 2015.
+
+\bibitem{DBLP:journals/internet/LiQLL16}
+M.~Li, C.~Qin, J.~Li, and P.~P.~C. Lee.
+\newblock Cdstore: Toward reliable, secure, and cost-efficient cloud storage
+  via convergent dispersal.
+\newblock {\em {IEEE} Internet Computing}, 20(3):45--53, 2016.
+
+\bibitem{DBLP:journals/tocl/LomuscioMR00}
+A.~Lomuscio, R.~van~der Meyden, and M.~Ryan.
+\newblock Knowledge in multiagent systems: initial configurations and
+  broadcast.
+\newblock {\em {ACM} Trans. Comput. Log.}, 1(2):247--284, 2000.
+
+\bibitem{DBLP:journals/jlp/MaggiPST17}
+A.~Maggi, M.~Petrocchi, A.~Spognardi, and F.~Tiezzi.
+\newblock A language-based approach to modelling and analysis of twitter
+  interactions.
+\newblock {\em J. Log. Algebr. Meth. Program.}, 87:67--91, 2017.
+
+\bibitem{McIver2011}
+A.~K. McIver and C.~C. Morgan.
+\newblock Compositional refinement in agent-based security protocols.
+\newblock {\em Formal Aspects of Computing}, 23(6):711--737, Nov 2011.
+
+\bibitem{Penna15}
+G.~D. Penna, B.~Intrigila, D.~Magazzeni, and F.~Mercorio.
+\newblock Synthesis of cost-optimal strong plans in non-deterministic domains.
+\newblock {\em International Journal on Artificial Intelligence Tools},
+  24(06):1550025, 2015.
+
+\bibitem{peterson2001lower}
+G.~Peterson, J.~Reif, and S.~Azhar.
+\newblock Lower bounds for multiplayer noncooperative games of incomplete
+  information.
+\newblock {\em Computers \& Mathematics with Applications}, 41(7-8):957--992,
+  2001.
+
+\bibitem{DBLP:conf/focs/PnueliR90}
+A.~Pnueli and R.~Rosner.
+\newblock Distributed reactive systems are hard to synthesize.
+\newblock In {\em {FOCS'90}}, pages 746--757, 1990.
+
+\bibitem{Rajaratnam2016}
+D.~Rajaratnam, B.~Hengst, M.~Pagnucco, C.~Sammut, and M.~Thielscher.
+\newblock {\em Composability in Cognitive Hierarchies}, pages 42--55.
+\newblock Springer, Cham, 2016.
+
+\bibitem{reiter2001knowledge}
+R.~Reiter.
+\newblock {\em Knowledge in action: logical foundations for specifying and
+  implementing dynamical systems}.
+\newblock MIT press, 2001.
+
+\bibitem{TorralbaAKE17}
+{\'{A}}.~Torralba, V.~Alc{\'{a}}zar, P.~Kissmann, and S.~Edelkamp.
+\newblock Efficient symbolic search for cost-optimal planning.
+\newblock {\em Artif. Intell.}, 242:52--79, 2017.
+
+\bibitem{TorresB15}
+J.~Torres and J.~Baier.
+\newblock Polynomial-time reformulations of {LTL} temporally extended goals
+  into final-state goals.
+\newblock In {\em IJCAI}, pages 1696--1703, 2015.
+
+\bibitem{DBLP:conf/concur/MeydenV98}
+R.~van~der Meyden and M.~Y. Vardi.
+\newblock Synthesis from knowledge-based specifications (extended abstract).
+\newblock In {\em {CONCUR'98}}, pages 34--49, 1998.
+
+\bibitem{vanderMeyden2005}
+R.~van~der Meyden and T.~Wilke.
+\newblock Synthesis of distributed systems from knowledge-based specifications.
+\newblock In {\em 05}, LNCS 3653, pages 562--576, 2005.
+
+\end{thebibliography}

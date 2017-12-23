@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[nohead, nofoot, margin=1.55cm]{geometry}
+\usepackage[german,english,australian]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{textcomp}
+\usepackage{xspace,amsmath,amssymb,url,pslatex,mathptmx,courier%
+}
+\usepackage[tight,hang]{subfigure}
+\usepackage{graphicx%,floatflt
+}
+%% needs to go back to empty or setting the page no. later needs to be fixed
+\pagestyle{empty}
+\makeatletter
+\renewcommand*\bib@heading{}%
+%  \subsection{\refname}\@mkboth{\refname}{\refname}
+%  \small See Sections B10.2 and 10.3 for citations    [e\ldots], [m\ldots], [M\ldots], and [W\ldots].}
+\renewenvironment{thebibliography}[1]{\bib@heading%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+  {\settowidth\labelwidth{\@biblabel{#1}}%
+    \leftmargin\labelwidth
+    %% K begin
+    \advance\leftmargin\labelsep
+    \small%
+    \setlength\lineskip{0pt}%
+    \setlength\parsep{0pt}%
+    \setlength\itemsep{0pt}%
+    %% K end
+    \@openbib@code
+    \usecounter{enumiv}%
+    \let\p@enumiv\@empty
+    \renewcommand*\theenumiv{\@arabic\c@enumiv}}%
+  \sloppy\clubpenalty4000\widowpenalty4000%
+  \sfcode`\.=\@m}
+{\def\@noitemerr
+  {\@latex@warning{Empty `thebibliography' environment}}%
+  \endlist}
+\makeatother
+
+
+\input{/home/sr/svn/research/CV/data/bibdefs.tex}
+
+\usepackage{xspace}
+\def\TSE{Temporal-Strategic-Epistemic\xspace}
+
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+
+\section*{Sasha Rubin, 4 best research papers in the last 5 years}
+
+\begin{enumerate} 
+\item \BLMRIJCAI17  Francesco Belardinelli, Alessio Lomuscio, Aniello Murano, and Sasha Rubin. 
+“Verification of Broadcasting Multi-Agent Systems against an Epistemic Strategy Logic”. 
+In: International Joint Conference on Artificial Intelligence (IJCAI 2017). 2017.
+SUMMARY: In this paper we exhibit a very general and meaningful class of multi-agent systems with imperfect information in which model-checking very expressive logics is 
+decidable. Indeed, a system is in the class if all agents communicate by broadcasting  messages, and the logic allows one to express whether or not the system exhibits a Nash Equilibrium, a fundamental concept in game-theory and for the analysis of behaviour of agents. All previous results on model-checking such a rich logic relied on orthogonal assumptions which are far less applicable, i.e., that the agents' observability form a hierarchy. 
+CONTRIBUTION: I helped formalise the syntax and semantics,  I provided and wrote the proof of the main result, and I helped write the paper.
+
+\item \AR17 In this paper we generalise a classic paper that shows how one can deduce important properties about about mean-payoff games (e.g.,
+that players can use memoryless strategies to play optimally) by connecting them to "first-cycle mean-payoff" games, i.e., those in which the winner is determined by the average weight of the first cycle that appears on the play. That classic paper is: Ehrenfeucht and J. Mycielski. "Positional strategies for mean payoff games" In: International Journal of Game Theory, 8:109--113, 1979. 
+In our paper we define "first-cycle games" as a game in which players move a token along edges of a graph until a cycle is formed 
+(the cycle determines the winner). We systematically study first-cycle games, and, in particular, show how to connect these with "ordinary" games (in which the winner is determined by the whole play, not just the first cycle). In particular, we provide an easy-to-use recipe for deciding if agents can use a memoryless strategy to play optimally in an ordinary game. Our recipe easily applies to all known classes of games in which both players can play memorylessly, e.g., reachability games, parity games, energy games, mean-payoff games, etc. 
+
+I contributed 50% to all aspects of this work (conception, formalisation, proofs, writing).
+
+\item \GMRSIJCAI16 In this paper we generalise a classic result that shows that a simple "subset-construction" can be used to remove imperfect information from finite-state graph-games. That result appears in the  classic paper:
+John H. Reif. 
+"Universal games of incomplete information". 
+In: Proceedings of the eleventh annual ACM symposium on Theory of computing (STOC '79). 
+ACM, New York, NY, USA, 288-308. 
+DOI=http://dx.doi.org/10.1145/800135.804422
+
+Our paper begins with the observation that this subset-construction does not work on infinite-state games (games with infinitely many states appear in models of realistic reactive systems). We then show how to "fix" the construction by using "trajectory constraints", a generalisation of fairness constraints.
+
+My contribution was to help notice the subset construction fails, and I formalised and proved the main result, and helped with the examples and writing the paper.
+
+\item \DBLPconfvmcaiAminofJKR14 In this paper we generalise a classic paper that shows how one can model-check properties of distributed systems in a) there is no a-priori bound on the number of processes, and b) processes are arranged on a ring and communicate by token-passing. That classic paper is: 
+"Reasoning about Rings", E.A. Emerson, K.S. Namjoshi, POPL, 1995.
+In our paper, we supply the largest class of systems for which model-checking *branching-time* logics on *arbitrary* classes of topologies. 
+
+My contribution was to lead the formalisation of the main result, conceived 50% of the proof, wrote 50% of the proof, and helped with writing the rest of the paper.
+
+\end{enumerate}
+\end{document}
+
