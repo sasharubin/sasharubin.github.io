@@ -1,0 +1,29 @@
+On the Expressive Power of Sub-Propositional Fragments of Modal Logic.
+
+This paper is about the relative expressive power of fragments of multi-modal logic.
+
+The fragments considered are intersections of the Horn, Krom, Box and Diamond fragments.
+
+The picture that emerges is that expressive power reflects syntactic power, with the notable exception
+that Krom, Krom+Diamond, and Krom+Box are equi-expressive.
+
+This work is novel (previous work mainly considered uni-modal logic), and the problem is of value and interest to the modal logic community, and, as briefly discussed in the paper, has applications to temporal logic and HS logic.
+
+My main concern is the preliminary nature of the paper:
+1. The picture (of relative expressive power) is not complete. Is it hard to get the missing edges? Do the usual techniques fail?
+2. The relationship between expressive power and the complexity of satisfiability is only briefly discussed. Such a discussion is important since one of the stated motivations is to find logics with good complexity.
+3. The applications to fragments of LTL and HS are only briefly mentioned (end of section 5).
+4. The notion of "relative expressive power" is formalised in two ways: strong and weak. The relevance/importance of these two notions
+is only briefly discussed (end of section 2).
+5. The novelty of the proofs is not discussed. How much is a simple extension of [19]?
+
+If accepted, I strongly recommend the authors to deal with these issues, especially 2-5. 
+
+Additional comments.
+- Since they are central objects in this paper, I think it is worth spending a little more time motivating the definitions of weak and strong expressivity. E.g., give more examples of strong-expressivity.
+- The ordering at the start of section 3 (from [19]) looks like a type of simulation. Is it?
+- The GR(1) fragment of LTL (Pnueli et al) might be worth mentioning. 
+Realisability has lower complexity (1EXPTIME) than for full LTL (2EXPTIME).
+- Finite structures are particularly relevant in computer science. Which of the results also hold for finite structures? 
+- Lemmas 5: The notation "The fragment L is closed under intersection" is a bit strange; the logic L is closed under intersection (see the syntax). I guess it is better to say that the models of a formula of L are closed under intersection.
+- Lemma 7: Also, the notation that a logic is closed under product seems strange to me. 

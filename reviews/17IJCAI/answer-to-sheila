@@ -1,0 +1,20 @@
+Dear Sheila,
+
+Thanks for the citations and the detailed descriptions of the body of work connecting LDL_f and related formalisms to planning. I've taken a look at the papers, and have a few remarks (A. and B.) and then a comment regarding the effect the missing citations have on novelty and significance.
+
+A. Missing citations to work on non-deterministic planning, i.e., AAAI06, ICAPS06, AIJ09, ICAPS07, KR08, AAAI17, AAAI11, ICAPS15.
+
+The authors should have discussed your and others' work on LTL_f, LTL-RE, FO-LTL, con-GOLOG and explained why they are proposing LDL_f (rather than these other logics) as a language for expressing non-Markovian rewards in MDPs. They only do this for LTL_f. 
+
+The authors could mention that their technique works, of course, for LTL-RE since this is just LDL_f with syntactic sugar. I'm not sure much can be said about FO-LTL and con-GOLOG since the paper under review is about a propositional setting, not a first-order setting.
+
+B.  Missing citations to work on MDPs, i.e., AAAI15.
+
+As you wrote, this paper is about MDPs with preferences of goals (rather than simply using a single temporally extended goal). This is related to the idea of objective-LTL, see http://dblp.org/rec/journals/amai/KupfermanPV16. The authors could discuss the differences/similarities between using objectives/preferences to using reward structures on MDPs.
+
+
+To summarise, although relevant, I do not believe these omissions effect the novelty because the paper under review (as well as the papers already cited [Bacchus et al., 1996; Thi ́ebaux et al., 2006]) are about MDPs with rewards. Regarding significance, the question, it seems to me, is to what extent MDPs with rewards are suitable modeling tools as compared with MDPs with temporally extended preferences/goals. Perhaps someone with a deeper knowledge than mine on MDPs can comment on this?
+
+Sasha
+
+

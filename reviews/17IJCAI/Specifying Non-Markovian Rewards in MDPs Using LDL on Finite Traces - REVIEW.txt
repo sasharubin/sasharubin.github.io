@@ -1,0 +1,102 @@
+This paper shows how to handle MDP by reward functions that depend on
+the history of a trace, not just the current state and last action.
+
+The main idea is to use LDL_f as a specification language for rewards,
+i.e., the reward structure is given as a set of tuples (phi_i,r_i) of
+pairs of LDL_f formulas and rationals. The reward at a given history
+is the sum of the r_j's such that phi_j holds on the given history.
+
+A similar reward structure appeared in [Bacchus et al., 1996] where
+the PLTL (past LTL) was used instead of LDL_f.
+
+The advantages of using LDL_f over PLTL are that it is more
+expressive.
+
+ 
+Originality
+The main original idea is to use LDL_f rather than some other temporal
+logic to specify rewards.  However, the stated justification for using
+LDL_f is that "Future logics are more commonly used in the model
+checking community, as they are considered more natural for expressing
+desirable properties." I am not wholly convinced this is a good
+argument since, in the present framework, the reward at a given point
+in time only depends on the past. For instance, in program
+verification, "every request is eventually granted" looks to the
+future when applied to infinite strings, but in the current framework
+it is only applied to the prefixes of an infinite string, i.e., only
+to the past.
+
+The paper borrows heavily from previous works, i.e., the idea of using
+the reward structure (phi,r) is from [Bacchus et al., 1996], the
+translations of formula to automata are from [De Giacomo and Vardi,
+2013, 2015], and the idea of forming an extended MDP with these
+automata is from [Bacchus et al., 1996].
+
+That said, the work is certainly a novel extension of existing ideas.
+
+Technical Quality
+The translations are sound. However, some of the statements need
+tightening, e.g., 
+- In Section 5, what does it mean for an MDP to be minimal? In Theorem
+  5 it looks like only the DFA extension of the MDP is minimal. Also,
+  the first sentence after the proof of Theorem 5 seems to contradict
+  the first paragraph of the proof of Theorem 5.
+- The notion of "blind minimality" is not clear. Is there a technical
+  result associated with this notion? e.g., on-the-fly verification
+  seems to correspond to "blind minimality", and in the case of model
+  checking LTL one gets a PSPACE algorithm using on-the-fly
+  algorithms, rather than EXPTIME.
+
+Significance
+The paper shows that the choice of LDL_f has a number of good
+properties: 
+- LDL_f is very expressive (much more than LTL_f or PLTL),
+- there is an easy compilation of an MDP with LDL_f rewards into an
+  extended MDP.
+- this translation is compositional in the sense that adding (or
+  indeed removing) a reward formula does not require redoing the whole
+  translation, and one can use on-the-fly methods and minimisation
+  techniques from automata to build canonical and minimal extensions
+  of the MDP.
+
+In comparison with previous work, either the logic is more expressive
+[Bacchus et. al., 1996], or the logic is more natural [Thiebaux et.
+al., 2006].
+
+Relevance
+This will be of interest to the planning and formal-methods
+communities at IJCAI. My feeling is that the simplicity of the
+techniques and expressiveness of the logic will open up new avenues of
+research, as suggested in the conclusion.
+
+The related work is very clearly discussed.
+
+Quality of writing
+Very well written with only a few issues:
+- The discussion on pg 1/2 about minimality needs tightening. e.g., in
+  "Unlike classical dynamic programming methods that require the
+  entire state space a- priori, these algorithms generate reachable
+  states only.", what do the classical techniques do?
+- After theorem 2: "and then possibly"... why possibly?
+- Section 3: you should specify the set of atoms used in the formulas
+  of the reward function, i.e., S.
+- Definition 1: "feasible trajectory" is not defined
+- Theorem 5: "being A_s a DFA, such two states"-->"A_s, being a DFA,
+  two such states"
+- paragraph about "blind minimality" on pg 5: M vs M'; also, the last
+  paragraph before section 6 starts by saying "we can progress the
+  extended MDP by ..." and ends by giving *another* way to "progress
+  the extended MDP"?
+- Section 7: "In addition, since the automata construction algo- rithm
+  is based on progression, unlike [Bacchus et al., 1996], we can use
+  information about the initial state to prevent the generation of
+  unreachable states." I do not understand this.
+- pg 6, col 1, par -1: gets a rewards --> gets a reward
+
+
+Overall Score
+7-A good paper, accept. 
+
+Confidence on your assessment
+6-I don't have complete knowledge of the area, but can assess the value of the work
+

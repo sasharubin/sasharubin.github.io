@@ -1,0 +1,315 @@
+Dear {FirstName},
+
+This email gives detailed instructions to help you write your
+AAMAS-2015 reviews. We hope you have checked the set of papers you
+were asked to review. If there are any problems with the allocation
+and you have not informed us yet, please do so as soon as possible.
+
+We have enabled the review form so you can now enter the reviews of
+the papers that have been assigned to you. Please remember that the
+STRICT deadline for doing so is
+
+	       FRIDAY 9th of JANUARY 2015, 23:59 UTC-12.
+
+However, why not make a note in your diary to finish the reviews
+before the Christmas break? Would it not be great to start the New
+Year without having to worry about the (exceptional) AAMAS review
+deadline in early January?
+
+We have made a few changes to the review form compared to previous years.
+Therefore, please read these instructions even if you have served on
+AAMAS Program Committee in the past. To access the review form, after
+logging in to ConfMaster, click on "View Assigned Papers" under the
+"PC Member" menu on the left-hand panel. You will then see the list of
+papers assigned to you. To enter the review for a particular paper,
+click on the R circle that appears towards the right-hand side of
+the line for that paper.
+
+In the review form, you are asked to evaluate each paper based on the
+following criteria: (1) relevance, (2) originality and novelty, (3)
+significance, (4) readability and organisation, and (5) technical
+quality and soundness. For each category, you have to select a score
+between 1 and 10. Based on these scores, you are asked to provide an
+overall mark for acceptance as a full paper as well as an overall mark
+for acceptance as an extended abstract. To give you a sense of what
+the marks for those 5 criteria above and the two overall marks are
+expected to mean, you can use the guidelines that we included at the
+end of this email.
+
+In contrast to previous years, instead of reporting one mark for your
+confidence in your review, this year you are asked to report two
+separate numbers: one for your expertise (e.g., your familiarity with
+the area that the paper belongs to) and another for your thoroughness
+in reviewing (how carefully you have read the paper). As a rough
+guideline, we propose the following interpretation of the numerical
+scores for those two criteria:
+
+Expertise
+
+---------
+
+ 1: I am not familiar with this area.
+
+ 3: I have a passing familiarity with the area of the paper (have seen
+    a talk on this topic, have glanced at a few papers).
+
+ 5: I am somewhat familiar with this area (have read a few papers, have
+    seen a tutorial or a mini-course, work on related topics).
+
+ 7: I work in this area, though not on this specific topic.
+
+ 9: I work on this topic and understand the area well; I could have
+    written this paper.
+
+10: I know this topic at least as well as the authors; I should have
+    written this paper!
+
+Thoroughness
+
+------------
+
+ 1: I have read the title of the paper.
+
+ 2: I have read the title and abstract of the paper.
+
+ 3: I have read the title, abstract and introduction.
+
+ 4: I have read the title, abstract, introduction and 
+    conclusions, and quickly skimmed through the rest of the paper.
+
+ 5: I have read the title, abstract, introduction, conclusions, and
+    looked at the main results.
+
+ 6: I have read the title, abstract, introduction, conclusions, as
+    well as all definitions and the statements of all results.
+
+ 7: I have read the whole paper but only checked carefully a few of the
+    proofs/experiments.
+
+ 8: I have read the paper and checked most of the results,
+    except possibly a few of the most technical ones.
+
+ 9: I have read the paper and attempted to check all of the results,
+    although on some occasions I got stuck.
+
+10: I have verified all results; the full list of bugs, typos and
+    stylistic errors is included in the review.
+
+We suggest that you structure your review as follows (the structure
+also appears in the template that is included in the review form; please
+keep these section headings for the review structure). Start with a
+brief description of the paper, followed by a justification for all
+the scores you gave to the paper (for each of the 5 main evaluation
+criteria listed above). You can then provide detailed feedback to the
+authors (typos, minor corrections, pointers to related work, etc.). If
+there are specific questions that you would like the authors to
+address during the rebuttal stage, please list them at the end of your
+review.
+
+Your review will be seen by the Senior Program Committee members and
+the other Program Committee members assigned to this paper, as well as
+the authors; if you want to include confidential comments (which will
+be seen by the SPC and other PCs, but not the authors), please use the
+"Confidential Comments to PC Members" box. In particular, if you
+have used the help of a subreviewer to prepare your report, please
+indicate their name in that box. Finally, in the last box, please
+provide a quick summary of your review.
+
+IMPORTANT: If you would like to write as part of your review whether
+you think the paper should be rejected or accepted, please do so in
+the box "Comments to SPC member" so that only the SPC and other fellow
+reviewers of that paper can see your recommendation. Please do NOT
+write acceptance/rejection recommendations in the boxes that authors
+can read (i.e., "comments to authors" and "summary of review"). There
+will be plenty of room for acceptance/rejection recommendations during 
+the discussion (which the authors cannot read).
+
+When writing the parts of your review that will be seen by the
+authors, please be professional and courteous. In particular, please
+make sure all the comments you write are phrased in a constructive
+manner: in all cases the authors should perceive the review as an
+earnest attempt of the reviewer to help the authors improve their
+paper.
+
+Best wishes,
+
+Rafael Bordini and Edith Elkind
+AAMAS-2015 Programme Chairs
+
+======================================================================
+
+
+Relevance
+
+---------
+
+ 1: The paper is of no interest to the AAMAS audience.
+
+ 3: The paper is mostly out of scope for AAMAS, but could be of
+    interest to a small group of attendees.
+
+ 5: The paper is marginally in scope for AAMAS.
+
+ 7: The paper is in scope for AAMAS, it will interest one the various
+    communities that attend the AAMAS conference.
+
+ 9: The area of the paper is well-represented at AAMAS, and the paper
+    is well targeted for the AAMAS audience.
+
+10: The paper will interest every single attendant of AAMAS.
+
+
+Originality
+
+-----------
+
+ 1: The paper reports results that were already known.
+
+ 3: A straightforward extension of earlier work which uses standard
+    tools and produces unsurprising results.
+
+ 5: A new research question, the solution uses standard techniques, but
+    their application is not entirely trivial.
+
+ 7: A new research question that requires new technical insights
+    and/or produces surprising results.
+
+ 9: A research question that suggests an exciting new research direction and/or
+    an interesting new technique.
+
+10: A breakthrough contribution that opens up new horizons for AAMAS.
+
+
+
+Significance
+
+------------
+
+ 1: The paper has no technical contribution whatsoever.
+
+ 3: The contribution of the paper is unlikely to have any impact.
+
+ 5: The results will be of interest to a few researchers who work on
+    those topics.
+
+ 7: The results will be of interest to a large group of researchers in
+    that area.
+
+ 9: The results will have impact beyond the subarea that the paper
+    belongs to.
+
+10: The paper will change our view of the entire research area.
+
+
+
+Readability and Organisation
+
+----------------------------
+
+ 1: The paper fails basic rules of academic writing, or the authors
+    have a very limited command of the English language.
+
+ 3: The paper is badly written/organised; it would be embarrassing to
+    publish it in its current form.
+
+ 5: The quality of writing is tolerable but not great; another
+    round of proofreading must be done before publication.
+
+ 7: The paper is mostly readable, but contains a few typos/confusing
+    notation/unclear arguments that can be easily fixed.
+
+ 9: The paper is extremely well written and organised and all the
+    results are clearly explained; there are only very few typos to be
+    fixed.
+
+10: The paper is a pleasure to read -- all proofs are easy to follow /
+    the experimental results are well presented, the authors have
+    included useful figures where needed, the grammar is perfect, and
+    there are no typos.
+
+Technical Quality and Soundness
+
+-------------------------------
+
+ 1: All the technical details of the paper are trivial or incorrect.
+
+ 3: Much of the technical details are unsound or trivial.
+
+ 5: There are some non-trivial, sound technical details, but there
+    remain technical problems that are not easy to fix.
+
+ 7: The technical details have depth but there remains some minor
+    technical problems; the authors should be able to fix those easily.
+
+ 9: The work has great technical depth and the results are sound.
+
+10: The paper is flawless and contains some of the most brilliant
+    technical results I have read in a conference paper.
+
+
+Overall Recommendation (Full Paper)
+
+-----------------------------------
+
+ 1: The paper is obviously not suitable for AAMAS.
+
+ 2: I strongly support rejection; it will be embarrassing to accept
+    this paper.
+
+ 3: I strongly support rejection, and will argue against accepting
+    this paper.
+
+ 4: I support rejection.
+
+ 5: I weakly support rejection; I will not be too upset if the paper
+    is accepted.
+
+ 6: I weakly support acceptance; I will not be too upset if the
+    paper is rejected.
+
+ 7: I support acceptance.
+
+ 8: This paper is likely to be among top 50% of accepted papers, I
+    strongly support acceptance.
+
+ 9: This paper is likely to be among top 10% of accepted papers,
+    possibly best paper material.
+
+10: This paper is better than any AAMAS paper I have seen.
+
+
+Overall Recommendation (Extended Abstract)
+
+------------------------------------------
+
+NB: These scores will only be considered once it has been decided that
+the paper should not be accepted as a full paper. Thus, even if you
+support accepting the paper as full, choose a score for acceptance as
+an extended abstract under the assumption that your fellow PCs and SPC
+prefer not to accept this paper as full. Supporting a paper for full
+acceptance does not imply that you should support it as an extended
+abstract. Papers for poster presentations should have exciting new
+ideas that will lead to lively discussion, and you should consider
+also whether the main contributions of the paper can be adequately
+summarised in two pages.
+
+ 1: There is not a single interesting idea in this paper; there is
+    nothing in it to discuss at the poster session.
+
+ 3: The paper is not a good fit for the poster session 
+    (the results are weak or not suitable for poster
+    presentation, or cannot be adequately written in two pages).
+
+ 5: Some interesting new ideas, but perhaps not quite 
+    enough for a venue like AAMAS.
+
+ 7: The paper has interesting ideas worth publishing as an extended
+    abstract; some members of the community will definitely be
+    interested in discussing thise ideas at the poster session.
+
+ 9: The material in the paper will make an excellent poster presentation.
+
+10: Brilliant new ideas that can be adequately summarised in
+    two pages; everyone would love to hear the authors at the poster
+    session.
+

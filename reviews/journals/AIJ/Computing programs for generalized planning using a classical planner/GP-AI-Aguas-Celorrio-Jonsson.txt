@@ -1,0 +1,337 @@
+This is a review of manuscript number ARTINT-D-17-00064.  All numbered
+references, e.g., [10], refer to the bibliography of the manuscript.
+Additional references are listed below. 
+
+CONTEXT
+Generalised planning is the problem of finding a plan that works for a
+family of planning instances rather than just for a single instance.
+
+There are many dimensions along which one can formalise generalised
+planning. One notable dimension is whether or not the family of
+instances is finite or infinite.  In this paper, this family is finite
+(cf. [32] that also treats the infinite case, as well as the followup
+work [GSMR16]). It is natural to assume that the problems share 
+the same set of actions and observations [5]. Other assumptions in this 
+submission are that the instances are finite, fully-observable, 
+deterministic, with conditional effects. 
+
+One central issue in generalised planning is the representation of
+generalised plans. That is, classic plans are sequences of actions.
+However, generalised plans should be *strategies* (also called
+policies in the planning literature) that tell an agent how to act.
+Mathematically these are simply functions from histories (sequences of
+states, or observations in the partially-observable setting) to
+actions. In order to be synthesised/computed such functions should
+have finite representations. There are many possible representations
+of strategies. Natural choices are positional strategies (i.e.,
+functions from states to actions), finite-state strategies (there are
+many variations of these, e.g., graph-based [21]), programming
+languages with loops (e.g., GOLOG programs [LRLLS97], robot programs
+[Le05]), etc.
+
+Such representations are typically Turing-powerful, and thus the
+planning problem is undecidable unless some restrictions are added
+(e.g., a bound on the number of objects in the domain, a bound on the
+number of steps to be executed, the number of lines in the program,
+the height of the recursion).
+
+The purpose of this paper is to show, both theoretically and with
+experiments, how to solve generalised planning problems by introducing
+suitable bounds and reducing to classic planning problems.
+
+CONTRIBUTIONS
+The first contribution is a programming language with various features
+for compactly representing strategies. The basic language has
+conditionals (i.e., fluents can be tested), jumps (i.e., gotos), and
+operations for executing actions. The features include procedures
+(i.e., recursion) with and without arguments, nondeterministic choice,
+and lifted sequential instructions.  This language allows for very
+compact programs which are human-readable (a property of most
+programming languages).
+
+The paper shows how to translate a generalised planning problem \P and
+an integer n into a classic planning problem P'_n such that there
+exists a program with at most n lines that solves \P iff P'_n has a
+solution. The idea is to introduce actions that "program" commands for
+each line, execute commands at a given line, and thus simulate the
+program on all the problems in \P, one after the other.
+
+The paper evaluates the translation in two steps. First, a planner is
+used to generated a solution to P'_n. Second, a planner is used to
+validate the program on larger planning instances. A host of domains
+are evaluated: list manipulation (finding, reversing, selecting),
+arithmetic (computing triangular numbers, Fibonacci numbers), tree and
+grid traversal/search, gripper, blocksworld, string manipulation, etc.
+The validation step is compared with classic tests for solving the
+larger domains directly using a planner. The experiments show that
+very natural programs were synthesised.  Inspection of these programs
+shows that they solve *all* similar instances, not just the validated
+ones (e.g., the program will reverse any given list of any size).
+
+EVALUATION
+
+I enjoyed reading this paper. It is a great combination of
+impressive looking results with simple ideas/techniques.  
+
+It seems to me that the principle behind the technique is that if a
+small program solves multiple/enough instances, then it should solve
+all similar instances of all sizes (the reason for this is that a
+small program is unlikely to overfit since it is not possible to
+hard-code solutions to many instances in just a few lines;
+surprisingly, perhaps (?), the programs also do not seem to hard-code
+small instances).  A theory explaining this is still missing, although
+some first steps have been made with so-called 1-Dimensional planning
+in which an infinite family of instances has a solution iff
+sufficiently many of them do, e.g., [5,Le05].
+
+The main power of this approach, i.e., reducing generalised planning
+to classical planning, is that it avoids the need to tailor plan
+generation heuristics and approaches to generalised planning (as in,
+e.g., [Le05, 21]). 
+
+I have three concerns. 
+
+1. Although the writing is good on the whole, there are various places
+where the formalisation is missing or should be tightened.
+- The exact relationship between the various extensions of the basic
+  programming language is not clear. E.g., does the extension with the
+  choice operator allow procedures?  It seems not.
+- The mathematical/formal parts of the paper need to be cleaned
+  up/corrected/better explained (some definitions should be tightened,
+  proofs improved, notation defined before it is used) and a fully
+  specified example is missing).
+- More details are given below.
+ 
+2. The related work, although reasonably broad, does not discuss
+certain closely related papers, and others in not enough depth.
+- Planning is very similar to "synthesis" in the formal-methods
+  community. The authors should discuss some of that literature, in
+  particular the work on bounded synthesis, e.g., [SF07], where the
+  problem is to construct a finite-state strategy that solves a given
+  specification (typically LTL) and a given bound on the number of
+  states.
+- Although [4,21] are described, a careful comparison is missing.
+- It is not clear why the authors invented their own programming
+  language, or how this language compares with existing programming
+  languages from the planning literature (e.g., [LRLLS97,Le05]).
+- A comparison with existing generalised planning tools is missing.
+  For instance, Levesque's prolog-based KPLANNER [Le05] has a similar
+  "generated for small instances and test on large instances"
+  procedure (although the generation is not as simple as compiling
+  into classical planning).
+- Your basic planning language is, essentially, a finite-state
+  strategy. The extension with procedure calls can be modeled (it
+  seems) as a pushdown strategy. The precise relationship should be
+  discussed. Also, the relationship between the various extensions is
+  not clear. E.g., is the language with nondeterministic choice an
+  extension of the basic programming language (i.e., without
+  procedures?).
+
+3. The extend to which the work can be replicated is unclear. Some of
+the technique is automatic (e.g., the translation), but others involve
+picking good/relevant examples for computing auxiliary procedures etc.
+The non-automatic techniques should be explained in more detail.
+
+DETAILED COMMENTS
+
+introduction
+p2l8: "only computable": do you mean "only exist"?
+
+section 2
+p3l10: "Algorithms for computing..." Which algorithms?
+p3l12: "Moreover .. planners". What does it mean to integrate
+generalised policies into planners?
+p3l34: serie
+
+
+section 3.1
+-\Psi is a set of "predicate symbols".
+- The WLOG (that L does not assign conflicting values to any fluent)
+  is not clear. Which L does this refer to? Just states, or all sets
+  of literals occuring in the paper? Why is this without loss? e.g.,
+  if L = E_1 \cup E_2 then it may be that f \in E_1 and \neg f \in
+  E_2. How does one resolve this conflict?
+- There is a mix of syntax and semantics which makes things hard are
+  to understand at first. 
+- E.g., "a literal is valuation of a fluent" is a semantic definition;
+  while "l = f or l = \neg f" is a syntactic description.
+- E.g., the dfn of \eff(s,a) needs some explanation. For instance,
+  does \eff(s,a) may assign conflicting values to a fluent (e.g.,
+  \eff(s,a) = E_1 \cup E_2, defined above).  Is this your intention?
+- E.g., the dfn of \theta(s,a) needs some explanation. For instance,
+  what is the definition of s \setminus L where L is a set of
+  literals?  Perhaps you mean \theta(s,a) = (s \setminus {l \in
+  \eff(s,a): l = \neg f, f \in F}) \cup {l \in \eff(s,a) : l = f, f
+  \in F}?
+
+section 3.2
+l15: "generalized plan" is used but undefined. Perhaps you should put
+the sentence "A solution \pi to a generalized planning problem ..." at
+the end of the paragraph, i.e., after you say what you mean by
+generalized plan.
+
+l20-28: these restrictions should be emphasised (it is too buried as
+it is now). e.g., \subsubsection{Assumptions on the model} or
+something like that.  They should also be clarified. 
+- e.g., 2) says the effects of an action are the same... but I think
+  you mean that the set of actions (thus the preconditions and
+  conditional effects) in all instances are the same, right?
+- e.g., I do not understand how two problems can share the same set of
+  predicates... the predicates are not part of the problem
+  description. Unless you mean that the set of all predicates occuring
+  in fluents in the two problems is the same?
+- e.g., (pedantic) "we assume that the solutions to the generalized
+  planning task have the form of a planning program"... I think you
+  mean that you "restrict", i.e., only consider, such generalised
+  plans.
+
+Section 4
+p6
+l14: "STRIPS frame" undefined.
+l14: "basic planning program" should be hilited... this is a definition.
+l36: "the" execution
+l37-38: item 1. does not refer to a failing *execution*, rather it
+represents a failure of being a *solution*
+
+l45: how is dec(x) defined? e.g., what happens if x = 0? I suggest
+adding a fully specified example of a generalised planning problem,
+i.e., explicitely state the predicates, fluents, action names,
+preconditions, conditional effects, bound parameters (n,l, etc.)
+
+l48: "most other": which?
+
+p7
+l23: You let X denote any class of planning programs but have only
+defined the basic planning programs. 
+
+l56: You should say where K comes from (i.e., K = p(k) where p is the
+given polynomial and k the length of the input).
+
+p8
+l17: I think you meant NPSPACE = PSPACE. If not, please explain.
+l48: "classical planning action" is undefined
+
+p9
+l29-34: why do you execute the programs one after the other? is there
+a good reason not to run them in parallel?
+
+p10
+l22: refers to classical planners. I don't see how the properties of
+the tools themselves should have any bearing on the proof of soundness
+(which does not refer to classical planners at all).
+
+p11
+An explanation of the pre-processing step (including the facts and
+operators) is needed to fully understand the relevance of your
+experiments.
+
+p12
+The issue of NSF needs to be better clarified. You seem to be
+suggesting that there is a bug in a planner?
+
+p13
+l28: "program state" should be emphed since I think you are defining
+"program state".
+
+l54: the type of object that l is should be emphasised up front. i.e.,
+it is a parameter that limits the semantics ("execution model") of the
+program, and is not part of the syntax of the program. In particular,
+the dfns of VAL(PP-P) and BPE(PP-P) should clarify whether l is part
+of the input or not (section 5.4 and theorem 7).
+
+p14
+par 2: again, I think that a fully worked example would make clear
+what you mean by "derived fluent", "x = n" etc.
+
+section 5.2
+
+par 2: I don't see the point of this paragraph.
+par 3: "invariants" usually means something stays the same over time.
+In what sense is assign(v,-) an invariant?
+l48: "object-centric actions" and "variable-centric actions" are
+undefined.
+
+section 5.4
+The defn of "equivalent" classes of programs needs to be made more
+explicit. What sort of reduction do you mean? e.g., ptime?  Also, the
+description in the proof of lemma 6 of "equivalent" (lines 52-54) is
+trivial to satisfy (just decide if P solves \Pi and output any fixed
+problem and program that accords with that answer). I think you mean,
+instead, that for every PP program P there is an ordinary program P'
+such that P and P' solve the same planning problems.  Then, the proofs
+of lemmas 5 and 6 need to be updated.
+
+Actually, since the notion of equivalent is only used to prove Theorem
+7 (right?), then I would suggest removing that notion (and the
+lemmas), and simply proving Theorem 7 in the same way you did earlier,
+i.e., give a polynomial bound on the number of states.
+
+p18
+l51 and l57: on the one hand a program with l< 3 can't visit all nodes
+of a tree with depth 3, and on the other a generated program can
+traverse all nodes of trees of arbitrary size. please clarify.
+
+p19
+l17-20: more details please. 
+l23: HGN - please spell out the acronym
+l19: "the problem is decomposed"... you mean by hand? give more
+details.
+
+p20
+l26: "all actions are implemented using conditional effects"... more
+details please.
+
+Section 6
+p22
+The semantics of nondeterministic planning programs needs to be made
+much more explicit.
+- e.g., is the nondeterminism devilish or angelic? i.e., it seems the
+  answer is devilish, i.e., the plan must work no matter how the
+  nondeterminism is resolved.
+- e.g., what does it mean to unify a predicate with a state? give a
+  formal dfn.
+
+p23
+Again, "action schemes" should be formally explained and "lifted
+sequential instructions" should be defined.
+
+p24
+l26: "generalized plan" wasn't defined clearly enough for one to know
+whether or not a planning program is or is not a generalized plan.
+par -2: the description is too rough to be understood.
+l25: "domains"-->"instances"?
+
+p26
+the notion in fig 11 and line 40 is different.
+
+section 7.3
+This translation of classification into generalised planning should be
+made more explicit (the fluents "required", the actions "necessary",
+are not clear to me).
+
+p31
+last sentence: I don't understand this. Can you make it clearer?
+
+
+REFERENCES
+
+[GSMR16] Giuseppe De Giacomo, and Antonio Di Stasio, Aniello Murano, Sasha Rubin
+Imperfect information games and generalized planning
+IJCAI 2016.
+
+[Le05] Hector J. Levesque
+Planning with Loops
+IJCAI 2005.
+
+[LRLLS97]
+Hector J. Levesque, Raymond Reiter, Yves Lespérance, Fangzhen Lin, Richard B. Scherl:
+GOLOG: A Logic Programming Language for Dynamic Domains. 
+J. Log. Program. 31(1-3): 59-83 (1997)
+
+[SF07]
+Sven Schewe, Bernd Finkbeiner:
+Bounded Synthesis. ATVA 2007: 474-488
+
+REVIEWER
+
+Sasha Rubin (I am not in favour of single-blind reviews).

@@ -1,0 +1,84 @@
+SUMMARY
+This article is about finding good action sequences for a group of
+units engaged in combat with opponent units, where individual unit’s
+actions consist of either targeting units within weapon range or
+moving around. A combat game is a series of simultaneous move rounds,
+in which units lose "hit points" when being attacked. Units that lose
+all their hit points are destroyed. The player who first destroys all
+opponent’s units wins. The games are assumed to have a fixed time
+limit in order to make them finite.
+
+Instead of searching an exponentially large combination of all
+possible unit actions, one relies on a portfolio of scripts (e.g.,
+attack the weakest unit, attack the closest unit, etc.). In the
+"uniform abstraction" [CB13] , one considers, for each unit, a
+strategy from the script. 
+
+This paper introduces a generalisation called "asymmetric abstraction"
+in which one chooses a set of units for which one allows all legal
+moves. Thus, if the chosen set is empty then one gets the "uniform
+abstraction", and if the chosen set consists of all the units, then
+one gets the "unabstracted" case.
+
+However, even the "uniform abstraction" results in a space for which
+finding an optimal strategy is impractical (I assume). Thus,
+[Churchill and Buro 2013] approximate the optimal play by using a
+hill-climbing technique. In this submission, one first chooses an
+enemy strategy, and then hill-climbing is used to approximate a
+best-response.
+
+The paper also gives two variations of published hill-climbing
+algorithms (from [Churchill and Buro 2013] and [Lelis 2017]). An
+empirical evaluation is carried out which shows that the new
+variations outperform state-of-the-art even when instantiated with
+uniform abstractions; and that a greater improvement results when
+instantiated with asymmetric abstraction.
+
+
+EVALUATION
+Pros: This work presents an improvement on the state of the art for
+finding good strategies in idealisations of combat scenarios from
+real-time strategy games. The main improvement comes from using a
+finer abstraction of the set of actions. As with all abstractions,
+their utility needs to be demonstrated with experiments, which is
+exactly what this paper does.
+
+Cons:
+- In my opinion, the work is incremental. Basically, it supplies
+  optimised variations of algorithms from previous papers. There are
+  no new theoretical ideas that will have significant impact.
+- To justify the algorithm computing a best-response to a (randomly?)
+  chosen enemy strategy, the authors state: "Churchill and Buro
+  suggest to keep player −i’s action fixed after initialization as
+  that leads to better results in practice." This vague statement does
+  not seem to be reflected in [Churchill and Buro 2013].
+- Not much is said about the computational complexity of the problem,
+  only that it can be solved by backward induction which is
+  impractical in the current setting. In [CB13] it is mentioned that
+  the problem is PSPACE-hard.
+- The paper is not easy to read. In particular, many notions are
+  undefined or poorly defined (see below), and the headings and
+  notation do not allow one to easily navigate the paper. In contrast,
+  the presentation of the game in [Churchill, Saffidine, Buro 2012] is
+  vastly superior, and could be used as a starting point in any final
+  version of this submission.
+- recent important work on abstraction in games of imperfect-information 
+  is neither cited nor discussed, e.g., Sanholm, T. 2015. Abstraction for 
+  Solving Large Incomplete-Information Games 
+- no bounds on the solution quality are given, cf. Kroer, C., and 
+  Sandholm, T. 2014. Extensive-form game abstraction with bounds. 
+  In Proceedings of the ACM Conference on Economics and Computation (EC).
+
+Undefined or poorly defined notions
+- "performing a move"
+- "state" is vaguely defined. it consists of units; and later one sees
+  that each of these units have properties (such as x,y co-ordinates,
+  hp). this should be better presented.
+- the transitions should be better described, e.g., presumably one
+  subtracts the sum of all the attack values caused from a unit's hp
+  in a transition.
+- the "utility" function R_i is undefined.
+- the assumption that the game tree is finite should be explained. how
+  realistic is this assumption? what are the disadvantages of this
+  assumptions?
+

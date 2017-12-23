@@ -1,0 +1,62 @@
+This paper studies the model-checking problem for multi-agent systems generated
+by pushdown automata and epistemic alternating-time temporal logics.
+
+The game-structures are infinite-state, i.e., configuration spaces of pushdown
+automata.  These are called PEGS in the paper (pushdown epistemic game
+structures).  The indistuinguishability relations come in three flavours: "size
+preserving" (introduced in [Aminof et al. 2013]), "regular" (which seem to be
+new to this paper) and "simple" (a special case of "regular").
+
+The paper is theoretical and contains no experimental evaluation. The focus is
+on structures with imperfect information and agents with imperfect-recall 
+(aka. uniform memoryless strategies). 
+
+The main results are:
+- undecidability of ATL_ir assuming size-preserving relations.
+- 2EXPTIME-completeness of ATEL*_ir and EXPTIME-completeness for ATEL_ir
+  assuming regular relations,
+- 1EXPTIME-completeness of AEMC_i assuming size preserving- or regular-relations.
+
+The upper-bounds are achieved by standard techniques and easy reductions to the
+known perfect-information cases, and the lower-bounds are immediately inherited
+from corresponding results about CTL(*) and AMC.
+On the positive side:
+- this work presents a model of multi-agent system that combines two important
+  aspects: infinite-state and imperfect-information.  Previous work either deals
+  with finite-state or perfect-information.
+- the paper is well written (I found hardly any typos) and the results are
+  sound.
+
+My main concern is that the motivation for an AI audience is very weak:
+
+1. Pushdown systems are standard in software verification because they abstract
+procedure calls. Where do PEGS appear in MAS/AI, i.e., what kinds of agents and
+situations would result in a PEG? In the terminology of "interpreted systems"
+[1], what are the local states of an agent in a pushdown setting? 
+
+Note that in a PEG it is not the agents themselves that are pushdown --- this
+would result in a model that, in my opinion, is much better motivated; however,
+very little would be decidable since even reachability questions about multi-stack
+systems are undecidable. 
+
+The authors do provide an ad-hoc example (in the supplement), adapted from
+Murano and Perelli 2015, of a scheduler that receives requests from agents and
+grants access to a shared resource in a stack-regime. I do not think that this
+example is important or generalisable enough to have an impact on MAS/AI
+research.
+
+2. The types of indistinguishability-relations considered are not well
+motivated. In the setting of a pushdown MAS, how should one define agents with
+perfect-recall? with imperfect-recall? with bounded-recall? Perhaps
+"size-preserving" captures perfect-recall. But what type of agents do "simple"
+and "regular" relations capture?
+
+In summary, this work might be interesting to the software-verification
+community where pushdown systems are well justified. However, given the
+incremental nature of the technical contribution and the fact that the objects
+of study (i.e., PEGS) are not well-motivated, I can't recommend acceptance to a
+top level AI conference.
+
+
+[1] Reasoning about Knowledge. Fagin, Halpern, Moses, Vardi. MIT Press, 1995. 
+

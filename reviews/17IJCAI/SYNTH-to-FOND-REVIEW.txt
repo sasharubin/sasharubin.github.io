@@ -1,0 +1,191 @@
+This paper is about using FONDP planners to solve LTL synthesis.
+
+LTL realisability (sometimes called LTL synthesis) is the problem of
+deciding if there exists a a finite-state strategy that satisfies a
+given LTL property no matter how the environment behaves [Pnueli and
+Rosner 1989]. The idea is that the set of propositions of the formula
+are partitioned into those controlled by the agent and those
+controlled by the environment, and that each "player" can set the
+values of their variables (players taking turns, with the environment
+going first). The realisability problem is known to be
+2EXPTIME-compelte.
+
+This paper suggests a translation of LTL synthesis to strong-cyclic
+FOND planning (Theorem 3) and compares the translation with
+state-of-the-art synthesis tools. 
+
+Originality
+Although there are translations of synthesis into two-player graph
+games (which themselves are very similar to the state-based
+representations of FOND with temporally extended goals), this is the
+first translation into a compact representation of FOND with
+reachability goals.
+
+
+Technical Quality
+I have some minor concerns, and a major concern.
+
+Minor concerns:
+a) In the abstract and elsewhere it says that this paper is the first
+to supply a full mapping between LTL synthesis and FOND planning. The
+meaning of "full mapping" (also "correspondence") is not explained. A
+good answer would be optimal translations in both directions. However,
+only a translation from LTL synthesis to FOND planning is given; and
+no optimality is claimed. By "optimal" I mean that, e.g., synthesising
+Phi by reducing to FOND planning is 2EXPTIME.
+
+b) The authors see a problem with the "inverted turns", where I see no
+problem. In LTL synthesis and in the game-theoretic view of FOND, it
+is the environment that moves first. Said another way, there is a
+simpler version of theorem 1 which says that "(X,Y,phi) is realisable
+iff M_phi has a strong plan".
+
+The main concern is that the translation (section 4.1) is not
+understandable. This is for two reasons: i) the construction is not
+given clearly or formally enough for me to verify it is correct, and
+ii) there is not enough intuition to explain the construction.
+Moreover, from what I can gather, I do not believe the construction is
+correct.
+
+Although I don't have a formal counter-argument or counter-example to
+the translation (the translation is not stated clearly or formally
+enough for me to establish this), the following fundamental issue is
+not properly dealt with: In order to solve LTL synthesis one typically
+applies a combinatorially complex construction from automata theory.
+The translation given in this paper has no such combinatorics, nor is
+it explained how it circumvents these constructions.
+
+Here are three approaches to solving LTL synthesis. In each, I point
+out the "complex" step (shorthands: N = nondeterministic, B = Buchi, 
+P = Parity, C = Co-Buchi, W = Word, T = Tree):
+
+a) LTL --> NBW --> DPW --> DPT --> emptiness
+
+The second determinisation step is "complex", e.g., use Safra's
+construction.
+
+b) LTL --> UCW --> UCT --> emptiness
+
+The third emptiness check is "complex", e.g., use Muller and Schupp's 
+simulation lemma.
+
+[REMOVED 
+c) LTL --> NBW --> two player Buchi game of imperfect information -->
+two player Buchi game of perfect information --> solve game 
+
+The second step says that one uses imperfect information to solve
+games on non-deterministic arenas, see
+- http://dblp.org/rec/conf/stoc/Reif79 for this idea applied to
+  universality of automata (note that univerality of an LTL formula is
+  a special case of LTL non-realisability), and 
+- http://dblp.org/rec/conf/fsttcs/FijalkowPS13 for a recent account
+  applied to emptiness of APT.  
+
+The third step uses, e.g., the belief-space construction.
+]
+
+Significance
+The abstract states "In this paper we establish the correspondence
+between LTL synthesis and fully observable non-deterministic (FOND)
+planning." This is a laudible and important objective. However, the
+present paper falls short of meeting this objective.
+
+Relevance
+The topic will be of interest to the planning community and the formal
+methods communities in IJCAI.
+
+Regarding related work:
+- Little to no discussion is given on the classic ways of solving LTL
+  synthesis, and its relationship between the submitted work.
+- pg 2: The citation [Camacho et. al. 2017] is given for FOND with LTL
+  goals. Much more can be said, including references to FOND with LTL
+  goals in which the domain is given explicitly
+  http://dblp.org/rec/conf/ecp/GiacomoV99.
+
+Quality of writing The paper is poorly written. Here are some typos
+and vague notions:
+- abstract: "two player game against the environment" --> "game with
+  one player against the environment"
+- introduction, par 2: N^3-time algorithm ... N is undefined.
+- pg 2, par 3: dfn of "s' is a result of applying a in s" should be
+  bracketed.
+- pg 2, par 3: "finite executions" should be italicised when defined
+  (since "finite execution" might simply mean any execution that is of
+  finite length).
+- pg 2: "satisfies the goal" --> "achieves the goal"
+- pg 2: \box \phi \equiv \neg \diamond *\neg* \phi
+- pg 2: construct Non-deterministic --> "construct a
+  Non-deterministic"
+- pg 2, sec 2.4: the domain of f is better written (2^X)^+    
+- pg 2, sec 2.4: "Intuitively, no matter what the choice of the
+  environment is, which is given by the sequence X 1 X 2 . . ., the
+  controller has a strategy, given by f , that ensures formula φ is
+  satisfied in the resulting game." --> "Intuitively, the environment
+  has a strategy such that, no matter what sequence X1 X2 ..." In
+  other words, the order of the quantifiers matters.
+- pg 2, sec 3: "Rather, in FOND, the play sequence is inverted since
+  the environment decides the outcome of an action, which is in turn
+  defined by the agent (controller)." I disagree. The natural way to
+  view a FOND as a 2-player game is for the environment to move first
+  by setting all fluents in I to be true and fluents not in I to be
+  false.  that, starting from a "dummy initial" state, the environment
+  moves to the state I.
+- The phrase "2 player games" is not used carefully enough. Sometimes
+  it seems to mean some abstract notion of game, other times it refers
+  to games played on graphs ("game structures" pg 2).
+- pg 3, par 2: (2^X) --> (2^X)^+
+- section 4:
+  - the construction is muddied with optimisations and details of
+    implementation (e.g., the use of "spot"; pre-processing phi looks
+    like an optimisation; the inclusion of "Regularize" is stated to
+    be an optimization for action "switch2env" but not for action
+    "accept"). This makes it hard to understand the core ideas that
+    make the transformation correct.
+  - what is the domain and range of \delta? cf. "T \in \delta" and
+    later "T = \delta(q,q')"
+  - the terms "Pre_switch2aut(h, h')" does not parse, i.e., Pre does
+    can't take arguments (by dfn on pg 2), and switch2aut does not
+    take parameters (by dfn on pg 3).
+  - "Pre_trans(T)" and "Eff_trans(T)" mention q_i and q_j. 
+    I assume T = (q_i,q_j).
+  - why does one need v_l and v_{\neg l}? isn't having one of them
+    enough? i.e., to simulate that l is true set v_l and to simulate l
+    is false unset v_l.
+  - The exact meaning of q^S, q^T and q^{ST} are unclear. In
+    particular, q^S and q^{ST} are not explained.
+  - No good intuition about the meaning of h_max is given. Perhaps
+    this is similar to the idea that if one has a winning strategy in
+    a finite-duration variation of a Buchi game (for sufficiently
+    large number of steps), then one has a winning strategy in the
+    original Buchi game. See, e.g., journals/ijfcs/Fearnley012.
+  - The paragraph after definition 1: what does it mean to "reach,
+    *recognizably*, an accepting state"?; "is such strong cyclic
+    plans"; what is the "dummy goal"?
+  - I am confused by the mechanics of the translation. When I try to
+    follow the progression of the fluents I find that they can get
+    stuck in a way that does not match the given synthesis problem.
+    Given an NBW for the formula, consider an infinite accepting trace
+    q_0 q_1 ... Follow the sequence of fluents representing states of
+    the NBW in the FOND problem. The initial set of such fluents
+    (let's call them state-fluents) is {q_0}. After the environment
+    sets its fluents, the action switch2aut replaces q_0 by q_0^S.
+    Then a transition fires (say from q_0 to q_1) and the
+    state-fluents are {q_0^S,q_1}.  Then switch2env fires and the
+    state-fluents are {q_1}. Then suppose accept fires and the second
+    effect is enabled: then the state-fluents are {q_1^T}. Then after
+    the environment sets its fluents the action switch2aut results in
+    {q_1^{ST}}. At this point, no transition can fire because every
+    transition requires a precondition of the form q^S. This results
+    in a finite (and thus fair) execution of the FOND which does not
+    reach the goal, while the corresponding trace in the NBW was
+    accepting.
+- pg 6: the "switches" domain is discussed in the body but does not
+  appear in Table 1.
+ 
+Overall: The topic is interesting and relevant for the IJCAI
+community. Using planning technology to solve synthesis problems would
+be a fantastic addition to automatic synthesis tools
+(http://www.syntcomp.org/). However, this submission has too many
+typos, too little formalisation, and too little clear intution to be
+sure what the authors had in mind.  Moreover, my best understanding of
+the paper suggests that the main translation is incorrect.

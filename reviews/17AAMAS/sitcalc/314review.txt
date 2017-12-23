@@ -1,0 +1,185 @@
+CONTEXT
+-------
+This is a theoretical paper in planning and reasoning about actions that
+considers the following foundational question: what does it mean for a plan to
+be correct?  This is a central and non-trivial question in AI (Mcarthy/Hayes
+1969, Moore 1980). For instance, it has been argued that a plan should be
+epistemically feasible (the agent should know how to execute it) and physically
+feasible (the agent should be physically capable of executing it).
+
+In classic planning, a plan is a sequence of actions, and a plan is defined to
+be correct if a goal state is reached. However, in more realistic settings
+(nondeterministic or stochastic effects, noisy sensors, parameterised domains,
+etc., in which a plan may be a program or a computable function or strategy), 
+answering the question "what does it mean for a plan to be correct?" is more
+subtle.
+
+The aim of this paper is to tackle this question in the presence of noisy
+actuators and sensors.
+
+The starting point for this paper is the suggestion in [29] that, for planning
+with sensing, a controller is correct if it drives the system to a goal state
+starting at all states indistinguishable from the initial state. Other
+definitions are possible:
+- e.g., knowledge-based programs, chapter 7, "Reasoning about knowledge", Fagin
+  et al., MIT 2003
+- e.g., "Epistemic planning for single- and multi-agent systems", Bolander et
+  al, JANCL 2011.
+
+The formalisation in [29] is based on the situation calculus, i.e., the planning
+instances are modeled in the situation calculus, with a special fluent SF(a,s)
+representing what is sensed if in situation s action a is done, and a special
+fluent K(s,t) that represents the fact that the agent can't distinguish situation
+s from t.
+
+
+CONTRIBUTIONS
+-------------
+
+The main goal of this work is to extend existing formalisations, particulary
+based on [21,29,2], to a stochastic setting, i.e., to include actuator and
+sensor noise. Unlike [29], the authors restrict to finite-state positional plans
+(i.e., positional controllers that are implementable by a Moore machine). Like
+[21,29] a plan should "work" for all states indistinguishable from the initial
+state.
+
+The authors show how to formalise planning domains with noisy actions and
+sensors in the situation calculus (based on [1,3,4]). They define the execution
+semantics of a plan: the idea is to apply not just the advised action, but all
+alternative actions, in order to get the next set of state/situation pairs
+(definition 8). They define a few basic adequacy concepts, e.g., a plan works
+if at least one terminating situation is reached that satisfies the goal (13);
+all reachable terminating situations satisfy the goal (14); every execution can
+be extended to a terminating one that satisfies the goal (14)&(15). The authors
+prove some expected (from [2]) relationships between these adequacy concepts
+in the noise-free setting (theorem 10). Definition (#) presents a more
+interesting correctness concept that measures the degree of belief that the
+agent has that every terminating situation satisfies the goal.
+
+Noting that these adequacy concepts may advise different actions at
+indistinguishable worlds, the authors define an execution semantics of a plan
+over belief states which says that actions should be executable at all
+indistinguishable worlds (definition 16). The final theorem says that such a
+definition of correctness does not guarantee termination.
+
+EVALUATION
+----------
+
+On the positive side:
+- The topic is central to AI, and of deep interest to the planning, logic, and
+  reasoning about action communities.
+- The choice to formalise the ideas based on the situation calculus allows one
+  compactly express very general adequacy concepts.
+- The authors provide a number of definitions and adequacy concepts that are
+  worth considering.
+
+On the negative side:
+- Understanding the paper requires great familiarity with the situation calculus
+  and its extensions. The readership is further limited by the fact that the
+  submission is heavily based on [1,2,3] (some of which was only published in
+  2016) and does not do a good job of explaining which ideas came from which
+  papers or of comparing the content of [1,2,3]  with the submission.
+- Some poor writing (see comments below) require a lot of patience from the
+  reader.
+- The authors propose a number of adequacy concepts but do not argue strongly
+  for their correctness. They only provide some examples, and some theorems that
+  show downward compatability with the noise-free case. Also, Theorem 21 suggests
+  that the definition of "epistemically correct" is not the right one. This is not
+  discussed. 
+- Important standard adequacy concepts are not properly dealt with or
+  carefully discussed, i.e., almost-sure reachability in POMDP. A brief
+  comparison is made in the related work where the authors claim that the fact
+  that there is no explicit stopping condition is an essential difference with
+  the submitted work. This comment would have to be greatly expanded to be
+  convincing.
+
+On the neutral side:
+- The paper is heavy on logic and does not deal with algorithmic aspects. This
+  is acceptable given the importance of the topic.
+- The paper restricts to finite-state positional plans. This restriction may be
+  severe in practice, although in the scope of this paper it is acceptable.
+
+
+
+COMMENTS TO IMPROVE PRESENTATION
+--------------------------------
+The following are not defined:
+- Poss (in the section on reasoning about knowledge)
+- parameterless actions terms
+- categorical knowledge, probabilistic knowledge
+
+Some of the writing is too imprecise to be helpful.  i.e.,
+- "In particular, we logically characterize the interactions between plan
+  correctness, noise and degrees of belief". What does it mean to "characterize
+  interactions"? This paper produces a framework, not a characterization of
+  anything.
+- "This way, an account of knowledge expansion based on sensing is realized".
+  What is good/relevant/important about this particular account?
+- "which reiterates a consideration from Section 1 on the formulation not being
+  an epistemic plan." Which consideration exactly?
+- "with the understanding that D models ignorance using connectives". I don't
+  understand this phrase.
+- "but where robot programs are dropped for memoryless plans". What do you mean
+  "dropped"? replaced by what?
+- "but the above definitions explicate this correspondence for the correctness
+  of loopy plans." I don't understand this phrase.
+- "however, we will need to revisit Definition 4 to internalize the noisy
+  aspects of acting". what is doing the internalizing? the definition?  the
+  agent? the framework?
+- "To prepare for that, we will begin with the logical language".  using "the"
+  suggests that the reader knows the purpose of this language already, but we
+  are only going to understand the purpose as we continue reading. Some pointers
+  at the beginning of the section would help, e.g., "Our objective is to
+  generalise the above framework by introducing a logic that ..."
+- "The l fluent is used to express the likelihoods of outcomes.".  Likelihood
+  usually refers to a function that maps parameters of a statistical model to
+  probabilities. is this what you have in mind?  or do you simply mean
+  "probability"?
+- "(The goal is not mentioned in TER, but we will often use it in conjunction
+  with PC.)". Please be more precise. Is this "conjunction" another
+  instantiation of \theta?
+- "What is more interesting, however, is think of goal formulas being the
+  expectation of terms – see [4] for a formalization of expectation in L – and
+  use that to further relate our ideas to PO-/MDPs objectives." This sentence is
+  too informal for me to understand.
+- Many times while reading this submission I could not understand the precise
+  nature of the problem being addressed, even after reading the solution.  e.g.,
+  how does (10) solve the problem of how to define both discrete and continuous
+  distributions?  e.g., the purpose of the runtime sensing outcome function is
+  obscure to me.
+- I do not understand the point of the discussion at the end of section 2.
+
+- pg 2: the preliminaries on theory of action mixes descriptions and
+  definition-by-example, which, in my opinion, makes it hard to read. an expert
+  reader will not need to read this section at all; so, it should strike a
+  better balance to help the newer reader come to terms with the background.
+  e.g., "a situation represents a world history as a sequence of actions" is
+  vague. how does a situation "represent" such a world history?  e.g., what is
+  the domain/range of SF?
+
+- pg 3: please make it clearer that dfns 4 and 5 are from [21].
+
+- pg 3: You write that you are interested in plans "requiring no internal
+  memory" but then go on to define finite state controllers, which do have
+  memory.  Please distinguish between these two notions of memory.
+
+- dfn 3: what are the sorts of the variables q and Q?  "objects"?
+
+- pg 4: the names "p", "l" and "alt" are not helpful notations. I can only guess
+  that "p" stands for probability, "l" for likelihood (see my concern with this
+  above), and "alt" for alternatives?  please find more suggestive notation.
+  also, the domains of these fluents would be helpful, e.g., in alt(a,a',z) it
+  is clear that a and a' are actions, but what is z supposed to be? also,
+  although i commend the use of examples, p, l and alt should also be formally
+  defined.
+
+- pg 5: (The goal is not mentioned in TER, but we will often use it in
+  conjunction with PC.)
+
+- pg 5: i assume that your framework restricted to noise-free domains is simply
+  a notational variant of some existing framework (like the one from section 2).
+  this should be said.
+
+- pg 7: the notation \varphi(\bar{s}) is confusing. what is the type of \bar{s}?
+  what is \varphi allowed to be? Can it be V?
+

@@ -1,0 +1,26 @@
+The paper investigates sublogics of RoCTL*, a flavor of deontic logic used to express robustness in addition to deontic operators. In particular, the authors provide a tableau for RoBCTL*, investigating its complexity, and characterizations of Pair-RoCTL (a CTL-like restriction) and State-SoCTL*.
+The topic is relevant and has a number of practical applications. However, the current version of the paper requires major corrections before it can be accepted for publication. In particular, in addition to the detailed comments listed below:
+
+	•	I think that the paper could benefit from a running example, or at least a section with a concrete example of how specification patterns in the various sublogics could be employed to characterize properties of systems. Some examples appear in the paper, but they are currently spread in different sections.
+	•	Partially related to the previous point: the authors should clarify the difference with their previous work. Again, some hints are provided (for instance, page 24: “Case 1 and 2 below are similar to […] [8]. Case 3 is original”): I think it would be better to add a paragraph in the introduction to clarify these extensions. The running example mentioned in the previous point could be used to clarify the new contributions. 
+	•	The paper needs to be proofread. Is it possible that the wrong version was submitted for revision? I found authors’ notes that should have been removed before submission, in addition to several typos and typesetting issues.
+
+Detailed comments:
+	•	In the list of authors the superscripts for affiliations appear at the end of the list of authors.
+	•	Abstract: “we show that we there is a linear…” -> rephrase
+	•	p.3: “bundled logics can expressive fairness” -> can express
+	•	p. 4 and 5: this section is a repetition of the introduction. Some phrases are copied verbatim (e.g., “Hoverver, (almost surely) […]”)
+	•	p.9: “a satisfiability preserving translation is not interesting unless it is efficient” -> clarify the notion of “efficient” (this is probably not in the sense of “computationally efficient”).
+	•	p.9 and in several other places in the paper: remove the authors’ names from citations, unless they are needed. For instance, “an extension of UB logic that added an until operator Emerson and Halpern [18]” should be  “an extension of UB logic that added an until operator [18]” or “Emerson and Halpern [18] proposed an extension of UB logic etc…”. Another example on page 11: “an extension of Reynold’s Reynolds [8] tableau…"
+	•	Lemma 13 on p.10: “\phi will be satisfiable in RoBCTL* iff it is satisfiable in RoBCTL*” is tautological.
+	•	p.11, last line of section 4: can you clarify the formula \reflectbox{R} \diamond e \implies \diamond w? it seems to me that e could become true before w along a path satisfying this property, isn’t and until formula needed here?
+	•	p.13, Definition 23: was \delta defined?
+	•	Definition 26: Isn’t the function h a function of \phi as well? Shouldn’t it be h(\pi,\psi)?
+	•	p.17, “we let the set S’ of colours equal C_{\phi}” -> equal to 
+	•	p.20: Beginning of section 5.3, I don’t think the acronym RoBCTL*-TAB was defined. I understand what it is, but it should probably be defined.
+	•	p.26: remove the note inside Definition 51.
+	•	p.27: “We denote \alpha is a subformula of \beta by” -> we denote that
+	•	p.30: fix right margin in second item
+	•	p.31: Lemma 58, “structure structure” -> remove one copy
+	•	p.42. Remove the internal note (first paragraph of conclusion). In fact, I agree with its content: you should add  a related work section. This could also address my second point in the general comments above.
+

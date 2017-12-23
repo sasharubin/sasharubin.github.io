@@ -1,0 +1,103 @@
+SUMMARY
+This paper is about synthesising finite-state strategies that realise
+specifications written in LTL_f, i.e., LTL over finite traces.
+
+LTL_f has recently come to the fore as an appropriate alternative to
+LTL (which is over infinite traces), especially for AI applications.
+The main claim in these recent papers is that algorithms for LTL_f are
+much easier to implement (and understand) than for the LTL case.
+Indeed, the algorithm proceeds as follows:
+- convert LTL_f formula phi into a DFA that accepts the models of phi
+- solve the reachability game over the DFA using a fixpoint
+  computation.
+
+In this paper, the authors implement, for the first time, explicit and
+symbolic versions of this algorithm.
+
+The paper compares the two approaches and finds that the symbolic
+version scales better. The paper does not compare the symbolic
+approach for LTL_f to any existing tool for LTL.
+
+JUSTIFICATION FOR SCORES
+
+Originality This seems to be the first implementation of realisability
+and synthesis solvers for LTL_f.  The implementation uses standard
+ideas and existing libraries and tools.
+
+Technical Quality
+The authors compare the explicit and symbolic approaches to LTL_f
+synthesis. However, the authors do not compare their approach to LTL
+synthesis tools.  Thus, it does not address the claim that LTL_f
+synthesis can be done faster or better than LTL synthesis.
+
+
+Significance
+The paper addresses an important problem, in so far as it helps to
+justify claims that LTL_f synthesis is amenable to implementation.
+
+Relevance
+The paper will be of interest to the verification/synthesis community
+and the planning community at IJCAI.
+
+Quality of writing
+There are a number of diagrams that help one understand what is going
+on. 
+
+However, the paper is not very well organised. 
+1. There is not description of the symbolic approach --- one has to
+read the whole paper to get an outline of the approach.  
+2. Some parts are very short on details.
+- the start of sections simply "jump in" to the details without giving
+  an idea what is about to happen, or putting that section in context.
+- More than once it says "for more details see [...]". In principle
+  this is fine, but we should be told what part of [...] is relevant
+  for the current paper.
+- It hardly describes the data structures used (e.g., there is only a
+  very vague description of a Shared Multi-terminal BDD (ShMTBDD)). 
+- Some of the steps are only sketched via example, e.g., the splitting
+  of MTBDD into BDDs. If this is standard then a citation could be
+  given. If this is new then more details should be discussed.  
+3. Some parts seem to contain extraneous material:
+- I do not understand the point of having the section "From ShMTBDD to
+  Explicit DFA."
+- Although section 3.2 on the reasons for choosing MONA over SPOT are
+  interesting and an important part of the research process, perhaps
+  it could have been summarised? Otherwise, what is the point of
+  having all this detail? How does this section serve the message of
+  the paper?
+
+Also: 
+
+pg 2 col 2
+Strategy g for the controller is a winning strategy, if the initial
+state s 0 is a wining state.
+
+This is not a correct definition of winning strategy. Just because s_0
+is a winning state, doesn't mean that g (which may be defined
+arbitrarily) is a winning strategy.
+
+Definition 3
+This definition should be called something like "winning deterministic
+finite transducer".
+
+In the preliminaries you should probably state the theorem that
+solving the DFA game over DFA D_phi (where D_phi is a DFA for phi) is
+equivalent to solving the realisability problem for phi.
+
+After Definition 4
+"For more details on boolean synthesis we refer to [Fried et al.,
+2016]" This sentence is not useful. Tell us what other details we
+might find there to be useful for reading the present paper. 
+
+pg 65, col 1:
+The description of delta' is confusing. Why is the range S? Why is the
+base of the logarithm z?
+
+Overall Score
+6
+
+Confidence on your assessment
+5
+
+
+

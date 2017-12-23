@@ -1,0 +1,124 @@
+This paper is about approximating formulas of ATL_ir (imperfect information and
+imperfect recall) by formulas of AE\muC (the next-time fragment of ATL_ir with
+fixpoints).
+
+In ATL_{Ir} (perfect-information, imperfect recall), formulas have fixpoint
+characterisations, e.g., "<<A>>_Ir \eventually \phi" is equivalent to 
+"\mu Z. \phi \vee <A>Z".
+
+It is known (Bulling and Jamroga 2014) that these fixpoint characterisations
+fail for ATL_ir.  The advantage of having fixpoint formulas is that they are
+relatively easy to implement (e.g., they don't rely on sophisticated
+automata-theoretic techniques).
+
+This paper provides translations tr(.) and TR(.) of ATL_ir formulas into AE\muC
+formulas such that
+a) tr(\phi) logically implies \phi (lower-approximation),
+b) \phi logically implies TR(\phi) (upper-approximation).
+
+The upper-approximation simply replaces imperfect-information by
+perfect-information (thus <<A>>_ir is replaced by <<A>>_Ir which is then
+replaced by its fixpoint characterisation).
+
+The lower-bound is more interesting and, e.g., tr(<<A>>_ir \eventually \phi) has
+the form "\mu Z. (E_A tr(\phi) \vee <A>^bullet Z)" where <A>^bullet is a new
+operator called the "steadfast next step operator".
+
+The papers evaluates the usefuleness of the approximations by solving endplay in
+Bridge. The experiments were promising in two directions: accuracy (the
+approximations are exact on all or a majority of the instances considered) 
+and performance (the approximations could be computed for systems with 
+millions of states, while MCMAS could handle only hundreds of states).
+
+
+--
+I have concerns about the stated justifications, the methodology, the
+usefullness/generalisability of this work, and the presentation.
+
+1. The paper makes a number of assumptions that are neither discussed nor justified. 
+
+1a. Why does the paper focus imperfect-recall and not perfect-recall? i.e., on
+ATL_ir and not ATL_iR? Approximations might be equally useful for ATL_iR.
+
+1b. The experiments model a bridge-scenario. The authors write "Each player
+remembers the cards that have already been played, including the ones that were
+used up before the initial state of the k-endplay". This seems to suggest (there
+is no supplemental material with the formal definitions of the model, so I can't
+be sure), that the state of the iCGS stores the history of the play. If yes,
+then isn't the example really one of perfect-recall? and if no, then the
+example is not realistic.
+
+2. The paper claims, both explicitly and implicitly, see (X), that there are no
+fixpoint equivalences for <<A>>_ir \eventually, etc.  The only justification
+offered for this claim is the paper (Bulling and Jamroga 2014). However, that paper 
+does not support the claim.  What the cited paper does show is that the *standard*
+equivalences (that work for ATL_Ir) do not work for ATL_ir. The cited paper does
+not show that there are no translations of formulas of the form "<<A>>_ir
+\eventually \phi" into equivalent formulas of AE\muC. Thus, the state of knowledge
+is better described by "No fixpoint equivalences are known".
+
+3. Since no fixpoint equivalences are known, the authors' main job is to justify
+the approximations they suggest. Such justifications can come in three flavours:
+theoretical, intuitive, or empirical. The authors provide no theoretical
+justification in this paper (e.g., by finding a natural class of systems for
+which their approximations are exact). The authors spend a few sentences giving
+intuitive justifications for their lower-bounds, but I found these lacking
+substance. Finally, the authors provide an empirical justification by modeling
+endplay of bridge and checking the formula "<<S>>_ir \eventually win" where "S"
+is a single-player.  I have the following concerns about this experiment.
+
+3a. The full power of ATL is not illustrated in the example. Indeed:
+- since are only a finite number of tricks to play, the duration of each play
+  is, for practical purposes, finite. On the other hand ATL can talk about plays
+  of infinite duration.
+- the formula considered has a very simple form, i.e., no nesting of strategic
+  operators (and thus this is a form of synthesis), and quantification over a
+  single agent.
+
+3b. In the main experiment (figure 5) the approximations were exact. Why is
+this? No intuitive or theoretical justification is given. 
+
+Also, this means, in particular, that the formulas "<<S>>_ir \eventually win"
+and "<<S>>_Ir \eventually win" are equivalent on the models considered (i.e.,
+one can assume the agent S has perfect information). Perhaps this is easy to
+prove (without the details, I can't tell whether this is easy or not)? If it is easy,
+then there is no need for the lower-approximation.
+
+Having said that, the second experiment (figure 6) does not have this drawback.
+On the other hand, it is less realistic. Perhaps a security scenario would be more 
+appropriate.
+
+4. A note on presentation.
+
+4a. None of the new theoretical results (except Theorem 8) are stated precisely. 
+- \phi appears in propositions 3,4,5,6 and theorem 7. However it is not stated
+  what logic \phi is from. I assume ATL_ir.
+- proposition 3 uses the construct "M,q \models X does not universally imply M,q
+  \models Y". The phrase "universally imply" is neither standard nor defined in
+  the paper (although it is not hard to guess what is meant, theorems,
+  propositions, etc. should be unambiguous).
+
+4b.  The paper (Bulling and Jamroga 2014) is cited a number of times, and at least
+two of those times the citation does not say where in the paper one should look to
+find the cited results. i.e., 
+- "Moreover, the imperfect information semantics of ATL does not admit fixpoint
+  equivalences (Bulling and Jamroga 2014)"
+- "Unfortunately, this translation provides neither a lower nor an upper bound,
+  cf. the counterexamples in (Bulling and Jamroga 2014)."
+
+(X)
+- Pg 3: "Unfortunately, the expressivity results imply that there is no fixpoint
+  translation that captures exactly the meaning of ATL_ir operators."
+- Pg 1: "Moreover, the imperfect information semantics of ATL does not admit
+  fixpoint equivalences (Bulling and Jamroga 2014)."
+- Pg 3 "At the same time, the analogous variant of μ-calculus for imperfect
+  information has incomparable expressive power to ATL_ir (Bulling and Jamroga
+  2011), which means that, under imperfect information, ATL and fixpoint
+  specifications provide an inherently different view of ability."
+
+
+---
+- The fact that citations are given very loosely is either lazy (best case) or
+  purposefully wasting reviewer time (worst case).
+- Is the second half of proposition 3 correct?
+
