@@ -1,0 +1,179 @@
+**********************************************************************
+
+                        CALL FOR PAPERS
+
+                    32nd Italian Conference on
+                       Computational Logic
+
+            (CILC 2017) -- http://cilc2017.unina.it/
+
+               Naples, Italy, September 26-29, 2017
+
+**********************************************************************
+
+CILC (Italian Conference on Computational Logic) is the annual conference
+organized by GULP (Group of researchers and Users of Logic Programming,
+www.programmazionelogica.it). Its 32nd edition will be held in Naples (Italy) on
+September 26-29, 2017.
+
+Since the first event of the series, which took place in Genoa in 1986, the
+annual GULP conference represents the main opportunity for users, researchers
+and developers working in the field of computational logic to meet and exchange
+ideas. Over the years the conference broadened its horizons from the specific
+field of logic programming to include declarative programming and applications
+in neighboring areas such as artificial intelligence and deductive databases.
+
+CILC 2017 is co-located with the 18th Italian Conference on Theoretical Computer
+Science ICTCS 2017 (http://ictcs2017.unina.it/) with which it will share part of
+the program. The two events will feature plenary events, on September 29, to be
+specified later.
+
+
+Contributions:
+--------------
+The conference will feature presentations of refereed contributions, including
+the demonstration of software prototypes, concerning all aspects of
+computational logic.
+
+The conference invites two types of submissions: full papers, possibly already
+submitted to other conferences or journals, and short papers, which are
+particularly suitable for presenting work in progress, software prototypes,
+extended abstracts of doctoral theses, or general overviews of research
+projects.
+
+The topics of interest include, but are not limited to, the following:
+
+  Logic Programming, Constraint Programming and other paradigms of declarative programming
+  Extensions and integrations of declarative programming paradigms
+  Analysis, transformation, validation, and verification of programs
+  Instruments and environments for program development
+  Implementations and benchmarking
+  Model Checking
+  Temporal logics
+  Automated Theorem Proving
+  Non-Monotonic Reasoning
+  Answer Set Programming
+  Knowledge representation and extraction
+  Treatment of uncertain and incomplete knowledge
+  Approximate Reasoning
+  Abductive Logic Programming
+  Model-based Reasoning
+  Inductive Logic Programming
+  Deductive Databases
+  Data Mining and Data Integration
+  Multi-agent systems
+  Logics for strategic reasoning
+  Semantic Web
+  Natural Language Processing
+  Computational logic for concurrency, coordination, mobility and objects
+  Planning and scheduling
+  Probabilistic Logic Programming
+  Computational Logic and formal methods in Artificial Intelligence
+  Applications of Computational Logic
+  Pedagogy of Computational Logic
+
+
+Important dates:
+----------------
+Abstract, paper, and demo submission deadline: 25 May 2017
+Notification of acceptance: 30 June 2017
+Final version and early registration deadline: 24 July 2017
+Conference: 26-29 September 2017
+
+
+Submission instructions:
+------------------------
+Authors are invited to submit their manuscripts in PDF via the EasyChair system
+at the link:
+
+https://easychair.org/conferences/?conf=cilc2017
+
+Articles must not exceed 15 pages for full papers and 5 pages for short papers,
+respectively. Manuscripts should be formatted using the Springer LNCS style. To
+ease the reviewing process, the authors of regular papers may add an appendix
+(although reviewers are not required to consider it in their evaluation). All
+contributions must be written in English.
+
+In particular, we invite submissions of system or prototype software
+descriptions which use techniques or tools of computational logic, or which
+themselves aid the development of applications based on computational
+logic. Systems of both research and industrial character are
+welcome. Submissions must include a brief description, prepared according to the
+guidelines given for short papers, and a specification of the required hardware
+and software equipment.
+
+For each accepted contribution, at least one of the authors is required to
+attend the conference and present the paper. The event is organized by
+GULP. Therefore, Italian attendants are required to be members of GULP (it is
+possible to join GULP at the conference).
+
+
+Proceedings:
+------------
+Papers accepted for presentation at the conference (both full and short) will be
+published on CEUR-WS.org.
+
+As in previous years, we plan to publish a selection of the best papers in a
+special issue of an international journal (to be determined).
+
+
+General chair:
+--------------
+Aniello Murano (University of Naples "Federico II")
+
+
+Program co-chairs:
+------------------
+Dario Della Monica (Universidad Complutense de Madrid)
+Luigi Sauro (University of Naples "Federico II")
+
+
+Program Committee:
+------------------
+Davide Ancona, University of Genova, Italy
+Paolo Baldan, University of Padova, Italy
+Ezio Bartocci, Vienna University of Technology,  Austria
+Massimo Bartoletti, University of Cagliari, Italy
+Vittorio Bilò, University of Salento, Italy
+Stefania Costantini, University of L'Aquila, Italy
+Ugo Dal Lago, University of Bologna, Italy
+Pierpaolo Degano, University of Pisa, Italy
+Stefano Ferilli, University of Bari, Italy
+Fabio Fioravanti, University of Chieti-Pescara, Italy
+Ferdinando Fioretto, University of Michigan, USA
+Andrea Formisano, University of Perugia, Italy
+Raffaella Gentilini, University of Perugia, Italy
+Laura Giordano, DISIT, University of Piemonte Orientale, Italy
+Marco Manna, University of Calabria, Italy
+Marco Maratea, DIBRIS, University of Genova, Italy
+Viviana Mascardi, DIBRIS University of Genova, Italy
+Barbara Masucci, University of Salerno, Italy
+Paola Mello, University of Bologna, Italy
+Matteo Mio, CNRS/ENS-Lyon,  France
+Fabio Mogavero, University of Oxford, UK
+Marco Montali, Free University of Bolzano, Italy
+Manuela Montangero, University of Modena and Reggio Emilia, Italy
+Laura Nenzi, IMT, Lucca, Italy
+Eugenio Omodeo, University of Trieste, Italy
+Fabio Patrizi, Sapienza University of Rome, Italy
+Giuseppe Perelli, University of Oxford, UK
+Adriano Peron, University of Napoli "Federico II", Italy
+Alberto Pettorossi, University of Roma Tor Vergata, Italy
+Carla Piazza, University of Udine, Italy
+Luca Pulina, POLCOMING, University of Sassari, Italy
+Fabrizio Riguzzi, University of Ferrara, Italy
+Gianfranco Rossi, University of Parma, Italy
+Guido Sciavicco, University of Ferrara, Italy
+Jeremy Sproston, University of Torino , Italy
+Tiziano Villa, University of Verona, Italy
+
+
+Venue:
+------
+The conference will take place at the "Complesso di San Giovanni a
+Teduccio---Complesso Napoli Est", in Corso Nicolangelo Protopisani, 70, 80146
+Napoli.
+
+
+--------------
+For more information email cilc2017@easychair.org.

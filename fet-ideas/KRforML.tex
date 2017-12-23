@@ -1,0 +1,206 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Idea for a project: KR for ML}
+\author{}
+
+\input{macros}
+\def\bool{\mathbb{B}}
+\def\real{\mathbb{R}}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+% The purpose of these notes is to try and formulate precise questions that are of 
+% interest to both ML and CAV/KR people. The starting point is the feeling that ML 
+% consists of a bunch of black boxes for doing isolated tasks. Given this is true, 
+% the challenge is integrate a set of black boxes in such a way that a) the 
+% integration is sound, and b) we can extract knowledge from the integrated 
+% system.
+% 
+Hypothesis: ML has focuses on solving concrete learning/prediction tasks. In order to harness this technology, it needs to be imbued with a KR philosophy.
+\end{abstract}
+
+\section{Next steps}
+\begin{enumerate}
+ \item What is the killer-ap? can combination of ontology and ML help guide ML
+ techniques? what does one need ontologies to do?
+ \url{http://dl-learner.org/about/ontology-learning/}, 
+ \item How to find patterns in data... 
+ \url{https://www.youtube.com/watch?v=X6Qt_BxWKMo},
+
+ \item \url{http://www.ttic.edu/SNL2017/}
+ \item Find and engage the best ML people interested in CAV/KR.
+ \item Do a literature search to find out what has been done at the interface of ML and KR (see Section~\ref{sec:lit}).
+ \begin{enumerate}
+  \item \url{https://sites.google.com/site/krr2015/home/schedule} was a workshop on symbolic and neural approaches to KRR.
+  \item \url{http://www1.icsi.berkeley.edu/~shastri/shruti/} has work on modeling logic programs as NN and running the NN to evaluate queries.
+  \item \url{http://www.ntu.edu.sg/home/asahtan/} has worked on integrating domain knowledge into NNs.
+  \item Lise Getoor: "we need machine learning for graphs"
+ \end{enumerate}
+  \item Can one solve synthesis using ML? Yes, genetic programming.
+ \item The five tribes of ML: \url{https://www.youtube.com/watch?v=B8J4uefCQMc}
+ \item \url{https://en.wikipedia.org/wiki/Markov_logic_network}
+
+ \item 
+Pour resoudre des jeux, j'avais parle de Daniel Neider :
+ \url{https://www.lii.rwth-aachen.de/en/18-mitarbeiter/wissenschaftliche-mitarbeiter/team-prof-grohe/121-publications-of-daniel-neider.html}
+ Celui-la par ex : \url{https://arxiv.org/abs/1507.05612}
+
+ Sur l'application de l'algo de Angluin dans la verif compositionnelle :
+ Cobleigh, J.M., Giannakopoulou, D., and Pasareanu, C.S. "Learning Assumptions
+ for Compositional Verification", TACAS 2003.
+ Voir ici : \url{https://ti.arc.nasa.gov/profile/dimitra/}
+
+ P Madhusudan fait des choses aussi avec D Neider entre autres :
+ \url{http://madhu.cs.illinois.edu/pub.html}
+\item \url{http://ti.tuwien.ac.at/cps/teaching/practicals/?id=178} Neurons controlling locomotion.
+\end{enumerate}
+
+\section*{Glossary}
+
+\begin{itemize}
+ \item NN = artificial neural network
+
+\item KR = knowledge representation
+
+\item ML = machine learning
+
+\end{itemize}
+
+%Question: how much progress has there been on extracting/injecting
+%rules/predicates/automata from/into neural networks?
+
+%Given that the answer is "not much", we propose a way to use NN as building
+%blocks of a KR system, ala automatic structures using NN instead of automata.
+
+\section{NNs 101}
+An \emph{activation function} is a function $F:\real \to \real$. Two common activation functions are
+\[
+ F_1(z) = \begin{cases}
+         1 & \mbox{ if } z > 0\\
+         0 & \mbox{ otherwise.}
+        \end{cases}
+\]
+and
+\[
+ F_2(z) = \frac{1}{1+e^{-z}}.
+\]
+
+A \emph{neuron} is a function $G:\bool^n \to \bool$ where $G(\tup{x}) = F(\tup{x} \cdot \tup{w})$ for some
+\emph{weights} $w_i \in \real$. Neurons with activation functions $F_1$ are called \emph{perceptrons}, and with activation functions $F_2$ are
+called \emph{sigmoid neurons}.
+
+% \begin{remark}
+% Perceptrons are also known as \emph{weighted voting games} in co-operative game theory. What tools can be transfered between these domains? Does it make sense 
+% to talk about a network of games?
+% \end{remark}
+% 
+A \emph{neural network (NN)} is a DAG whose nodes are neurons. A NN with $N$ inputs and $M$ outputs 
+computes a function $F:\bool^N \to \real^M$. One may round the output of $F$ to the nearest integer $0$ or $1$ to get a function $F:\bool^N \to \bool^M$.
+
+\begin{fact}
+ NN built from perceptrons can compute arbitrary Boolean functions. E.g., $N = 3, M = 1, w_1 = w_2 = 1, w_3 = -1$ determines $x_1 \wedge x_2$ if we fix $x_3 = 1$; and $N = 2, M = 1, w_1 = -2, w_2 = 1$ determines $\neg x_1$ if we fix $x_2 = 1$.
+\end{fact}
+
+One might be tempted to consider the synthesis problem is: given a function $G$, find a NN that computes it. The problem is that $G$ is typically not known so one can't know if a NN actually computes $G$. Instead, some tuples $(x,G(x))$ are known. This data can be used as training and validation data, and there are measures
+of how well a NN represents $G$ (e.g., cross-validation). Thus from a ML point of view, this is a \emph{optimisation} problem which one can think of as minimising some error.
+
+The typical approach in NN seems to be: a) get a bunch of data, b) take an 
+educated guess at the DAG, c) apply an optimisation technique (e.g., gradient 
+descent) to \emph{learn} the weights that minimise the error.
+
+\begin{remark}
+ I read that there are no good learning algorithms for NNs using $F_1$ unless the DAG has very special form (e.g., consists of a single neuron).
+\end{remark}
+
+\section{KR for NN}
+
+Suppose you've trained a bunch of NN to do certain tasks in the same domain.
+Are these NNs consistent with each other? Can one compose these NNs to do more complex tasks?
+
+\begin{example}
+Suppose $N_1$ recognises pictures of birds and $N_2$ recognises pictures of animals. 
+
+\begin{enumerate}
+ \item \emph{consistency}: check if every input recognised by $N_1$ is also recognised by $N_2$? 
+ \item \emph{composition}: build a NN that recognises all animals that are not birds.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+ Given a finite directed graph $(V,E)$ and a NN $N_v$ for every $v \in V$. This setting is \emph{consistent} if $(v,w) \in E$ implies $N_v(\tup{x}) \to N_w(\tup{x})$ for all $\tup{x}$ (intuitively, $E$ represents the ``is a'' relation).
+\end{definition}
+
+\begin{theorem}
+Assume we are using the activation function $F_1$. Consistency is decidable. 
+\end{theorem}
+
+\begin{proof}
+Recall that the FO-theory of $\mathcal{R} := (\mathbb{R},+,<)$ is decidable, a fact that can be proved using automata on infinite words. 
+But every NN $N(\tup{x})$ can be written as a FO formula $A(\tup{x})$ over $\mathcal{R}$. Thus we can decide consistency, i.e., decide if $\forall \tup{x}. A(\tup{x}) \to B(\tup{x})$. 
+\end{proof}
+
+Actually, $A(\tup{x})$ is an existential formula, i.e., of the form $\exists \tup{y}. \phi(\tup{x},\tup{y})$ where $\phi$ is a quantifier free formula in the signature of $\mathcal{R}$. So, consistency can be checked in EXPTIME. Can it be done in PSPACE?
+
+What about composition? We can build a formula for the composition, e.g., $C(\tup{x}) = A(\tup{x}) \wedge \neg B(\tup{x})$. But, how does one turn $C$ into a NN? Does one need to turn it into a NN?
+ 
+Can we say anything if the activation function is $F_2$?
+
+\subsection{DL for ML}
+
+NN can be used to represent binary relations between objects, e.g., ``friend'' relation, ``like'' relation, etc. 
+
+So, the description logic $FL^{-1}$ seems like a start for doing basic reasoning about the objects and their relationships. We describe this logic. Given a set of unary predicates $C_i$ and binary predicates $R_j$, a \emph{concept} is generated by the unary predicates, and closed under the following operations: $C_i \cap C_j$, 
+$\{x : \forall y. R_j(x,y) \to C_i(y)\}$, and $\{x : \exists y. R_j(x,y)\}$.
+
+In DL, one basic question is ``subsumption'', i.e., $\forall x. C(x) \to D(x)$. This is what we called consistency before.
+
+Issue: One problem with subsumption/consistency is that $\forall x$ is probably too strong. Perhaps one needs something like ``almost all x''. Or, assuming that the data is labeled consistently, what is the error/probability that a data point $x$ is classified as being in $C$ but not in $D$.
+% \todo{idea. have some sort of semantic graph representing objects and their
+% relationships. assume that some of the objects and relationships are represented
+% by NNs. use tarski or presburger to solve these questions if using activation
+% function $F_1$. What to do if using function $F_2$? instead of FOL, perhaps it
+% is neater to use a description logic like $FL^{-1}$? to do this we need to
+% represent roles not just concepts. e.g., "father(x,y)"}
+% 
+% \subsection{Wild Ideas}
+% 
+% \begin{enumerate}
+% \item Can one adapt Angluin's algorithm for learning DFAs to learn a neural net?
+% \end{enumerate}
+% 
+
+
+
+\section{Wild ideas}
+
+\begin{enumerate}
+\item Ontologies guide feature extraction?
+\item Can FOL deduction be implemented in a NN? See Smolensky 1988 "On the proper treatment of Connectionism".
+\end{enumerate}
+
+\section{Literature} \label{sec:lit}
+
+\subsubsection{Some basic machine terminology}
+
+\subsubsection{Towell and Shavlik 1994, KR for ANN}
+
+\subsubsection{Markov Logic Networks}
+
+\subsubsection{Misc}
+Modern AI systems can generally be thought of as observing some input and recovering some (hidden)
+structure of interest:
+– We observe an image and recover some description of the scene.
+– We observe a sentence of English and recover a syntax tree, a meaning representation, a translation into
+Chinese, etc.
+– We are given a goal or reward function and recover a plan to earn rewards.
+– We observe some facts expressed in a knowledge representation language and recover some other facts
+that can be logically deduced or statistically guessed from them.
+– We observe a dataset and recover the parameters of the probability distribution that generated it.
+\end{document}

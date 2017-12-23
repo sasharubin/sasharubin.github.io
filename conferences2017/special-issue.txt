@@ -1,0 +1,9 @@
+Ideas of non-ELSEVIER journals.
+
+For ICTCS:
+- ACM Transactions on Computation Theory
+- Journal of Logic and Computation
+- Mathematical Structures in Computer Science
+
+For CILC, is there also a special issue? Was there last year? What is
+the level of submissions usually?
