@@ -1,0 +1,90 @@
+Thomas Agotnes <thomas.agotnes@uib.no>
+Natasha Alechina <natasha.alechina@nottingham.ac.uk>
+Benjamin Aminof <aminof@forsyte.at>
+Nicholas Asher <asher@irit.fr>
+Dietmar Berwanger <dwb@lsv.ens-cachan.fr>
+Catalin Dima <dima@u-pec.fr> 
+Emmanuel Filiot <efiliot@ulb.ac.be>
+Bernd Finkbeiner <finkbeiner@cs.uni-sb.de>
+Dimitar Guelev <gelevdp@math.bas.bg>
+Paul Harrenstein <paul.harrenstein@cs.ox.ac.uk>
+Andreas Herzig <andreas.herzig@irit.fr> (not accepted yet)
+Orna Kupferman <orna@cs.huji.ac.il>
+Stephane "Le Roux" <stephane.le.roux@ulb.ac.be>
+Nicolas Markey <nicolas.markey@irisa.fr>
+Marco Montali <montali@inf.unibz.it>
+Ocan Sankur <ocan.sankur@irisa.fr>
+Ron "van der Meyden" <meyden@cse.unsw.edu.au>
+Pavel Naumov <pnaumov@vassar.edu>
+Giuseppe Perelli <giuseppe.perelli@cs.ox.ac.uk>
+Ramaswamy Ramanujam <jam@imsc.res.in>  (not accepted yet)
+Dominik Wojtczak <D.Wojtczak@liverpool.ac.uk>
+
+
+
+games in AI, 
+multiagent concurrent vs 2 player
+NE vs reachability
+abstraction refinement on MAS
+
+SPEAKER (1)
++ Joe Halpern - yes, backup
++ Marta Kwiatkowska - at CAV
++ Moshe Tennenholtz - invited
++ Moshe Vardi 
++ Francesca Rossi
+(+ Yoram Moses)
+
+May 15 (-> 22) - Submission deadline
+June 16 - notification (we can make this a few days earlier if needed, e.g., to better align with registration dates)
+June 30 - CR
+
+people who wrote about sending papers to SR:
+
+denis fediani
+christophe chareton
+rineke virbrugge
+
+
+
+OBJECTIVES
+Strategic reasoning is one of the most active research areas in
+multi-agent system domain. The literature in this field is extensive
+and provides a plethora of logics for modelling strategic ability.
+Theoretical results are now being used in many exciting domains,
+including software tools for information system security, robot teams
+with sophisticated adaptive strategies, and automatic players capable
+of beating expert human adversaries, just to cite a few. All these
+examples share the challenge of developing novel theories and tools
+for agent-based reasoning that take into account the likely behaviour
+of adversaries. The SR international workshop aims to bring together
+researchers working on different aspects of strategic reasoning in
+computer science, both from a theoretical and a practical point of
+view.
+
+LIST OF TOPICS
+
+The topics covered by the workshop include, but are not limited to, the following:
+
+    Logics for reasoning about strategic abilities;
+    Logics for multi-agent mechanism design, verification, and synthesis;
+    Logical foundations of decision theory for multi-agent systems;
+    Strategic reasoning in formal verification;
+    Automata theory for strategy synthesis;
+    Strategic reasoning under perfect and imperfect information;
+    Applications and tools for cooperative and adversarial reasoning;
+    Robust planning and optimisation in multi-agent systems;
+    Risk and uncertainty in multi-agent systems;
+    Quantitative aspects in strategic reasonings.
+
+
+SUBMISSION
+
+Extended abstracts should be submitted not exceeding 10 pages (plus references) in the EPTCS format. 
+If necessary, the work may be supplemented with a clearly marked appendix, which will be consulted 
+at the discretion of the program committee. Submissions must be in PDF format and will be handled 
+via EasyChair.
+
+
+
+

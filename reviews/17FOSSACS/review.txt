@@ -1,0 +1,47 @@
+This is a review of "On the existence of weak subgame perfect equilibria".
+
+Summary 
+-------
+
+This paper studies multi-player non-zero sum games on graphs in which players take turns. The solution concept studied is the weak subgame perfect equilibrium (WSPE), a more restrictive notion that subgame perfect equilibrium (SPE), which itself is a variation of Nash-equilibrium that has been argued to be more suitable for sequential games. The authors study the problem of finding classes of games in which WSPE are guaranteed to exist. 
+
+The main result provides a sufficient condition for finite-memory WSPE to exist, i.e., allowing infinitely many vertices, infinitely many players, 
+objectives given by preference orders on outcomes and for which there exists a set of sink nodes L (called "leaves" in the paper) 
+such that
+a. every vertex can reach some sink node,
+b. the payoff of a play that reaches a sink node is determined by that sink node (i.e., independent of the history),
+c. the set of payoffs determined by sinks nodes is finite.
+
+Since the model has infinitely many vertices, the proof proceeds by transfinite induction and constructs a non-empty labeling of vertices by potential outcomes. It then constructs a WSPE from this labeling.
+
+As corollaries, one gets that [FP] games with a finite-range payoff function always have WSPE, and [PI] games on finite graphs with prefix-independent payoff functions always have WSPE. Note that [PI] includes many classical objectives such as limsup, mean-payoff, parity, etc. The authors also supply an additional "layered" restriction on the preference relation that guarantees that games in [PI] always have memoryless WSPE.
+
+Evaluation
+----------
+
+Games on graphs are prominent objects for modeling multi-player reactive systems. In that sense this paper is perfectly in scope for FoSSaCS. Moreover, the paper is well-written. However, I have two concerns regarding motivation. 
+
+First, the motivation for having infinitely many players is not discussed (it is not always elegant to prove a result in its most general form). 
+
+Second, the motivation for studying WSPE (as opposed to SPE), while discussed, is unsatisfactory. Indeed, the authors supply three reasons for studying WSPE:
+a. WSPE and SPE co-incide on a large class of games, i.e., finite trees and upper-semicontinuous payoff functions,
+b. WSPE have important technical uses,
+c. WSPE "may be sufficient from a practical point of view".
+Perhaps taken together these are sufficient. However, individually they are weak and need to be bolstered. For instance, regarding a. it is probably worth discussing why finite trees are not general/expressive enough to model interesting systems.
+
+Also, the paper would be strengthened if the symmetric difference between [FP] and [PI] were discussed, e.g., what sort of games (give examples, intuitions, or scenarios, etc.) are in [FP] but not in [PI]?
+
+Questions for Rebuttal
+----------------------
+
+1. What is the purpose/motivation for having infinitely many players?
+2. Why do you think WSPE may be sufficient from a practical point of view? What practical scenarios do you have in mind?
+
+Other comments
+--------------
+- Run a spell-checker (e.g., environnements, aso, rectricted).
+- The related work should include a discussion of how the proof technique used for proving Theorem 1 relates to proof techniques in the literature.
+- Section 2, the sentence "... any properties of preference relations that we use ... are total." is too vague.
+- Section 3, just after theorem 1, the sentence "The first condition means..." suggests that there is a single leaf that is reachable from all vertices.
+- Section 3, statement of Corollary 1, the phrase "all the conditions ... except perhaps the second condition" could be better replaced by "the first and third conditions of Theorem 1"
+

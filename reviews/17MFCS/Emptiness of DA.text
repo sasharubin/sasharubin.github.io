@@ -1,0 +1,94 @@
+This is a review of "Emptiness Problems for Distributed Automata".
+
+SUMMARY
+The Distributed Automata (DA) of this paper are identical deterministic finite-state machines that are placed 
+on the vertices of a bounded-degree directed graph(*), and that run in lock-step. Every step has two phases:
+first, every automaton "sends" its state to its directed neighbours; second, every automaton updates its state 
+depending on its current state and the -set- of states recieved in the first phase. The DA accepts at a node if 
+the automaton at that node reaches a final state. Thus, DA are pointed-graph acceptors.
+
+(*) Actually, the edges of the graphs are numbered (not necc. injectively), and thus, e.g., in tree-graphs 
+one can talk about the order of the children.
+
+The languages accepted by DA's (with various restrictions such as "constant number of steps", and various extensions 
+including global acceptance properties) have been characterised as exactly the models of modal-logics [3,4,6] and MSO [9].
+
+The authors contribute to two issues: a) the emptiness problem and b) expressive power.
+
+a) The undecidability results state that the emptiness problem is undecidable:
+1. on the class of uni-directional paths,
+2. on the class of graphs even if restricted to automata that reject if they receive more than one message in a round,
+3. on the class of graphs even if restricted to automata that are acyclic except possibly for self-loops.
+
+The proofs reduce from the halting problem of TM and the PCP problem, and use twists involving swapping space and time.
+
+The decidability results state that the emptiness problem is decidable:
+1. if restricted to forgetful automata, i.e., automata that cannot remember their own state. In this case the complexity 
+is LOGSPACE.
+
+The proof involves a basic and easily analysed algorithm.
+
+b) The expressive power of forgetful automata is studied:
+1. on uni-directional paths it is shown to be equivalent to MSO (i.e., the regular string languages),
+2. on trees it is shown to strictly subsume MSO (i.e., the regular tree languages).
+
+The proofs involve basic constructions and pumping arguments.
+
+EVALUATION
+This was an enjoyable paper to read. I found the results on the expressive power of forgetful automata interesting.
+
+Here is my critique:
+
+1. There is very closely related work that is not discussed:
+
+a)  The parameterised model-checking problem (PMCP) of distributed systems.
+ 
+The PMCP for a class \C of graphs, \A of automata, is the following decision problem: 
+INPUT: an automaton A \in \A and a property \phi (typically expressed in indexed linear-temporal logic).
+DECIDE if for every graph G in \C, the runs of the distributed system resulting from running A at every node of G 
+satisfies \phi.
+
+Note that the complement of the PMCP is the emptiness problem of automata \A on graphs \C.
+
+Here are some particularly relevant papers:
+[Suzuki88] considers uni-directional rings with identical processes that pass a single token that can carry values.
+He proves that the PMCP is undecidable. 
+
+[Delzanno10] (and later work) consider arbitrary classes of graphs in which processes broadcast to their neighbours; 
+however time is asynchronous. They prove that PMCP is undecidable by configuring a ring inside a graph, and they find 
+classes of graphs for which PMCP is decidable.
+
+[Emerson96] consider synchronous systems communicating via guards on the class of clique graphs. They prove that PMCP
+is decidable.
+
+Of course there are technical differences in the setups, e.g., directed vs. undirected graphs, synchronous vs. 
+asynchronous systems, etc. At any rate, the relationship with this area should be discussed. For a survey of this and 
+similar un/decidability results of the PMCP, see [Bloem15]. 
+
+b) Cellular automata.
+
+2. There is not a strong and coherent theme to the results presented. More questions are left open than answered. I list some 
+threads that are left open (not exhaustive), and that feel more like loose ends rather than research directions for future papers.
+
+E.g., The decidability results are quite preliminary... is it LOGSPACE-hard? What happens if one restricts to uni-directional paths? 
+The algorithm given is (in this case, due to the compactness of the input) PSPACE instead of LOGSPACE. Is it PSPACE-complete?
+
+E.g., some closure properties are stated (lemma 8) and some follow from the equivalence with MSO (proposition 2). What can be said, 
+e.g., about the closure under negation of forgetful of automata on graphs? 
+
+[Suzuki88] Ichiro Suzuki. 
+Proving properties of a ring of finite-state machines. 
+Inf. Process. Lett., 28 (4):213–214, July 1988.
+
+[Delzanno10] Giorgio Delzanno and Arnaud Sangnier and Gianluigi Zavattaro. 
+Parameterized verification of ad hoc networks. 
+CONCUR, volume 6269 of LNCS, pages 313–327, 2010.
+
+[Emerson96] E. Allen Emerson and Kedar S. Namjoshi. 
+Automatic verification of parameterized synchronous systems.
+CAV, volume 1102 of LNCS, pages 87–98. Springer, 1996.
+
+[Bloem15] Roderick Bloem and Swen Jacobs and Ayrat Khalimov and Igor Konnov and Sasha Rubin and Helmut Veith and Josef Widder.
+Decidability of Parameterized Verification.
+Morgan & Claypool, 2015.
+

@@ -1,0 +1,150 @@
+SCIENTIFIC OVERVIEW
+
+This proposal considers the problem of reasoning about the dynamics of knowledge
+in multi-agent systems. The topic is relevant for verification of multi-agent
+systems, and thus for AI. The reason for this is that the motivating scenarios
+all include multiple agents with partial observability. Indeed, even simple
+logics and simple DEL structures can capture quite complex scenarios including
+tricky epistemic puzzles, multi-player games, security problems, etc.
+
+Automating reasoning typically requires a) a framework for modeling the systems,
+b) a logical language for expressing properties of interest, and c) algorithms
+for deciding if a given model satisfies a given logical formula. 
+
+This proposal focuses on a) DEL structures, b) epistemic logics, and c)
+algorithms based automata-theory.
+
+In a little more detail: 
+
+a) A DEL structure is a (typically infinite) graph that is generated from an
+epistemic model M and an event model E. It is a useful formalism for capturing
+the dynamics of time and knowledge in multi-agent systems.
+
+A structure is automatic if its domain and atomic relations are synchronous
+rational sets/relations. The automata may operate on finite or infinite words
+and trees. Automatic structures can be queried algorithmically, i.e., have
+decidable first-theory theory. 
+
+The focus of the proposal is on automatic DEL structures.
+
+b) Epistemic Logic (EL) is a simple modal logic that can express what agents
+know at a particular point in time. EL can express higher-order knowledge, e.g.,
+agent i knows that agent j knows that p is true, which is useful in many
+realistic settings. 
+
+The focus of the proposal is on EL and some of its generalisations (e.g.,
+CTL*Kn).
+
+c) The main algorithmic problem is to solve epistemic planning, e.g., to decide,
+given a DEL structure and an EL formula Phi, if there exists a node in the DEL
+structure (corresponding to a sequence of events) that satisfies Phi (and to
+compute a representation of all such sequences).
+
+The proposed methodology is to understand which classes of DEL structures are
+automatic and how these automatic presentations can be exploited for solving 
+planning.
+
+PROPOSAL EVALUATION
+
+The proposal covers a lot of background material: epistemic logic, first-order
+logic, monadic second-order logic, automatic structures, model-checking,
+synthesis, event models, dynamic epistemic logics and structures, decidability
+and complexity results. Some of the cited work are theses, which, by their
+length, are hard to navigate. This breadth is to be commended. The proposed
+techniques, i.e., using automata theory and automatic structures to reason about
+DEL structures, is promising.
+
+The document itself is well-structured, I found no spelling mistakes and only a
+few typos. The grammar varies in quality: many sentences are very hard to parse,
+especially in sections 4 and 5. The title and abstract do a reasonable job of
+summarising the proposal, although both could have been fine-tuned. The document
+is written in LaTeX, and the formatting, although passable, could have used a
+polish. Citations are sometimes not fine enough (e.g., a thesis is cited for a
+specific un-named theorem), and sometimes missing all together (e.g., from
+Tables 1 and 2).
+
+My overall impression of the content is that the author has absorbed a lot of
+material, but does not yet know what to emphasise, i.e., which definitions must
+be given formally and which can be discussed informally, which existing results
+are good starting points for the proposed research, etc.
+
+In detail:
+- The definitions of the objects being studied are sometimes formal and clear,
+  and other times informal and less clear. Writing clear but informal
+  definitions is a skill worth acquiring.
+
+- The survey of existing work is comprehensive but not well organised. In fact,
+  it is difficult to parse the text to understand exactly what is known. That
+  said, the existing work is itself spread across multiple papers with multiple
+  notations.
+
+- I could not get a systematic and clear understanding of what
+  theorems/conjectures are to be used as starting points for the proposed
+  research. In particular, I would have liked to have seen more explicit
+  directions in the prospective methodology.  
+  
+  For instance, the following broad directions are only implicit in the
+  proposal: a) give conditions on M and E that ensure that the generated DEL
+  structure is automatic (and, more generally, tree-automatic);  b) see if and
+  how one can exploit the automatic presentation itself in order to achieve
+  better complexity/decidability results for automatic DEL structures (as was
+  done for chain-MSO).  
+  
+  Regarding a), probably the most relevant existing result is the one from
+  Maub14 (Section 7.2). This result should have been emphasised.
+
+RELATED IDEAS
+
+Here are some related ideas worth considering.
+
+- A fuller discussion of related work would cite work on planning (in AI) and
+  verification (in CAV) of infinite state structures.  Regarding the latter, see
+  e.g., Automata-based presentations of infinite structures. Vince Bárány, Erich
+  Grädel, Sasha Rubin
+
+- I would have liked to see a compelling scenario/application modeled as an
+  automatic DEL structure.
+
+- As always, there is a trade-off between the expressiveness of a logic and the
+  class of structures that can be model-checked. I suggest starting with the
+  simplest logics and finding the most general class of systems for which model
+  checking is decidable.  
+  
+  To that end, consider Epistemic Logic and DEL structures that are rational,
+  i.e., the domain, labeling (for each atom), and relation (for each agent) are
+  given by asynchronous automata. Epistemic planning on such "rational DEL
+  structures" is decidable (compare with: Symbolic model checking of tense
+  logics on rational Kripke models. Wilmari Bekker, Valentin Goranko).
+
+  Question: are there interesting rational DEL structures that are not also
+  automatic?
+
+OTHER COMMENTS
+
+Here is a list of poorly defined/undefined notions, i.e.:
+
+Section 2
+- "purely epistemic event models"
+- "ontic event models"
+- "DEL structure"
+- semantics of CTL*Kn
+
+Section 3
+- in the definition of automatic structure, if you have a countably infinite
+  signature, then it is reasonable to additionally assume that 1) the signature
+  is computable, and 2) the function mapping a relation symbol R_i to an
+  automaton for L_{R_i} is computable (as is done for interpretations). on the
+  other hand, one might be able to dispense with infinite signatures (?)
+- "injective automatic presentation"
+- "regular automatic tree"
+
+Section 4
+- "epistemic planning problem"
+- there seems to be some confusion between model-checking, synthesis and
+  realisability. What the author calls "synthesis" might be better called "query
+  evaluation", and what the author calls "model-checking" might be better called
+  "realisability".
+
+Section 5
+- tables 1 and 2: the captions are not informative. What do all the entries
+  mean? What logic is being model-checked?

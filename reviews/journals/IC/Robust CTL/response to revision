@@ -1,0 +1,48 @@
+Dear authors,
+
+Thank you for taking my comments into account.
+
+Some minor revision is still needed.
+
+regards,
+Sasha Rubin (I am not in favour of single-blind reviews).
+
+-- Comments --
+The paper still needs a proof-read.
+e.g., 
+pg 11, typo in dfn of conjunction
+pg 51, "instead they definite the"-->"instead they define the"?
+pg 51, "AllPath operator"-->"$\AllPath$ operator"?
+
+Example 22: please describe in words what the fail transitions represent in this example.
+
+Dfn 14: the colon in the dfn looks odd (i assume it means "and")
+
+I must insist on more precise statements when discussing expressive power.
+e.g., Proposition 21 should explicitly mention which class of models are being 
+considered for the logics. 
+Also, the discussion after prop 21 should be polished.
+e.g., "Thus we see that the expressive power of RoCTL* is somewhere between
+that of CTL*v and CTL* (without v)" seems to contradict the statement of prop 21.
+
+Related work: Rephrase the sentence "The logic does not appear to be a strict extension of CTL, as [φ] ≥1 is not equivalent to Aφ."
+(The relationship between two well-established logics (PCTL and CTL) should not be guessed).
+
+Bib: please update the bib with journals (if these exist), conferences (if these exists), and then technical reports.
+
+Spacing: the package \xspace may be useful for automatically inserting the correct spaces (useful for macros).
+
+I wrote:
+Page 23, lemma 47: you have not defined what it means for a tableau to halt.
+You wrote:
+RESPONSE: Added: We say that a tableau halts if an algorithm can 
+determine if it succeeds in finite time.
+
+This definition does not seem sound to me. A tableau is a mathematical structure. The definition seems to suggest that 
+an algorithm can accept or reject a single structure, i.e., that it is only every run on a single input.
+
+
+
+
+
+	

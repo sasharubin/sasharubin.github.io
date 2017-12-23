@@ -1,0 +1,212 @@
+This paper is about synthesis of strategies from knowledge-based
+specifications in multiagent systems of imperfect and incomplete
+information. In fact, the specifications are given as knowledge-based
+programs (KBP).
+
+Imperfect information refers to the situation that agents must base
+their actions on their observations of the current global state, and
+incomplete information refers to the situation that agents do not even
+know the structure of the environment they are operating in.
+
+Both assumptions are important for modeling realistic MAS. The latter,
+especially, is non-trivial to deal with.
+
+The authors put forward a number of synthesis problems:
+- synthesise strategies implementing a KBP in which each agent assumes
+  all other agents are fully unconstrained, i.e., each agent assume
+  the others are adversarial, these are called "simple" in this paper.
+
+
+- synthesise strategies implementing a KBP in which the current set of
+  agents and environment variables are dynamically restricted --- this
+  aims at capturing incomplete information.
+
+The paper restricts to non-deterministic observational memoryless
+strategies.
+
+A hint of how the algorithms can be implemented using existing tools
+is given.
+
+Evaluation
+The idea of enhanching KBP to deal with simple agents and/or
+incomplete information is a valuable one. However, I have a number of
+concerns:
+- the presentation is poor (e.g., long lists of definitions without
+  much intuition, few proof ideas, unclear definitions, spelling
+  mistakes; see notes for a detailed list) which makes this paper hard
+  to read.
+- the formalisation of partially known-environment is not convincing.
+  Indeed: the definition of E(-,-) is not clear (see notes); the
+  formalisation seems to capture a very limited form of incomplete
+  information since the partial information is a bounded finite
+  structure, i.e., the formalism cannot handle an unbounded or
+  infinite amount of unknowns. And in this case, why not simply encode
+  this into the finite environment? What is the advantage of modeling
+  it with the update function u? and introducing another semantics of the logic?
+- the usefulness of the proposed formalism is not convincingly
+  discussed.  
+  e.g., under what scenarios would it be useful to write the beta
+  algorithm as a KBP?  
+  e.g., the beta algorithm modeled should satisfy some property, e.g.,
+  "every robot knows that eventually it will be forever connected to
+  every other robot”. Can this be modeled in the framework?
+
+Originality
+The problem addressed, i.e., how to extend KBP to deal with incomplete
+information, is important. The ideas in this paper are a very
+preliminary step in this direction.
+
+Technical Quality
+As discussed above and below, I have some problems with some of the
+formalisations. e.g., the justification of "simple" vs "rational"
+seems to miss the point that classic KBP capture co-operative agents
+while simple KBP captures adversarial agents; e.g., the definition of
+"partially-known environment" seems limited (it only captures bounded
+information), and is not cleanly defined.
+
+Significance
+The paper supplies novel definitions of KBP taking into account
+adversarial agents (i.e., the notion of "simple" captures that other
+agents are adversarial, which seems to be another way of assuming
+faulty agents) and partially-known environment (however, this  seems
+of limited interest since it only has bounded information about the
+environment).
+
+Relevance
+This paper will be of interest to the verification/synthesis of MAS
+community at IJCAI.
+
+Quality of writing
+The paper is poorly written (see below).
+
+
+Confidence on your assessment
+5-I have a general understanding of the area
+
+
+Comments
+-- presentation, misc. --
+- "we write e(s, f ) for the evaluation of f on s."--> of s on f
+
+- spelling errors, e.g., functioin, exisence, paramterised, possbile
+
+- when definitions are given, please highlight the name of the object
+  being defined.  e.g., "each agent has a \emph{protocol} Q_i of the
+  form ..."
+
+- more proof sketches are needed to evaluate the theorems
+
+- sections could start with "linking" paragraphs that explain what
+  that section is about, and giving intutitions, rather than launching
+  directly into definitions.  e.g., the preliminaries could use a
+  short description of the model.
+
+-- Preliminaries --
+- It seems you allow, for agents, no action to be enabled at a
+  given local state.  Why?
+
+- Semantics of CTLK on MAS should be referenced, e.g., or certain
+  decisions explained, e.g., why the epistemic operator is limited to
+  reachable states.
+
+- footnote 2... how is it "slightly different". and different from what?
+
+-- Knowledge based programs --
+
+- O_ij is a set --> O_ij is *the* set
+- what happens if none of the guards hold?
+- Where is equation (1) justified? The citation to [Huang and van der
+  Meyden, 2014a] does not seem to show the equivalence between the
+  present definition of KBP and that of [Fagin et. al., 1997].
+  Moreover, the equivalence for memoryless strategies (rather than
+  synchronous perfect recall) should be discussed or cited.
+
+- The statement that the original semantics capture rational agents is
+  weak. First, it is hard to talk about rationality without some
+  notion of payoff. Second, if one insists, then the original
+  definitions capture co-operative agents.
+
+-- Simple agents --
+
+A deeper discussion of why eqn (4) is the appropriate way to model the
+notion of "simple agent". E.g., it seems this is simply a way to
+specify that an agent should treat the other agents as adversarial.
+
+-- Partially known Environment --
+
+- In the dfn of E(Agt^i,Var^i_e)...
+  1. why is OVar_i not restricted to Var^i_e?
+  2. the definition of E(-,-) is not clear (as used, e.g., in eqn (6)).
+  In the dfn of E^i, is T^i_e supposed to be a restriction of T to
+  L^i_e \times JACTS^i L^i_e? if so, this should be carefully defined.
+  if not, then how is E^i defined?
+
+- Can't the partial information simply be encoded in the environment?
+  In this case, why are all these definitions needed, including the
+  new semantics on pg 5?
+
+- How is the size of ev and eg used in the complexities in Theorems 4
+  and 5.
+
+- "Instead, they have to make deci- sions based on limited
+  information, or more specifically, the information they observe in
+  the current round. We empha- sis that, in real world, there are many
+  other systems which present these three characteristics. Typical
+  examples include a set of self-driving cars on a road, a set of
+  robots in a smart factory [GTAI, 2014], and some robotic
+  search-and-rescue scenarios, etc."
+
+  It is not clear that any of these examples may be characterised by
+  agents only making decisions based on the current round. The
+  paragraph following the quoted one makes more sense, i.e., agents
+  might have bounded memory.
+
+-- Illustrative Example --
+ -
+ "A detailed investigation into Equation (1) suggests that two
+ implicit assumptions are made on the original KBP seman- tics."
+ Where is this detailed investigation? Is it new? Or is there a
+ missing citation?
+
+- "The first is that, the strategy profile θ M is a common knowledge
+  of the agents."
+  Has this been formalised anywhere?
+
+-- Example 1 --
+- This is a version of the beta aggregation algorithm, and should be
+  stated as such.
+
+- What is the purpose of this example? Simply to illustrate how to
+  model a swarm protocol as a KBP? In which case, is knowledge really
+  neccessary/useful/helpful to model the swarm protocol?
+
+-- Related Work --
+
+- "In [Aminof et al., 2015], a verification problem is stud- ied on a
+  multiagent system in which agents know they are in some environment
+  from a set G of environments, but they do not know which one. The
+  verification problem tests the existence of reconfiguration
+  (basically, a plan) to complete a task, which is specified with a
+  language MRTL. The prob- lem is similar with the synthesis problem
+  in distributed sys- tem [Pnueli and Rosner, 1990] and therefore has
+  similar com- plexity. Unlike our memoryless strategies, the
+  configurations can be history-dependent. More importantly, their
+  approach does not employ explicit structure to maintain agents’
+  aware- ness to the environment and are not based on the syntax and
+  semantics of KBPs."
+
+  This paragraph does not sound right to me. It is true that [Aminof
+  et al., 2015] study the issue of incomplete information. However,
+  [Aminof et al., 2015] is about verification while [Pnueli and
+  Rosner, 1990] is about synthesis. Also, since the agents in the
+  latter are finite state, they can remember structure of the
+  environment. The main difference between the present work and
+  [Aminof et al., 2015] is that the later does not have
+  knowledge-based specifications.
+
+- The reference to strategy logic should mention the variant that is
+  most suited to multi-agent systems, i.e., by Vardi et al.
+
+
+
+

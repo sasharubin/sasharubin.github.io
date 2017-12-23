@@ -1,0 +1,79 @@
+This brief note gives my impressions of the paper.
+
+Summary
+=======
+This is a foundational paper that studies turn-based multiplayer
+multi-outcome games of perfect information.
+
+It shows how one can deduce that certain games or classes of games
+admit finite-state Nash Equilibria from the fact that their two-player
+win/lose versions admit finite-state winning strategies. 
+
+The results generalise some of [1,4,15,17]. 
+
+Of course the details matter as to whether or not the results are
+useful. To that end, the authors apply their results to a variant of
+energy-parity games [5] and lexicographic product of mean-payoff and
+reachability games.
+
+
+Assessment
+==========
+
+1. I find transfer results very interesting and appreciate that the
+authors applied their results to two concrete classes of games (as
+just mentioned).
+
+2. The stated motivation for multiple players is that this is crucial
+in a distributed setting (pg 3). However, both cited references [1,2]
+are from the verification literature and not from the distributed
+computing/systems literature.  Moreover, distributed systems typically
+induce multiplayer games of imperfect information (and which are not
+turn-based). Perhaps there are cases in [1,2] which are more relevant
+to the current study (I did not check).
+
+3. The authors write "This article extends and supersedes the earlier
+[12] which appeared in the proceedings of Strategic Reasoning 2016".
+It would have helped (for evaluating the paper) to know more precisely
+the extent of the extension.
+
+4. The relationship between determinacy in the two-player games in a
+class and the existence of NE in the multiplayer games in that class
+is an important one that appears in a number of settings not discussed
+in the submission.  e.g., in the context of deciding if a concurrent
+mean-payoff game has a NE in pure strategies [UW] uses the fact that
+ordinary (i.e., two-player, zero-sum) mean-payoff games are solvable.
+e.g., a general technique for reducing the existence of a NE to
+solving a certain two-player game is given in [BBMU].
+
+[UW]
+The Complexity of Nash Equilibria in Limit-Average Games
+Ummels and Wojtczak
+
+[BBMU]
+Pure Nash Equilibria in Concurrent Deterministic Games
+Bouyer, Brenguier, Markey, Ummels
+
+Thus, some comments and comparison with such proofs could be added. In
+particular, it would be helpful to write which ideas from such proofs
+(if any) are systemised in the transfer results. Some of this is
+implied by section 5.2 where useful properties of classes of games
+(such as prefix-independence, a commonly used assumption for proving
+NE exist) are compared with the main criterion used in the proofs
+(i.e., regular optimality). 
+
+5. Two types of transfer results are stated:
+- for a given game (theorem 12),
+- for a class of games (theorem 8).
+
+This distinction is a subtle one and I am pleased to see it here.
+
+6. Some of the definitions could use more intuition. That said, the
+authors made a good effort to simplify notation and present clear
+definitions. 
+
+In Summary: This is a foundational study that shows how to lift
+finite-state determinacy to the existence of finite-state Nash
+Equilibria. The only shortcoming I see is a weak justification of the
+model of games, and some scope for comparing the techniques with known
+techniques for deciding if NE exist or proving that they always do.
