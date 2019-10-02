@@ -1,7 +1,8 @@
 Multiple research positions available in the School of Computer Science,
 University of Sydney
 
-A PhD scholarship, research-internship, and summer scholarship are available.
+The positions are: a PhD scholarship, a research-internship, and a summer
+scholarship.
 
 Specific topics of interest include: 
 - Formal Methods (Verification, Synthesis, Monitoring) of Autonomous Systems,
@@ -38,16 +39,7 @@ pursue a PhD. The internship funding includes (subject to budget confirmation):
 2. A weekly stipend to help cover rent.
 
 
-Summer scholarship (10 weeks, approx 2 December 2019 to 23 February 2020)
-
-An ideal candidate for the summer scholarship will have a strong background in
-discrete mathematics and/or formal languages and logic. The scholarship funding
-is 5,000AUD.  See https://tinyurl.com/y4o4utmk for details about eligibility
-and application procedures (the title of the project is CS2019-20 Verifying
-probabilistic models).
-
-
-Applications for PhD scholarship and Research Internship
+Applications for PhD scholarship and research internship
 
 Interested candidates should email Sasha Rubin (sasha.rubin@sydney.edu.au) a
 CV, the contact information of at least two references, and details of any
@@ -56,7 +48,18 @@ Internship may be asked to read and report on a recent conference paper
 published in a conference such as AAAI, IJCAI, AAMAS, ICAPS, KR, LICS, and CSL.
 Informal enquiries are welcome. 
 
-Applications will be processed as they arrive.
+International students are encouraged to apply. Applications will be processed
+as they arrive.
+
+
+Summer scholarship (10 weeks, approx 2 December 2019 to 23 February 2020)
+
+An ideal candidate for the summer scholarship will have a strong background in
+discrete mathematics and/or formal languages and logic. The scholarship funding
+is 5,000AUD.  See https://tinyurl.com/y4o4utmk for details about eligibility
+and application procedures (the title of the project is CS2019-20 Verifying
+probabilistic models). Only students enrolled in an Australian University are
+eligible.
 
 
 Sydney
