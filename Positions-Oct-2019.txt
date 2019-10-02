@@ -46,10 +46,8 @@ CV, the contact information of at least two references, and details of any
 prior research experience. Candidates for the PhD scholarship and Research
 Internship may be asked to read and report on a recent conference paper
 published in a conference such as AAAI, IJCAI, AAMAS, ICAPS, KR, LICS, and CSL.
-Informal enquiries are welcome. 
-
-International students are encouraged to apply. Applications will be processed
-as they arrive.
+Informal enquiries are welcome. International students are encouraged to apply. 
+Applications will be processed as they arrive.
 
 
 Summer scholarship (10 weeks, approx 2 December 2019 to 23 February 2020)
@@ -59,7 +57,7 @@ discrete mathematics and/or formal languages and logic. The scholarship funding
 is 5,000AUD.  See https://tinyurl.com/y4o4utmk for details about eligibility
 and application procedures (the title of the project is CS2019-20 Verifying
 probabilistic models). Only students enrolled in an Australian University are
-eligible.
+eligible. The deadline for applications for the summer scholarship is 20 October 2019.
 
 
 Sydney
