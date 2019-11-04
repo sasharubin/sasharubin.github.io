@@ -1,0 +1,82 @@
+Multiple research positions available in Logic for AI at the School of Computer
+Science, University of Sydney
+
+The positions are: a PhD scholarship, research-internships, summer scholarships.
+
+Specific topics of interest include: 
+- Formal Methods (Verification, Synthesis, Monitoring) of Autonomous Systems,
+  Multi-agent Systems and Distributed Systems
+- Logics in Artificial Intelligence
+- Foundations of Planning
+- Automata and Games
+
+The successful candidates will join the Computational Logic for Artificial
+Intelligence (LOGIC-AI) group, led by Dr. Sasha Rubin.
+
+
+PhD scholarship (3 years)
+ 
+An ideal candidate for the PhD scholarship will be able to provide evidence of
+a strong background in formal methods or mathematical sophistication, and prior
+research experience.  The PhD scholarship includes:
+
+1. Tuition fees.
+2. A living allowance of 35,000AUD per year for 3 years, exempt from taxes,
+with the potential of a topup of 5,000AUD per year, taxed.
+3. Funding to present at workshops and conferences.
+4. No teaching obligations, and the option of paid tutoring.
+
+Interested candidates should email Sasha Rubin a CV, the contact information of
+at least two references, and details of any prior research experience.
+Candidates for the PhD scholarship may be asked to read and report on a recent
+conference paper published in a conference such as AAAI, IJCAI, AAMAS, ICAPS,
+KR, LICS, or CSL.  International students are encouraged to apply.
+Applications will be processed as they arrive.
+
+
+Research internship (3-6 months)
+
+An ideal candidate for the research internship will be able to provide evidence
+of a strong computational or mathematical background, and the potential to
+pursue a PhD. The internship funding includes (subject to budget confirmation):
+
+1. A single return flight to Sydney.
+2. A weekly stipend to help cover rent.
+
+Interested candidates should email Sasha Rubin a CV, an academic transcript,
+the contact information of at least one reference, and details of any prior
+research experience. Candidates for the research internship may be asked to
+read and discuss a paper in the area. International students are encouraged to
+apply.  Applications will be processed as they arrive.
+
+
+Summer scholarship (10 weeks, approx December 2020 to February 2021)
+
+An ideal candidate for the summer scholarship will have a strong background in
+discrete mathematics and/or formal languages and logic. For details about the 2019 
+summer scholarship see https://tinyurl.com/y4o4utmk 
+
+
+Contact details
+
+Sasha Rubin
+sasha.rubin@sydney.edu.au
+sasharubin.github.io
+
+Informal enquiries are welcome.
+
+
+Sydney
+
+The School of Computer Science at The University of Sydney offers a first-class
+research environment, and Sydney is consistently ranked 10th worldwide in the 
+Mercer Quality of Living Survey.
+
+The following quotation is from https://en.wikivoyage.org/wiki/Sydney:
+
+"Sydney is the Harbour City. It is the largest, oldest and most cosmopolitan
+city in Australia with an enviable reputation as one of the world's most
+beautiful and liveable cities. Brimming with history, nature, culture, art,
+fashion, cuisine and design, it is set next to miles of ocean coastline and
+sandy surf beaches."
+

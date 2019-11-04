@@ -1,0 +1,30 @@
+ANU Summer School in Logic, December 2-13, 2019
+
+What: The annual ANU summer school in logic consists of short courses on
+aspects of pure and applied logic. The first week consists of foundational
+material, and the second week on applications. 
+
+Who: Participants are typically a broad mix of undergrads (mostly from computer
+science, but also from mathematics and philosophy) and some postgrads.
+Participants should have some basic knowledge of logic.  All courses aim to
+give a bird's eye view of the topic. 
+
+Where: ANU, Acton Campus
+
+When: December 2-13, 2019
+
+Why Logic: Logic has been called "the calculus of computer science" since it
+plays a fundamental role in computer science similar to the role that calculus
+has in engineering. For instance, logic appears in architecture (logic gates),
+software engineering (specification and verification), programming languages
+(semantics, logic programming), databases (relational algebra and SQL),
+artificial intelligence (automatic theorem proving, knowledge representation,
+symbolic AI), algorithms (complexity and expressiveness), and theory of
+computation (general notions of computability).  
+
+More: http://lss.cecs.anu.edu.au/
+
+One of the lecturers this year is Sasha Rubin. He leads the Computational
+Logic for Artificial Intelligence (LOGIC-AI) group in the School of Computer
+Science at the University of Sydney. Feel free to contact him for more
+information (sasharubin.github.io).
