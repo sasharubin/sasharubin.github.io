@@ -13,6 +13,6 @@ Specific topics of interest include:
 The successful candidates will join the Computational Logic for Artificial
 Intelligence (LOGIC-AI) group. 
 
-Interested candidates should email me <sasha.rubin@sydney.edu.au> with a short
-explanation of what interests them about of my work.  Ideal candidates will
-have strong backgrounds in the theory of computation or mathematical logic. 
+Interested candidates should email me <sasha.rubin@sydney.edu.au> after having
+looked at my work.  Ideal candidates will have strong backgrounds in the theory
+of computation or mathematical logic. 
