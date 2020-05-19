@@ -1,7 +1,8 @@
 Multiple research positions available in Logic for AI at the School of Computer
 Science, University of Sydney
 
-The positions are: a PhD scholarship, honours program, summer scholarships.
+The positions include a PhD scholarship, honours program, summer/winter scholarships, and positions in the Talented Student Program (TSP) and Special Studies Program (SSP).
+
 
 Specific topics of interest include: 
 - Formal Methods (Verification, Synthesis, Monitoring) of Autonomous Systems,
@@ -15,4 +16,4 @@ Intelligence (LOGIC-AI) group.
 
 Interested candidates should email me <sasha.rubin@sydney.edu.au> after having
 looked at my work.  Ideal candidates will have strong backgrounds in the theory
-of computation or mathematical logic. 
+of computation (models of computation, algorithms) or mathematical logic.
