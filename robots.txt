@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /
+
+Allow: /index.html
+Allow: /2020_RESEARCH_Magazine.pdf
+
+Sitemap: https://yourusername.github.io/your-repo-name/sitemap.xml
